@@ -1,3 +1,4 @@
+0. Have Python 3 and pip installed (usually is already installed if Python is downloaded from https://www.python.org/downloads/ )
 1. Install MongoDB over https://www.mongodb.com/try/download/community
 (the community server edition)
 2. Start MongoDB compass and create a basic connectiom
