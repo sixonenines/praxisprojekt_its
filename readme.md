@@ -2,8 +2,10 @@ UPDATE: ANGULARJS SETUP:
 1. Install NodeJS LTS (Long term Support) version
 https://nodejs.org/en
 2. Navigate to /angularApp directory
-3. run ng serve to start development server
-4. go to http://localhost:4200
+3. run npm install in terminal (might have to as admin)
+4. run npm install -g @angular/cli
+5. run ng serve to start development server
+6. go to http://localhost:4200
 
 
 Python Backend Guide:
