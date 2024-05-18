@@ -14,7 +14,7 @@
 <tr>
     <td>
         <div ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
-            <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
+            <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && !currentTaskIndex">
         </div>
     </td>
     <td>
