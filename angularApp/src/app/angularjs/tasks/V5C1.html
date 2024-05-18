@@ -1,0 +1,32 @@
+<tr>
+    <h3>V5C1</h3>
+    <td colspan="2">Given the following code, what is the output? Provide the answer in a free text field.</td>
+</tr>
+<tr>
+    <td colspan="2">
+        <p class="code-style">
+            1 a=100
+            2 b=20
+            3 a=20
+            3 print(a,b)
+        </p>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
+            <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
+        </div>
+    </td>
+    <td>
+        <button ng-click="checkAnswer(userAnswer)">Check</button>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+        <!-- Button zum Wechseln zur vorherigen Aufgabe -->
+        <button ng-click="prevTask()" ng-disabled="currentTaskIndex === 0 || !tasks[currentTaskIndex - 1].isCompleted">Previous</button>
+        <!-- Button zum Wechseln zur nächsten Aufgabe -->
+        <button ng-click="nextTask()" ng-disabled="currentTaskIndex === tasks.length - 1 || !tasks[currentTaskIndex].isCompleted">Next</button>
+    </td>
+</tr>
