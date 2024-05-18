@@ -21,3 +21,9 @@ td{
 .incorrect-answer input {
     border: 2px solid red; /* Rote Umrandung für falsche Antwort */
 }
+
+img.python-tutor {
+    height: 100px; /* Höhe des Bildes */
+    float: right; /* Rechtsausrichtung */
+    margin-left: 10px; /* Optional: Abstand zwischen Bild und Text */
+}
