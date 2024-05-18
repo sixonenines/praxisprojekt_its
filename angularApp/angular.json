@@ -41,7 +41,6 @@
               "src/app/angularjs/css/general.css"
             ],
             "scripts": [
-              "https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js",
               "src/app/angularjs/js/selectTask.js"
             ]
           },
