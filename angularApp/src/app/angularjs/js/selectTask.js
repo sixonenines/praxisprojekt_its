@@ -5,17 +5,17 @@ app.controller("MainController", function($scope) {
     $scope.tasks = [
         {
             id: 'V1C1',
-            templateUrl: "app/angularjs/tasks/V1C1.html",
+            templateUrl: "app/angularjs/tasks/FreeTextTasks/V1C1.html",
             isCompleted: false // Flag, um den Abschluss der Aufgabe zu verfolgen
         },
         {
             id: 'V3C1',
-            templateUrl: "app/angularjs/tasks/V3C1.html",
+            templateUrl: "app/angularjs/tasks/FreeTextTasks/V3C1.html",
             isCompleted: false
         },
         {
             id: 'V5C1',
-            templateUrl: "app/angularjs/tasks/V5C1.html",
+            templateUrl: "app/angularjs/tasks/FreeTextTasks/V5C1.html",
             isCompleted: false
         }
         // Weitere Aufgaben können hier hinzugefügt werden
