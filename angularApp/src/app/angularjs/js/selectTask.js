@@ -17,6 +17,11 @@ app.controller("MainController", function($scope) {
             id: 'V5C1',
             templateUrl: "app/angularjs/tasks/FreeTextTasks/V5C1.html",
             isCompleted: false
+        },
+        {
+            id: 'F1C3',
+            templateUrl: "app/angularjs/tasks/CompilerTasks/F1C3.html",
+            isCompleted: false
         }
         // Weitere Aufgaben können hier hinzugefügt werden
     ];
