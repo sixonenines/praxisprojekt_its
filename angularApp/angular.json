@@ -41,7 +41,10 @@
               "src/app/angularjs/css/general.css"
             ],
             "scripts": [
-              "src/app/angularjs/js/selectTask.js"
+              "src/app/angularjs/js/TaskController.js",
+              "src/app/angularjs/js/correctAnswerService.js",
+              "src/app/angularjs/js/freeTextTaskController.js",
+              "src/app/angularjs/js/gapTaskController.js"
             ]
           },
           "configurations": {

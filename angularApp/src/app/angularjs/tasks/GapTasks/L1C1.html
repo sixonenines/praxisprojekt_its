@@ -1,0 +1,11 @@
+<div ng-controller="GapTaskController">
+    <h3>F1C1</h3>
+    <p>Print i as long as i is less than 6:</p>
+    <p class="code-style">
+        1   i = 1
+        2   <span><input class="gap_input" type="text" ng-model="userAnswer2" ng-disabled="isAnswered2 && isCorrectAnswer2" ng-class="{'correct-answer-gap': isCorrectAnswer2 && isAnswered2, 'incorrect-answer-gap': !isCorrectAnswer2 && isAnswered2}" placeholder="Enter code here" ng-change="checkGapAnswer2(userAnswer2)"> i<6</span>
+        3       print(i)
+        4       i +=1
+    </p>
+    <button ng-click="checkGapAnswers(userAnswer1)">Check</button>
+</div>

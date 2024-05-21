@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
   <meta charset="UTF-8">
-  <title>Your App</title>
+  <title>Python-Tutor</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="app/angularjs/css/general.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <script src="app/angularjs/js/correctAnswerFreeText.js"></script>
-  <script src="app/angularjs/js/selectTask.js"></script>
+  <script src="app/angularjs/js/TaskController.js"></script>
+  <script src="app/angularjs/js/CorrectAnswerService.js"></script>
+  <script src="app/angularjs/js/GapTaskController.js"></script>
+  <script src="app/angularjs/js/FreeTextTaskController.js"></script>
+
   <script src="app\angularjs\tasks\CompilerTasks\js\infiniteLoopErrorMessage.js"></script>
   <link rel="stylesheet" href="https://pyscript.net/releases/2024.5.2/core.css">
   <script type="module" src="https://pyscript.net/releases/2024.5.2/core.js"></script>
 </head>
-<body>
+<body ng-controller="TaskController">
   <app-root></app-root>
 </body>
 </html>

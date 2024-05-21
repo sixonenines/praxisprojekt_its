@@ -22,8 +22,21 @@ td{
     border: 2px solid red; /* Rote Umrandung für falsche Antwort */
 }
 
+.correct-answer-gap {
+    border: 2px solid green;
+}
+
+.incorrect-answer-gap {
+    border: 2px solid red;
+}
+
+
 img.python-tutor {
     height: 100px; /* Höhe des Bildes */
     float: right; /* Rechtsausrichtung */
     margin-left: 10px; /* Optional: Abstand zwischen Bild und Text */
+}
+
+.gap_input{
+    margin-left: 20px;
 }

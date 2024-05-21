@@ -1,35 +1,27 @@
+
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * Delete the template below * * * * * * * * * -->
-<!-- * * * * * * * to get started with your project! * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<div ng-app="myApp" ng-controller="MainController">
-    <table>
-      <tr>
-        <td colspan="2">Fortschrittsanzeige</td>
-      </tr>
-      <tr>
-        <td rowspan="2">Navigation</td>
-        <td>
-            <img src="../app/angularjs/img/pythonTutor.png" alt="Python Tutor Image" class="python-tutor">
-        </td>
-      </tr>
-      <tr ng-if="currentTask">
-        <td colspan="2" ng-include="currentTask.templateUrl"></td>
-      </tr>
+<table>
+        <tr>
+            <td colspan="2">Fortschrittsanzeige</td>
+        </tr>
+        <tr>
+            <td rowspan="2">Navigation</td>
+            <td>
+                <img src="../app/angularjs/img/pythonTutor.png" alt="Python Tutor Image" class="python-tutor">
+            </td>
+        </tr>
+        <tr ng-if="currentTask">
+            <td colspan="2">
+                <div ng-include="currentTask.templateUrl"></div>
+                <div>
+                    <button ng-click="prevTask()" ng-disabled="isPrevDisabled()">Previous</button>
+                    <button ng-click="nextTask()" ng-disabled="isNextDisabled()">Next</button>
+                </div>
+            </td>
+        </tr>
     </table>
-  </div>
+
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 
 <router-outlet />
