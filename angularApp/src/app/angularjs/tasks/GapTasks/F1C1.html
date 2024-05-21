@@ -2,10 +2,10 @@
     <h3>F1C1</h3>
     <p>Create a function named “my_func” to fill the gap in line 1 and call this function to fill the gap in line 4:</p>
     <p class="code-style">
-        <span>1<input class="gap_input" type="text" ng-model="userAnswer1" ng-disabled="isAnswered1 && isCorrectAnswer1" ng-class="{'correct-answer-gap': isCorrectAnswer1 && isAnswered1, 'incorrect-answer-gap': !isCorrectAnswer1 && isAnswered1}" placeholder="Enter code here" ng-change="checkGapAnswer1(userAnswer1)"></span>
+        <span>1<input class="gap_input" type="text" ng-model="userAnswer1" ng-disabled="isAnswered1 && isCorrectAnswer1" ng-class="{'correct-answer-gap': isCorrectAnswer1 && isAnswered1, 'incorrect-answer-gap': !isCorrectAnswer1 && isAnswered1}" placeholder="Enter code here" ng-change="checkGapAnswer1(userAnswer1, 'F1C1_1')"></span>
         2       print("Hello from a function")
         3
-        <span>4<input class="gap_input" type="text" ng-model="userAnswer2" ng-disabled="isAnswered2 && isCorrectAnswer2" ng-class="{'correct-answer-gap': isCorrectAnswer2 && isAnswered2, 'incorrect-answer-gap': !isCorrectAnswer2 && isAnswered2}" placeholder="Enter code here" ng-change="checkGapAnswer2(userAnswer2)"></span>
+        <span>4<input class="gap_input" type="text" ng-model="userAnswer2" ng-disabled="isAnswered2 && isCorrectAnswer2" ng-class="{'correct-answer-gap': isCorrectAnswer2 && isAnswered2, 'incorrect-answer-gap': !isCorrectAnswer2 && isAnswered2}" placeholder="Enter code here" ng-change="checkGapAnswer2(userAnswer2, 'F1C1_2')"></span>
     </p>
     <button ng-click="checkGapAnswers(userAnswer1, userAnswer2)">Check</button>
 </div>
