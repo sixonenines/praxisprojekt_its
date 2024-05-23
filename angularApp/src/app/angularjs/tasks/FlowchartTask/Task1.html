@@ -1,0 +1,23 @@
+<div ng-controller="DragAndDropController">
+    <h3>Drag & Drop Task</h3>
+    <p>Drag the items into the correct drop zones:</p>
+    
+    <div class="container">
+        <div class="list-container">
+            <h4>Items</h4>
+            <ul dnd-list="items" class="list">
+                <li ng-repeat="item in items" dnd-draggable="item" dnd-moved="items.splice($index, 1)" dnd-effect-allowed="move">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
+        <div class="zone-container" ng-repeat="zone in zones" dnd-drop="onDropComplete(item, zone)">
+            <h4>Zone {{zone.name}}</h4>
+            <ul dnd-list="zone.items" class="list">
+                <li ng-repeat="item in zone.items" dnd-draggable="item" dnd-moved="zone.items.splice($index, 1)" dnd-effect-allowed="move">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

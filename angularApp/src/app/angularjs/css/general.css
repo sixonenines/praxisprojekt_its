@@ -32,11 +32,40 @@ td{
 
 
 img.python-tutor {
-    height: 100px; /* Höhe des Bildes */
+    height: 100%; /* Höhe des Bildes */
     float: right; /* Rechtsausrichtung */
     margin-left: 10px; /* Optional: Abstand zwischen Bild und Text */
 }
 
 .gap_input{
     margin-left: 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.list-container, .zone-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list li {
+    background: #f9f9f9;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    cursor: move;
 }

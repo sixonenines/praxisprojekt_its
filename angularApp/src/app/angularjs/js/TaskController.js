@@ -1,8 +1,8 @@
-var app = angular.module("myApp", []);
+var app = angular.module("myApp", ["dndLists"]);
 
 app.controller("TaskController", function($scope, CorrectAnswerService, $templateCache, $http) {
     var templates = [
-        
+        "app/angularjs/tasks/FlowchartTask/Task1.html",
         "app/angularjs/tasks/FreeTextTasks/V1C1.html",
         "app/angularjs/tasks/FreeTextTasks/V3C1.html",
         "app/angularjs/tasks/FreeTextTasks/V5C1.html",
@@ -16,7 +16,7 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
     });
 
     $scope.tasks = [
-        
+        { id: 'V1C1', templateUrl: "app/angularjs/tasks/FlowchartTask/Task1.html", isCompleted: false },
         { id: 'V1C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V1C1.html", isCompleted: false },
         { id: 'V3C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V3C1.html", isCompleted: false },
         { id: 'V5C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V5C1.html", isCompleted: false },
