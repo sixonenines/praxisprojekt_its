@@ -4,11 +4,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkAndClearDiv() {
         const contentDivs3 = document.getElementById('mpy-editor-1-output');
         const targetElement = contentDivs3.innerText
-        if (targetElement.length>1000) {
+        console.log(targetElement);
+        if (targetElement.length>100) {
             console.log('Looks like you are running an infinite loop, refresh the page');
-            contentDivs3.innerHTML = 'Looks like you are running an infinite loop, refresh the page';
+            contentDivs3.innerHTML = 'Something is wrong refresh the page and try again';
         } else {
-            console.log("not an infinite loop");
         }
     }
 

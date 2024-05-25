@@ -1,0 +1,28 @@
+<tr>
+    <h3>L2C3</h3>
+    <td colspan="2">
+        Write a program to display all prime numbers within a range
+        Note: A Prime Number is a whole number greater than 1 whose only factors are 
+        1 and itself. The Varibles "start" and "end" are already declared and initialized. 
+        Just write the code to display all prime numbers between the range not any additional text.
+    </td>
+</tr>
+
+<div>
+    <script type="mpy-editor" env="test_env" setup>
+        start = 1
+        end = 20
+    </script>
+
+    <script id="testingScript" type="mpy-editor" env="test_env">
+        for num in range(start, end + 1):
+            if num > 1:
+                for i in range(2, num):
+                    if (num % i) == 0:
+                        break
+                else:
+                    print(num)
+    </script>
+
+    <button ng-click="checkFreeCodeAnswer()">Check</button>
+</div>

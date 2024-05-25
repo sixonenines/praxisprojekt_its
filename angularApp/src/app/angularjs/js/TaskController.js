@@ -2,6 +2,7 @@ var app = angular.module("myApp", ["dndLists"]);
 
 app.controller("TaskController", function($scope, CorrectAnswerService, $templateCache, $http) {
     var templates = [
+        "app/angularjs/tasks/CompilerTasks/L2C3.html",
         "app/angularjs/tasks/FlowchartTask/Task1.html",
         "app/angularjs/tasks/FreeTextTasks/V1C1.html",
         "app/angularjs/tasks/FreeTextTasks/V3C1.html",
@@ -16,14 +17,14 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
     });
 
     $scope.tasks = [
-        { id: 'V1C1', templateUrl: "app/angularjs/tasks/FlowchartTask/Task1.html", isCompleted: false },
-        { id: 'V1C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V1C1.html", isCompleted: false },
-        { id: 'V3C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V3C1.html", isCompleted: false },
-        { id: 'V5C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V5C1.html", isCompleted: false },
-        { id: 'F1C1', templateUrl: "app/angularjs/tasks/GapTasks/F1C1.html", isCompleted: false },
-        { id: 'L1C1', templateUrl: "app/angularjs/tasks/GapTasks/L1C1.html", isCompleted: false },
-        { id: 'F1C3', templateUrl: "app/angularjs/tasks/CompilerTasks/F1C3.html", isCompleted: false }
-        
+        { id: 'L2C3', templateUrl: "app/angularjs/tasks/CompilerTasks/L2C3.html", isCompleted: false },
+        { id: 'V1C1', templateUrl: "app/angularjs/tasks/FlowchartTask/Task1.html", isCompleted: true },
+        { id: 'V1C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V1C1.html", isCompleted: true },
+        { id: 'V3C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V3C1.html", isCompleted: true },
+        { id: 'V5C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V5C1.html", isCompleted: true },
+        { id: 'F1C1', templateUrl: "app/angularjs/tasks/GapTasks/F1C1.html", isCompleted: true },
+        { id: 'L1C1', templateUrl: "app/angularjs/tasks/GapTasks/L1C1.html", isCompleted: true },
+        { id: 'F1C3', templateUrl: "app/angularjs/tasks/CompilerTasks/F1C3.html", isCompleted: true }     
     ];
 
     $scope.currentTaskIndex = 0;
