@@ -1,4 +1,9 @@
 <div ng-controller="FreeTextTaskController">
+    <div class="hint-navigation" ng-show="hintText">
+        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+        <div class="hint-text">{{ hintText }}</div>
+        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+    </div>
     <tr>
         <h3>V5C1</h3>
         <td colspan="2">Given the following code, what is the output? Provide the answer in a free text field.</td>
@@ -11,15 +16,6 @@
                 <span ng-class="{'code-highlighting': highlightLine === 2}">3 a=20 </span>
                 4 print(a,b)
             </p>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <div class="hint-navigation" ng-show="hintText">
-                <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
-                <div class="hint-text">{{ hintText }}</div>
-                <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
-            </div>
         </td>
     </tr>
     <tr>

@@ -1,4 +1,11 @@
 <div ng-controller="FreeTextTaskController">
+
+    <div class="hint-navigation" ng-show="hintText">
+        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+        <div class="hint-text">{{ hintText }}</div>
+        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+    </div>
+
     <table>
         <tr>
             <h3>V1C1</h3>
@@ -15,17 +22,9 @@
             </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <div class="hint-navigation" ng-show="hintText">
-                    <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
-                    <div class="hint-text">{{ hintText }}</div>
-                    <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
-                </div>
-            </td>
-        </tr>
-        <tr>
             <td>
-                <div ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
+                <div
+                    ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
                     <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
                 </div>
             </td>
