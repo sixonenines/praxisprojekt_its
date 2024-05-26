@@ -1,25 +1,37 @@
 <div ng-controller="FreeTextTaskController">
-    <tr>
-        <h3>V1C1</h3>
-        <td colspan="2">Given the following code, what is the output? Provide the answer in a free text field.</td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <p class="code-style">
-                1 a=200
-                2 a=20
-                3 print(a)
-            </p>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
-                <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
-            </div>
-        </td>
-        <td>
-            <button ng-click="checkFreeTextAnswer(userAnswer)">Check</button>
-        </td>
-    </tr>
+    <table>
+        <tr>
+            <h3>V1C1</h3>
+            <td colspan="2">Given the following code, what is the output? Provide the answer in a free text field.</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p class="code-style">
+                    1 a=200<br>
+                    2 a=20<br>
+                    3 print(a)
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="hint-navigation" ng-show="hintText">
+                    <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+                    <div class="hint-text">{{ hintText }}</div>
+                    <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
+                    <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
+                </div>
+            </td>
+            <td>
+                <button ng-click="checkFreeTextAnswer(userAnswer)">Check</button>
+                <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>
+            </td>
+        </tr>
+    </table>
 </div>
