@@ -105,3 +105,88 @@ body {
 .code-highlighting {
     background-color: yellow;
 }
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navigation {
+    background-color: #f8f9fa;
+    padding: 10px;
+    position: relative;
+    width: 200px;
+}
+
+.menu-item {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.menu-item:hover {
+    background-color: #e9ecef;
+}
+
+.arrow {
+    font-size: 12px;
+    transition: transform 0.3s ease;
+}
+
+.arrow.down {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    display: none;
+    margin-top: 0;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 0;
+    padding-left: 10px;
+}
+
+.submenu.show {
+    display: block;
+}
+
+.submenu div {
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.submenu div:hover {
+    background-color: #e9ecef;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.python-tutor {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+.task-container {
+    margin-top: 20px;
+}
+
+.task-navigation {
+    margin-top: 10px;
+}
+
+.status-icon {
+    margin-left: 10px;
+    font-size: 14px;
+}

@@ -18,28 +18,44 @@ app.controller("GapTaskController", function($scope, CorrectAnswerService, Feedb
         var isCorrect = CorrectAnswerService.checkAnswer(taskID, userAnswer1);
         $scope.isCorrectAnswer1 = isCorrect;
         $scope.isAnswered1 = true;
-        updateCompletionStatus();
+        if ($scope.isCorrectAnswer2 !== null) {
+            updateCompletionStatus();
+        }
     };
-
+    
     $scope.checkGapAnswer2 = function(userAnswer2, taskID) {
         var isCorrect = CorrectAnswerService.checkAnswer(taskID, userAnswer2);
         $scope.isCorrectAnswer2 = isCorrect;
         $scope.isAnswered2 = true;
-        updateCompletionStatus();
+        if ($scope.isCorrectAnswer1 !== null) {
+            updateCompletionStatus();
+        }
     };
+    
+    $scope.checkGapAnswerOneAnswer = function(userAnswer1) {
+        var isCorrect = CorrectAnswerService.checkAnswer("L1C1", userAnswer1);
+        $scope.isCorrectAnswer1 = isCorrect;
+        $scope.isAnswered1 = true;
+        if(isCorrect){
+            $scope.updateTaskStatus($scope.$parent.currentTask.id, 'correct');
+        }else{
+            $scope.updateTaskStatus($scope.$parent.currentTask.id, 'incorrect');
+        }
+    };
+    
 
     $scope.checkGapAnswers = function(userAnswer1, userAnswer2) {
         $scope.checkGapAnswer1(userAnswer1, "F1C1_1");
         $scope.checkGapAnswer2(userAnswer2, "F1C1_2");
     };
 
-    $scope.checkGapAnswerOneAnswer = function(userAnswer1) {
-        $scope.checkGapAnswer1(userAnswer1, "L1C1");
-    };
 
     function updateCompletionStatus() {
-        var isTask1Completed = $scope.isCorrectAnswer1 || $scope.isCorrectAnswer2;
-        $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = isTask1Completed;
+        if ($scope.isCorrectAnswer1 && $scope.isCorrectAnswer2) {
+            $scope.updateTaskStatus($scope.$parent.currentTask.id, 'correct');
+        } else if ($scope.isCorrectAnswer1 !== null && $scope.isCorrectAnswer2 !== null) {
+            $scope.updateTaskStatus($scope.$parent.currentTask.id, 'incorrect');
+        }
     }
 
     $scope.getHint = function() {
