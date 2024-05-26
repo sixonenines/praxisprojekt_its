@@ -6,9 +6,10 @@
         </tr>
         <tr>
             <td colspan="2">
+                <!--Wichtig: Code-area ist hier für das Highlighting im Code zuständig-->
                 <p class="code-style">
                     1 a=200<br>
-                    2 a=20<br>
+                    <span ng-class="{'code-highlighting': highlightLine === 2}">2 a=20</span><br>
                     3 print(a)
                 </p>
             </td>

@@ -7,6 +7,7 @@ app.controller("FreeTextTaskController", function($scope, CorrectAnswerService, 
     $scope.maxHintIndex = -1; // Maximal angezeigter Hinweisindex
     $scope.feedbacks = [];
     $scope.allHintsShown = false; // Variable, die angibt, ob alle Hinweise gezeigt wurden
+    $scope.highlightLine = null; // Zeile, die hervorgehoben werden soll
 
     $scope.checkFreeTextAnswer = function(userAnswer) {
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
@@ -26,7 +27,9 @@ app.controller("FreeTextTaskController", function($scope, CorrectAnswerService, 
         if ($scope.hintIndex < $scope.feedbacks.length - 1) {
             $scope.hintIndex++;
             $scope.maxHintIndex = $scope.hintIndex; // Update maxHintIndex when a new hint is shown
-            $scope.hintText = $scope.feedbacks[$scope.hintIndex];
+            var currentHint = $scope.feedbacks[$scope.hintIndex];
+            $scope.hintText = currentHint.text;
+            $scope.highlightLine = currentHint.highlight;
             if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
                 $scope.allHintsShown = true; // Alle Hinweise wurden angezeigt
             }
@@ -38,14 +41,18 @@ app.controller("FreeTextTaskController", function($scope, CorrectAnswerService, 
     $scope.nextHint = function() {
         if ($scope.hintIndex < $scope.maxHintIndex) {
             $scope.hintIndex++;
-            $scope.hintText = $scope.feedbacks[$scope.hintIndex];
+            var currentHint = $scope.feedbacks[$scope.hintIndex];
+            $scope.hintText = currentHint.text;
+            $scope.highlightLine = currentHint.highlight;
         }
     };
 
     $scope.previousHint = function() {
         if ($scope.hintIndex > 0) {
             $scope.hintIndex--;
-            $scope.hintText = $scope.feedbacks[$scope.hintIndex];
+            var currentHint = $scope.feedbacks[$scope.hintIndex];
+            $scope.hintText = currentHint.text;
+            $scope.highlightLine = currentHint.highlight;
         }
     };
 });

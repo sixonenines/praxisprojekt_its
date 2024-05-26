@@ -88,3 +88,20 @@ body {
     border-radius: 5px;
     text-align: center;
   }
+
+  .hint-navigation {
+    display: flex;
+    align-items: center;
+}
+.hint-navigation button {
+    margin: 0 5px;
+}
+.hint-text {
+    margin: 0 10px;
+}
+.code-style {
+    font-family: monospace;
+}
+.code-highlighting {
+    background-color: yellow;
+}
