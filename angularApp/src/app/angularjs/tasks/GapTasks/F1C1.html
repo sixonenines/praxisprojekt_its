@@ -7,5 +7,14 @@
         3
         <span>4<input class="gap_input" type="text" ng-model="userAnswer2" ng-disabled="isAnswered2 && isCorrectAnswer2" ng-class="{'correct-answer-gap': isCorrectAnswer2 && isAnswered2, 'incorrect-answer-gap': !isCorrectAnswer2 && isAnswered2}" placeholder="Enter code here" ng-change="checkGapAnswer2(userAnswer2, 'F1C1_2')"></span>
     </p>
+
+
+    <div class="hint-navigation" ng-show="hintText">
+        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+        <div class="hint-text">{{ hintText }}</div>
+        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+    </div>
+
     <button ng-click="checkGapAnswers(userAnswer1, userAnswer2)">Check</button>
+    <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>
 </div>

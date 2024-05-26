@@ -34,18 +34,30 @@
               "src/assets",
               "src/app/angularjs/css",
               "src/app/angularjs/js",
-              "src/app/angularjs/tasks"
+              "src/app/angularjs/tasks",
+              "src/app/angularjs/nav",
+              "src/app/angularjs/img"
             ],
             "styles": [
               "src/styles.sass",
               "src/app/angularjs/css/general.css"
             ],
             "scripts": [
+              "src/app/angularjs/js/NavigationDirective.js",
+              "src/app/angularjs/js/NavigationController.js",
+
               "src/app/angularjs/js/TaskController.js",
+              "src/app/angularjs/js/TaskService.js",
               "src/app/angularjs/js/correctAnswerService.js",
               "src/app/angularjs/js/freeTextTaskController.js",
               "src/app/angularjs/js/GapTaskController.js",
-              "src/app/angularjs/js/DragAndDropController.js"
+              "src/app/angularjs/js/DragAndDropController.js",
+              "src/app/angularjs/js/DifficultyController.js",
+              "src/app/angularjs/js/DifficultyService.js",
+              "src/app/angularjs/js/FeedbackService.js"
+
+
+              
             ]
           },
           "configurations": {

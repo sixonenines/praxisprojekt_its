@@ -7,10 +7,19 @@
         <td colspan="2">
             <p class="code-style">
                 1 a=100
-                2 b=20
-                3 a=20
-                3 print(a,b)
+                <span ng-class="{'code-highlighting': highlightLine === 2}">2 b=20</span>
+                <span ng-class="{'code-highlighting': highlightLine === 2}">3 a=20 </span>
+                4 print(a,b)
             </p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="hint-navigation" ng-show="hintText">
+                <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+                <div class="hint-text">{{ hintText }}</div>
+                <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+            </div>
         </td>
     </tr>
     <tr>
@@ -21,6 +30,7 @@
         </td>
         <td>
             <button ng-click="checkFreeTextAnswer(userAnswer)">Check</button>
+            <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>
         </td>
     </tr>
 </div>
