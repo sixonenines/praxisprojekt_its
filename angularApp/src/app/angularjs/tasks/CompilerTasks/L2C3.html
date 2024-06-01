@@ -1,20 +1,27 @@
-<tr>
-    <h3>L2C3</h3>
-    <td colspan="2">
-        Write a program to display all prime numbers within a range
-        Note: A Prime Number is a whole number greater than 1 whose only factors are 
-        1 and itself. The Varibles "start" and "end" are already declared and initialized. 
-        Just write the code to display all prime numbers between the range not any additional text.
-    </td>
-</tr>
+<div ng-controller="FreeCodeTaskController">
+    <div class="hint-navigation" ng-show="hintText">
+        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+        <div class="hint-text">{{ hintText }}</div>
+        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+    </div>
 
-<div>
-    <script type="mpy-editor" env="test_env" setup>
+    <div>
+        <h3>L2C3</h3>
+        <p>
+            Write a program to display all prime numbers within a range.
+            Note: A Prime Number is a whole number greater than 1 whose only factors are 
+            1 and itself. The variables <code>start</code> and <code>end</code> are already declared and initialized.
+            Just write the code to display all prime numbers between the range, not any additional text.
+        </p>
+    </div>
+
+    <div>
+        <script type="mpy-editor" env="test_env" setup>
         start = 1
         end = 20
-    </script>
-
-    <script id="testingScript" type="mpy-editor" env="test_env">
+        </script>
+    
+        <script id="testingScript" type="mpy-editor" env="test_env">
         for num in range(start, end + 1):
             if num > 1:
                 for i in range(2, num):
@@ -22,7 +29,9 @@
                         break
                 else:
                     print(num)
-    </script>
-
-    <button ng-click="checkFreeCodeAnswer()">Check</button>
+        </script>
+        
+        <button ng-click="checkFreeCodeAnswer(userAnswer)">Check</button>
+        <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>
+    </div>
 </div>

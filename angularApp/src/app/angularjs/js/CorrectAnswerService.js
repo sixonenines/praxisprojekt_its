@@ -9,6 +9,8 @@ app.factory('CorrectAnswerService', function() {
         'F1C1_1': "def my_func():",
         'F1C1_2': "my_func()",
         'L1C1' : "while",
+        'F1C3' : "",
+        'V1C3' : "",
     };
 
     return {
