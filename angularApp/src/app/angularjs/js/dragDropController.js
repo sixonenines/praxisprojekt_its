@@ -1,200 +1,104 @@
 var app = angular.module("myApp");
 
-app.controller("dragDropController", function($scope) {
-    // Funktion zum Ermöglichen des Ablegens in Dropzones
-    $scope.allowDrop = function(event) {
-        event.preventDefault();
+app.controller('dragDropController', function($scope) {
+    $scope.selectedText = '';
+    $scope.selectedShape = '';
+    $scope.selectedZone = null;
+    $scope.zonesWithSVG = {};
+    $scope.usedTextOptions = {};
+    $scope.usedZoneOptions = {};
+
+    $scope.selectText = function(text) {
+        if (!$scope.usedTextOptions[text]) {
+            $scope.selectedText = ($scope.selectedText === text) ? '' : text;
+        }
     };
 
-    // Funktion zum Durchführen des Ziehens
-    $scope.drag = function(event) {
-        event.dataTransfer.setData("text", event.target.id);
+    $scope.selectShape = function(shape) {
+        $scope.selectedShape = ($scope.selectedShape === shape) ? '' : shape;
     };
 
-    // Funktion zum Durchführen des Ablegens
-    $scope.drop = function(event) {
-        event.preventDefault();
-        var data = event.dataTransfer.getData("text");
-        var draggableElement = document.getElementById(data);
-        var dropzoneElement = event.target;
+    $scope.selectZone = function(zone) {
+        if (!$scope.isZoneUsed(zone)) {
+            $scope.selectedZone = ($scope.selectedZone === zone) ? null : zone;
+        }
+    };
 
-        // Überprüfen, ob das gezogene Element vorhanden ist und vollständig gerendert wurde
-        if (!draggableElement || !draggableElement.offsetWidth) {
-            console.error("Draggable element not found or not fully rendered:", draggableElement);
+    $scope.createSVG = function() {
+        if (!$scope.selectedText || !$scope.selectedShape || !$scope.selectedZone) {
+            alert("Please select text, shape, and zone.");
             return;
         }
 
-        // Berechnen Sie die Mausposition relativ zum Dropzone-Element
-        var rect = dropzoneElement.getBoundingClientRect();
-        var x = event.clientX - rect.left;
-        var y = event.clientY - rect.top;
+        var svgNS = "http://www.w3.org/2000/svg";
+        var svg = document.createElementNS(svgNS, 'svg');
 
-        // Erstellen eines neuen foreignObject-Elements, um das gezogene Element zu enthalten
-        var foreignObject = document.createElementNS("http://www.w3.org/2000/svg", "foreignObject");
-        foreignObject.setAttribute("width", draggableElement.offsetWidth);
-        foreignObject.setAttribute("height", draggableElement.offsetHeight);
-        foreignObject.setAttribute("x", x - draggableElement.offsetWidth / 2);
-        foreignObject.setAttribute("y", y - draggableElement.offsetHeight / 2);
+        var zone = document.getElementById('zone' + $scope.selectedZone);
+        if (!zone) {
+            console.error('Target zone not found.');
+            return;
+        }
 
-        // Append the clone of the draggable element to the foreignObject
-        var clonedElement = draggableElement.cloneNode(true);
-        clonedElement.removeAttribute("id"); // Remove the id to prevent duplicate IDs
-        foreignObject.appendChild(clonedElement);
+        var zoneRect = zone.getBoundingClientRect();
+        var width = zoneRect.width;
+        var height = zoneRect.height;
 
-        // Append the foreignObject to the dropzoneElement
-        dropzoneElement.appendChild(foreignObject);
+        svg.setAttribute('width', width);
+        svg.setAttribute('height', height);
+        svg.style.position = 'absolute';
+
+        var textElement = document.createElementNS(svgNS, 'text');
+        textElement.setAttribute('x', width / 2);
+        textElement.setAttribute('y', height / 2);
+        textElement.setAttribute('dominant-baseline', 'middle');
+        textElement.setAttribute('text-anchor', 'middle');
+        textElement.setAttribute('font-size', '0.5em');
+        textElement.setAttribute('font-family', '"Courier New", Courier, monospace');
+        textElement.setAttribute('font-weight', 'bold');
+        textElement.textContent = $scope.selectedText;
+
+        var shape;
+        if ($scope.selectedShape === 'Rectangle') {
+            shape = document.createElementNS(svgNS, 'rect');
+            shape.setAttribute('x', 0);
+            shape.setAttribute('y', 0);
+            shape.setAttribute('width', width);
+            shape.setAttribute('height', height);
+            shape.setAttribute('stroke', 'black');
+            shape.setAttribute('stroke-width', '2px');
+            shape.setAttribute('fill', 'none');
+        } else if ($scope.selectedShape === 'Diamond') {
+            shape = document.createElementNS(svgNS, 'polygon');
+            var points = `${width / 2},0 ${width},${height / 2} ${width / 2},${height} 0,${height / 2}`;
+            shape.setAttribute('points', points);
+            shape.setAttribute('stroke', 'black');
+            shape.setAttribute('stroke-width', '1px');
+            shape.setAttribute('fill', 'none');
+        }
+
+        svg.appendChild(shape);
+        svg.appendChild(textElement);
+
+        zone.appendChild(svg);
+        $scope.$applyAsync(function() {
+            $scope.zonesWithSVG[$scope.selectedZone] = true;
+            $scope.usedTextOptions[$scope.selectedText] = true;
+            $scope.usedZoneOptions[$scope.selectedZone] = true;
+            $scope.selectedText = '';
+            $scope.selectedShape = '';
+            $scope.selectedZone = null;
+        });
+    };
+
+    $scope.onDrop = function(event, zone) {
+        $scope.selectZone(zone);
+    };
+
+    $scope.isTextUsed = function(text) {
+        return $scope.usedTextOptions[text];
+    };
+
+    $scope.isZoneUsed = function(zone) {
+        return $scope.usedZoneOptions[zone];
     };
 });
-
-
-// var app = angular.module("myApp");
-
-// document.addEventListener('DOMContentLoaded', (event) => {
-//   const dropzones = document.getElementsByTagName('path');
-
-//   dropzones.forEach(zone => {
-//       zone.addEventListener('dragover', handleDragOver);
-//       zone.addEventListener('dragleave', handleDragLeave);
-//       zone.addEventListener('drop', handleDrop);
-//   });
-
-//   document.addEventListener('dragstart', handleDragStart);
-//   document.addEventListener('dragend', handleDragEnd);
-
-//   // Neues draggable Element erstellen
-//   const draggable = document.createElement("svg");
-//   draggable.classList.add('source');
-//   draggable.textContent = "Neues draggable Element";
-//   draggable.draggable = true;
-//   draggable.addEventListener('dragstart', onDragStart);
-
-//   // Dem Dokument hinzufügen
-//   document.body.appendChild(draggable);
-// });
-
-// function onDragStart(event) {
-//   event.dataTransfer.setData("text/plain", event.target.innerHTML);
-// }
-
-// function handleDragStart(event) {
-//   event.target.classList.add('dragging');
-// }
-
-// function handleDragEnd(event) {
-//   event.target.classList.remove('dragging');
-// }
-
-// function handleDragOver(event) {
-//   event.preventDefault();
-//   event.target.classList.add('highlight');
-// }
-
-// function handleDragLeave(event) {
-//   event.target.classList.remove('highlight');
-// }
-
-// function handleDrop(event) {
-//   event.preventDefault();
-//   event.target.classList.remove('highlight');
-//   const data = event.dataTransfer.getData("text");
-//   // Handle the dropped data with the controller
-//   console.log(`Dropped data: ${data} in zone: ${event.target.id}`);
-// }
-
-// var app = angular.module('myApp');
-
-// app.directive('draggable', function() {
-//   return function(scope, element) {
-//     // this gives us the native JS object
-//     var el = element[0];
-    
-//     el.draggable = true;
-    
-//     el.addEventListener(
-//       'dragstart',
-//       function(e) {
-//         e.dataTransfer.effectAllowed = 'move';
-//         e.dataTransfer.setData('Text', this.id);
-//         this.classList.add('drag');
-//         return false;
-//       },
-//       false
-//     );
-    
-//     el.addEventListener(
-//       'dragend',
-//       function(e) {
-//         this.classList.remove('drag');
-//         return false;
-//       },
-//       false
-//     );
-//   }
-// });
-
-// app.directive('droppable', function() {
-//   return {
-//     scope: {
-//       drop: '&' // parent
-//     },
-//     link: function(scope, element) {
-//       // again we need the native object
-//       var el = element[0];
-      
-//       el.addEventListener(
-//         'dragover',
-//         function(e) {
-//           e.dataTransfer.dropEffect = 'move';
-//           // allows us to drop
-//           if (e.preventDefault) e.preventDefault();
-//           this.classList.add('over');
-//           return false;
-//         },
-//         false
-//       );
-      
-//       el.addEventListener(
-//         'dragenter',
-//         function(e) {
-//           this.classList.add('over');
-//           return false;
-//         },
-//         false
-//       );
-      
-//       el.addEventListener(
-//         'dragleave',
-//         function(e) {
-//           this.classList.remove('over');
-//           return false;
-//         },
-//         false
-//       );
-      
-//       el.addEventListener(
-//         'drop',
-//         function(e) {
-//           // Stops some browsers from redirecting.
-//           if (e.stopPropagation) e.stopPropagation();
-          
-//           this.classList.remove('over');
-          
-//           var item = document.getElementById(e.dataTransfer.getData('Text'));
-//           this.appendChild(item);
-          
-//           // call the drop passed drop function
-//           scope.$apply('drop()');
-          
-//           return false;
-//         },
-//         false
-//       );
-//     }
-//   }
-// });
-
-// app.controller('dragDropController', function($scope) {
-//   $scope.handleDrop = function() {
-//     alert('Item has been dropped');
-//   }
-// });

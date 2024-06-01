@@ -190,3 +190,75 @@ body {
     margin-left: 10px;
     font-size: 14px;
 }
+
+.flowchart {
+    display: flex;
+    flex-direction: row; /* Use row instead of flex-wrap: column wrap */
+}
+
+.left-side {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dropzones {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(3, 4em);
+    grid-template-rows: repeat(12, 2em);
+    gap: 0px; /* Simplified gap property */
+}
+
+.codeblock {
+    border: 1px solid grey;
+    width: 100%;
+    height: 40%;
+    margin-bottom: 20px;
+    display: flex;
+}
+
+.codeblock pre {
+    text-align: left;
+    white-space: pre-line;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.sources {
+    display: flex;
+    flex-direction: column; /* Changed to column */
+    gap: 10px; /* Add gap between rows */
+}
+
+.dropzone {
+    
+    border: 2px dashed darkgrey;
+}
+
+#start, #end {
+    border: 2px solid #393939;
+    border-radius: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#start {
+    grid-area: 1 / 2 / 2 / 3;
+}
+
+#end {
+    grid-area: 11 / 3 / 12 / 4;
+}
+
+.selected {
+    background-color: #c0c0c0; /* Change color for selected state */
+    border: 2px solid #808080; /* Optional: Add border for selected state */
+}
+
+.no-border {
+    border: none;
+}
