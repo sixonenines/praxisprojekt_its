@@ -1,4 +1,1 @@
-checkFreeCodeAnswer = function() {
-    console.log("Checking free code answer")
-    console.log(result)
-}
+//TODO Hier den Controller für die FreeCode-Aufgaben implementieren
