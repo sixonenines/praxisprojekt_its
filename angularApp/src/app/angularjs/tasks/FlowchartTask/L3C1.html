@@ -1,6 +1,6 @@
 <div ng-controller="dragDropController">
     <h3>L3C1</h3>
-    <p>Given the following code, what is the output? Provide the answer in a free text field.</p>
+    <p>Look at the given code. Visualize its algorithm by selecting the codeline, the symbol according to its funtion and the zone. To place your selection, click on "Place in Flowchart".</p>
     
     <!-- Task field -->
     <div class="flowchart">
@@ -24,26 +24,28 @@
                 </pre>
             </div>
             <div class="sources">
-                <div>
+                <div class="buttons1">
                     <button class="code-lines" ng-click="selectText('i = 1')" ng-class="{'selected': selectedText === 'i = 1'}" ng-disabled="isTextUsed('i = 1')">i = 1</button>
                     <button class="code-lines" ng-click="selectText('while i &lt; 6:')" ng-class="{'selected': selectedText === 'while i &lt; 6:'}" ng-disabled="isTextUsed('while i &lt; 6:')">while i &lt; 6:</button>
                     <button class="code-lines" ng-click="selectText('if i == 3:')" ng-class="{'selected': selectedText === 'if i == 3:'}" ng-disabled="isTextUsed('if i == 3:')">if i == 3:</button>
                     <button class="code-lines" ng-click="selectText('break')" ng-class="{'selected': selectedText === 'break'}" ng-disabled="isTextUsed('break')">break</button>
                     <button class="code-lines" ng-click="selectText('i += 1')" ng-class="{'selected': selectedText === 'i += 1'}" ng-disabled="isTextUsed('i += 1')">i += 1</button>
                 </div>
-                <div>
+                <div class="buttons2">
                     <button ng-click="selectShape('Rectangle')" ng-class="{'selected': selectedShape === 'Rectangle'}">Process</button>
                     <button ng-click="selectShape('Diamond')" ng-class="{'selected': selectedShape === 'Diamond'}">Condition</button>
                 </div>
-                <div>
+                smks
+                <div class="buttons3">
+                    
                     <button ng-click="selectZone(1)" ng-drop="onDrop($event, 1)" ng-class="{'selected': selectedZone === 1}" ng-disabled="isZoneUsed(1)">Zone 1</button>
                     <button ng-click="selectZone(2)" ng-drop="onDrop($event, 2)" ng-class="{'selected': selectedZone === 2}" ng-disabled="isZoneUsed(2)">Zone 2</button>
                     <button ng-click="selectZone(3)" ng-drop="onDrop($event, 3)" ng-class="{'selected': selectedZone === 3}" ng-disabled="isZoneUsed(3)">Zone 3</button>
                     <button ng-click="selectZone(4)" ng-drop="onDrop($event, 4)" ng-class="{'selected': selectedZone === 4}" ng-disabled="isZoneUsed(4)">Zone 4</button>
                     <button ng-click="selectZone(5)" ng-drop="onDrop($event, 5)" ng-class="{'selected': selectedZone === 5}" ng-disabled="isZoneUsed(5)">Zone 5</button>
                 </div>
-                <div>
-                    <button ng-click="createSVG()">Create Element</button>
+                <div class="place-button">
+                    <button ng-click="createSVG()">Place in Flowchart</button>
                 </div>
             </div>
         </div>

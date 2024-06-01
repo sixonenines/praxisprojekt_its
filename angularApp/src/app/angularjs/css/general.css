@@ -193,21 +193,27 @@ body {
 
 .flowchart {
     display: flex;
-    flex-direction: row; /* Use row instead of flex-wrap: column wrap */
+    
+    
+    
 }
 
 .left-side {
-    width: 40%;
     display: flex;
+    align-self: left;
     flex-direction: column;
+    flex-basis: 60%;
+    
 }
 
 .dropzones {
-    width: 60%;
+    
     display: grid;
     grid-template-columns: repeat(3, 4em);
     grid-template-rows: repeat(12, 2em);
-    gap: 0px; /* Simplified gap property */
+    margin-left: 20px;
+    flex-basis: 40%;
+   
 }
 
 .codeblock {
@@ -216,6 +222,7 @@ body {
     height: 40%;
     margin-bottom: 20px;
     display: flex;
+   flex-basis: 40%;
 }
 
 .codeblock pre {
@@ -227,10 +234,41 @@ body {
 
 .sources {
     display: flex;
-    flex-direction: column; /* Changed to column */
-    gap: 10px; /* Add gap between rows */
+    flex-direction: column; 
+    flex-basis: 60%;
+    justify-content: space-evenly;
+    
+    
 }
 
+.buttons1, .buttons3 {
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid grey;
+    padding: 10px 0;
+    
+}
+
+.buttons2, .place-button {
+    display: flex;
+    justify-content: center;
+    border: 1px solid grey;
+    padding: 10px 0;
+}
+
+.buttons2 {
+    gap: 15px
+}
+.place-button button {
+    width: 10em;
+    height: 3em;
+    
+}
+
+.buttons1 button , .buttons2 button, .buttons3 button {
+    width: 6em;
+    height: 3em;
+}
 .dropzone {
     
     border: 2px dashed darkgrey;
@@ -255,8 +293,8 @@ body {
 }
 
 .selected {
-    background-color: #c0c0c0; /* Change color for selected state */
-    border: 2px solid #808080; /* Optional: Add border for selected state */
+    background-color: #c0c0c0; 
+    border: 2px solid #808080; 
 }
 
 .no-border {
