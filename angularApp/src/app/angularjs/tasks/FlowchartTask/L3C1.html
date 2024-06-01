@@ -36,11 +36,11 @@
                     <button ng-click="selectShape('Diamond')" ng-class="{'selected': selectedShape === 'Diamond'}">Condition</button>
                 </div>
                 <div>
-                    <button ng-click="selectZone(1)" ng-class="{'selected': selectedZone === 1}" ng-disabled="isZoneUsed(1)">Zone 1</button>
-                    <button ng-click="selectZone(2)" ng-class="{'selected': selectedZone === 2}" ng-disabled="isZoneUsed(2)">Zone 2</button>
-                    <button ng-click="selectZone(3)" ng-class="{'selected': selectedZone === 3}" ng-disabled="isZoneUsed(3)">Zone 3</button>
-                    <button ng-click="selectZone(4)" ng-class="{'selected': selectedZone === 4}" ng-disabled="isZoneUsed(4)">Zone 4</button>
-                    <button ng-click="selectZone(5)" ng-class="{'selected': selectedZone === 5}" ng-disabled="isZoneUsed(5)">Zone 5</button>
+                    <button ng-click="selectZone(1)" ng-drop="onDrop($event, 1)" ng-class="{'selected': selectedZone === 1}" ng-disabled="isZoneUsed(1)">Zone 1</button>
+                    <button ng-click="selectZone(2)" ng-drop="onDrop($event, 2)" ng-class="{'selected': selectedZone === 2}" ng-disabled="isZoneUsed(2)">Zone 2</button>
+                    <button ng-click="selectZone(3)" ng-drop="onDrop($event, 3)" ng-class="{'selected': selectedZone === 3}" ng-disabled="isZoneUsed(3)">Zone 3</button>
+                    <button ng-click="selectZone(4)" ng-drop="onDrop($event, 4)" ng-class="{'selected': selectedZone === 4}" ng-disabled="isZoneUsed(4)">Zone 4</button>
+                    <button ng-click="selectZone(5)" ng-drop="onDrop($event, 5)" ng-class="{'selected': selectedZone === 5}" ng-disabled="isZoneUsed(5)">Zone 5</button>
                 </div>
                 <div>
                     <button ng-click="createSVG()">Create Element</button>
