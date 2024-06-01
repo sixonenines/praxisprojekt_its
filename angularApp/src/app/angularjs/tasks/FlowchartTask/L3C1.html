@@ -6,11 +6,11 @@
     <div class="flowchart">
         <div class="dropzones">
             <div id="start"><span>Start</span></div>
-            <div id="zone1" class="dropzone" ng-drop="onDrop($event, 1)" ng-class="{'no-border': zonesWithSVG[1]}" style="grid-area: 3 / 2 / 4 / 3;"></div>
-            <div id="zone2" class="dropzone" ng-drop="onDrop($event, 2)" ng-class="{'no-border': zonesWithSVG[2]}" style="grid-area: 5 / 2 / 6 / 3;"></div>
-            <div id="zone3" class="dropzone" ng-drop="onDrop($event, 3)" ng-class="{'no-border': zonesWithSVG[3]}" style="grid-area: 7 / 2 / 8 / 3;"></div>
-            <div id="zone4" class="dropzone" ng-drop="onDrop($event, 4)" ng-class="{'no-border': zonesWithSVG[4]}" style="grid-area: 9 / 1 / 10 / 2;"></div>
-            <div id="zone5" class="dropzone" ng-drop="onDrop($event, 5)" ng-class="{'no-border': zonesWithSVG[5]}" style="grid-area: 9 / 3 / 10 / 4;"></div>
+            <div id="zone1" class="dropzone" ng-click="selectZone(1)" ng-class="{'no-border': zonesWithSVG[1]}" style="grid-area: 3 / 2 / 4 / 3;"></div>
+            <div id="zone2" class="dropzone" ng-click="selectZone(2)" ng-class="{'no-border': zonesWithSVG[2]}" style="grid-area: 5 / 2 / 6 / 3;"></div>
+            <div id="zone3" class="dropzone" ng-click="selectZone(3)" ng-class="{'no-border': zonesWithSVG[3]}" style="grid-area: 7 / 2 / 8 / 3;"></div>
+            <div id="zone4" class="dropzone" ng-click="selectZone(4)" ng-class="{'no-border': zonesWithSVG[4]}" style="grid-area: 9 / 1 / 10 / 2;"></div>
+            <div id="zone5" class="dropzone" ng-click="selectZone(5)" ng-class="{'no-border': zonesWithSVG[5]}" style="grid-area: 9 / 3 / 10 / 4;"></div>
             <div id="end"><span>End</span></div>
         </div>
         <div class="left-side">
