@@ -80,7 +80,12 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         var task = $scope.tasks.find(function(t) {
             return t.id === taskId;
         });
-        if (task) {
+        if (task.id == "F1C3" || task.id == "F2C3" || task.id == "L2C3" || task.id == "V1C3") {
+            codeNumber+=2;
+            $scope.currentTaskIndex = $scope.tasks.indexOf(task);
+            $scope.currentTask = task;
+        }
+        else if (task) {
             $scope.currentTaskIndex = $scope.tasks.indexOf(task);
             $scope.currentTask = task;
         }
@@ -116,4 +121,10 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
             task.isCompleted = true;
         }
     };
+
+    $scope.testFunction = function() {
+        console.log (codeNumber);
+        console.log(document.getElementById('mpy-editor-' + codeNumber + '-output').innerText);
+    };
+
 });

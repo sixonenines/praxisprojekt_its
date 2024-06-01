@@ -14,8 +14,16 @@
         end = 20
     </script>
 
-    <script id="testingScript" type="mpy-editor" env="test_env">
+    <script id="L2C3" type="mpy-editor" env="test_env">
+        for num in range(start, end + 1):
+            if num > 1:
+                for i in range(2, num):
+                    if (num % i) == 0:
+                        break
+                else:
+                    print(num)
+        print("Prime numbers between", start, "and", end, "are:")
     </script>
 
-    <button ng-click="checkFreeCodeAnswer()">Check</button>
+    <button ng-click='testFunction()'>Check</button>
 </div>

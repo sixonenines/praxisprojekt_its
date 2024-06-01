@@ -12,8 +12,20 @@
     <script type="mpy-editor" env="test_env" setup>
     </script>
 
-    <script id="testingScript" type="mpy-editor" env="test_env">
+    <script id="F2C3" type="mpy-editor" env="test_env">
+        def maximum(a, b, c):
+            if (a >= b) and (a >= c):
+                largest = a
+            elif (b >= a) and (b >= c):
+                largest = b
+            else:
+                largest = c
+            return largest
+        
+        res = maximum(2, 4, 7)
+        print("Largest Number: ", res)
     </script>
     
-    <button ng-click="checkFreeCodeAnswer()">Check</button>
+    <button ng-click='testFunction()'>Check</button>
+
 </div>

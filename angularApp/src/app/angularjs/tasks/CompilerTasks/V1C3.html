@@ -12,8 +12,14 @@
         end = 10
     </script>
 
-    <script id="testingScript" type="mpy-editor" env="test_env">
+    <script id="V1C3" type="mpy-editor" env="test_env">
+        sum = 0
+        i = 0
+        while i <= end:
+            sum += 1
+            i +=1
+        print(sum)
     </script>
     
-    <button ng-click="checkFreeCodeAnswer()">Check</button>
+    <button ng-click='testFunction()'>Check</button>
 </div>
