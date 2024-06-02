@@ -59,3 +59,4 @@ app.controller("FreeCodeTaskController", function($scope, CorrectAnswerService) 
     };
 
 });
+//TODO Hier den Controller für die FreeCode-Aufgaben implementieren
