@@ -1,23 +1,29 @@
 <div>
-  <tr>
-      <h3>F1C3</h3>
-      <td colspan="2"> Write a program to create a function [called calculation] that accepts two
-          arguments called [num1 and num2] and calculates addition and subtraction.
-          Additionally, it must return both addition and subtraction in
-          a single return call. The numbers are already initialized as num1 and num2</td>
-  </tr>
+    <tr>
+        <h3>F1C3</h3>
+        <td colspan="2"> Write a program to create a function [called calculation] that accepts two
+            arguments called [num1 and num2] and calculates addition and subtraction.
+            Additionally, it must return both addition and subtraction in
+            a single return and print call without any Text. The first should be </td>
+    </tr>
 
-  <div>
-      <script type="mpy-editor" env="test_env" setup>
-        # This code will not be visible, but will run before the next editor's code is
-        # evaluated.
-        num1 = 1
-        num2 = 2
-      </script>
+    <div>
+        <script type="mpy-editor" env="test_env" setup>
+            # This code will not be visible, but will run before the next editor's code is
+            # evaluated.
+            num1 = 10
+            num2 = 5
+        </script>
         
-      <script id ="F1C1" type="mpy-editor" env="test_env">
-        print(num1)
-      </script>
+        <script id ="F1C1" type="mpy-editor" env="test_env">
+        def calculation(a, b):
+            addition = a + b
+            subtraction = a - b
+            return addition, subtraction
+        
+        result_addition, result_subtraction = calculation(num1, num2)
+        print(result_addition, result_subtraction)
+        </script>
 
       <button ng-click='testFunction()'>Check</button>
   </div>

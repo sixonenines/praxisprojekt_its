@@ -8,10 +8,10 @@ app.factory('CorrectAnswerService', function() {
         'F1C1_1': "def my_func():",
         'F1C1_2': "my_func()",
         'L1C1' : "while",
-        'F1C3' : "10",
-        'F2C3' : "10",
+        'F1C3' : "15 5",
+        'F2C3' : "15",
         'L2C3' : "2\n3\n5\n7\n11\n13\n17\n19",
-        'V1C3' : "10"
+        'V1C3' : "11"
     };
 
     return {

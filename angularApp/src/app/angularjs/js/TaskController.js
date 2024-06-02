@@ -55,14 +55,28 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
     $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
 
     $scope.prevTask = function() {
-        if ($scope.currentTaskIndex > 0) {
+        var prevTaskId = $scope.tasks[$scope.currentTaskIndex - 1].id;
+        if ($scope.currentTaskIndex < $scope.tasks.length - 1 && $scope.currentTask.isCompleted && (prevTaskId == "F1C3" || prevTaskId == "F2C3" || prevTaskId == "L2C3" || prevTaskId == "V1C3")) {
+            console.log("Prev task is compiler task");
+            codeNumber += 2;
+            $scope.currentTaskIndex--;
+            $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
+        }
+        else if ($scope.currentTaskIndex > 0) {
             $scope.currentTaskIndex--;
             $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
         }
     };
 
     $scope.nextTask = function() {
-        if ($scope.currentTaskIndex < $scope.tasks.length - 1 && $scope.currentTask.isCompleted) {
+        var nextTaskId = $scope.tasks[$scope.currentTaskIndex + 1].id;
+        if ($scope.currentTaskIndex < $scope.tasks.length - 1 && $scope.currentTask.isCompleted && (nextTaskId == "F1C3" || nextTaskId == "F2C3" || nextTaskId == "L2C3" || nextTaskId == "V1C3")) {
+            console.log("Next task is compiler task");
+            codeNumber += 2;
+            $scope.currentTaskIndex++;
+            $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
+        }
+        else if ($scope.currentTaskIndex < $scope.tasks.length - 1 && $scope.currentTask.isCompleted) {
             $scope.currentTaskIndex++;
             $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
         }
