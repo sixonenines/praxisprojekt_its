@@ -1,11 +1,8 @@
-var codeNumber = -1;
-var result = 'Das ist ein Test';
-
 document.addEventListener('DOMContentLoaded', () => {
     const parentElement = document.body;
 
     function checkAndClearDiv() {
-        const contentDivs3 = document.getElementById('mpy-editor-' + codeNumber + '-output');
+        const contentDivs3 = document.getElementById('mpy-editor-1-output');
         const targetElement = contentDivs3.innerText
         if (targetElement.length>1000) {
             console.log('Looks like you are running an infinite loop, refresh the page');
@@ -19,7 +16,7 @@ const observer = new MutationObserver((mutationsList, observer) => {
     for (let mutation of mutationsList) {
         if (mutation.type === 'childList') {
             // Check if contentDivs has been added
-            const contentDivs = document.getElementById('mpy-editor-'+ codeNumber +'-output');
+            const contentDivs = document.getElementById('mpy-editor-1-output');
             if (contentDivs) {
                 console.log('contentDivs found, setting up content observer.');
 

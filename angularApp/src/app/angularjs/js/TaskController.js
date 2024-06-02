@@ -55,28 +55,14 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
     $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
 
     $scope.prevTask = function() {
-        var prevTaskId = $scope.tasks[$scope.currentTaskIndex - 1].id;
-        if ($scope.currentTaskIndex < $scope.tasks.length - 1 && $scope.currentTask.isCompleted && (prevTaskId == "F1C3" || prevTaskId == "F2C3" || prevTaskId == "L2C3" || prevTaskId == "V1C3")) {
-            console.log("Prev task is compiler task");
-            codeNumber += 2;
-            $scope.currentTaskIndex--;
-            $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
-        }
-        else if ($scope.currentTaskIndex > 0) {
+        if ($scope.currentTaskIndex > 0) {
             $scope.currentTaskIndex--;
             $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
         }
     };
 
     $scope.nextTask = function() {
-        var nextTaskId = $scope.tasks[$scope.currentTaskIndex + 1].id;
-        if ($scope.currentTaskIndex < $scope.tasks.length - 1 && $scope.currentTask.isCompleted && (nextTaskId == "F1C3" || nextTaskId == "F2C3" || nextTaskId == "L2C3" || nextTaskId == "V1C3")) {
-            console.log("Next task is compiler task");
-            codeNumber += 2;
-            $scope.currentTaskIndex++;
-            $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
-        }
-        else if ($scope.currentTaskIndex < $scope.tasks.length - 1 && $scope.currentTask.isCompleted) {
+        if ($scope.currentTaskIndex < $scope.tasks.length - 1 && $scope.currentTask.isCompleted) {
             $scope.currentTaskIndex++;
             $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
         }
@@ -94,12 +80,7 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         var task = $scope.tasks.find(function(t) {
             return t.id === taskId;
         });
-        if (task.id == "F1C3" || task.id == "F2C3" || task.id == "L2C3" || task.id == "V1C3") {
-            codeNumber+=2;
-            $scope.currentTaskIndex = $scope.tasks.indexOf(task);
-            $scope.currentTask = task;
-        }
-        else if (task) {
+        if (task) {
             $scope.currentTaskIndex = $scope.tasks.indexOf(task);
             $scope.currentTask = task;
         }
@@ -137,8 +118,7 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
     };
 
     $scope.testFunction = function() {
-        console.log (codeNumber);
-        console.log(document.getElementById('mpy-editor-' + codeNumber + '-output').innerText);
+        console.log(document.getElementsByClassName('mpy-editor-output')[0].innerText);
     };
 
 });
