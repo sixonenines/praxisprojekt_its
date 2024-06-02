@@ -1,13 +1,12 @@
 var app = angular.module("myApp");
-console.log("Check Module working");
+console.log("Check Free Code Module working");
 
 app.controller("FreeCodeTaskController", function($scope, CorrectAnswerService) {
     $scope.isCorrectAnswer = null;
     $scope.isAnswered = false;
 
     $scope.checkFreeCodeAnswer = function() {
-        var targetElement = document.getElementById('mpy-editor-1-output');
-        var userAnswer = targetElement;
+        var userAnswer = document.getElementsByClassName('mpy-editor-output')[0].innerText;
         console.log(userAnswer);
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
         $scope.isCorrectAnswer = isCorrect;
