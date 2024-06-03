@@ -1,17 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const parentElement =document.body;
+    const parentElement = document.body;
 
     function checkAndClearDiv() {
         const contentDivs3 = document.getElementById('mpy-editor-1-output');
         const targetElement = contentDivs3.innerText
-        console.log(targetElement);
-        if (targetElement.length>100) {
+        if (targetElement.length>1000) {
             console.log('Looks like you are running an infinite loop, refresh the page');
-            contentDivs3.innerHTML = 'Something is wrong refresh the page and try again';
+            contentDivs3.innerHTML = 'Looks like you are running an infinite loop, refresh the page';
         } else {
         }
     }
-
 
 // Create a MutationObserver to watch for the addition of dynamicDiv
 const observer = new MutationObserver((mutationsList, observer) => {
@@ -30,8 +28,6 @@ const observer = new MutationObserver((mutationsList, observer) => {
                         }
                     }
                 });
-
-
 
                     // Start observing the dynamicDiv for changes to its children
                     contentObserver.observe(contentDivs, { childList: true, subtree: true });

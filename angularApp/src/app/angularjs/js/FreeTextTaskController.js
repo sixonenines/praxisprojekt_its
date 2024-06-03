@@ -10,6 +10,7 @@ app.controller("FreeTextTaskController", function($scope, CorrectAnswerService, 
     $scope.highlightLine = null; // Zeile, die hervorgehoben werden soll
 
     $scope.checkFreeTextAnswer = function(userAnswer) {
+        console.log("Checking free text answer")
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
         $scope.isCorrectAnswer = isCorrect;
         $scope.isAnswered = true;

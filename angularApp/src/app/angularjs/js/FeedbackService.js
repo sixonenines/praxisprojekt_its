@@ -28,6 +28,11 @@ app.factory('FeedbackService', function() {
             { text: "Hint 2 for L1C1: Don't forget to increment the counter correctly in line 4.", highlight: null},
             { text: "Hint 3 for L1C1:  Initialize the counter 'i' in line 1 with the correct value.", highlight: null }
         ],
+        F1C3: [
+            { text: "Hint 1 for F1C3: C", highlight: null },
+            { text: "Hint 2 for F1C3: B", highlight: null},
+            { text: "Hint 3 for F1C3:  A", highlight: null }
+        ]
 
     };
 

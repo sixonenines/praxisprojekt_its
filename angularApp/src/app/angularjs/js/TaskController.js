@@ -116,4 +116,9 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
             task.isCompleted = true;
         }
     };
+
+    $scope.testFunction = function() {
+        console.log(document.getElementsByClassName('mpy-editor-output')[0].innerText);
+    };
+
 });

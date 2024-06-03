@@ -1,13 +1,12 @@
 var app = angular.module("myApp");
-console.log("Check Module working");
+console.log("Check Free Code Module working");
 
 app.controller("FreeCodeTaskController", function($scope, CorrectAnswerService) {
     $scope.isCorrectAnswer = null;
     $scope.isAnswered = false;
 
     $scope.checkFreeCodeAnswer = function() {
-        var targetElement = document.getElementById('mpy-editor-1-output');
-        var userAnswer = targetElement;
+        var userAnswer = document.getElementsByClassName('mpy-editor-output')[0].innerText;
         console.log(userAnswer);
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
         $scope.isCorrectAnswer = isCorrect;
@@ -17,4 +16,45 @@ app.controller("FreeCodeTaskController", function($scope, CorrectAnswerService) 
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
         }
     };
+
+
+    $scope.getHint = function() {
+        var taskId = $scope.$parent.currentTask.id;
+        if ($scope.feedbacks.length === 0) {
+            $scope.feedbacks = FeedbackService.getFeedbacks(taskId);
+        }
+        if ($scope.hintIndex < $scope.feedbacks.length - 1) {
+            $scope.hintIndex++;
+            $scope.maxHintIndex = $scope.hintIndex; // Update maxHintIndex when a new hint is shown
+            var currentHint = $scope.feedbacks[$scope.hintIndex];
+            $scope.hintText = currentHint.text;
+            $scope.highlightLine = currentHint.highlight;
+            if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
+                $scope.allHintsShown = true; // Alle Hinweise wurden angezeigt
+            }
+        } else {
+            $scope.hintText = "Keine weiteren Hints verfügbar.";
+        }
+    };
+
+
+    $scope.nextHint = function() {
+        if ($scope.hintIndex < $scope.maxHintIndex) {
+            $scope.hintIndex++;
+            var currentHint = $scope.feedbacks[$scope.hintIndex];
+            $scope.hintText = currentHint.text;
+            $scope.highlightLine = currentHint.highlight;
+        }
+    };
+
+
+    $scope.previousHint = function() {
+        if ($scope.hintIndex > 0) {
+            $scope.hintIndex--;
+            var currentHint = $scope.feedbacks[$scope.hintIndex];
+            $scope.hintText = currentHint.text;
+            $scope.highlightLine = currentHint.highlight;
+        }
+    };
+
 });
