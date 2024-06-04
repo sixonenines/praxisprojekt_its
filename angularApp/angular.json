@@ -48,8 +48,9 @@
               "src/app/angularjs/js/FreeTextTaskController.js",
               "src/app/angularjs/js/GapTaskController.js",
               "src/app/angularjs/js/DragAndDropController.js",
-              "src/app/angularjs/js/FeedbackService.js",
-              "src/app/angularjs/js/FreeCodeTaskController.js"
+              "src/app/angularjs/js/FreeCodeTaskController.js",
+              "src/app/angularjs/js/FeedbackService.js"
+              
             ]
           },
           "configurations": {
