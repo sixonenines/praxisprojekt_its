@@ -218,3 +218,16 @@ body {
 .navigation .menu-item .arrow.down {
     transform: rotate(180deg);
 }
+
+.border_test{
+    border: 2px solid black;
+}
+
+.tutorTitle{
+    text-align: center;
+}
+
+.userInfos{
+    font-size: 10pt;
+    text-align: right;
+}
