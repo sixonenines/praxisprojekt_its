@@ -1,15 +1,21 @@
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <table>
-
     <tr>
-        <td colspan="2">Fortschrittsanzeige</td>
+    <td>
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="progress-text">0% of the tasks completed</div>
+    </td>
+
     </tr>
     <tr>
-        <td rowspan="2">Navigation
+        <td rowspan="2">
             <div class="navigation">
-                <div class="menu-item" ng-click="toggleGroup('TaskGroup1')">
-                    Beginner <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup1')}">&#9660;</span>
+                <div class="menu-item" ng-click="toggleGroup('TaskGroup1')" id="task-group-1">
+                    Task Group 1 <span class="arrow" id="arrow-1">&#9660;</span>
+                    <span class="progress-text" id="progress-text-1"></span>
                 </div>
                 <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup1')}">
                     <div ng-click="selectTask('V1C1')" ng-class="{'active': isTaskActive('V1C1')}">
@@ -24,7 +30,7 @@
                 </div>
         
                 <div class="menu-item" ng-click="toggleGroup('TaskGroup2')">
-                    Advanced <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup2')}">&#9660;</span>
+                    Task Group 2 <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup2')}">&#9660;</span>
                 </div>
                 <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup2')}">
                     <div ng-click="selectTask('F1C1')" ng-class="{'active': isTaskActive('F1C1')}">
@@ -36,7 +42,7 @@
                 </div>
         
                 <div class="menu-item" ng-click="toggleGroup('TaskGroup3')">
-                    Expert <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup3')}">&#9660;</span>
+                    Task Group 3 <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup3')}">&#9660;</span>
                 </div>
                 <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup3')}">
                     <div ng-click="selectTask('F1C3')" ng-class="{'active': isTaskActive('F1C3')}">

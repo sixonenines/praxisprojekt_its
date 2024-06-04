@@ -190,3 +190,31 @@ body {
     margin-left: 10px;
     font-size: 14px;
 }
+
+.progress-bar {
+    height: 20px;
+    background-color: #76c7c0;
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.navigation .menu-item {
+    cursor: pointer;
+}
+
+.navigation .submenu {
+    display: none;
+}
+
+.navigation .submenu.show {
+    display: block;
+}
+
+.navigation .menu-item .arrow {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.navigation .menu-item .arrow.down {
+    transform: rotate(180deg);
+}
