@@ -10,6 +10,7 @@ app.factory('CorrectAnswerService', function() {
         'L1C1' : "while",
         'F1C3' : "155",
         'F2C3' : "15",
+        'F5C2' : "Name:EmmaSalary:55000Name:BenSalary:46000",
         'L2C3' : "235711131719",
         'V1C3' : "11"
     };

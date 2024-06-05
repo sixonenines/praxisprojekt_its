@@ -1,0 +1,33 @@
+<div ng-controller="FreeCodeTaskController">
+
+    <div class="hint-navigation" ng-show="hintText">
+        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+        <div class="hint-text">{{ hintText }}</div>
+        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+    </div>
+
+    <tr>
+        <h3>F5C2</h3>
+        <td colspan="2"> The code below should return the following output:
+            Name: Emma Salary: 55000
+            Name: Ben Salary: 46000
+        </td>
+    </tr>
+
+    <div>
+        <script type="mpy-editor" env="test_env" setup>
+        </script>
+        
+        <script id ="F1C1" type="mpy-editor" env="test_env">
+        def show_employee(name):
+            print("Name:", name, "Salary:", salary)
+
+        show_employee("Emma", 55000)
+        show_employee("Ben")
+        </script>
+
+      <button ng-click='checkFreeCodeAnswer()'>Check</button>
+      <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>      
+  </div>
+
+</div>
