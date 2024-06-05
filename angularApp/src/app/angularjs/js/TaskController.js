@@ -117,11 +117,6 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         }
     };
 
-
-    $scope.testFunction = function() {
-        console.log(document.getElementsByClassName('mpy-editor-output')[0].innerText);
-    };
-
     
     $scope.updateTaskStatus = function(taskId, status) {
         var task = $scope.tasks.find(function(t) {

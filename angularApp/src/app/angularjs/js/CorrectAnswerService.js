@@ -8,15 +8,15 @@ app.factory('CorrectAnswerService', function() {
         'F1C1_1': "def my_func():",
         'F1C1_2': "my_func()",
         'L1C1' : "while",
-        'F1C3' : "15 5",
+        'F1C3' : "155",
         'F2C3' : "15",
-        'L2C3' : "2\n3\n5\n7\n11\n13\n17\n19",
+        'L2C3' : "235711131719",
         'V1C3' : "11"
     };
 
     return {
         checkAnswer: function(taskId, userAnswer) {
-            return userAnswer === correctAnswers[taskId];
+            return userAnswer == correctAnswers[taskId];
         }
     };
 });
