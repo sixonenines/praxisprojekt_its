@@ -431,6 +431,7 @@ body {
 
 .dropzone {
     position: relative; /* Ensure dots are positioned relative to the zone */
+}
 
 .progress-container {
     width: 100%; /* Breite des Container-Elements */
