@@ -1,6 +1,6 @@
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<table>
+<table class="tutor-general">
     <tr>
         <td></td>
         <td class="tutorTitle">Python Tutor</td>
@@ -23,8 +23,8 @@
     </td>
 
     </tr>
-    <tr>
-        <td rowspan="2">
+    <tr >
+        <td rowspan="2" class="sidebar-general">
             <div class="navigation">
                 <div class="menu-item" ng-click="toggleGroup('TaskGroup1')" id="task-group-1">
                     Task Group 1 <span class="arrow" id="arrow-1">&#9660;</span>
@@ -76,9 +76,9 @@
             <img src="assets/pythonTutor.png" alt="Python Tutor Image" class="python-tutor" width="20%" height="20%">
         </td>
     </tr>
-    <tr ng-if="currentTask">
+    <tr ng-if="currentTask" >
         <td colspan="2">
-            <div ng-include="currentTask.templateUrl"></div>
+            <div ng-include="currentTask.templateUrl" class="task-layout"></div>
             <div>
                 <button ng-click="prevTask()" ng-disabled="isPrevDisabled()">Previous</button>
                 <button ng-click="nextTask()" ng-disabled="isNextDisabled()">Next</button>

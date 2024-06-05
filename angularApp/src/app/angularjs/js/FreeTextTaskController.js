@@ -1,4 +1,4 @@
-app.controller("FreeTextTaskController", function($scope, CorrectAnswerService, FeedbackService) {
+app.controller("FreeTextTaskController", function($scope, $timeout, $interval, CorrectAnswerService, FeedbackService) {
     $scope.userAnswer = "";
     $scope.isCorrectAnswer = null;
     $scope.isAnswered = false;
@@ -24,6 +24,11 @@ app.controller("FreeTextTaskController", function($scope, CorrectAnswerService, 
     };
 
     $scope.getHint = function() {
+        // Deaktiviere den Hint-Button und starte die Fortschrittsbalken-Animation
+        $scope.hintButtonDisabled = true;
+        $scope.startHintButtonAnimation();
+    
+        // Dein bestehender Code für das Anzeigen des Hinweises
         var taskId = $scope.$parent.currentTask.id;
         if ($scope.feedbacks.length === 0) {
             $scope.feedbacks = FeedbackService.getFeedbacks(taskId);
@@ -40,6 +45,33 @@ app.controller("FreeTextTaskController", function($scope, CorrectAnswerService, 
         } else {
             $scope.hintText = "Keine weiteren Hints verfügbar.";
         }
+    
+        // Aktiviere den Hint-Button nach 20 Sekunden wieder
+        $timeout(function() {
+            $scope.stopHintButtonAnimation();
+        }, 5000);
+    };
+    
+    $scope.startHintButtonAnimation = function() {
+        var totalTime = 5000; // Gesamtzeit in Millisekunden (5 Sekunden)
+        var currentTime = 0; // Aktuelle Zeit
+        $scope.hintButtonAnimationInterval = $interval(function() {
+            currentTime += 100; // Inkrementiere die aktuelle Zeit um den Intervallwert
+            console.log(currentTime);
+
+            // Berechne die Fortschrittsbalkenbreite basierend auf dem Verhältnis von aktueller Zeit zu Gesamtzeit
+            $scope.progressBarWidth = (currentTime / totalTime) * 100 + '%';
+    
+            // Stoppe die Animation, wenn die Gesamtzeit erreicht ist
+            if (currentTime >= totalTime) {
+                $scope.stopHintButtonAnimation();
+            }
+        }, 100);
+    };
+    
+    $scope.stopHintButtonAnimation = function() {
+        $interval.cancel($scope.hintButtonAnimationInterval);
+        $scope.hintButtonDisabled = false;
     };
 
     $scope.nextHint = function() {
