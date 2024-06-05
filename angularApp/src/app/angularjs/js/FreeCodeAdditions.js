@@ -34,7 +34,7 @@ const observer = new MutationObserver((mutationsList, observer) => {
                     contentObserver.observe(contentDivs, { childList: true, subtree: true });
 
                     // Optionally disconnect the parent observer if dynamicDiv will not be removed and re-added
-                    observer.disconnect();
+                    // observer.disconnect();
                 }
             }
         }
