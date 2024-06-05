@@ -18,7 +18,7 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
 
     $scope.taskGroups = {
         TaskGroup1: ['V1C1', 'V3C1', 'V5C1'],
-        TaskGroup2: ['F1C1', 'L1C1'],
+        TaskGroup2: ['F1C1', 'L1C1', 'L3C1'],
         TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3'],
     };
 

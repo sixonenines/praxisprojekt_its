@@ -191,40 +191,25 @@ body {
     font-size: 14px;
 }
 
+/* Flowchart */
+
 .flowchart {
-    display: flex;
-    
-    
-    
-}
-
-.left-side {
-    display: flex;
-    align-self: left;
-    flex-direction: column;
-    flex-basis: 60%;
-    
-}
-
-.dropzones {
-    
-    display: grid;
-    grid-template-columns: repeat(3, 4em);
-    grid-template-rows: repeat(12, 2em);
-    margin-left: 20px;
-    flex-basis: 40%;
-   
+    height: 100%;
+    width: fit-content;
+    display: grid; 
+    grid-template-columns: 40% 60%; 
+    grid-template-rows: 40% 60%; 
+    gap: 5px 5px; 
+    margin-bottom: 5px;
+    grid-template-areas: 
+      "codeblock dropzones"
+      "sources dropzones"; 
 }
 
 .codeblock {
+    height: auto;
     border: 1px solid grey;
-    width: 100%;
-    height: 40%;
-    margin-bottom: 20px;
-    display: flex;
-   flex-basis: 40%;
 }
-
 .codeblock pre {
     text-align: left;
     white-space: pre-line;
@@ -232,26 +217,83 @@ body {
     padding-left: 10px;
 }
 
+.dropzones {
+    display: grid; 
+    border: 2px solid gray;
+    width:fit-content;
+    align-content: center;
+    grid-template-columns: 50px 100px 100px 100px 50px; 
+    grid-template-rows: 40px 50px 40px 50px 40px 50px 40px 50px 40px 50px 40px; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". . start . ."
+      ". . . . ."
+      ". . zone1 . ."
+      ". . . . ."
+      ". . zone2 . ."
+      ". . . . ."
+      ". . zone3 . ."
+      ". . . . ."
+      ". zone4 . zone5 ."
+      ". . . . ."
+      ". . . end ."; 
+    grid-area: dropzones; 
+}
+
 .sources {
-    display: flex;
-    flex-direction: column; 
-    flex-basis: 60%;
-    justify-content: space-evenly;
-    
-    
+    display: grid; 
+    width: inherit;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 5px 5px; 
+    grid-template-areas: 
+      "buttons1 place-button"
+      "buttons2 place-button"
+      "buttons3 place-button"; 
+    grid-area: sources; 
+}
+.buttons1 { 
+    grid-area: buttons1; 
+    align-items: center;
+    justify-items: center;
+}
+.buttons2 { 
+    grid-area: buttons2; 
+}
+
+.diamond-shape {
+    height: 3em;
+    width: 3em;
+    box-sizing: border-box;
+    display: inline-flex;
+    transform:rotate(45deg);
+}
+
+.rectangle-shape {
+    height: 2em;
+    width: 4em;
+}
+
+.buttons3 { 
+    grid-area: buttons3; 
+}
+.place-button { 
+    grid-area: place-button; 
+    align-items: center;
+    justify-items: center;
 }
 
 .buttons1, .buttons3 {
-    display: flex;
-    justify-content: space-evenly;
+    display: flexbox;
+    
     border: 1px solid grey;
     padding: 10px 0;
-    
 }
 
 .buttons2, .place-button {
-    display: flex;
+    display: inline-flex;
     justify-content: center;
+    align-items: center;
     border: 1px solid grey;
     padding: 10px 0;
 }
@@ -261,36 +303,39 @@ body {
 }
 .place-button button {
     width: 10em;
-    height: 3em;
+    height: 10em;
     
 }
 
-.buttons1 button , .buttons2 button, .buttons3 button {
+.buttons1 button , .buttons3 button {
     width: 6em;
     height: 3em;
-}
+} 
 .dropzone {
-    
+    align-content: center;
+    text-align: center;
     border: 2px dashed darkgrey;
 }
+
+.start { grid-area: start; }
+.zone1 { grid-area: zone1; }
+.zone2 { grid-area: zone2; }
+.zone3 { grid-area: zone3; }
+.zone4 { grid-area: zone4; }
+.zone5 { grid-area: zone5; }
+.end { grid-area: end; }
+.codeblock { grid-area: codeblock; }
 
 #start, #end {
     border: 2px solid #393939;
     border-radius: 30px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
-    display: flex;
-    align-items: center;
+    display: grid;
+    align-content: center;
     justify-content: center;
 }
 
-#start {
-    grid-area: 1 / 2 / 2 / 3;
-}
-
-#end {
-    grid-area: 11 / 3 / 12 / 4;
-}
 
 .selected {
     background-color: #c0c0c0; 
@@ -299,4 +344,33 @@ body {
 
 .no-border {
     border: none;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.top {
+    transform: translate(-50%, -50%);
+}
+
+.dot.right {
+    transform: translate(50%, -50%);
+}
+
+.dot.bottom {
+    transform: translate(-50%, 50%);
+}
+
+.dot.left {
+    transform: translate(-50%, -50%);
+}
+
+.dropzone {
+    position: relative; /* Ensure dots are positioned relative to the zone */
 }
