@@ -1,32 +1,41 @@
 <div ng-controller="FreeTextTaskController">
-    <div class="hint-navigation" ng-show="hintText">
-        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
-        <div class="hint-text">{{ hintText }}</div>
-        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
-    </div>
-    <tr>
-        <h3>V3C1</h3>
-        <td colspan="2">Given the following code, what is the output? Provide the answer in a free text field.</td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <p class="code-style">
-                1 a=100
-                <span ng-class="{'code-highlighting': highlightLine === 2}">2 a=a+1</span>
-                3 print(a)
-            </p>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
-                <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
+    <div class="hint-position">
+        <div class="hint-navigation" ng-show="hintText">
+            <div class="hint-text">{{ hintText }}</div>
+            <div class="buttons">
+                <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+                <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
             </div>
-        </td>
-        <td>
-            <button ng-click="checkFreeTextAnswer(userAnswer)">Check</button>
-            <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>
-        </td>
-    </tr>
+        </div>
+    </div>
+    <table class="task-body">
+        <tr>
+            <h3>V3C1</h3>
+            <td colspan="2">Given the following code, what is the output? Provide the answer in a free text field.</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p class="code-style">
+                    1   a=100
+                    <span ng-class="{'code-highlighting': highlightLine === 2}">2   a=a+1</span>
+                    3   print(a)
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
+                    <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
+                </div>
+            </td>
+            <td class="button-check-hint">
+                <button ng-click="checkFreeTextAnswer(userAnswer)" class="check-button">Check</button>
+                <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled" class="button-with-progress">
+                    <span class="hint-text">Hint</span>
+                    <span ng-show="hintButtonDisabled" class="progress-bar-hint"></span>
+                </button>
+            </td>
+        </tr>
+    </table>
 </div>
     

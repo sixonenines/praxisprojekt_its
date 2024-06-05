@@ -1,24 +1,40 @@
-<tr>
-    <h3>F1C3</h3>
-    <td colspan="2"> Write a program to create a function [called calculation] that accepts two
-        arguments called [num1 and num2] and calculates addition and subtraction.
-        Additionally, it must return both addition and subtraction in
-        a single return call</td>
-</tr>
+<div ng-controller="FreeCodeTaskController">
 
-<div>
-    <script type="mpy-editor" env="test_env" setup>
-      # This code will not be visible, but will run before the next editor's code is
-      # evaluated.
-      num1 = 1
-      num2 = 2
-      </script>
-      
-      <script id ="testingScript" type="mpy-editor" env="test_env">
-      # Without the "setup" attribute, this editor is visible. Because it is using
-      # the same env as the previous "setup" editor, the previous editor's code is
-      # always evaluated first.
-      print(num1)
-      </script>
-      
+    <div class="hint-navigation" ng-show="hintText">
+        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+        <div class="hint-text">{{ hintText }}</div>
+        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+    </div>
+
+    <tr>
+        <h3>F1C3</h3>
+        <td colspan="2"> Write a program to create a function [called calculation] that accepts two
+            arguments called [num1 and num2] and calculates addition and subtraction.
+            Additionally, it must return both addition and subtraction in
+            a single return and print call without any Text. The first should be 
+        </td>
+    </tr>
+
+    <div>
+        <script type="mpy-editor" env="test_env" setup>
+            # This code will not be visible, but will run before the next editor's code is
+            # evaluated.
+            num1 = 10
+            num2 = 5
+        </script>
+        
+        <script id ="F1C1" type="mpy-editor" env="test_env">
+        def calculation(a, b):
+            addition = a + b
+            subtraction = a - b
+            return addition, subtraction
+        
+        result_addition, result_subtraction = calculation(num1, num2)
+        print(result_addition, result_subtraction)
+        </script>
+
+      <button ng-click='checkFreeCodeAnswer()'>Check</button>
+      <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>      
+  </div>
+
 </div>

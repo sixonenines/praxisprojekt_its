@@ -118,4 +118,31 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
             task.isCompleted = true;
         }
     };
+
+    
+    $scope.updateTaskStatus = function(taskId, status) {
+        var task = $scope.tasks.find(function(t) {
+            return t.id === taskId;
+        });
+        if (task) {
+            task.status = status;
+            task.isCompleted = (status === 'correct');
+            $scope.calculateProgress();
+        }
+    };
+
+    $scope.calculateProgress = function() {
+        var completedTasks = $scope.tasks.filter(function(task) {
+            return task.status === 'correct';
+        }).length;
+        var totalTasks = $scope.tasks.length;
+        var progress = (completedTasks / totalTasks) * 100;
+
+        // Update progress bar and text
+        document.getElementById('progress-bar').style.width = progress + '%';
+        document.getElementById('progress-text').innerText = progress.toFixed(2) + '% of the tasks completed';
+    };
+
+    // Initial berechnen Sie den Fortschritt
+    $scope.calculateProgress();
 });

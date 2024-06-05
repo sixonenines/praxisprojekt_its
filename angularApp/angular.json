@@ -45,12 +45,17 @@
             "scripts": [
               "src/app/angularjs/js/TaskController.js",
               "src/app/angularjs/js/correctAnswerService.js",
-              "src/app/angularjs/js/freeTextTaskController.js",
+              "src/app/angularjs/js/FreeTextTaskController.js",
               "src/app/angularjs/js/GapTaskController.js",
               "src/app/angularjs/js/DragAndDropController.js",
-              "src/app/angularjs/js/FeedbackService.js",
+
+              
               "src/app/angularjs/js/dragDropController.js"
 
+
+
+              "src/app/angularjs/js/FreeCodeTaskController.js",
+              "src/app/angularjs/js/FeedbackService.js"
 
               
             ]
