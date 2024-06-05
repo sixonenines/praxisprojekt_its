@@ -1,4 +1,11 @@
 <div ng-controller="FreeCodeTaskController">
+
+    <div class="hint-navigation" ng-show="hintText">
+        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+        <div class="hint-text">{{ hintText }}</div>
+        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+    </div>
+
     <tr>
         <h3>F1C3</h3>
         <td colspan="2"> Write a program to create a function [called calculation] that accepts two
@@ -25,7 +32,8 @@
         print(result_addition, result_subtraction)
         </script>
 
-      <button ng-click='testFunction()'>Check</button>
-      <button ng-click='checkFreeCodeAnswer()'>Test_Check123</button>
+      <button ng-click='checkFreeCodeAnswer()'>Check</button>
+      <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>      
   </div>
+  
 </div>

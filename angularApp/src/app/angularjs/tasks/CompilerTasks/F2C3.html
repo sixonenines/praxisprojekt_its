@@ -1,33 +1,42 @@
-<tr>
-    <h3>L2C3</h3>
-    <td colspan="2">
-        Write a program to create a function that accepts three numbers [num1, num2, num3] and finds the largest number 
-        along the three numbers. If you have two numbers that are identical and larger than the third number, print out 
-        one of the two numbers. Your code should just return the largest number without any text.
-    </td>
-</tr>
+<div ng-controller="FreeCodeTaskController">
 
-<div>
-    <script type="mpy-editor" env="test_env" setup>
-        num1 = 10
-        num2 = 15
-        num3 = 15
-    </script>
+    <div class="hint-navigation" ng-show="hintText">
+        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+        <div class="hint-text">{{ hintText }}</div>
+        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+    </div>
 
-    <script id="F2C3" type="mpy-editor" env="test_env">
-        def maximum(a, b, c):
-            if (a >= b) and (a >= c):
-                largest = a
-            elif (b >= a) and (b >= c):
-                largest = b
-            else:
-                largest = c
-            return largest
+    <tr>
+        <h3>L2C3</h3>
+        <td colspan="2">
+            Write a program to create a function that accepts three numbers [num1, num2, num3] and finds the largest number 
+            along the three numbers. If you have two numbers that are identical and larger than the third number, print out 
+            one of the two numbers. Your code should just return the largest number without any text.
+        </td>
+    </tr>
+
+    <div>
+        <script type="mpy-editor" env="test_env" setup>
+            num1 = 10
+            num2 = 15
+            num3 = 15
+        </script>
+
+        <script id="F2C3" type="mpy-editor" env="test_env">
+            def maximum(a, b, c):
+                if (a >= b) and (a >= c):
+                    largest = a
+                elif (b >= a) and (b >= c):
+                    largest = b
+                else:
+                    largest = c
+                return largest
+            
+            res = maximum(num1, num2, num3)
+            print(res)
+        </script>
         
-        res = maximum(num1, num2, num3)
-        print(res)
-    </script>
-    
-    <button ng-click='testFunction()'>Check</button>
-
+        <button ng-click='checkFreeCodeAnswer()'>Check</button>
+        <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>
+    </div>
 </div>
