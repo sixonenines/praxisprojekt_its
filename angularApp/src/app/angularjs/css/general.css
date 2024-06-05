@@ -23,11 +23,15 @@ td{
 }
 
 .correct-answer-gap {
-    border: 2px solid green;
+    outline: none; /* Kein Fokusumriss */
+    border-color: green; /* Randfarbe hervorgehoben heller */
+    box-shadow: 0 0 5px green; /* Leichte Schatten für den Fokuszustand */
 }
 
 .incorrect-answer-gap {
-    border: 2px solid red;
+    outline: none; /* Kein Fokusumriss */
+    border-color: red; /* Randfarbe hervorgehoben heller */
+    box-shadow: 0 0 5px red; /* Leichte Schatten für den Fokuszustand */
 }
 
 
@@ -37,9 +41,7 @@ img.python-tutor {
     margin-left: 10px; /* Optional: Abstand zwischen Bild und Text */
 }
 
-.gap_input{
-    margin-left: 20px;
-}
+
 
 body {
     font-family: Arial, sans-serif;
@@ -90,18 +92,73 @@ body {
   }
 
   .hint-navigation {
+    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: lightgray;
+    font-size: 12pt;
+    padding: 10px;
+    padding-bottom: 40px;
+    width: 200px;
+    top: -120px; /* Verschiebung nach oben */
+    right: -85%;
+    border-radius: 5px;
 }
+
+
+
+.hint-navigation::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -18px; /* Positionierung auf der rechten Seite */
+    transform: translateY(-50%) rotate(180deg); /* Dreht das Dreieck um 45 Grad */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px;
+    border-color: transparent lightgray transparent transparent; /* Änderung der Farbreihenfolge */
+}
+.hint-navigation .buttons {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    padding-bottom: 5px;
+}
+
+/**.hint-navigation::before {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    right: 10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent lightgray transparent;
+}**/
+
+/**.hint-navigation::after {
+    content: "";
+    position: absolute;
+    bottom: -18px;
+    right: 11px;
+    width: 0;
+    height: 0;
+    border-width: 9px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}*/
+
 .hint-navigation button {
     margin: 0 5px;
 }
 .hint-text {
     margin: 0 10px;
 }
-.code-style {
-    font-family: monospace;
-}
+
+
 .code-highlighting {
     background-color: yellow;
 }
@@ -189,4 +246,340 @@ body {
 .status-icon {
     margin-left: 10px;
     font-size: 14px;
+}
+
+
+/* Flowchart */
+
+.flowchart {
+    height: 100%;
+    width: fit-content;
+    display: grid; 
+    grid-template-columns: 40% 60%; 
+    grid-template-rows: 40% 60%; 
+    gap: 5px 5px; 
+    margin-bottom: 5px;
+    grid-template-areas: 
+      "codeblock dropzones"
+      "sources dropzones"; 
+}
+
+.codeblock {
+    height: auto;
+    border: 1px solid grey;
+}
+.codeblock pre {
+    text-align: left;
+    white-space: pre-line;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.dropzones {
+    display: grid; 
+    border: 2px solid gray;
+    width:fit-content;
+    align-content: center;
+    grid-template-columns: 50px 100px 100px 100px 50px; 
+    grid-template-rows: 40px 50px 40px 50px 40px 50px 40px 50px 40px 50px 40px; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". . start . ."
+      ". . . . ."
+      ". . zone1 . ."
+      ". . . . ."
+      ". . zone2 . ."
+      ". . . . ."
+      ". . zone3 . ."
+      ". . . . ."
+      ". zone4 . zone5 ."
+      ". . . . ."
+      ". . . end ."; 
+    grid-area: dropzones; 
+}
+
+.sources {
+    display: grid; 
+    width: inherit;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 5px 5px; 
+    grid-template-areas: 
+      "buttons1 place-button"
+      "buttons2 place-button"
+      "buttons3 place-button"; 
+    grid-area: sources; 
+}
+.buttons1 { 
+    grid-area: buttons1; 
+    align-items: center;
+    justify-items: center;
+}
+.buttons2 { 
+    grid-area: buttons2; 
+}
+
+.diamond-shape {
+    height: 3em;
+    width: 3em;
+    box-sizing: border-box;
+    display: inline-flex;
+    transform:rotate(45deg);
+}
+
+.rectangle-shape {
+    height: 2em;
+    width: 4em;
+}
+
+.buttons3 { 
+    grid-area: buttons3; 
+}
+.place-button { 
+    grid-area: place-button; 
+    align-items: center;
+    justify-items: center;
+}
+
+.buttons1, .buttons3 {
+    display: flexbox;
+    
+    border: 1px solid grey;
+    padding: 10px 0;
+}
+
+.buttons2, .place-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+    padding: 10px 0;
+}
+
+.buttons2 {
+    gap: 15px
+}
+.place-button button {
+    width: 10em;
+    height: 10em;
+    
+}
+
+.buttons1 button , .buttons3 button {
+    width: 6em;
+    height: 3em;
+} 
+.dropzone {
+    align-content: center;
+    text-align: center;
+    border: 2px dashed darkgrey;
+}
+
+.start { grid-area: start; }
+.zone1 { grid-area: zone1; }
+.zone2 { grid-area: zone2; }
+.zone3 { grid-area: zone3; }
+.zone4 { grid-area: zone4; }
+.zone5 { grid-area: zone5; }
+.end { grid-area: end; }
+.codeblock { grid-area: codeblock; }
+
+#start, #end {
+    border: 2px solid #393939;
+    border-radius: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}
+
+
+.selected {
+    background-color: #c0c0c0; 
+    border: 2px solid #808080; 
+}
+
+.no-border {
+    border: none;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.top {
+    transform: translate(-50%, -50%);
+}
+
+.dot.right {
+    transform: translate(50%, -50%);
+}
+
+.dot.bottom {
+    transform: translate(-50%, 50%);
+}
+
+.dot.left {
+    transform: translate(-50%, -50%);
+}
+
+.dropzone {
+    position: relative; /* Ensure dots are positioned relative to the zone */
+}
+
+.progress-container {
+    width: 100%; /* Breite des Container-Elements */
+    text-align: center; /* Zentriere den Inhalt horizontal */
+}
+
+.progress-bar {
+    width: 50%;
+    height: 20px; 
+    background-color: #4CAF50; 
+    border-radius: 10px;
+    margin-top: 10px; 
+}
+
+#progress-text {
+    margin-top: 5px; /* Abstand nach oben */
+    font-size: 14px; /* Schriftgröße */
+}
+.navigation .menu-item {
+    cursor: pointer;
+}
+
+.navigation .submenu {
+    display: none;
+}
+
+.navigation .submenu.show {
+    display: block;
+}
+
+.navigation .menu-item .arrow {
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.navigation .menu-item .arrow.down {
+    transform: rotate(180deg);
+}
+
+.border_test{
+    /*border: 2px solid black;*/
+}
+
+.tutorTitle{
+    text-align: center;
+}
+
+.userInfos{
+    font-size: 10pt;
+    text-align: right;
+}
+
+.button-with-progress {
+    position: relative;
+    display: inline-block;
+    width: 100px; /* Breite des Buttons */
+    height: 40px; /* Höhe des Buttons */
+}
+
+.progress-bar-hint {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #4CAF50;
+    animation: progressAnimation 5s linear forwards;
+    width: 100%; /* Breite des Fortschrittsbalkens */
+}
+
+.hint-text {
+    position: relative;
+    z-index: 1; /* Stelle sicher, dass der Text über dem Fortschrittsbalken liegt */
+    text-align: center; /* Zentriere den Text horizontal */
+    width: 100%; /* Fülle die gesamte Breite des Buttons */
+}
+
+@keyframes progressAnimation {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+/** Angefangen **/
+
+.check-button{
+    width: 100px; /* Breite des Buttons */
+    height: 40px; /* Höhe des Buttons */
+}
+
+.task-body{
+    padding-top: 0px;
+    width: 100%;
+}
+
+.hint-position{
+    height: 0px;
+}
+
+.tutor-general{
+    width: 70%;
+    margin-left: 5%;
+    margin-right: 10%;
+    margin-top: 5%;
+}
+
+.task-layout{
+    width: 80%;
+    margin-left: 0px;
+}
+
+.sidebar-general{
+    width: 15%;
+    /*border: 3px solid green;*/
+    
+}
+
+.button-check-hint{
+    float: right;
+}
+
+
+.code-style {
+    background-color: #1e1e1e; /* Hintergrundfarbe dunkel */
+    color: #d4d4d4; /* Textfarbe hell */
+    padding: 10px; /* Abstand um den Text herum */
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace Schriftart für den Code */
+    font-size: 14px; /* Schriftgröße des Codes */
+    line-height: 1.5; /* Zeilenhöhe des Codes */
+    text-align: left !important; /* Links ausgerichtet */
+}
+
+.gap_input {
+    background-color: #1e1e1e; /* Hintergrundfarbe dunkel */
+    color: #d4d4d4; /* Textfarbe hell */
+    border: 1px solid #3d3d3d; /* Randfarbe dunkler */
+    padding: 8px; /* Abstand um den Text herum */
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace Schriftart für den Code */
+    font-size: 14px; /* Schriftgröße des Codes */
+    text-align: left; /* Links ausgerichtet */
+}
+
+/* Stil für den Fokuszustand des Eingabefeldes */
+.gap_input:focus {
+    outline: none; /* Kein Fokusumriss */
+    border-color: #4d90fe; /* Randfarbe hervorgehoben heller */
+    box-shadow: 0 0 5px #4d90fe; /* Leichte Schatten für den Fokuszustand */
+
 }

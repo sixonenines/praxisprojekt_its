@@ -2,11 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const parentElement = document.body;
 
     function checkAndClearDiv() {
-        const contentDivs3 = document.getElementById('mpy-editor-1-output');
+        const contentDivs3 = document.getElementsByClassName('mpy-editor-output')[0];
         const targetElement = contentDivs3.innerText
-        if (targetElement.length>1000) {
-            console.log('Looks like you are running an infinite loop, refresh the page');
-            contentDivs3.innerHTML = 'Looks like you are running an infinite loop, refresh the page';
+        if (targetElement.length>100) {
+            console.log('Looks like you are running an infinite loop, refresh the page.');
+            alert("You were running an infinite loop, the page will now refresh. Press ok and wait for the page to reload.");
+            window.location.reload(true);
         } else {
         }
     }
@@ -16,15 +17,15 @@ const observer = new MutationObserver((mutationsList, observer) => {
     for (let mutation of mutationsList) {
         if (mutation.type === 'childList') {
             // Check if contentDivs has been added
-            const contentDivs = document.getElementById('mpy-editor-1-output');
+            const contentDivs = document.getElementsByClassName('mpy-editor-output')[0];
             if (contentDivs) {
                 console.log('contentDivs found, setting up content observer.');
-
                 // Set up a new observer for the contentDivs's children
                 const contentObserver = new MutationObserver((mutationsList, observer) => {
+                    console.log(observer)
                     for (let mutation of mutationsList) {
                         if (mutation.type === 'childList') {
-                            checkAndClearDiv(contentDivs);
+                            checkAndClearDiv();
                         }
                     }
                 });
@@ -33,7 +34,7 @@ const observer = new MutationObserver((mutationsList, observer) => {
                     contentObserver.observe(contentDivs, { childList: true, subtree: true });
 
                     // Optionally disconnect the parent observer if dynamicDiv will not be removed and re-added
-                    observer.disconnect();
+                    // observer.disconnect();
                 }
             }
         }

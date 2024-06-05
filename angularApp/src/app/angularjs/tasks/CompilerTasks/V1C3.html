@@ -1,26 +1,36 @@
-<tr>
-    <h3>V1C3</h3>
-    <td colspan="2">
-        Write a loop that sums the values 1 through "end", inclusive.
-        The end variable is already initialized.
-        Do not include input statements and do not define "end" to a specific value.
-        The result should be printed without any additional text.
-    </td>
-</tr>
-
-<div>
-    <script type="mpy-editor" env="test_env" setup>
-        end = 10
-    </script>
-
-    <script id="V1C3" type="mpy-editor" env="test_env">
-        sum = 0
-        i = 0
-        while i <= end:
-            sum += 1
-            i +=1
-        print(sum)
-    </script>
+<div ng-controller="FreeCodeTaskController">
     
-    <button ng-click='testFunction()'>Check</button>
+    <div class="hint-navigation" ng-show="hintText">
+        <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+        <div class="hint-text">{{ hintText }}</div>
+        <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+    </div>
+
+    <tr>
+        <h3>V1C3</h3>
+        <td colspan="2">
+            Write a loop that sums the values 1 through "end", inclusive.
+            The end variable is already initialized.
+            Do not include input statements and do not define "end" to a specific value.
+            The result should be printed without any additional text.
+        </td>
+    </tr>
+
+    <div>
+        <script type="mpy-editor" env="test_env" setup>
+            end = 10
+        </script>
+
+        <script id="V1C3" type="mpy-editor" env="test_env">
+            sum = 0
+            i = 0
+            while i <= end:
+                sum += 1
+                i +=1
+            print(sum)
+        </script>
+        
+        <button ng-click='checkFreeCodeAnswer()'>Check</button>
+        <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>
+    </div>
 </div>

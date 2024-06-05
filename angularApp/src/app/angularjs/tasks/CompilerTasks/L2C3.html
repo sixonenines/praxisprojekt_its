@@ -1,4 +1,5 @@
 <div ng-controller="FreeCodeTaskController">
+
     <div class="hint-navigation" ng-show="hintText">
         <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
         <div class="hint-text">{{ hintText }}</div>
@@ -7,12 +8,12 @@
 
     <div>
         <h3>L2C3</h3>
-        <p>
+        <td colspan="2">
             Write a program to display all prime numbers within a range.
             Note: A Prime Number is a whole number greater than 1 whose only factors are 
             1 and itself. The variables start and end are already declared and initialized.
             Just write the code to display all prime numbers between the range, not any additional text.
-        </p>
+        </td>
     </div>
 
     <div>
@@ -31,5 +32,6 @@
                     print(num)
     </script>
 
-    <button ng-click='testFunction()'>Check</button>
+    <button ng-click='checkFreeCodeAnswer()'>Check</button>
+    <button ng-click="getHint()" ng-disabled="allHintsShown">Hint</button>
 </div>
