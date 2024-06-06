@@ -14,7 +14,11 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
         $scope.isCorrectAnswer = isCorrect;
         var timestamp = new Date().getTime()
-        var logged_data = {"useranswer":userAnswer,"taskid":$scope.$parent.currentTask.id,"isCorrect":isCorrect,"userid":localStorage.username,"timestamp":timestamp,"numHints":$scope.hintIndex} // add experience and other stuff I might forget
+        var StoredUser= localStorage.getItem("currentUser")
+        var UserInfoJson= JSON.parse(StoredUser)
+        var experience = UserInfoJson.experience
+        var username = UserInfoJson.username
+        var logged_data = {"useranswer":userAnswer,"taskid":$scope.$parent.currentTask.id,"isCorrect":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experience":experience} // add experience and other stuff I might forget
         window.logHelperFunction(logged_data);
         $scope.isAnswered = true;
         if (isCorrect) {
