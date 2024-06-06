@@ -109,9 +109,10 @@ def add_random_data_for_example():
 
 @app.route('/upload_logged_data', methods=['POST'])
 def upload_logged_data():
+    print("hello")
     try:
         data = request.json
-        db = get_db()
+        print(data)
         result = db.IPT_logs.insert_one(data)
         return jsonify({"success": True, "message": "Data uploaded successfully", "id": str(result.inserted_id)})
     except Exception as e:

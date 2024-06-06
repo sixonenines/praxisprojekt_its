@@ -67,7 +67,7 @@ export class AuthService {
     console.log("test")
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.router.navigate(['/']);
+    this.router.navigate(['/signup']);
     console.log("Logged out");
   }
 }

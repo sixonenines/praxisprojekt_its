@@ -13,6 +13,9 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         console.log("Checking free text answer")
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
         $scope.isCorrectAnswer = isCorrect;
+        var timestamp = new Date().getTime()
+        var logged_data = {"useranswer":userAnswer,"taskid":$scope.$parent.currentTask.id,"isCorrect":isCorrect,"userid":localStorage.username,"timestamp":timestamp,"numHints":$scope.hintIndex} // add experience and other stuff I might forget
+        window.logHelperFunction(logged_data);
         $scope.isAnswered = true;
         if (isCorrect) {
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;

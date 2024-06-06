@@ -1,15 +1,34 @@
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<table>
-
+<table class="tutor-general">
     <tr>
-        <td colspan="2">Fortschrittsanzeige</td>
+        <td></td>
+        <td class="tutorTitle">Python Tutor</td>
+        <td class="border_test userInfos">
+            <div>***Benutzername***</div>
+            <div>***Schwierigkeitsgrad</div>
+            <div>
+                <button (click)="logout()">Logout</button>
+            </div>
+        </td>
+
     </tr>
     <tr>
-        <td rowspan="2">Navigation
+        <td></td>
+    <td rowspan="2" class="border_test">
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="progress-text">0% of the tasks completed</div>
+    </td>
+
+    </tr>
+    <tr >
+        <td rowspan="2" class="sidebar-general">
             <div class="navigation">
-                <div class="menu-item" ng-click="toggleGroup('TaskGroup1')">
-                    Beginner <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup1')}">&#9660;</span>
+                <div class="menu-item" ng-click="toggleGroup('TaskGroup1')" id="task-group-1">
+                    Task Group 1 <span class="arrow" id="arrow-1">&#9660;</span>
+                    <span class="progress-text" id="progress-text-1"></span>
                 </div>
                 <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup1')}">
                     <div ng-click="selectTask('V1C1')" ng-class="{'active': isTaskActive('V1C1')}">
@@ -24,7 +43,7 @@
                 </div>
         
                 <div class="menu-item" ng-click="toggleGroup('TaskGroup2')">
-                    Advanced <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup2')}">&#9660;</span>
+                    Task Group 2 <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup2')}">&#9660;</span>
                 </div>
                 <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup2')}">
                     <div ng-click="selectTask('F1C1')" ng-class="{'active': isTaskActive('F1C1')}">
@@ -33,10 +52,13 @@
                     <div ng-click="selectTask('L1C1')" ng-class="{'active': isTaskActive('L1C1')}">
                         L1C1 <i class="status-icon" ng-class="getStatusIcon('L1C1')"></i>
                     </div>
+                    <div ng-click="selectTask('L3C1')" ng-class="{'active': isTaskActive('L3C1')}">
+                        L3C1 <i class="status-icon" ng-class="getStatusIcon('L3C1')"></i>
+                    </div>
                 </div>
         
                 <div class="menu-item" ng-click="toggleGroup('TaskGroup3')">
-                    Expert <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup3')}">&#9660;</span>
+                    Task Group 3 <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup3')}">&#9660;</span>
                 </div>
                 <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup3')}">
                     <div ng-click="selectTask('F1C3')" ng-class="{'active': isTaskActive('F1C3')}">
@@ -57,9 +79,9 @@
             <img src="assets/pythonTutor.png" alt="Python Tutor Image" class="python-tutor" width="20%" height="20%">
         </td>
     </tr>
-    <tr ng-if="currentTask">
+    <tr ng-if="currentTask" >
         <td colspan="2">
-            <div ng-include="currentTask.templateUrl"></div>
+            <div ng-include="currentTask.templateUrl" class="task-layout" onload="calculateProgress()"> </div>
             <div>
                 <button ng-click="prevTask()" ng-disabled="isPrevDisabled()">Previous</button>
                 <button ng-click="nextTask()" ng-disabled="isNextDisabled()">Next</button>

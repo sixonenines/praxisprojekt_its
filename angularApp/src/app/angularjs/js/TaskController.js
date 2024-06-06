@@ -142,7 +142,11 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         document.getElementById('progress-bar').style.width = progress + '%';
         document.getElementById('progress-text').innerText = progress.toFixed(2) + '% of the tasks completed';
     };
+    $scope.logout = function() {
+        console.log("Testing");
+        return true;
+    };
 
-    // Initial berechnen Sie den Fortschritt
-    $scope.calculateProgress();
+  //   Initial berechnen Sie den Fortschritt => Moved this to tutor-component.html to resolve conflict with signup page
+  //  $scope.calculateProgress()
 });
