@@ -6,7 +6,7 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
     $scope.hintIndex = -1; // Start bei -1, um den ersten Klick auf "Hint" erforderlich zu machen
     $scope.maxHintIndex = -1; // Maximal angezeigter Hinweisindex
     $scope.feedbacks = [];
-    $scope.positiveFeedbacks = []
+    $scope.positiveFeedbacks = [];
     $scope.negativeFeedbacks = [];
     $scope.allHintsShown = false; // Variable, die angibt, ob alle Hinweise gezeigt wurden
     $scope.highlightLine = null; // Zeile, die hervorgehoben werden soll

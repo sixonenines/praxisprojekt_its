@@ -10,9 +10,11 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
     $scope.hintIndex = -1; // Start bei -1, um den ersten Klick auf "Hint" erforderlich zu machen
     $scope.maxHintIndex = -1; // Maximal angezeigter Hinweisindex
     $scope.feedbacks = [];
+    $scope.positiveFeedbacks = [];
     $scope.allHintsShown = false; // Variable, die angibt, ob alle Hinweise gezeigt wurden
     $scope.highlightLine = null; // Zeile, die hervorgehoben werden soll
-
+    $scope.noButtonsOnFeedback = false; // Wenn pos/neg Feedback, dann keine prev/next Buttons
+    $scope.hintsGiven = false; 
 
     $scope.checkGapAnswer1 = function(userAnswer1, taskID) {
         var isCorrect = CorrectAnswerService.checkAnswer(taskID, userAnswer1);
@@ -53,16 +55,53 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
         if(isCorrect){
             $scope.updateTaskStatus($scope.$parent.currentTask.id, 'correct');
         }else{
-            $scope.updateTaskStatus($scope.$parent.currentTask.id, 'incorrect');
+            $scope.updateTaskStatus($scope.$parent.currentTask.id, 'incorrect');    
         }
+        
     };
     
+    $scope.provideFeedback = function() {
+        var taskId = $scope.$parent.currentTask.id;
+        if (taskId === "F1C1"){
+            var isCorrect = $scope.isCorrectAnswer1 && $scope.isCorrectAnswer2;
+        } else {
+            var isCorrect = $scope.isCorrectAnswer1;
+        }
+        
+        $scope.noButtonsOnFeedback = true;
+    
+        if (isCorrect) {
+            $scope.positiveFeedbacks = FeedbackService.getPositiveFeedbacks(taskId);
+            if ($scope.positiveFeedbacks.length > 0) {
+                $scope.hintText = $scope.positiveFeedbacks[0].text;
+                FeedbackService.updatePythonTutorImage('positive');
+            }
+        } else {
+            $scope.negativeFeedbacks = FeedbackService.getNegativeFeedbacks(taskId);
+            if ($scope.negativeFeedbacks.length > 0) {
+                var randomIndex = Math.floor(Math.random() * $scope.negativeFeedbacks.length);
+                $scope.hintText = $scope.negativeFeedbacks[randomIndex].text;
+                FeedbackService.updatePythonTutorImage('negative');
+            }
+        }
+    };
 
     $scope.checkGapAnswers = function(userAnswer1, userAnswer2) {
         $scope.checkGapAnswer1(userAnswer1, "F1C1_1");
         $scope.checkGapAnswer2(userAnswer2, "F1C1_2");
     };
 
+    $scope.onBlurGapAnswer1 = function() {
+        $scope.provideFeedback();
+    };
+
+    $scope.onBlurGapAnswer2 = function() {
+        $scope.provideFeedback();
+    };
+
+    $scope.onBlurGapAnswerOneAnswer = function(){
+        $scope.provideFeedback();
+    }
 
     function updateCompletionStatus() {
         if ($scope.isCorrectAnswer1 && $scope.isCorrectAnswer2) {
@@ -91,6 +130,8 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
     $scope.getHint = function() {
         // Deaktiviere den Hint-Button und starte die Fortschrittsbalken-Animation
         $scope.hintButtonDisabled = true;
+        $scope.noButtonsOnFeedback = false; 
+        $scope.hintsGiven = true;
         $scope.startHintButtonAnimation();
     
         // Dein bestehender Code für das Anzeigen des Hinweises
@@ -155,5 +196,10 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
             $scope.hintText = currentHint.text;
             $scope.highlightLine = currentHint.highlight;
         }
+    };
+    $scope.backToHints = function() {
+        $scope.noButtonsOnFeedback = false;
+        var currentHint = $scope.feedbacks[$scope.hintIndex];
+        $scope.hintText = currentHint.text;
     };
 });

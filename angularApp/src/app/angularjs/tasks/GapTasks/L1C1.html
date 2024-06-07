@@ -6,6 +6,7 @@
                 <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
                 <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
             </div>
+            <button ng-show="noButtonsOnFeedback && hintsGiven" ng-click="backToHints()">Back to Hints</button>
         </div>
     </div>
 <table class="task-body">
@@ -17,7 +18,7 @@
         <td colspan="2">
             <p class="code-style">
                 1   i = 1
-                2   <span><input class="gap_input" type="text" ng-model="userAnswer1" ng-disabled="isAnswered1 && isCorrectAnswer1" ng-class="{'correct-answer-gap': isCorrectAnswer1 && isAnswered1, 'incorrect-answer-gap': !isCorrectAnswer1 && isAnswered1}" placeholder="Enter code here" ng-change="checkGapAnswerOneAnswer(userAnswer1, 'L1C1')"> i<6:</span>
+                2   <span><input class="gap_input" type="text" ng-model="userAnswer1" ng-disabled="isAnswered1 && isCorrectAnswer1" ng-class="{'correct-answer-gap': isCorrectAnswer1 && isAnswered1, 'incorrect-answer-gap': !isCorrectAnswer1 && isAnswered1}" placeholder="Enter code here" ng-change="checkGapAnswerOneAnswer(userAnswer1, 'L1C1')" ng-blur="provideFeedback()"> i<6:</span>
                 3       print(i)
                 4       i += 1
             </p>
