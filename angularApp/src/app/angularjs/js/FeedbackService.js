@@ -1,7 +1,5 @@
 var app = angular.module("myApp");
-
-var app = angular.module("myApp");
-app.factory('FeedbackService', function() {
+app.factory('FeedbackService', function($timeout) {
     var feedbacks = {
         V1C1: [
             { text: "Hint 1 for V1C1: The value of 'a' is set twice.", highlight: null },
@@ -135,6 +133,21 @@ app.factory('FeedbackService', function() {
             }];
         }
         return [];
+    };
+
+    // Sad/Happy Tutor 
+    this.updatePythonTutorImage = function(feedbackType) {
+        var imageElement = document.getElementById('python-tutor-img');
+        if (feedbackType === 'positive') {
+            imageElement.src = 'assets/happy_pythonTutor.png'; 
+        } else if (feedbackType === 'negative') {
+            imageElement.src = 'assets/sad_pythonTutor.png';
+        }
+
+        // Nach 2 Sek. wieder zu default Bild
+        $timeout(function() {
+            imageElement.src = 'assets/pythonTutor.png'; 
+        }, 2000);
     };
 
     return this;
