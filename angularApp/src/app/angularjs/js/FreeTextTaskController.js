@@ -11,6 +11,7 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
     $scope.allHintsShown = false; // Variable, die angibt, ob alle Hinweise gezeigt wurden
     $scope.highlightLine = null; // Zeile, die hervorgehoben werden soll
     $scope.noButtonsOnFeedback = false; // Wenn pos/neg Feedback, dann keine prev/next Buttons
+    $scope.hintsGiven = false; 
 
     $scope.checkFreeTextAnswer = function(userAnswer) {
         console.log("Checking free text answer")
@@ -57,7 +58,8 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
     $scope.getHint = function() {
         // Deaktiviere den Hint-Button und starte die Fortschrittsbalken-Animation
         $scope.hintButtonDisabled = true;
-        $scope.noButtonsOnFeedback = false; // Reset flag when showing hints
+        $scope.noButtonsOnFeedback = false; 
+        $scope.hintsGiven = true;
         $scope.startHintButtonAnimation();
     
         // Dein bestehender Code für das Anzeigen des Hinweises
@@ -122,5 +124,11 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
             $scope.hintText = currentHint.text;
             $scope.highlightLine = currentHint.highlight;
         }
+    };
+
+    $scope.backToHints = function() {
+        $scope.noButtonsOnFeedback = false;
+        var currentHint = $scope.feedbacks[$scope.hintIndex];
+        $scope.hintText = currentHint.text;
     };
 });
