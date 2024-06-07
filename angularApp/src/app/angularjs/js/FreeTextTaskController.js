@@ -18,7 +18,7 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         var UserInfoJson= JSON.parse(StoredUser)
         var experience = UserInfoJson.experience
         var username = UserInfoJson.username
-        var logged_data = {"useranswer":userAnswer,"taskid":$scope.$parent.currentTask.id,"isCorrect":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experience":experience} // add experience and other stuff I might forget
+        var logged_data = {"useranswer":userAnswer,"taskid":$scope.$parent.currentTask.id,"isCorrect":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experience":experience}
         window.logHelperFunction(logged_data);
         $scope.isAnswered = true;
         if (isCorrect) {

@@ -80,6 +80,17 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
     };
 
     $scope.selectTask = function(taskId) {
+        var timestamp = new Date().getTime()
+        var StoredUser= localStorage.getItem("currentUser")
+        var UserInfoJson= JSON.parse(StoredUser)
+        var experience = UserInfoJson.experience
+        var username = UserInfoJson.username
+        var statusOfTask =$scope.getStatusIcon(taskId);
+        var logged_data = {"taskid":taskId,"userid":username,"statusOfTask":statusOfTask,"timestamp":timestamp,"numHints":$scope.hintIndex, "experience":experience}
+        window.logHelperFunction(logged_data);
+        $scope.isAnswered = true;
+
+
         var task = $scope.tasks.find(function(t) {
             return t.id === taskId;
         });
