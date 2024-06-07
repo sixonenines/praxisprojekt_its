@@ -6,8 +6,11 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
     $scope.hintIndex = -1; // Start bei -1, um den ersten Klick auf "Hint" erforderlich zu machen
     $scope.maxHintIndex = -1; // Maximal angezeigter Hinweisindex
     $scope.feedbacks = [];
+    $scope.positiveFeedbacks = []
+    $scope.negativeFeedbacks = [];
     $scope.allHintsShown = false; // Variable, die angibt, ob alle Hinweise gezeigt wurden
     $scope.highlightLine = null; // Zeile, die hervorgehoben werden soll
+    $scope.noButtonsOnFeedback = false; // Wenn pos/neg Feedback, dann keine prev/next Buttons
 
     $scope.checkFreeTextAnswer = function(userAnswer) {
         console.log("Checking free text answer")
@@ -28,11 +31,33 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         }else{
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
         }
+
+        $scope.userReassurance();
+    };
+
+    $scope.userReassurance = function() {
+        var taskId = $scope.$parent.currentTask.id;
+        var isCorrect = $scope.isCorrectAnswer;
+        $scope.noButtonsOnFeedback = true; 
+        
+        if (isCorrect) {
+            $scope.positiveFeedbacks = FeedbackService.getPositiveFeedbacks(taskId);
+            if ($scope.positiveFeedbacks.length > 0) {
+                $scope.hintText = $scope.positiveFeedbacks[0].text; 
+            }
+        } else {
+            $scope.negativeFeedbacks = FeedbackService.getNegativeFeedbacks(taskId);
+            if ($scope.negativeFeedbacks.length > 0) {
+                var randomIndex = Math.floor(Math.random() * $scope.negativeFeedbacks.length);
+                $scope.hintText = $scope.negativeFeedbacks[randomIndex].text;
+            } 
+        }
     };
 
     $scope.getHint = function() {
         // Deaktiviere den Hint-Button und starte die Fortschrittsbalken-Animation
         $scope.hintButtonDisabled = true;
+        $scope.noButtonsOnFeedback = false; // Reset flag when showing hints
         $scope.startHintButtonAnimation();
     
         // Dein bestehender Code für das Anzeigen des Hinweises

@@ -56,8 +56,85 @@ app.factory('FeedbackService', function() {
 
     };
 
+    var positiveFeedbacks = {
+        V1C1: [
+            { text: 'Spot on! You got the correct output of 20. The reason is that in python, variables can be reassigned. Initially "a" was set to 200, then immediately to 20, so the final value is what gets printed.' , highlight: null }
+        ],
+        V3C1: [
+            { text: 'Well done! 101 is the correct answer. This is because, after initally setting "a" to 100, it is incremented by 1 in the next line with "a = a + 1", so the final value printed is 101.', highlight: null }
+        ],
+        V5C1: [
+            { text: 'Excellent! You correctly identified the output as 20 20. Since "a" was initially set to 100 and then changed to 20, while "b" was set to 20 and stayed the same, the final output is 20 20.', highlight: null }         
+        ], 
+        F1C1: [
+            { text: 'You got it! By defining the function my_func() in line 1, you created a reusable block of code that prints "Hello". Then, by calling my_func() in line 4, you executed this function, resulting in "Hello" being printed. Your solution effectively demonstrates the concept of function definition and invocation. Well done!', highlight: null }
+        ],
+        L1C1: [
+            { text: 'Good job! "while" is the correct keyword to initiate a loop that continues as long the a specified condition "while i <6:" remains true.', highlight: null }
+        ],
+        F1C3: [
+            { text: 'Fantastic job! You successfully created a program that defines a function to perform addition and subtraction on two arguments and returns both results in a single call. It shows that you have a solid understanding of defining a function and how to return multiple variables using data structures.', highlight: null }
+        ],
+        F2C3: [
+            { text: 'Awesome! You successfully created a program that defines a function to find the largest number among three numbers, considering cases where two numbers are identical and larger than the third. Your function accepts three numbers and correctly returns the largest of them. ', highlight: null }
+        ],
+        F5C2: [
+            { text: 'You correctly identified the error in the code and fixed it by adding a second parameter with a default value in the function definition. By adding the second parameter "salary=46000" in line 1 and setting it to the default value, you ensure that the function show_employee() works correctly even if the salary is not explicitly provided. This shows that you have a clear understanding of default parameters in function definitions.', highlight: null }
+        ],
+        L2C3: [
+            { text: 'Great job! You have a solid understanding of both iteration and prime number concepts! Your code efficiently iterates through the range to determine which numbers are prime.', highlight: null }
+        ],
+        V1C3: [
+            { text: 'Nice work! Your code fulfills all given requirements! Your implementation correctly adds each incremented value to the sum up to the end value. ', highlight: null }
+        ]
+
+    };
+
+    var reassuringFeedbacks = [
+        "That's not quite it, but your effort level is off the charts!",
+        "Not quite, but hey, Rome wasn't built in a day!",
+        "Not quite the jackpot, but you're getting closer!",
+        "Not quite right, but your effort deserves an A+!",
+        "Not quite the bullseye, but you're definitely hitting the target!",
+        "Not quite there, but your persistence is admirable!",
+        "Don't be discouraged by setbacks. Use them as opportunities to learn and grow!",
+        "Believe in yourself and your abilities. You've got this!",
+        "You're doing better than you think. Keep going and you'll reach your goal!",
+        "Learning is a journey, not a destination. Keep moving forward!",
+        "Stay positive and keep pushing through challenges. You're making progress!",
+        "Don't worry, mistakes are part of the learning process. Keep trying!",
+        "You're getting closer with each attempt. Keep pushing forward!",
+        "Learning something new takes time and effort. You're doing great!",
+    ];
+
+    var negativeFeedbacks = {
+        V1C1: reassuringFeedbacks,
+        V3C1: reassuringFeedbacks,
+        V5C1: reassuringFeedbacks,
+        F1C1: reassuringFeedbacks,
+        L1C1: reassuringFeedbacks,
+        F1C3: reassuringFeedbacks,
+        F2C3: reassuringFeedbacks,
+        F5C2: reassuringFeedbacks,
+        L2C3: reassuringFeedbacks,
+        V1C3: reassuringFeedbacks
+    };
+
     this.getFeedbacks = function(taskId) {
         return feedbacks[taskId] || [];
+    };
+
+    this.getPositiveFeedbacks = function(taskId) {
+        return positiveFeedbacks[taskId] || [];
+    };
+
+    this.getNegativeFeedbacks = function(taskId) {
+        if (negativeFeedbacks[taskId]) {
+            return [{
+                text: reassuringFeedbacks[Math.floor(Math.random() * reassuringFeedbacks.length)]
+            }];
+        }
+        return [];
     };
 
     return this;
