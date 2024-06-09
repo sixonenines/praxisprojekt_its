@@ -25,10 +25,12 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "correct");
+
         }else{
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
         }
     };
+
 
     $scope.getHint = function() {
         // Deaktiviere den Hint-Button und starte die Fortschrittsbalken-Animation

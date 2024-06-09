@@ -1,91 +1,139 @@
 <div ng-controller="dragDropController">
-    <h3>L3C1</h3>
-    <p>Look at the given code. Visualize its algorithm by selecting the codeline, the symbol according to its funtion and the zone. To place your selection, click on "Place in Flowchart".</p>
-    
-    <!-- Task field -->
-    <div class="flowchart">
-        <div class="dropzones">
-            <div id="start" class="dropzone start" ng-click="selectZone(0)" data-zone="0" ng-drop="onDrop($event, 0)">
-                <span>Start</span>
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="0" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="0" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="0" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="0" data-position="left"></div>
-            </div>
-            <div id="zone1" class="dropzone zone1" ng-click="selectZone(1)" data-zone="1" ng-drop="onDrop($event, 1)" ng-class="{'no-border': zonesWithSVG[1]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="1" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="1" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="1" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="1" data-position="left"></div>
-            </div>
-            <div id="zone2" class="dropzone zone2" ng-click="selectZone(2)" data-zone="2" ng-drop="onDrop($event, 2)" ng-class="{'no-border': zonesWithSVG[2]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="2" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="2" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="2" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="2" data-position="left"></div>
-            </div>
-            <div id="zone3" class="dropzone zone3" ng-click="selectZone(3)" data-zone="3" ng-drop="onDrop($event, 3)" ng-class="{'no-border': zonesWithSVG[3]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="3" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="3" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="3" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="3" data-position="left"></div>
-            </div>
-            <div id="zone4" class="dropzone zone4" ng-click="selectZone(4)" data-zone="4" ng-drop="onDrop($event, 4)" ng-class="{'no-border': zonesWithSVG[4]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="4" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="4" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="4" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="4" data-position="left"></div>
-            </div>
-            <div id="zone5" class="dropzone zone5" ng-click="selectZone(5)" data-zone="5" ng-drop="onDrop($event, 5)" ng-class="{'no-border': zonesWithSVG[5]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="5" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="5" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="5" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="5" data-position="left"></div>
-            </div>
-            <div id="end" class="dropzone end" data-zone="6" ng-drop="onDrop($event, 6)" ng-click="selectZone(6)">
-                <span>End</span>
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="6" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="6" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="6" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="6" data-position="left"></div>
-            </div>
-        </div>
-        
-            <div class="codeblock">
-                <pre>
+    <table>
+        <tr>
+            <h3>L3C1</h3>
+            <p>Translate the following code into a flowchart! Click into the cell to select the placement of the code line!</p>
+        </tr>
+        <tr>
+            <td>
+                <!-- Der Code -->
+                <div class="testBorder">
                     1 i = 1<br>
-                    2    while i &lt; 6:<br>
-                    3       i == 3:<br>
-                    4          break<br>
-                    5    i += 1
-                </pre>
-            </div>
-            <div class="sources">
-                <div class="buttons1">
-                    <button class="code-lines" ng-click="selectText('i = 1')" ng-class="{'selected': selectedText === 'i = 1'}" ng-disabled="isTextUsed('i = 1')">i = 1</button>
-                    <button class="code-lines" ng-click="selectText('while i &lt; 6:')" ng-class="{'selected': selectedText === 'while i &lt; 6:'}" ng-disabled="isTextUsed('while i &lt; 6:')">while i &lt; 6:</button>
-                    <button class="code-lines" ng-click="selectText('if i == 3:')" ng-class="{'selected': selectedText === 'if i == 3:'}" ng-disabled="isTextUsed('if i == 3:')">if i == 3:</button>
-                    <button class="code-lines" ng-click="selectText('break')" ng-class="{'selected': selectedText === 'break'}" ng-disabled="isTextUsed('break')">break</button>
-                    <button class="code-lines" ng-click="selectText('i += 1')" ng-class="{'selected': selectedText === 'i += 1'}" ng-disabled="isTextUsed('i += 1')">i += 1</button>
+                    2 while i &lt; 6:<br>
+                    3 if i == 3:<br>
+                    4 break<br>
+                    5 i += 1
                 </div>
-                <div class="buttons2">
-                    <button class="rectangle-shape" ng-click="selectShape('Rectangle')" ng-class="{'selected': selectedShape === 'Rectangle'}"></button>
-                    <button class="diamond-shape" ng-click="selectShape('Diamond')" ng-class="{'selected': selectedShape === 'Diamond'}"></button>
+            </td>
+            <td class="testBorder containerTest">
+                <div class="registerCard">
+
+               
+                <div class="tabContainer">
+                    <button ng-click="selectedTab = 'codeLines'; selectedTabChanged()" ng-class="{'selectedTabButton': selectedTab === 'codeLines'}">Code Lines</button>
+                    <button ng-click="selectedTab = 'arrows'; selectedTabChanged()" ng-class="{'selectedTabButton': selectedTab === 'arrows'}">Arrows</button>
                 </div>
-                
-                <div class="buttons3">
-                    
-                    <button ng-click="selectZone(1)" ng-drop="onDrop($event, 1)" ng-class="{'selected': selectedZone === 1}" ng-disabled="isZoneUsed(1)">Zone 1</button>
-                    <button ng-click="selectZone(2)" ng-drop="onDrop($event, 2)" ng-class="{'selected': selectedZone === 2}" ng-disabled="isZoneUsed(2)">Zone 2</button>
-                    <button ng-click="selectZone(3)" ng-drop="onDrop($event, 3)" ng-class="{'selected': selectedZone === 3}" ng-disabled="isZoneUsed(3)">Zone 3</button>
-                    <button ng-click="selectZone(4)" ng-drop="onDrop($event, 4)" ng-class="{'selected': selectedZone === 4}" ng-disabled="isZoneUsed(4)">Zone 4</button>
-                    <button ng-click="selectZone(5)" ng-drop="onDrop($event, 5)" ng-class="{'selected': selectedZone === 5}" ng-disabled="isZoneUsed(5)">Zone 5</button>
-                </div>
-                <div class="place-button">
-                    <button ng-click="createSVG()">Place in Flowchart</button>
-                </div>
-            </div>
+
             
-        
-    </div>
+                <div ng-show="selectedTab === 'codeLines'">
+                    <div ng-repeat="codeLine in availableCodeLines">
+                        <button class="codeLineButton" ng-click="selectCodeLine(codeLine)" ng-class="{'selected': selectedCodeLine === codeLine}" ng-disabled="codeLine.disabled">{{codeLine.text}}</button>
+                    </div>
+                </div>
+                <div ng-show="selectedTab === 'arrows'">
+                    <div>
+                        <button ng-click="selectArrow('arrow_down', 1)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 1}" class="arrowButton_down" ng-disabled="selectedArrow.disabled"></button>
+                        <button ng-click="selectArrow('arrow_down', 2)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 2}" class="arrowButton_down"></button>
+                        <button ng-click="selectArrow('arrow_down', 3)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 3}" class="arrowButton_down"></button>
+                        <button ng-click="selectArrow('arrow_down', 4)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 4}" class="arrowButton_down"></button>
+                        <button ng-click="selectArrow('arrow_loop')" ng-class="{'selected': selectedArrow === 'arrow_loop'}" class="loopButton"></button>
+                        <button ng-click="selectArrow('arrow_end')" ng-class="{'selected': selectedArrow === 'arrow_end'}" class="endButton"></button>
+                    </div>
+                </div>
+            </div>
+                <div class="tabContent" ng-hide="selectedTab === 'arrows'">
+                    <div>
+                        <span class="processButtonSpace">
+                            <button ng-click="selectSymbol('process')" ng-class="{'selected': selectedSymbol === 'process'}" class="processButton">Process</button>
+                        </span>
+                        <button ng-click="selectSymbol('decision')" ng-class="{'selected': selectedSymbol === 'decision'}" class="decisionButton"><span>Decision</span></button>
+                    </div>
+                </div>
+
+                <div class="flowChartOperationButtons">
+                    <!--<button class="placeButton" ng-click="placeInFlowchart()" ng-disabled="!selectedZone || !selectedCodeLine || (!selectedSymbol && !selectedProcess)">Place in Flowchart</button>-->
+                    <button class="placeButton" ng-click="placeInFlowchart()" ng-disabled="!((selectedZone && selectedCodeLine && selectedSymbol) || (selectedZone && selectedArrow))">Place in Flowchart</button>
+
+
+                    <button class="resetButton" ng-click="resetWrongAnswers()" ng-disabled="wronglyPlacedCodeLines.length === 0">Reset Wrong Answers</button>
+
+                </div>
+            </td>
+            <!-- Flowchart - Visualisierung-->
+            <td>
+                <table>
+                    <tr>
+                        <td></td>
+                        <td class="start-end">Start</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="flowchart-cell 1" ng-class="{'selected-zone': selectedZone == '1'}" ng-click="selectZone('1')" id="1">1
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="1_img">
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="flowchart-cell 2" ng-class="{'selected-zone': selectedZone == '2'}" ng-click="selectZone('2')" id="2">2</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="flowchart-cell 3" ng-class="{'selected-zone': selectedZone == '3'}" ng-click="selectZone('3')" id="3">3
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="3_img">
+                        </td>
+                        
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="flowchart-cell 4" ng-class="{'selected-zone': selectedZone == '4'}" ng-click="selectZone('4')" id="4">4</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="flowchart-cell 5" ng-class="{'selected-zone': selectedZone == '5'}" ng-click="selectZone('5')" id="5">5
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="5_img">
+                        </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="flowchart-cell 6.1" ng-class="{'selected-zone': selectedZone == '6.1'}" ng-click="selectZone('6.1')" id="6.1">6.1</td>
+                        <td class="flowchart-cell 6.2" ng-class="{'selected-zone': selectedZone == '6.2'}" ng-click="selectZone('6.2')" id="6.2">6.2</td>
+                        <td class="flowchart-cell 6.3" ng-class="{'selected-zone': selectedZone == '6.3'}" ng-click="selectZone('6.3')" id="6.3">6.3</td>
+                    </tr>
+                    <tr>
+                        <td class="flowchart-cell 7.1" ng-class="{'selected-zone': selectedZone == '7.1'}" ng-click="selectZone('7.1')" id="7.1">7.1</td>
+                        <td class="flowchart-cell 7.2" ng-class="{'selected-zone': selectedZone == '7.2'}" ng-click="selectZone('7.2')" id="7.2">7.2
+                            <img class = "arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" ng-show="selectedZone == '7.2' && isCorrectAnswer">
+                        </td>
+                        <td class="start-end">End</td>
+                    </tr>
+                    <tr>
+                        <td class="flowchart-cell 8.1" ng-class="{'selected-zone': selectedZone == '8.1'}" ng-click="selectZone('8.1')" ng-attr-id="'8.1'">8.1</td>
+                        <td class="flowchart-cell 8.2 " ng-class="{'selected-zone': selectedZone == '8.2'}" ng-click="selectZone('8.2')" ng-attr-id="'8.2'">8.2</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="button-check-hint">
+                <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled" class="button-with-progress">
+                    <span class="hint-text">Hint</span>
+                    <span ng-show="hintButtonDisabled" class="progress-bar-hint"></span>
+                </button>
+            </td>
+        </tr>
+
+    </table>
+      
 </div>

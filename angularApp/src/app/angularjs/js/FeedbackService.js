@@ -1,6 +1,4 @@
 var app = angular.module("myApp");
-
-var app = angular.module("myApp");
 app.factory('FeedbackService', function() {
     var feedbacks = {
         V1C1: [
@@ -56,9 +54,15 @@ app.factory('FeedbackService', function() {
 
     };
 
+
     this.getFeedbacks = function(taskId) {
         return feedbacks[taskId] || [];
     };
 
     return this;
-});
+}
+
+
+
+
+);

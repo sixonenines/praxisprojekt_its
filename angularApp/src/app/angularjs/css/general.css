@@ -396,8 +396,8 @@ body {
 
 
 .selected {
-    background-color: #c0c0c0; 
-    border: 2px solid #808080; 
+    /**background-color: #c0c0c0; 
+    border: 2px solid #808080; */
 }
 
 .no-border {
@@ -587,3 +587,294 @@ body {
 .mpy-editor-run-button{
     opacity: 100% !important;
 }
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+  }
+  
+  .sources {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .source {
+    padding: 10px;
+    cursor: grab;
+    position: relative;
+    z-index: 3;
+  }
+  
+  .dropzones {
+    width: 70%;
+  }
+  
+  .dropzone {
+    stroke: black;
+    stroke-width: 0.5;
+    stroke-opacity: 0.5;
+    fill-opacity: 0.3;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .dropzone:hover {
+    fill-opacity: 0.5;
+    cursor: pointer;
+  }
+  
+  svg {
+      position: relative;
+      z-index: 1;
+  }
+  
+  /*
+  Unterscheidung der Dropzones
+  #zone1 {
+      fill:aqua;
+  }
+  #zone2 {
+      fill:rgb(255, 0, 0);
+  }
+  #zone3 {
+      fill:rgb(21, 0, 255);
+  }
+  #zone4 {
+      fill:rgb(242, 255, 0);
+  }
+  #zone5 {
+      fill:rgb(0, 255, 21);
+  }*/
+
+  .flowchart-test{
+    border: 2px solid black;
+  }
+
+  .flowchart-cell {
+    border: 1px solid black;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.selected-zone {
+    border: 3px solid yellow;
+}
+.start-end {
+    border: 4px solid black;
+    border-radius: 15px;
+    font-weight: bold;
+    background-color: transparent;
+    text-align: center;
+}
+.process {
+    border: 2px solid black;
+    border-radius: 15px;
+}
+.decision {
+    width: 70px;
+    height: 70px;
+    transform: rotate(45deg);
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.decision span {
+    transform: rotate(-45deg);
+    display: block;
+    width: max-content;
+    text-align: center;
+    position: absolute;
+}
+
+.disabled{
+    background-color: gray;
+}
+
+.correct-Flowchart{
+    border: 2px solid green;
+    background-color: lightgray;
+}
+
+.wrong-Flowchart{
+    border: 2px solid red;
+}
+
+.flowchart-cell:hover {
+    background-color: #f0f0f0; /* Hintergrundfarbe ändern */
+    cursor: pointer; /* Cursor ändern */
+}
+
+.selected {
+    background-color: yellow;
+    border: 2px solid orange;
+    color: black;
+    font-weight: bold;
+}
+
+
+.codeLineButton {
+    width: 100%;
+}
+
+/*.decision {
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    position: relative;
+    top: -4px;
+    margin-left: 100px;
+
+}
+
+.decision span {
+    display: inline-block;
+    transform: rotate(-45deg); /* Text um 45 Grad drehen */
+/*}*/
+
+.processButton{
+margin-top: 10px;
+border: 2px solid black;
+border-radius: 15px;
+height: 50px;
+width: 100px;
+margin-left: 15px;
+
+}
+
+.processButtonSpace{
+margin-top: 20px;
+
+}
+
+.decisionButton {
+    width: 70px;
+    height: 70px;
+    transform: rotate(45deg);
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-left: 160px;
+    margin-top: -60px;
+}
+
+.decisionButton span {
+    transform: rotate(-45deg);
+    display: block;
+    width: max-content;
+    text-align: center;
+    position: absolute;
+}
+
+.arrowButton_down {
+    width: 50px;
+    height: 30px;
+    background-image: url('/assets/Pfeil.png'); /* Pfad zum Bild */
+    background-size: 50%; /* Bildgröße anpassen */
+    background-repeat: no-repeat; /* Bildwiederholung ausschalten */
+    background-position: center; /* Bild zentrieren */
+    border: none; /* Rand entfernen */
+    cursor: pointer; /* Cursor ändern */
+    transform: rotate(90deg);
+}
+
+.tabContainer {
+    display: flex;
+    justify-content: space-between; /* Buttons nebeneinander ausrichten */
+    margin-bottom: 10px; /* Abstand zwischen den Buttons */
+}
+.selectedTabButton {
+    background-color: lightgray;
+    border: 1px solid black;
+    border-bottom: none;
+    padding: 10px;
+    width: 100%; /* Breite der Registerkarten auf 100% setzen */
+}
+
+.selectedTabButton:first-child {
+    border-radius: 5px 5px 0 0; /* Nur die oberen Ecken der ersten Registerkarte abrunden */
+}
+
+.selectedTabButton:last-child {
+    border-radius: 0 0 5px 5px; /* Nur die unteren Ecken der letzten Registerkarte abrunden */
+}
+
+.selectedTabButton:not(:last-child) {
+    border-bottom: 1px solid black; /* Trennlinien zwischen den Registerkarten hinzufügen */
+}
+
+.selectedTabButton:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.selectedTabButton.selected {
+    background-color: white;
+}
+
+.containerTest {
+    display: flex;
+    flex-direction: column; /* Ändert die Anordnung auf eine Spalte */
+    align-items: flex-start; /* Stellt die Elemente am Anfang der Hauptachse (horizontal) aus */
+}
+
+.testBorder{
+    border: 2px solid black;
+}
+
+.registerCard{
+    border: 2px solid pink;
+    width: 100%;
+    height: 250px;
+}
+
+.flowChartOperationButtons{
+    margin-top: 20px;
+}
+
+.resetButton{
+    background-image: url('/assets/resetButton.png'); /* Pfad zum Bild */
+    background-size:20%; /* Bildgröße anpassen */
+    background-repeat: no-repeat; /* Bildwiederholung ausschalten */
+    background-position: left; /* Bild zentrieren */
+    cursor: pointer; /* Cursor ändern */
+    height: 40px;
+}
+
+.placeButton{
+height: 40px;
+}
+
+.loopButton {
+    width: 50px;
+    height: 50px;
+}
+
+.endButton{
+    width: 50px;
+    height: 50px;
+}
+
+.arrowInFlowchart{
+    width: 30px;
+    transform: rotate(90deg);
+    opacity:0;
+}
+
+
+
+.test{
+    opacity: 1;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
