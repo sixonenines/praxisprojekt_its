@@ -29,27 +29,32 @@ app.factory('FeedbackService', function($timeout) {
         F1C3: [
             { text: 'Start by defining a function named calculation that accepts two parameters, num1 and num2. Use the def keyword to define the function.', highlight: null },
             { text: 'Inside the function, perform both the addition and the subtraction. Store the results of these operations in separate variables. You need to calculate num1 + num2 and num1 - num2.', highlight: null},
-            { text: 'Return the results of the addition and subtraction as a tuple from the function. When calling the function, capture the returned values and print them in a single print statement. Tuples are returned in parentheses, and you can print multiple values separated by a comma.', highlight: null }
+            { text: 'Return the results of the addition and subtraction as a tuple from the function. When calling the function, capture the returned values and print them in a single print statement. Tuples are returned in parentheses, and you can print multiple values separated by a comma.', highlight: null },
+            { text: 'When calling the function, capture both returned values by assigning them to two variables, which can then be printed or used in further calculations.', highlight: null}
         ],
         F2C3: [
             { text: 'Start by defining a function that accepts three parameters. Use the def keyword and name your function something descriptive, such as find_largest.', highlight: null },
             { text: 'Inside the function, use conditional statements to compare the three numbers. You can use if-elif-else statements to determine which number is the largest. Remember to handle cases where two or more numbers might be equal.', highlight: null},
-            { text: 'Ensure that your function returns the largest number found. You dont need to print anything inside the function; just return the value. When calling the function, print the returned value directly without any additional text.', highlight: null }
+            { text: 'Ensure that your function returns the largest number found. You dont need to print anything inside the function; just return the value. When calling the function, print the returned value directly without any additional text.', highlight: null },
+            { text: 'Return the largest number found using a single return statement without any additional text. This should be done after all comparisons are made.', Highlight: null}
         ],
         F5C2: [
             { text: 'Think about how to pass both the name and the salary to the show_employee function. You need to add an extra parameter in the function definition.', highlight: null },
             { text: 'In case the function is called without a salary value, it should use a default value. Consider using default parameter values in Python.', highlight: null},
-            { text: 'Pay attention to how the arguments are passed in the function calls. Ensure that the order of the arguments in the calls matches the order in the function definition.', highlight: null }
+            { text: 'Pay attention to how the arguments are passed in the function calls. Ensure that the order of the arguments in the calls matches the order in the function definition.', highlight: null },
+            { text: 'If a default salary is intended for cases where the salary is not provided, set a default value for the salary parameter in the function definition. This way, the function can be called with just the name and still work correctly.'}
         ],
         L2C3: [
             { text: 'Use a loop to iterate through all the numbers from start to end, inclusive. The range function will be helpful here.', highlight: null },
             { text: 'Inside the loop, create a helper function to check if a number is prime. A number is prime if it is greater than 1 and has no divisors other than 1 and itself. You can check for divisors by looping from 2 up to the square root of the number (to optimize performance).', highlight: null},
-            { text: 'If the number is determined to be prime, print it. Ensure that you print only the prime numbers without any additional text.', highlight: null }
+            { text: 'If the number is determined to be prime, print it. Ensure that you print only the prime numbers without any additional text.', highlight: null },
+            { text: 'Optimize the helper function by checking for divisors only up to the square root of the number, as any factor larger than the square root would have a corresponding factor smaller than the square root.', highlight: null}
         ],
         V1C3: [
             { text: 'You need a variable to keep track of the running total as you loop through the numbers from 1 to "end". Initialize this variable to 0 before the loop starts.', highlight: null },
             { text: 'Use a for loop to iterate through the range of numbers from 1 to "end", inclusive. The range function will be helpful here, but remember that it usually goes up to but does not include the stop value.', highlight: null},
-            { text: 'Inside the loop, add each number to your sum variable. After the loop finishes, print the result. Make sure to print only the sum without any additional text.', highlight: null }
+            { text: 'Inside the loop, add each number to your sum variable. After the loop finishes, print the result. Make sure to print only the sum without any additional text.', highlight: null },
+            { text: 'After the loop has completed, print the sum variable. Make sure to print only the sum without any additional text.', highlight: null}
         ]
 
     };
