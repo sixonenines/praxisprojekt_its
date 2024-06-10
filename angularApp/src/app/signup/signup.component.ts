@@ -66,6 +66,7 @@ onSubmitLogin() {
         next: (user) => {
           if (user && user.token) {
             console.log("Login successful.");
+            window.location.reload();
             this.router.navigate(['/tutor']); 
           } else {
             console.error('Login successful, but no token received');
