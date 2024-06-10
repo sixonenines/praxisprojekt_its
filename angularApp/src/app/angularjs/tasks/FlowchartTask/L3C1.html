@@ -36,8 +36,12 @@
                         <button ng-click="selectArrow('arrow_down', 2)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 2}" class="arrowButton_down"></button>
                         <button ng-click="selectArrow('arrow_down', 3)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 3}" class="arrowButton_down"></button>
                         <button ng-click="selectArrow('arrow_down', 4)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 4}" class="arrowButton_down"></button>
-                        <button ng-click="selectArrow('arrow_loop')" ng-class="{'selected': selectedArrow === 'arrow_loop'}" class="loopButton"></button>
-                        <button ng-click="selectArrow('arrow_end')" ng-class="{'selected': selectedArrow === 'arrow_end'}" class="endButton"></button>
+                        <br>
+                        <div class="arrows2ndRow">
+                            <button ng-click="selectArrow('arrow_loop')" ng-class="{'selected': selectedArrow === 'arrow_loop'}" class="arrowButton_loop"></button>
+                            <button ng-click="selectArrow('arrow_end')" ng-class="{'selected': selectedArrow === 'arrow_end'}" class="arrowButton_end"></button>
+                        </div>
+                        
                     </div>
                 </div>
             </div>

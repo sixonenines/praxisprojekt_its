@@ -557,13 +557,13 @@ body {
 
 
 .code-style {
-    background-color: #1e1e1e; /* Hintergrundfarbe dunkel */
-    color: #d4d4d4; /* Textfarbe hell */
-    padding: 10px; /* Abstand um den Text herum */
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace Schriftart für den Code */
-    font-size: 14px; /* Schriftgröße des Codes */
-    line-height: 1.5; /* Zeilenhöhe des Codes */
-    text-align: left !important; /* Links ausgerichtet */
+    background-color: #1e1e1e; 
+    color: #d4d4d4;
+    padding: 10px; 
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; 
+    font-size: 14px; 
+    line-height: 1.5;
+    text-align: left !important; 
 }
 
 .gap_input {
@@ -783,6 +783,34 @@ margin-top: 20px;
     border: none; /* Rand entfernen */
     cursor: pointer; /* Cursor ändern */
     transform: rotate(90deg);
+}
+
+.arrowButton_loop {
+    width: 130px;
+    height: 60px;
+    background-image: url('/assets/arrow_loop.png'); /* Pfad zum Bild */
+    background-size: 50%; /* Bildgröße anpassen */
+    background-repeat: no-repeat; /* Bildwiederholung ausschalten */
+    background-position: center; /* Bild zentrieren */
+    border: none; /* Rand entfernen */
+    cursor: pointer; /* Cursor ändern */
+    transform: rotate(-90deg);
+}
+
+.arrowButton_end {
+    width: 50px;
+    height: 30px;
+    background-image: url('/assets/arrow_end.png'); /* Pfad zum Bild */
+    background-size: 50%; /* Bildgröße anpassen */
+    background-repeat: no-repeat; /* Bildwiederholung ausschalten */
+    background-position: center; /* Bild zentrieren */
+    border: none; /* Rand entfernen */
+    cursor: pointer; /* Cursor ändern */
+    transform: rotate(0deg);
+}
+
+.arrows2ndRow{
+    margin-top: 60px;
 }
 
 .tabContainer {

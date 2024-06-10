@@ -42,7 +42,7 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
     $scope.selectArrow = function(symbol, index) {
         console.log("Pressed Arrow: " + symbol);
         $scope.selectedArrow = symbol;
-        if (symbol === 'arrow_down') {
+        if (symbol === 'arrow_down' || symbol === 'arrow_loop' || symbol === 'arrow_end') {
             $scope.selectedArrowIndex = index;
         }
     };
@@ -67,6 +67,7 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
                 console.log("Arrow condition" + $scope.selectedArrow);
                 var taskID = "L3C1_" + $scope.selectedZone;
                 var flowChartID =  $scope.selectedZone + "_img";
+                console.log("task ID: " + taskID + "     selectedArrow: " + $scope.selectedArrow);
                 if(CorrectAnswerService.checkAnswer(taskID, $scope.selectedArrow)){
                     console.log("ARROW RIGHT");
                     $scope.isCorrectAnswer = true;
