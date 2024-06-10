@@ -27,7 +27,6 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
     };
 
     $scope.selectSymbol = function(symbol) {
-        console.log("Pressed Symbol: " + symbol);
         if (['arrow_end', 'arrow_loop'].includes(symbol)) {
             $scope.selectArrow(symbol);
         } else {
@@ -42,60 +41,67 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
     $scope.selectArrow = function(symbol, index) {
         console.log("Pressed Arrow: " + symbol);
         $scope.selectedArrow = symbol;
-        if (symbol === 'arrow_down' || symbol === 'arrow_loop' || symbol === 'arrow_end') {
+        if (symbol === 'arrow_down_1' || symbol === 'arrow_loop' || symbol === 'arrow_end' || symbol === 'arrow_down_2' ||symbol === 'arrow_down_3' ||symbol === 'arrow_down_4') {
             $scope.selectedArrowIndex = index;
         }
     };
 
     /*Codelines*/
     $scope.placeInFlowchart = function() {
-        console.log("Im here" + " arrow " + $scope.selectedArrow);
         if ($scope.selectedCodeLine && $scope.selectedSymbol && $scope.selectedZone) {
             var element = document.getElementsByClassName($scope.selectedZone.toString());
             
             if (element.length > 0) {
                 if ($scope.selectedSymbol) {
-                    console.log("TTTTTT");
-                    console.log($scope.selectedCodeLine);
-                    /*element[0].innerHTML = `<span>${$scope.selectedCodeLine}</span>`;*/
                     element[0].innerHTML = `<span>${$scope.selectedCodeLine.text}</span>`;
                     element[0].className += ` ${$scope.selectedSymbol}`;
                     $scope.checkFlowChartAnswer($scope.selectedSymbol, $scope.selectedCodeLine, $scope.selectedZone, element); 
                 }
             }
-            }else if($scope.selectedArrow && $scope.selectedZone){
-                console.log("Arrow condition" + $scope.selectedArrow);
+        }else if($scope.selectedArrow && $scope.selectedZone){
                 var taskID = "L3C1_" + $scope.selectedZone;
                 var flowChartID =  $scope.selectedZone + "_img";
-                console.log("task ID: " + taskID + "     selectedArrow: " + $scope.selectedArrow);
-                if(CorrectAnswerService.checkAnswer(taskID, $scope.selectedArrow)){
-                    console.log("ARROW RIGHT");
+                var selectedArrowID = $scope.selectedArrow;
+                
+                if($scope.selectedArrow === 'arrow_end' || $scope.selectedArrow === 'arrow_loop'){
+                    var selectedArrowID = $scope.selectedArrow;
+                }else{
+                    var selectedArrowID = $scope.selectedArrow.substring(0, $scope.selectedArrow.length - 2);
+                }
+
+                console.log("HIER HIER HIER " + selectedArrowID);
+                if(CorrectAnswerService.checkAnswer(taskID, selectedArrowID)){
+
+                    
+                    console.log("Arrow right placed");
                     $scope.isCorrectAnswer = true;
                     $scope.isAnswered = true;
-                    
+
                     var selectedZoneElement = document.getElementById($scope.selectedZone);
                     /*(selectedZoneElement.innerHTML = "";*/
                     selectedZoneElement.classList.add('correct-Flowchart');
-
-                    
-
-                    console.log(flowChartID + "UIHFEHUEFHEFJHK");
-
-
-
                     var arrowImage = document.getElementById(flowChartID);
                     arrowImage.classList.add('test');
-
+                    if($scope.selectedArrow === 'arrow_end' || $scope.selectedArrow === 'arrow_loop'){
+                        var disableArrowButton = document.getElementById(selectedArrowID);
+                        $scope.selectedArrow = disableArrowButton;
+                        
+                    }else{
+                        var disableArrowButton = document.getElementById($scope.selectedArrow);
+                    }
+                    
+                    
+                    disableArrowButton.disabled = true;
+                    arrowImage.disabled = true;
+                    selectedZoneElement.disabled = true;
                     $scope.arrowPlaced = true;
                     $scope.selectedArrow.disabled = true;
-                    
                     
                 }else{
                     console.log("Arrow wrong placed");
                     var selectedZoneElement = document.getElementById($scope.selectedZone);
                     selectedZoneElement.classList.add('wrong-Flowchart');
                     $scope.wronglyPlacedArrows.push({ arrow: $scope.selectedArrow, element: selectedZoneElement });
-                    console.log($scope.wronglyPlacedArrows.length + "JJHJJJ");
                     var arrowImage = document.getElementById(flowChartID);
                     arrowImage.classList.add('test');
 
@@ -104,7 +110,13 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
 
         }
         if($scope.checkAllElementsPlaced()){
-            $scope.updateTaskStatus($scope.$parent.currentTask.id, "correct");
+            if((wronglyPlacedCodeLines.length === 0) && (wronglyPlacedArrows.length === 0)){
+                $scope.updateTaskStatus($scope.$parent.currentTask.id, "correct");
+            } 
+            
+            $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
+            
+            
         }
         
     };

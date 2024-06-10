@@ -911,3 +911,8 @@ height: 40px;
     height: 100px;
     width: 40px;
   }
+
+  .arrowButton_down:disabled, .arrow_loop:disabled, .arrow_end:disabled {
+    background-color: lightgray;
+    opacity: 0.5;
+  }

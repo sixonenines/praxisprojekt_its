@@ -32,14 +32,14 @@
                 </div>
                 <div ng-show="selectedTab === 'arrows'">
                     <div>
-                        <button ng-click="selectArrow('arrow_down', 1)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 1}" class="arrowButton_down" ng-disabled="selectedArrow.disabled"></button>
-                        <button ng-click="selectArrow('arrow_down', 2)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 2}" class="arrowButton_down"></button>
-                        <button ng-click="selectArrow('arrow_down', 3)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 3}" class="arrowButton_down"></button>
-                        <button ng-click="selectArrow('arrow_down', 4)" ng-class="{'selected': selectedArrow === 'arrow_down' && selectedArrowIndex === 4}" class="arrowButton_down"></button>
+                        <button id="arrow_down_1" ng-click="selectArrow('arrow_down_1', 1)" ng-class="{'selected': selectedArrow === 'arrow_down_1' && selectedArrowIndex === 1}" class="arrowButton_down" ng-disabled="disableArrowButton.disabled"></button>
+                        <button id="arrow_down_2" ng-click="selectArrow('arrow_down_2', 2)" ng-class="{'selected': selectedArrow === 'arrow_down_2' && selectedArrowIndex === 2}" class="arrowButton_down" ng-disabled="disableArrowButton.disabled"></button>
+                        <button id="arrow_down_3" ng-click="selectArrow('arrow_down_3', 3)" ng-class="{'selected': selectedArrow === 'arrow_down_3' && selectedArrowIndex === 3}" class="arrowButton_down" ng-disabled="disableArrowButton.disabled"></button>
+                        <button id="arrow_down_4" ng-click="selectArrow('arrow_down_4', 4)" ng-class="{'selected': selectedArrow === 'arrow_down_4' && selectedArrowIndex === 4}" class="arrowButton_down" ng-disabled="disableArrowButton.disabled"></button>
                         <br>
                         <div class="arrows2ndRow">
-                            <button ng-click="selectArrow('arrow_loop')" ng-class="{'selected': selectedArrow === 'arrow_loop'}" class="arrowButton_loop"></button>
-                            <button ng-click="selectArrow('arrow_end')" ng-class="{'selected': selectedArrow === 'arrow_end'}" class="arrowButton_end"></button>
+                            <button id="arrow_loop" ng-click="selectArrow('arrow_loop')" ng-class="{'selected': selectedArrow === 'arrow_loop'}" class="arrowButton_loop" ng-disabled="disableOtherArrowButton.disabled"></button>
+                            <button id="arrow_end" ng-click="selectArrow('arrow_end')" ng-class="{'selected': selectedArrow === 'arrow_end'}" class="arrowButton_end" ng-disabled="disableOtherArrowButton.disabled"></button>
                         </div>
                         
                     </div>
