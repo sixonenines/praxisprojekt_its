@@ -3,12 +3,12 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 
-export const loggedInGuardGuard: CanActivateFn = (route, state) => {
+export const signupGuard: CanActivateFn = (route, state) => {
   const router: Router = inject(Router);
   const  currentUsername = inject(AuthService).getCurrentUser();
-  if (currentUsername === null) {
+  if (currentUsername !== null) {
     const logIn = false
-    return logIn || router.navigate(['welcome']);
+    return logIn || router.navigate(['tutor']);
   }
   else {
     const logIn= true

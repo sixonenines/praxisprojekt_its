@@ -45,13 +45,14 @@ export class AuthService {
     return this.http.post<any>('http://localhost:5000/login', { username, password })
       .pipe(
         map(response => {
-          if (response && response.data.user_id && response.data.token, response.data.experience) {
-            const username = response.data.user_id;
+          if (response && response.data.user_id && response.data.token, response.data.experienceLevel, response.data.username) {
+            const username = response.data.username
+            const userid = response.data.user_id;
             const token  = response.data.token;
-            const experience = response.data.experience;
-            localStorage.setItem('currentUser', JSON.stringify({ username, token, experience }));
-            this.currentUserSubject.next({ username, token, experience});
-            return { username, token };
+            const experienceLevel = response.data.experienceLevel;
+            localStorage.setItem('currentUser', JSON.stringify({ userid, username, token, experienceLevel }));
+            this.currentUserSubject.next({ userid, username, token, experienceLevel});
+            return { userid, token };
           } else {
             throw new Error('No token received');
           }
@@ -70,7 +71,20 @@ export class AuthService {
     this.router.navigate(['/signup']);
     console.log("Logged out");
   }
+
+  changeExperienceLevel(userid: string,username: string,token: string,experienceLevel: string){
+    console.log(experienceLevel)
+    localStorage.setItem('currentUser', JSON.stringify({ userid, username,token, experienceLevel}));
+    this.currentUserSubject.next({ userid, username,token, experienceLevel});
+    return this.http.post<any>('http://localhost:5000/changeExpLevel', { userid, username,experienceLevel })
+    .pipe(
+      catchError(error => {
+        console.error('Signup error', error);
+        return throwError(error);;
+      })
+    );
 }
+  }
 
 
 

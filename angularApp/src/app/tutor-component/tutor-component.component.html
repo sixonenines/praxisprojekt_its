@@ -5,8 +5,14 @@
         <td></td>
         <td class="tutorTitle">Python Tutor</td>
         <td class="border_test userInfos">
-            <div>***Benutzername***</div>
-            <div>***Schwierigkeitsgrad</div>
+            <div> <h1 [(ngModel)]="currentUsername"></h1>{{currentUsername}}</div>
+            <div>
+                <p-dropdown
+                [options]="experienceLevel" 
+                [(ngModel)]="selectedExperienceLevel"
+                optionLabel="name"
+                (onChange)="onDifficultyChange()"/>
+            </div>
             <div>
                 <button (click)="logout()">Logout</button>
             </div>

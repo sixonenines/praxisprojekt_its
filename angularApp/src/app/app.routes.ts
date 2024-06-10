@@ -2,14 +2,17 @@ import { Routes } from '@angular/router';
 import { TutorComponentComponent } from './tutor-component/tutor-component.component'; 
 import { SignupComponent } from './signup/signup.component';
 import { WelcomeComponent } from './welcome/welcome.component';
-import { loggedInGuardGuard } from './guards/loggedInGuardGuard';
+import { tutorGuard } from './guards/tutorGuard';
+import { signupGuard } from './guards/signupGuard';
 
 export const routes: Routes = [
     {path: '',   redirectTo: '/welcome', pathMatch: 'full'},
     {path: 'tutor',
     component: TutorComponentComponent,
-    canActivate: [loggedInGuardGuard],
+    canActivate: [tutorGuard],
     },
-    {path: 'signup', component: SignupComponent },
+    {path: 'signup', component: SignupComponent,
+        canActivate: [signupGuard],
+     },
     {path: 'welcome', component: WelcomeComponent },
 ];
