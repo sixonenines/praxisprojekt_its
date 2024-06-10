@@ -13,6 +13,7 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
     $scope.selectedZone = null;
     $scope.selectedArrow = null;
     $scope.wronglyPlacedCodeLines = [];
+    $scope.wronglyPlacedArrows = [];
     $scope.selectedTab = 'codeLines';
     $scope.selectedArrowIndex = null;
 
@@ -46,6 +47,7 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
         }
     };
 
+    /*Codelines*/
     $scope.placeInFlowchart = function() {
         console.log("Im here" + " arrow " + $scope.selectedArrow);
         if ($scope.selectedCodeLine && $scope.selectedSymbol && $scope.selectedZone) {
@@ -64,6 +66,7 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
             }else if($scope.selectedArrow && $scope.selectedZone){
                 console.log("Arrow condition" + $scope.selectedArrow);
                 var taskID = "L3C1_" + $scope.selectedZone;
+                var flowChartID =  $scope.selectedZone + "_img";
                 if(CorrectAnswerService.checkAnswer(taskID, $scope.selectedArrow)){
                     console.log("ARROW RIGHT");
                     $scope.isCorrectAnswer = true;
@@ -73,7 +76,7 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
                     /*(selectedZoneElement.innerHTML = "";*/
                     selectedZoneElement.classList.add('correct-Flowchart');
 
-                    var flowChartID =  $scope.selectedZone + "_img";
+                    
 
                     console.log(flowChartID + "UIHFEHUEFHEFJHK");
 
@@ -86,6 +89,15 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
                     $scope.selectedArrow.disabled = true;
                     
                     
+                }else{
+                    console.log("Arrow wrong placed");
+                    var selectedZoneElement = document.getElementById($scope.selectedZone);
+                    selectedZoneElement.classList.add('wrong-Flowchart');
+                    $scope.wronglyPlacedArrows.push({ arrow: $scope.selectedArrow, element: selectedZoneElement });
+                    console.log($scope.wronglyPlacedArrows.length + "JJHJJJ");
+                    var arrowImage = document.getElementById(flowChartID);
+                    arrowImage.classList.add('test');
+
                 }
 
 
@@ -146,9 +158,24 @@ app.controller("dragDropController", function($scope, CorrectAnswerService, Feed
         });
         $scope.wronglyPlacedCodeLines = [];
 
+
+        $scope.wronglyPlacedArrows.forEach(function(item) {
+            item.element.classList.remove('wrong-Flowchart');
+            var flowChartID = item.element.id + "_img";
+            var arrowImage = document.getElementById(flowChartID);
+            arrowImage.classList.remove('test');
+            if (!$scope.selectedArrow) {
+                $scope.selectedArrow.disabled = false;
+            }
+        });
+
         // Deselect the code line and symbol after resetting wrong answers
         $scope.selectedCodeLine = null;
         $scope.selectedSymbol = null;
+        $scope.selectedArrow = null;
+
+        $scope.wronglyPlacedArrows = [];
+
     };
 
 

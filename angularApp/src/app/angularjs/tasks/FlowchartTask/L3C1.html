@@ -55,7 +55,7 @@
                     <button class="placeButton" ng-click="placeInFlowchart()" ng-disabled="!((selectedZone && selectedCodeLine && selectedSymbol) || (selectedZone && selectedArrow))">Place in Flowchart</button>
 
 
-                    <button class="resetButton" ng-click="resetWrongAnswers()" ng-disabled="wronglyPlacedCodeLines.length === 0">Reset Wrong Answers</button>
+                    <button class="resetButton" ng-click="resetWrongAnswers()" ng-disabled="(wronglyPlacedCodeLines.length === 0) && (wronglyPlacedArrows.length === 0)">Reset Wrong Answers</button>
 
                 </div>
             </td>
@@ -70,7 +70,7 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td class="flowchart-cell 1" ng-class="{'selected-zone': selectedZone == '1'}" ng-click="selectZone('1')" id="1">1
+                        <td class="flowchart-cell 1 arrowField" ng-class="{'selected-zone': selectedZone == '1'}" ng-click="selectZone('1')" id="1">1
                             <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="1_img">
                         </td>
                         <td></td>
@@ -78,13 +78,15 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td class="flowchart-cell 2" ng-class="{'selected-zone': selectedZone == '2'}" ng-click="selectZone('2')" id="2">2</td>
+                        <td class="flowchart-cell 2" ng-class="{'selected-zone': selectedZone == '2'}" ng-click="selectZone('2')" id="2">2
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="2_img">
+                        </td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td class="flowchart-cell 3" ng-class="{'selected-zone': selectedZone == '3'}" ng-click="selectZone('3')" id="3">3
+                        <td class="flowchart-cell 3 arrowField" ng-class="{'selected-zone': selectedZone == '3'}" ng-click="selectZone('3')" id="3">3
                             <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="3_img">
                         </td>
                         
@@ -93,33 +95,43 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td class="flowchart-cell 4" ng-class="{'selected-zone': selectedZone == '4'}" ng-click="selectZone('4')" id="4">4</td>
+                        <td class="flowchart-cell 4" ng-class="{'selected-zone': selectedZone == '4'}" ng-click="selectZone('4')" id="4">4
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="4_img">
+                        </td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td class="flowchart-cell 5" ng-class="{'selected-zone': selectedZone == '5'}" ng-click="selectZone('5')" id="5">5
+                        <td class="flowchart-cell 5 arrowField" ng-class="{'selected-zone': selectedZone == '5'}" ng-click="selectZone('5')" id="5">5
                             <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="5_img">
                         </td>
                         <td></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td class="flowchart-cell 6.1" ng-class="{'selected-zone': selectedZone == '6.1'}" ng-click="selectZone('6.1')" id="6.1">6.1</td>
-                        <td class="flowchart-cell 6.2" ng-class="{'selected-zone': selectedZone == '6.2'}" ng-click="selectZone('6.2')" id="6.2">6.2</td>
-                        <td class="flowchart-cell 6.3" ng-class="{'selected-zone': selectedZone == '6.3'}" ng-click="selectZone('6.3')" id="6.3">6.3</td>
+                        <td class="flowchart-cell 6.1 arrowField" rowspan ="3" ng-class="{'selected-zone': selectedZone == '6.1'}" ng-click="selectZone('6.1')" id="6.1">6.1
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="6.1_img">
+                        </td>
+                        <td class="flowchart-cell 6.2" ng-class="{'selected-zone': selectedZone == '6.2'}" ng-click="selectZone('6.2')" id="6.2">6.2
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="6.2_img">
+                        </td>
+                        <td class="flowchart-cell 6.3 arrowField" ng-class="{'selected-zone': selectedZone == '6.3'}" ng-click="selectZone('6.3')" id="6.3">6.3
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="6.3_img">
+                        </td>
                     </tr>
                     <tr>
-                        <td class="flowchart-cell 7.1" ng-class="{'selected-zone': selectedZone == '7.1'}" ng-click="selectZone('7.1')" id="7.1">7.1</td>
-                        <td class="flowchart-cell 7.2" ng-class="{'selected-zone': selectedZone == '7.2'}" ng-click="selectZone('7.2')" id="7.2">7.2
-                            <img class = "arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" ng-show="selectedZone == '7.2' && isCorrectAnswer">
+                        <!--<td class="flowchart-cell 7.1" ng-class="{'selected-zone': selectedZone == '7.1'}" ng-click="selectZone('7.1')" id="7.1">7.1</td>-->
+                        <td class="flowchart-cell 7.2 arrowField" ng-class="{'selected-zone': selectedZone == '7.2'}" ng-click="selectZone('7.2')" id="7.2">7.2
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="7.2_img">
                         </td>
                         <td class="start-end">End</td>
                     </tr>
                     <tr>
-                        <td class="flowchart-cell 8.1" ng-class="{'selected-zone': selectedZone == '8.1'}" ng-click="selectZone('8.1')" ng-attr-id="'8.1'">8.1</td>
-                        <td class="flowchart-cell 8.2 " ng-class="{'selected-zone': selectedZone == '8.2'}" ng-click="selectZone('8.2')" ng-attr-id="'8.2'">8.2</td>
+                        <!--<td class="flowchart-cell 8.1" ng-class="{'selected-zone': selectedZone == '8.1'}" ng-click="selectZone('8.1')" ng-attr-id="'8.1'">8.1</td>-->
+                        <td class="flowchart-cell 8.2 " ng-class="{'selected-zone': selectedZone == '8.2'}" ng-click="selectZone('8.2')" id="8.2">8.2
+                            <img class="arrowInFlowchart" ng-src="/assets/Pfeil.png" alt="Pfeil" id="8.2_img">
+                        </td>
                     </tr>
                 </table>
             </td>

@@ -878,3 +878,8 @@ height: 40px;
     opacity: 0.6;
     cursor: not-allowed;
   }
+
+  .arrowField{
+    height: 100px;
+    width: 40px;
+  }
