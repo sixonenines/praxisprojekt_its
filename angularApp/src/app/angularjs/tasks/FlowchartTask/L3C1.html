@@ -1,91 +1,19 @@
 <div ng-controller="dragDropController">
-    <h3>L3C1</h3>
-    <p>Look at the given code. Visualize its algorithm by selecting the codeline, the symbol according to its funtion and the zone. To place your selection, click on "Place in Flowchart".</p>
-    
-    <!-- Task field -->
-    <div class="flowchart">
-        <div class="dropzones">
-            <div id="start" class="dropzone start" ng-click="selectZone(0)" data-zone="0" ng-drop="onDrop($event, 0)">
-                <span>Start</span>
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="0" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="0" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="0" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="0" data-position="left"></div>
-            </div>
-            <div id="zone1" class="dropzone zone1" ng-click="selectZone(1)" data-zone="1" ng-drop="onDrop($event, 1)" ng-class="{'no-border': zonesWithSVG[1]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="1" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="1" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="1" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="1" data-position="left"></div>
-            </div>
-            <div id="zone2" class="dropzone zone2" ng-click="selectZone(2)" data-zone="2" ng-drop="onDrop($event, 2)" ng-class="{'no-border': zonesWithSVG[2]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="2" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="2" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="2" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="2" data-position="left"></div>
-            </div>
-            <div id="zone3" class="dropzone zone3" ng-click="selectZone(3)" data-zone="3" ng-drop="onDrop($event, 3)" ng-class="{'no-border': zonesWithSVG[3]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="3" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="3" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="3" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="3" data-position="left"></div>
-            </div>
-            <div id="zone4" class="dropzone zone4" ng-click="selectZone(4)" data-zone="4" ng-drop="onDrop($event, 4)" ng-class="{'no-border': zonesWithSVG[4]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="4" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="4" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="4" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="4" data-position="left"></div>
-            </div>
-            <div id="zone5" class="dropzone zone5" ng-click="selectZone(5)" data-zone="5" ng-drop="onDrop($event, 5)" ng-class="{'no-border': zonesWithSVG[5]}" >
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="5" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="5" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="5" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="5" data-position="left"></div>
-            </div>
-            <div id="end" class="dropzone end" data-zone="6" ng-drop="onDrop($event, 6)" ng-click="selectZone(6)">
-                <span>End</span>
-                <div class="dot top" draggable="true" ondragstart="dragStart(event)" data-zone="6" data-position="top"></div>
-                <div class="dot right" draggable="true" ondragstart="dragStart(event)" data-zone="6" data-position="right"></div>
-                <div class="dot bottom" draggable="true" ondragstart="dragStart(event)" data-zone="6" data-position="bottom"></div>
-                <div class="dot left" draggable="true" ondragstart="dragStart(event)" data-zone="6" data-position="left"></div>
-            </div>
+    <div class="task-body">
+        <h3>Create a Flowchart Based on the Following Code Snippet</h3>
+        <pre>{{ codeSnippet }}</pre>
+        <div id="myDiagramDiv" style="width:100%; height:600px; border:1px solid black;"></div>
+        <div>
+            <select ng-model="selectedLine" ng-options="line for line in availableLines"></select>
+            <select ng-model="selectedShape">
+                <option value="RoundedRectangle">Process</option>
+                <option value="Diamond">Condition</option>
+            </select>
+            <button ng-click="addNode()">Add Node</button>
         </div>
-        
-            <div class="codeblock">
-                <pre>
-                    1 i = 1<br>
-                    2    while i &lt; 6:<br>
-                    3       i == 3:<br>
-                    4          break<br>
-                    5    i += 1
-                </pre>
-            </div>
-            <div class="sources">
-                <div class="buttons1">
-                    <button class="code-lines" ng-click="selectText('i = 1')" ng-class="{'selected': selectedText === 'i = 1'}" ng-disabled="isTextUsed('i = 1')">i = 1</button>
-                    <button class="code-lines" ng-click="selectText('while i &lt; 6:')" ng-class="{'selected': selectedText === 'while i &lt; 6:'}" ng-disabled="isTextUsed('while i &lt; 6:')">while i &lt; 6:</button>
-                    <button class="code-lines" ng-click="selectText('if i == 3:')" ng-class="{'selected': selectedText === 'if i == 3:'}" ng-disabled="isTextUsed('if i == 3:')">if i == 3:</button>
-                    <button class="code-lines" ng-click="selectText('break')" ng-class="{'selected': selectedText === 'break'}" ng-disabled="isTextUsed('break')">break</button>
-                    <button class="code-lines" ng-click="selectText('i += 1')" ng-class="{'selected': selectedText === 'i += 1'}" ng-disabled="isTextUsed('i += 1')">i += 1</button>
-                </div>
-                <div class="buttons2">
-                    <button class="rectangle-shape" ng-click="selectShape('Rectangle')" ng-class="{'selected': selectedShape === 'Rectangle'}"></button>
-                    <button class="diamond-shape" ng-click="selectShape('Diamond')" ng-class="{'selected': selectedShape === 'Diamond'}"></button>
-                </div>
-                
-                <div class="buttons3">
-                    
-                    <button ng-click="selectZone(1)" ng-drop="onDrop($event, 1)" ng-class="{'selected': selectedZone === 1}" ng-disabled="isZoneUsed(1)">Zone 1</button>
-                    <button ng-click="selectZone(2)" ng-drop="onDrop($event, 2)" ng-class="{'selected': selectedZone === 2}" ng-disabled="isZoneUsed(2)">Zone 2</button>
-                    <button ng-click="selectZone(3)" ng-drop="onDrop($event, 3)" ng-class="{'selected': selectedZone === 3}" ng-disabled="isZoneUsed(3)">Zone 3</button>
-                    <button ng-click="selectZone(4)" ng-drop="onDrop($event, 4)" ng-class="{'selected': selectedZone === 4}" ng-disabled="isZoneUsed(4)">Zone 4</button>
-                    <button ng-click="selectZone(5)" ng-drop="onDrop($event, 5)" ng-class="{'selected': selectedZone === 5}" ng-disabled="isZoneUsed(5)">Zone 5</button>
-                </div>
-                <div class="place-button">
-                    <button ng-click="createSVG()">Place in Flowchart</button>
-                </div>
-            </div>
-            
-        
+        <button ng-click="undo()">Undo</button>
+        <button ng-click="redo()">Redo</button>
+        <button ng-click="refresh()">Refresh</button>
+        <button class="check">Check</button>
     </div>
 </div>
