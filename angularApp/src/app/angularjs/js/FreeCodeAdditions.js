@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkAndClearDiv() {
         const contentDivs3 = document.getElementsByClassName('mpy-editor-output')[0];
         const targetElement = contentDivs3.innerText
-        if (targetElement.length>1000) {
+        if (targetElement.length>100) {
             console.log('Looks like you are running an infinite loop, refresh the page.');
             alert("You were running an infinite loop, the page will now refresh. Press ok and wait for the page to reload.");
             window.location.reload(true);
@@ -22,9 +22,10 @@ const observer = new MutationObserver((mutationsList, observer) => {
                 console.log('contentDivs found, setting up content observer.');
                 // Set up a new observer for the contentDivs's children
                 const contentObserver = new MutationObserver((mutationsList, observer) => {
-                    console.log(observer)
+                    console.log("Vor der Schleife")
                     for (let mutation of mutationsList) {
                         if (mutation.type === 'childList') {
+                            console.log("In der Schleife")
                             checkAndClearDiv();
                         }
                     }
