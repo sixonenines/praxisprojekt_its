@@ -14,10 +14,18 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     $scope.hintsGiven = false; 
     
     $scope.checkFreeCodeAnswer = function() {
+        console.log("Checking free code answer")
+        var timestamp = new Date().getTime()
+        var StoredUser= localStorage.getItem("currentUser")
+        var UserInfoJson= JSON.parse(StoredUser)
+        var experienceLevel = UserInfoJson.experienceLevel
+        var username = UserInfoJson.username
         var userAnswer = document.getElementsByClassName('mpy-editor-output')[0].innerText;
         var userAnswer = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
         console.log(isCorrect);
+        var logged_data = {"useranswer":userAnswer,"taskid":$scope.$parent.currentTask.id,"isCorrect":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
+        window.logHelperFunction(logged_data);
         $scope.isCorrectAnswer = isCorrect;
         $scope.isAnswered = true;
         if (isCorrect) {
@@ -52,6 +60,14 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     };
 
     $scope.getHint = function() {
+        console.log("Get Hint")
+        var timestamp = new Date().getTime()
+        var StoredUser= localStorage.getItem("currentUser")
+        var UserInfoJson= JSON.parse(StoredUser)
+        var experienceLevel = UserInfoJson.experienceLevel
+        var username = UserInfoJson.username
+        var logged_data = {"taskid":$scope.$parent.currentTask.id,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
+        window.logHelperFunction(logged_data);
         $scope.hintButtonDisabled = true;
         $scope.noButtonsOnFeedback = false; 
         $scope.hintsGiven = true;

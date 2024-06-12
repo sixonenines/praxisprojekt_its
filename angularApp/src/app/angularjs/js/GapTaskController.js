@@ -21,9 +21,9 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
         var timestamp = new Date().getTime();
         var StoredUser= localStorage.getItem("currentUser");
         var UserInfoJson= JSON.parse(StoredUser);
-        var experience = UserInfoJson.experience;
+        var experienceLevelLevel = UserInfoJson.experienceLevelLevel;
         var username = UserInfoJson.username;
-        var logged_data = {"useranswer":userAnswer1,"taskid":taskID,"isCorrectAnswer1":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experience":experience};
+        var logged_data = {"useranswer":userAnswer1,"taskid":taskID,"isCorrectAnswer1":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevelLevel":experienceLevelLevel};
         window.logHelperFunction(logged_data);
         $scope.isCorrectAnswer1 = isCorrect;
         $scope.isAnswered1 = true;
@@ -37,9 +37,9 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
         var timestamp = new Date().getTime();
         var StoredUser= localStorage.getItem("currentUser");
         var UserInfoJson= JSON.parse(StoredUser);
-        var experience = UserInfoJson.experience;
+        var experienceLevel = UserInfoJson.experienceLevel;
         var username = UserInfoJson.username;
-        var logged_data = {"useranswer":userAnswer2,"taskid":taskID,"isCorrectAnswer2":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experience":experience};
+        var logged_data = {"useranswer":userAnswer2,"taskid":taskID,"isCorrectAnswer2":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel};
         window.logHelperFunction(logged_data);
         $scope.isCorrectAnswer2 = isCorrect;
         $scope.isAnswered2 = true;
@@ -109,9 +109,9 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
             var timestamp = new Date().getTime();
             var StoredUser= localStorage.getItem("currentUser");
             var UserInfoJson= JSON.parse(StoredUser);
-            var experience = UserInfoJson.experience;
+            var experienceLevel = UserInfoJson.experienceLevel;
             var username = UserInfoJson.username;
-            var logged_data = {"useranswer1":$scope.isCorrectAnswer1,"useranswer2":$scope.isCorrectAnswer2,"taskid":taskID,"isCorrectFullAnswer":"correct","userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experience":experience};
+            var logged_data = {"useranswer1":$scope.isCorrectAnswer1,"useranswer2":$scope.isCorrectAnswer2,"taskid":taskID,"isCorrectFullAnswer":"correct","userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel};
             window.logHelperFunction(logged_data);
         
             
@@ -120,9 +120,9 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
             var timestamp = new Date().getTime();
             var StoredUser= localStorage.getItem("currentUser");
             var UserInfoJson= JSON.parse(StoredUser);
-            var experience = UserInfoJson.experience;
+            var experienceLevel = UserInfoJson.experienceLevel;
             var username = UserInfoJson.username;
-            var logged_data = {"useranswer1":$scope.isCorrectAnswer1,"useranswer2":$scope.isCorrectAnswer2,"taskid":taskID,"isCorrectFullAnswer":"incorrect","userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experience":experience};
+            var logged_data = {"useranswer1":$scope.isCorrectAnswer1,"useranswer2":$scope.isCorrectAnswer2,"taskid":taskID,"isCorrectFullAnswer":"incorrect","userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel};
             window.logHelperFunction(logged_data);
         }
     }
