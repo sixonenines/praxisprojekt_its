@@ -16,7 +16,7 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         "app/angularjs/tasks/CompilerTasks/L2C3.html",
         "app/angularjs/tasks/CompilerTasks/V1C3.html",
         "app/angularjs/tasks/CompilerTasks/L2C2.html",
-        "app/angularjs/tasks/FlowchartTask/Task1.html"
+        "app/angularjs/tasks/FlowchartTask/Task1.html",
     ];
 
     $scope.taskGroups = {

@@ -13,6 +13,8 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
     $scope.noButtonsOnFeedback = false; // Wenn pos/neg Feedback, dann keine prev/next Buttons
     $scope.hintsGiven = false; 
 
+    
+
     $scope.checkFreeTextAnswer = function(userAnswer) {
         console.log("Checking free text answer")
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
