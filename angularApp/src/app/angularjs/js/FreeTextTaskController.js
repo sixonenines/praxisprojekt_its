@@ -20,9 +20,10 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         var timestamp = new Date().getTime()
         var StoredUser= localStorage.getItem("currentUser")
         var UserInfoJson= JSON.parse(StoredUser)
-        var experience = UserInfoJson.experience
+        var experienceLevel = UserInfoJson.experienceLevel
         var username = UserInfoJson.username
-        var logged_data = {"useranswer":userAnswer,"taskid":$scope.$parent.currentTask.id,"isCorrect":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experience":experience}
+        var logged_data = {"task_form":"free_text","userAnswer":userAnswer,"taskID":$scope.$parent.currentTask.id,
+            "isCorrect":isCorrect,"username":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
         window.logHelperFunction(logged_data);
         $scope.isAnswered = true;
         if (isCorrect) {
@@ -57,12 +58,22 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         }
     };
 
-    $scope.getHint = function() {
+    $scope.getHint = function(userAnswer) {
         // Deaktiviere den Hint-Button und starte die Fortschrittsbalken-Animation
         $scope.hintButtonDisabled = true;
         $scope.noButtonsOnFeedback = false; 
         $scope.hintsGiven = true;
         $scope.startHintButtonAnimation();
+        console.log("Get Hint")
+        console.log(userAnswer)
+        var timestamp = new Date().getTime()
+        var StoredUser= localStorage.getItem("currentUser")
+        var UserInfoJson= JSON.parse(StoredUser)
+        var experienceLevel = UserInfoJson.experienceLevel
+        var username = UserInfoJson.username
+        var logged_data = {"clicked_hint":"clicked_hint","task_form":"free_text","userAnswer":userAnswer,"taskID":$scope.$parent.currentTask.id,"username":username,
+            "timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
+        window.logHelperFunction(logged_data);
     
         // Dein bestehender Code für das Anzeigen des Hinweises
         var taskId = $scope.$parent.currentTask.id;

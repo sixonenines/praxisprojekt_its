@@ -21,10 +21,13 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         var experienceLevel = UserInfoJson.experienceLevel
         var username = UserInfoJson.username
         var userAnswer = document.getElementsByClassName('mpy-editor-output')[0].innerText;
+        selectEditor="#".concat("",$scope.currentTask.id)
+        var code = document.querySelector(selectEditor).code
         var userAnswer = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
         console.log(isCorrect);
-        var logged_data = {"useranswer":userAnswer,"taskid":$scope.$parent.currentTask.id,"isCorrect":isCorrect,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
+        var logged_data = {"task_form":"freecode_task","Input":code,"Output":userAnswer,"taskID":$scope.$parent.currentTask.id,"isCorrect":isCorrect,
+            "username":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
         window.logHelperFunction(logged_data);
         $scope.isCorrectAnswer = isCorrect;
         $scope.isAnswered = true;
@@ -66,7 +69,12 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         var UserInfoJson= JSON.parse(StoredUser)
         var experienceLevel = UserInfoJson.experienceLevel
         var username = UserInfoJson.username
-        var logged_data = {"taskid":$scope.$parent.currentTask.id,"userid":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
+        var userAnswer = document.getElementsByClassName('mpy-editor-output')[0].innerText;
+        selectEditor="#".concat("",$scope.currentTask.id)
+        var code = document.querySelector(selectEditor).code
+        var userAnswer = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
+        var logged_data = {"clicked_hint":"clicked_hint","task_form":"freecode_task","Input":code,"Output":userAnswer,"TaskID":$scope.$parent.currentTask.id,"username":username,"timestamp":timestamp,
+            "numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
         window.logHelperFunction(logged_data);
         $scope.hintButtonDisabled = true;
         $scope.noButtonsOnFeedback = false; 
