@@ -55,6 +55,11 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'Use a for loop to iterate through the range of numbers from 1 to "end", inclusive. The range function will be helpful here, but remember that it usually goes up to but does not include the stop value.', highlight: null},
             { text: 'Inside the loop, add each number to your sum variable. After the loop finishes, print the result. Make sure to print only the sum without any additional text.', highlight: null },
             { text: 'After the loop has completed, print the sum variable. Make sure to print only the sum without any additional text.', highlight: null}
+        ],
+        L3C1: [
+            { text: 'Remember, conditions usually have a diamond shape and represent decisions, while processes are rectangles that show actions.', highlight: null },
+            { text: "Remember to follow the logical flow of your code. Each step should naturally lead to the next. If you find a step that doesn't seem to fit, it might be in the wrong place.", highlight: null},
+            { text: 'Take a closer look at your connections. Each node should logically connect to the next step in the process. If a connection seems out of place, consider where it should logically flow to maintain the correct sequence.', highlight: null }
         ]
 
     };
@@ -89,6 +94,9 @@ app.factory('FeedbackService', function($timeout) {
         ],
         V1C3: [
             { text: 'Nice work! Your code fulfills all given requirements! Your implementation correctly adds each incremented value to the sum up to the end value. ', highlight: null }
+        ],
+        L3C1: [
+            {text: 'Wow you seem to be in the "flow" right now! Way to go!'}
         ]
 
     };
@@ -120,8 +128,11 @@ app.factory('FeedbackService', function($timeout) {
         F2C3: reassuringFeedbacks,
         F5C2: reassuringFeedbacks,
         L2C3: reassuringFeedbacks,
-        V1C3: reassuringFeedbacks
+        V1C3: reassuringFeedbacks,
+        L3C1: reassuringFeedbacks
     };
+
+    
 
     this.getFeedbacks = function(taskId) {
         return feedbacks[taskId] || [];
