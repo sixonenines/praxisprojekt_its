@@ -14,10 +14,21 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     $scope.hintsGiven = false; 
     
     $scope.checkFreeCodeAnswer = function() {
+        console.log("Checking free code answer")
+        var timestamp = new Date().getTime()
+        var StoredUser= localStorage.getItem("currentUser")
+        var UserInfoJson= JSON.parse(StoredUser)
+        var experienceLevel = UserInfoJson.experienceLevel
+        var username = UserInfoJson.username
         var userAnswer = document.getElementsByClassName('mpy-editor-output')[0].innerText;
+        selectEditor="#".concat("",$scope.currentTask.id)
+        var code = document.querySelector(selectEditor).code
         var userAnswer = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
         console.log(isCorrect);
+        var logged_data = {"task_form":"freecode_task","Input":code,"Output":userAnswer,"taskID":$scope.$parent.currentTask.id,"isCorrect":isCorrect,
+            "username":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
+        window.logHelperFunction(logged_data);
         $scope.isCorrectAnswer = isCorrect;
         $scope.isAnswered = true;
         if (isCorrect) {
@@ -52,6 +63,19 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     };
 
     $scope.getHint = function() {
+        console.log("Get Hint")
+        var timestamp = new Date().getTime()
+        var StoredUser= localStorage.getItem("currentUser")
+        var UserInfoJson= JSON.parse(StoredUser)
+        var experienceLevel = UserInfoJson.experienceLevel
+        var username = UserInfoJson.username
+        var userAnswer = document.getElementsByClassName('mpy-editor-output')[0].innerText;
+        selectEditor="#".concat("",$scope.currentTask.id)
+        var code = document.querySelector(selectEditor).code
+        var userAnswer = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
+        var logged_data = {"clicked_hint":"clicked_hint","task_form":"freecode_task","Input":code,"Output":userAnswer,"TaskID":$scope.$parent.currentTask.id,"username":username,"timestamp":timestamp,
+            "numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
+        window.logHelperFunction(logged_data);
         $scope.hintButtonDisabled = true;
         $scope.noButtonsOnFeedback = false; 
         $scope.hintsGiven = true;

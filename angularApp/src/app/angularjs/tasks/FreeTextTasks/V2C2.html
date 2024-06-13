@@ -12,17 +12,19 @@
 
     <table class="task-body">
         <tr>
-            <h3>V1C1</h3>
-            <td colspan="2">Given the following code, what is the output? Provide the answer in a free text field.</td>
+            <h3>V2C2</h3>
+            <td colspan="2">
+                The program tries to print the variable called ‘c’ but it does not work and provides an error. Find the error(s) and correct the code by correcting the body of the function. Write the corrected code in the free text field.
+            </td>
         </tr>
         <tr>
             <td colspan="2">
-                <!--Wichtig: Code-area ist hier für das Highlighting im Code zuständig-->
-                <p class="code-style">
-                    1   a=200
-                    <span ng-class="{'code-highlighting': highlightLine === 2}">2   a=20</span>
-                    3   print(a)
-                </p>
+                <pre><code>dc = 1
+def add():
+    c = dc + 2
+    print(c)
+add()
+                </code></pre>
             </td>
         </tr>
         <tr>

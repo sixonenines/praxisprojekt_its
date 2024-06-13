@@ -12,23 +12,27 @@
 
     <table class="task-body">
         <tr>
-            <h3>V1C1</h3>
-            <td colspan="2">Given the following code, what is the output? Provide the answer in a free text field.</td>
+            <h3>L5C1</h3>
+            <td>
+            How many lines of code and what exactly does this loop print? Write the corrected code in the free text field.
+            </td>
         </tr>
         <tr>
-            <td colspan="2">
-                <!--Wichtig: Code-area ist hier für das Highlighting im Code zuständig-->
-                <p class="code-style">
-                    1   a=200
-                    <span ng-class="{'code-highlighting': highlightLine === 2}">2   a=20</span>
-                    3   print(a)
-                </p>
-            </td>
+        <td >
+            
+        <pre>
+                1 num = 10<br>
+                2 while num > 3:<br>
+                3       num -= 1<br>
+                4       print(num)<br>
+        </pre>
+                
+        </td>
         </tr>
         <tr>
             <td>
                 <div ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
-                    <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
+                <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
                 </div>
             </td>
             <td class="button-check-hint">
