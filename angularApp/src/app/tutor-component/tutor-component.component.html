@@ -46,6 +46,10 @@
                     <div ng-click="selectTask('V5C1')" ng-class="{'active': isTaskActive('V5C1')}">
                         V5C1 <i class="status-icon" ng-class="getStatusIcon('V5C1')"></i>
                     </div>
+                    <div ng-click="selectTask('L5C1')" ng-class="{'active': isTaskActive('L5C1')}">
+                        L5C1 <i class="status-icon" ng-class="getStatusIcon('L5C1')"></i>
+                    </div>
+                    
                 </div>
         
                 <div class="menu-item" ng-click="toggleGroup('TaskGroup2')">
@@ -61,12 +65,16 @@
                     <div ng-click="selectTask('L3C1')" ng-class="{'active': isTaskActive('L3C1')}">
                         L3C1 <i class="status-icon" ng-class="getStatusIcon('L3C1')"></i>
                     </div>
+                
                 </div>
         
                 <div class="menu-item" ng-click="toggleGroup('TaskGroup3')">
                     Task Group 3 <span class="arrow" ng-class="{'down': isGroupVisible('TaskGroup3')}">&#9660;</span>
                 </div>
                 <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup3')}">
+                    <div ng-click="selectTask('L2C2')" ng-class="{'active': isTaskActive('L2C2')}">
+                        L2C2 <i class="status-icon" ng-class="getStatusIcon('L2C2')"></i>
+                    </div>
                     <div ng-click="selectTask('F1C3')" ng-class="{'active': isTaskActive('F1C3')}">
                         F1C3 <i class="status-icon" ng-class="getStatusIcon('F1C3')"></i>
                     </div>
@@ -81,6 +89,15 @@
                     </div>
                     <div ng-click="selectTask('V1C3')" ng-class="{'active': isTaskActive('V1C3')}">
                         V1C3 <i class="status-icon" ng-class="getStatusIcon('V1C3')"></i>
+                    </div>
+                    <div ng-click="selectTask('V2C2')" ng-class="{'active': isTaskActive('V2C2')}">
+                        V2C2<i class="status-icon" ng-class="getStatusIcon('V2C2')"></i>
+                    </div>
+                    <div ng-click="selectTask('L4C2')" ng-class="{'active': isTaskActive('L4C2')}">
+                        L4C2<i class="status-icon" ng-class="getStatusIcon('L4C2')"></i>
+                    </div>
+                    <div ng-click="selectTask('F1C2')" ng-class="{'active': isTaskActive('F1C2')}">
+                        F1C2<i class="status-icon" ng-class="getStatusIcon('F1C2')"></i>
                     </div>
                 </div>
             </div>
