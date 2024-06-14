@@ -11,24 +11,31 @@
     </div>
     <table class="task-body">
         <tr>
-            <h3>L2C2</h3>
+            <h3>F1C2</h3>
             <td colspan="2">
-                Convert the following into code that uses a for loop:
+            The function below takes two arguments - in our case 3 and 2 - adds five to both arguments and is supposed to output the new numbers.
+            Hence the code below should return the following output:(7,8)
+            At the moment, the code is faulty and does not provide the requested output! Identify the error(s) and fix the code. Modify the body of the function to provide the corrected output. Rewrite the code in the free text field.           
+
             <pre>
-                2
-                4
-                6
-                8
-                10
-                Goodbye!
+            def add5(a,b):
+                a=a+5, b=b+5
+            result = add5 (3,2)
+            print(result)
+
             </pre>
             </td>
+
+            
         </tr>
         <tr>
-            <script id="L2C2" type="mpy-editor" env="test_env">
-                for x in range (2,12,2):
-                print(x)
-                print ("Goodbye!")
+            <script type="mpy-editor" env="test_env" setup>
+            </script>
+            <script id="F1C2" type="mpy-editor" env="test_env">
+            def add5(a,b):
+                return a+5, b+5
+            result = add5 (3,2)
+            print(result)
             </script>
         </tr>
         <tr>
