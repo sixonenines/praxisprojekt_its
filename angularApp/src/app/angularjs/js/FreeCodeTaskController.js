@@ -12,9 +12,19 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     $scope.highlightLine = null; // Zeile, die hervorgehoben werden soll
     $scope.noButtonsOnFeedback = false; // Wenn pos/neg Feedback, dann keine prev/next Buttons
     $scope.hintsGiven = false; 
+
+    $scope.errorMessages = {
+        "F5C2": {
+            message: 'Error:Traceback(mostrecentcalllast):File"",line4,inTypeError:show_employee()takes1positionalargumentsbut2weregiven',
+            hint: "Check the function definition of 'show_employee' to ensure it can accept two arguments."
+        },
+        "L2C2": {
+            message: 'Error:Traceback(mostrecentcalllast):File"",line2SyntaxError:invalidsyntax',
+            hint: "Look closley to your code. Are you sure, that everything is correctly indented?"
+        }
+    };
     
     $scope.checkFreeCodeAnswer = function() {
-        console.log("Checking free code answer")
         var timestamp = new Date().getTime()
         var StoredUser= localStorage.getItem("currentUser")
         var UserInfoJson= JSON.parse(StoredUser)
@@ -25,7 +35,6 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         var code = document.querySelector(selectEditor).code
         var userAnswer = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
-        console.log(isCorrect);
         var logged_data = {"task_form":"freecode_task","Input":code,"Output":userAnswer,"taskID":$scope.$parent.currentTask.id,"isCorrect":isCorrect,
             "username":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
         window.logHelperFunction(logged_data);
@@ -36,11 +45,17 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "correct");
             FeedbackService.updatePythonTutorImage('positive');
-        }else{
+        } else {
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
             FeedbackService.updatePythonTutorImage('negative');
         }
-        $scope.userReassurance();
+        // Check for specific error message and provide a specific hint
+        var taskError = $scope.errorMessages[$scope.$parent.currentTask.id];
+        if (taskError && userAnswer == taskError.message) {
+            $scope.hintText = taskError.hint; // Ensure UI updates immediately
+        } else {
+            $scope.userReassurance();
+        }
     };
 
     $scope.userReassurance = function() {
@@ -61,7 +76,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             } 
         }
     };
-
+    
     $scope.getHint = function() {
         console.log("Get Hint")
         var timestamp = new Date().getTime()

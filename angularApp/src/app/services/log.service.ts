@@ -9,7 +9,6 @@ export class LoggingService {
     constructor(private http: HttpClient, private router: Router) {}
 
   updateLogs(data: { [key: string]: any }) {
-    console.log('Service method called!');
     return this.http.post<any>('http://localhost:5000/upload_logged_data', data )
       .pipe(
         catchError(error => {

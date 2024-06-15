@@ -104,7 +104,6 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         var currentTime = 0; // Aktuelle Zeit
         $scope.hintButtonAnimationInterval = $interval(function() {
             currentTime += 100; // Inkrementiere die aktuelle Zeit um den Intervallwert
-            console.log(currentTime);
 
             // Berechne die Fortschrittsbalkenbreite basierend auf dem Verhältnis von aktueller Zeit zu Gesamtzeit
             $scope.progressBarWidth = (currentTime / totalTime) * 100 + '%';

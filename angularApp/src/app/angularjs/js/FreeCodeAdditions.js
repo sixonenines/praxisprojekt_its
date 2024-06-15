@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetElement = contentDivs3.innerText
         targetElement.replace(/(\r\n|\n|\r|\s)/gm, "");
         if (targetElement.length>200) {
-            console.log('Looks like you are running an infinite loop, refresh the page.');
             alert("You were running an infinite loop, the page will now refresh. Press ok and wait for the page to reload.");
             window.location.reload(true);
         } else {
@@ -20,7 +19,6 @@ const observer = new MutationObserver((mutationsList, observer) => {
             // Check if contentDivs has been added
             const contentDivs = document.getElementsByClassName('mpy-editor-output')[0];
             if (contentDivs) {
-                console.log('contentDivs found, setting up content observer.');
                 // Set up a new observer for the contentDivs's children
                 const contentObserver = new MutationObserver((mutationsList, observer) => {
                     for (let mutation of mutationsList) {

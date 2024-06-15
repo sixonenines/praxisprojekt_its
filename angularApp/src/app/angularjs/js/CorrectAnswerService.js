@@ -17,7 +17,6 @@ app.factory('CorrectAnswerService', function() {
 
     return {
         checkAnswer: function(taskId, userAnswer) {
-            console.log(userAnswer)
             return userAnswer == correctAnswers[taskId];
         }
     };

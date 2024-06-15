@@ -102,7 +102,6 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         var username = UserInfoJson.username
         var task = $scope.tasks.find(function(t) {
             return t.id === taskId;});
-        console.log(task.status)
         var logged_data = {"taskID":taskId,"username":username,"statusOfTask":task.status,"timestamp":timestamp, "experience":experienceLevel}
         window.logHelperFunction(logged_data);
         $scope.isAnswered = true;
