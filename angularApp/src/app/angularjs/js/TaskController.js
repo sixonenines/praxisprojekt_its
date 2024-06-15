@@ -25,11 +25,67 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         "app/angularjs/tasks/FlowchartTask/Task1.html"
     ];
 
+    /* Enthaelt alle Aufgaben*/
     $scope.taskGroups = {
         TaskGroup1: ['V1C1','V3C1', 'V5C1', 'L5C1'],
         TaskGroup2: ['F1C1', 'L1C1'],
         TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3', 'F5C2','L2C2', 'V2C2'],
     };
+
+    // Aufgaben für verschiedene Schwierigkeitsgrade NUR BEISPIELE!!
+    var taskGroupsByDifficulty = {
+        Beginner: {
+            TaskGroup1: ['V1C1','V5C1', 'L5C1'],
+            TaskGroup2: ['F1C1', 'L1C1'],
+            TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3', 'F5C2', 'L2C2', 'V2C2']
+        },
+        Advanced: {
+            TaskGroup1: ['V5C1', 'L5C1'],
+            TaskGroup2: ['L1C1'],
+            TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3', 'F5C2', 'L2C2', 'V2C2']
+        },
+        Expert: {
+            TaskGroup1: ['L5C1'],
+            TaskGroup2: ['L1C1'],
+            TaskGroup3: ['F1C3', 'V2C2']
+        }
+    };
+
+
+
+
+
+    var user = JSON.parse(localStorage.getItem("currentUser"));
+    var experienceLevel = user ? user.experienceLevel : 'beginner'; // Standardmäßig 'beginner', wenn keine Info vorhanden
+
+    // Aufgaben basierend auf Schwierigkeitsgrad filtern
+    $scope.filteredTaskGroups = angular.copy(taskGroupsByDifficulty[experienceLevel]);
+
+    console.log("Experience Level:", experienceLevel);
+    console.log("Task Groups for Experience Level:", taskGroupsByDifficulty[experienceLevel]);
+
+    $scope.isTaskActiveInDifficulty = function(taskID) {
+        var currentTaskGroup = "";
+
+        if(taskGroupsByDifficulty.hasOwnProperty(experienceLevel)){
+            for (var taskGroup in taskGroupsByDifficulty[experienceLevel]) {
+                if (taskGroupsByDifficulty[experienceLevel].hasOwnProperty(taskGroup)) {
+                    // Überprüfen, ob der gesuchte String in der aktuellen Aufgabenliste vorhanden ist
+                    if (taskGroupsByDifficulty[experienceLevel][taskGroup].includes(taskID)) {
+                        console.log("ERGEBNIS TRUE: " + experienceLevel + "  "  +  taskID)
+                        return true; // String wurde gefunden
+                    }
+                }
+            }
+        }
+        return false;
+
+        /*var currentTaskGroup = taskID.charAt(0) === 'L' ? 'TaskGroup1' : taskID.charAt(1) === '2' ? 'TaskGroup2' : 'TaskGroup3';
+        console.log(currentTaskGroup+ "hdfghjkdfgvjkhdfvjhkdfjkfdgv");
+        var currentDifficultyTasks = taskGroupsByDifficulty[experienceLevel][currentTaskGroup];
+        return currentDifficultyTasks.includes(taskID);*/
+    };
+
 
     // Initialize TaskGroup1 as visible
     $scope.visibleGroups = {
@@ -146,6 +202,11 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
             task.isCompleted = true;
         }
     };
+
+
+
+
+
 
     
     $scope.updateTaskStatus = function(taskId, status) {
