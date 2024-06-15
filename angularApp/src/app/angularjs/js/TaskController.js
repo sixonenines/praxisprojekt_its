@@ -25,11 +25,68 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         "app/angularjs/tasks/FlowchartTask/Task1.html"
     ];
 
+    $scope.difficulties = ["beginner", "advanced", "expert"];
+    $scope.selectedExperienceLevel = 'beginner';
+
+    /* Enthaelt alle Aufgaben*/
     $scope.taskGroups = {
         TaskGroup1: ['V1C1','V3C1', 'V5C1', 'L5C1'],
-        TaskGroup2: ['F1C1', 'L1C1'],
-        TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3', 'F5C2','L2C2', 'V2C2'],
+        TaskGroup2: ['F1C1', 'L1C1', 'L3C1'],
+        TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3', 'F1C2', 'L4C2', 'F5C2','L2C2', 'V2C2'],
     };
+
+    // Aufgaben für verschiedene Schwierigkeitsgrade NUR BEISPIELE!!
+    var taskGroupsByDifficulty = {
+        beginner: {
+            TaskGroup1: ['V1C1','V3C1', 'V5C1', 'L5C1'],
+            TaskGroup2: ['F1C1', 'L1C1', 'L3C1'],
+            TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3',  'F1C2', 'L4C2','F5C2','L2C2', 'V2C2'],
+        },
+        advanced: {
+            TaskGroup1: ['V1C1', 'L5C1'],
+            TaskGroup2: ['L1C1'],
+            TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3', 'F5C2', 'L2C2', 'V2C2']
+        },
+        expert: {
+            TaskGroup1: ['L5C1'],
+            TaskGroup2: ['L1C1'],
+            TaskGroup3: ['F1C3', 'V2C2']
+        }
+    };
+
+
+
+
+
+    var user = JSON.parse(localStorage.getItem("currentUser"));
+
+    // Aufgaben basierend auf Schwierigkeitsgrad filtern
+
+
+
+    $scope.onDifficultyChangeTaskView = function(taskID) {
+        var experienceLevel = $scope.selectedExperienceLevel;
+    
+        // Überprüfen, ob die ausgewählte Schwierigkeitsstufe vorhanden ist
+        if (!taskGroupsByDifficulty.hasOwnProperty(experienceLevel)) {
+            return false;
+        }
+    
+        // Durchsuchen der Aufgaben in der aktuellen Schwierigkeitsstufe
+        for (var taskGroup in taskGroupsByDifficulty[experienceLevel]) {
+            if (taskGroupsByDifficulty[experienceLevel].hasOwnProperty(taskGroup)) {
+                // Überprüfen, ob die aktuelle Aufgabe in der Gruppe enthalten ist
+                if (taskGroupsByDifficulty[experienceLevel][taskGroup].includes(taskID)) {
+                    return true; // Aufgabe wurde gefunden
+                }
+            }
+        }
+    
+        return false; // Aufgabe nicht gefunden
+    };
+    
+    
+
 
     // Initialize TaskGroup1 as visible
     $scope.visibleGroups = {
@@ -146,6 +203,11 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
             task.isCompleted = true;
         }
     };
+
+
+
+
+
 
     
     $scope.updateTaskStatus = function(taskId, status) {

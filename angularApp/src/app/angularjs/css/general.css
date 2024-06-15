@@ -587,3 +587,22 @@ body {
 .mpy-editor-run-button{
     opacity: 100% !important;
 }
+
+.menu-item[ng-disabled="true"] {
+    color: grey;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.submenu div[ng-style*="grey"] {
+    pointer-events: auto; /* Trotzdem anklickbar */
+    opacity: 0.6;
+}
+
+.activeTaskDifficulty{
+    color: black;
+}
+
+.inactiveTaskDifficulty{
+    color: gray;
+}
