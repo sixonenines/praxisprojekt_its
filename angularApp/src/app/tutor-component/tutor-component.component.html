@@ -7,11 +7,16 @@
         <td class="border_test userInfos">
             <div> <h1 [(ngModel)]="currentUsername"></h1>{{currentUsername}}</div>
             <div>
-                <p-dropdown
+                <select ng-model="selectedExperienceLevel" ng-change="onDifficultyChangeTaskView()">
+                    <option value="beginner">Beginner</option>
+                    <option value="advanced">Advanced</option>
+                    <option value="expert">Expert</option>
+                </select>
+                <!--<p-dropdown
                 [options]="experienceLevel" 
                 [(ngModel)]="selectedExperienceLevel"
                 optionLabel="name"
-                (onChange)="onDifficultyChange()"/>
+                (onChange)="onDifficultyChange()"/>-->
             </div>
             <div>
                 <button (click)="logout()">Logout</button>
@@ -39,20 +44,20 @@
                     </div>
                     <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup1')}">
                         <div ng-click="selectTask('V1C1')"
-                            ng-class="{'active': isTaskActive('V1C1'), 'activeTaskDifficulty': isTaskActiveInDifficulty('V1C1'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('V1C1')}">
-                            V1C1 <i class="status-icon" ng-class="getStatusIcon('V1C1')"></i>
+                        ng-class="{'active': isTaskActive('V1C1'), 'activeTaskDifficulty': onDifficultyChangeTaskView('V1C1'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('V1C1')}">
+                        V1C1 <i class="status-icon" ng-class="getStatusIcon('V1C1')"></i>
                         </div>
                         <div ng-click="selectTask('V3C1')" 
-                            ng-class="{'active': isTaskActive('V3C1'), 'activeTaskDifficulty': isTaskActiveInDifficulty('V3C1'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('V3C1')}">
-                            V3C1 <i class="status-icon" ng-class="getStatusIcon('V3C1')"></i>
+                        ng-class="{'active': isTaskActive('V3C1'), 'activeTaskDifficulty': onDifficultyChangeTaskView('V3C1'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('V3C1')}">
+                        V3C1 <i class="status-icon" ng-class="getStatusIcon('V3C1')"></i>
                         </div>
                         <div ng-click="selectTask('V5C1')" 
-                            ng-class="{'active': isTaskActive('V5C1'), 'activeTaskDifficulty': isTaskActiveInDifficulty('V5C1'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('V5C1')}">
-                            V5C1 <i class="status-icon" ng-class="getStatusIcon('V5C1')"></i>
+                        ng-class="{'active': isTaskActive('V5C1'), 'activeTaskDifficulty': onDifficultyChangeTaskView('V5C1'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('V5C1')}">
+                        V5C1 <i class="status-icon" ng-class="getStatusIcon('V5C1')"></i>
                         </div>
                         <div ng-click="selectTask('L5C1')" 
-                            ng-class="{'active': isTaskActive('L5C1'), 'activeTaskDifficulty': isTaskActiveInDifficulty('L5C1'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('L5C1')}">
-                            L5C1 NEU <i class="status-icon" ng-class="getStatusIcon('L5C1')"></i>
+                        ng-class="{'active': isTaskActive('L5C1'), 'activeTaskDifficulty': onDifficultyChangeTaskView('L5C1'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('L5C1')}">
+                        L5C1 NEU <i class="status-icon" ng-class="getStatusIcon('L5C1')"></i>
                         </div>
                     </div>
         
@@ -61,16 +66,16 @@
                     </div>
                     <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup2')}">
                         <div ng-click="selectTask('F1C1')" 
-                            ng-class="{'active': isTaskActive('F1C1'), 'activeTaskDifficulty': isTaskActiveInDifficulty('F1C1'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('F1C1')}">
-                            F1C1 <i class="status-icon" ng-class="getStatusIcon('F1C1')"></i>
+                        ng-class="{'active': isTaskActive('F1C1'), 'activeTaskDifficulty': onDifficultyChangeTaskView('F1C1'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('F1C1')}">
+                        F1C1 <i class="status-icon" ng-class="getStatusIcon('F1C1')"></i>
                         </div>
                         <div ng-click="selectTask('L1C1')" 
-                            ng-class="{'active': isTaskActive('L1C1'), 'activeTaskDifficulty': isTaskActiveInDifficulty('L1C1'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('L1C1')}">
-                            L1C1 <i class="status-icon" ng-class="getStatusIcon('L1C1')"></i>
+                        ng-class="{'active': isTaskActive('L1C1'), 'activeTaskDifficulty': onDifficultyChangeTaskView('L1C1'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('L1C1')}">
+                        L1C1 <i class="status-icon" ng-class="getStatusIcon('L1C1')"></i>
                         </div>
                         <div ng-click="selectTask('L3C1')" 
-                            ng-class="{'active': isTaskActive('L3C1'), 'activeTaskDifficulty': isTaskActiveInDifficulty('L3C1'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('L3C1')}">
-                            L3C1 <i class="status-icon" ng-class="getStatusIcon('L3C1')"></i>
+                        ng-class="{'active': isTaskActive('L3C1'), 'activeTaskDifficulty': onDifficultyChangeTaskView('L3C1'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('L3C1')}">
+                        L3C1 <i class="status-icon" ng-class="getStatusIcon('L3C1')"></i>
                         </div>
                     </div>
         
@@ -79,39 +84,40 @@
                     </div>
                     <div class="submenu" ng-class="{'show': isGroupVisible('TaskGroup3')}">
                         <div ng-click="selectTask('F1C3')" 
-                             ng-class="{'active': isTaskActive('F1C3'), 'activeTaskDifficulty': isTaskActiveInDifficulty('F1C3'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('F1C3')}">
-                            F1C3 <i class="status-icon" ng-class="getStatusIcon('F1C3')"></i>
+                        ng-class="{'active': isTaskActive('F1C3'), 'activeTaskDifficulty': onDifficultyChangeTaskView('F1C3'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('F1C3')}">
+                        F1C3 <i class="status-icon" ng-class="getStatusIcon('F1C3')"></i>
                         </div>
                         <div ng-click="selectTask('F2C3')" 
-                            ng-class="{'active': isTaskActive('F2C3'), 'activeTaskDifficulty': isTaskActiveInDifficulty('F2C3'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('F2C3')}">
-                            F2C3 <i class="status-icon" ng-class="getStatusIcon('F2C3')"></i>
+                        ng-class="{'active': isTaskActive('F2C3'), 'activeTaskDifficulty': onDifficultyChangeTaskView('F2C3'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('F2C3')}">
+                        F2C3 <i class="status-icon" ng-class="getStatusIcon('F2C3')"></i>
                         </div>
                         <div ng-click="selectTask('F5C2')" 
-                            ng-class="{'active': isTaskActive('F5C2'), 'activeTaskDifficulty': isTaskActiveInDifficulty('F5C2'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('F5C2')}">
+                            ng-class="{'active': isTaskActive('F5C2'), 'activeTaskDifficulty': onDifficultyChangeTaskView('F5C2'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('F5C2')}">
                             F5C2 <i class="status-icon" ng-class="getStatusIcon('F5C2')"></i>
                         </div>
                         <div ng-click="selectTask('L2C3')" 
-                            ng-class="{'active': isTaskActive('L2C3'), 'activeTaskDifficulty': isTaskActiveInDifficulty('L2C3'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('L2C3')}">
-                            L2C3 <i class="status-icon" ng-class="getStatusIcon('L2C3')"></i>
+                        ng-class="{'active': isTaskActive('L2C3'), 'activeTaskDifficulty': onDifficultyChangeTaskView('L2C3'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('L2C3')}">
+                        L2C3 <i class="status-icon" ng-class="getStatusIcon('L2C3')"></i>
                         </div>
                         <div ng-click="selectTask('V1C3')" 
-                            ng-class="{'active': isTaskActive('V1C3'), 'activeTaskDifficulty': isTaskActiveInDifficulty('V1C3'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('V1C3')}">
-                            V1C3 <i class="status-icon" ng-class="getStatusIcon('V1C3')"></i>
+                        ng-class="{'active': isTaskActive('V1C3'), 'activeTaskDifficulty': onDifficultyChangeTaskView('V1C3'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('V1C3')}">
+                        V1C3 <i class="status-icon" ng-class="getStatusIcon('V1C3')"></i>
                         </div>
                         <div ng-click="selectTask('F1C2')" 
-                            ng-class="{'active': isTaskActive('F1C2'), 'activeTaskDifficulty': isTaskActiveInDifficulty('F1C2'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('F1C2')}">
-                            F1C2 <i class="status-icon" ng-class="getStatusIcon('F1C2')"></i>
+                        ng-class="{'active': isTaskActive('F1C2'), 'activeTaskDifficulty': onDifficultyChangeTaskView('F1C2'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('F1C2')}">
+                        F1C2 <i class="status-icon" ng-class="getStatusIcon('F1C2')"></i>
                         </div>
                         <div ng-click="selectTask('L4C2')" 
-                            ng-class="{'active': isTaskActive('L4C2'), 'activeTaskDifficulty': isTaskActiveInDifficulty('L4C2'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('L4C2')}">
-                            L4C2 <i class="status-icon" ng-class="getStatusIcon('L4C2')"></i>
+                        ng-class="{'active': isTaskActive('L4C2'), 'activeTaskDifficulty': onDifficultyChangeTaskView('L4C2'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('L4C2')}">
+                        L4C2 <i class="status-icon" ng-class="getStatusIcon('L4C2')"></i>
                         </div>
                         <div ng-click="selectTask('V2C2')" 
-                            ng-class="{'active': isTaskActive('V2C2'), 'activeTaskDifficulty': isTaskActiveInDifficulty('V2C2'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('V2C2')}">
-                            V2C2 <i class="status-icon" ng-class="getStatusIcon('V2C2')"></i>
+                        ng-class="{'active': isTaskActive('V2C2'), 'activeTaskDifficulty': onDifficultyChangeTaskView('V2C2'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('V2C2')}">
+                        V2C2 <i class="status-icon" ng-class="getStatusIcon('V2C2')"></i>
                         </div>
                         <div ng-click="selectTask('L2C2')" 
-                            ng-class="{'active': isTaskActive('L2C2'), 'activeTaskDifficulty': isTaskActiveInDifficulty('L2C2'), 'inactiveTaskDifficulty': !isTaskActiveInDifficulty('L2C2')}">
+                        ng-class="{'active': isTaskActive('L2C2'), 'activeTaskDifficulty': onDifficultyChangeTaskView('L2C2'), 'inactiveTaskDifficulty': !onDifficultyChangeTaskView('L2C2')}">
+
                             L2C2 <i class="status-icon" ng-class="getStatusIcon('L2C2')"></i>
                         </div>
                     </div>

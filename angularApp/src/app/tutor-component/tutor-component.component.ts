@@ -55,6 +55,5 @@ export class TutorComponentComponent implements OnInit{
     const userid = String(UserInfoJson.userid);
     const token = String(UserInfoJson.token);
     this.authservice.changeExperienceLevel(userid,username,token,experienceLevel).subscribe();
-    
   }
 }
