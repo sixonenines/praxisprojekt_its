@@ -6,6 +6,7 @@
                 <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
                 <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
             </div>
+            <button ng-show="noButtonsOnFeedback && hintsGiven" ng-click="backToHints()">Back to Hints</button>
         </div>
     </div>
     <table class="task-body">

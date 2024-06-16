@@ -1,7 +1,7 @@
 <div ng-controller="dragDropController">
     <div class="hint-position">
         <div class="hint-navigation" ng-show="hintText">
-            <div class="hint-text">{{ hintText }}</div>
+            <div class="hint-text" ng-bind-html="hintText">{{ hintText }}</div>
             <div class="buttons" ng-show="!noButtonsOnFeedback">
                 <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
                 <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
@@ -12,29 +12,42 @@
     
     <table class="task-body">
         <tr>
-            <td colspan="2">
-                <h3>L3C1</h3>
+            <h3>L3C1</h3>
                 Create a Flowchart Based on the Following Code Snippet
-                <pre>{{ codeSnippet }}</pre>
+            <td colspan="2" >
+                <div style="display: flex; flex-direction: row;">
+                    <div style="width: 80%;"><p  class="code-style">
+                        1   i = 1 
+                        2   while i < 6:
+                        3      if i == 3:
+                        4         break
+                        5   i += 1
+                    </p>
+                </div>
+                    <div ><button ng-click="howToUse()" style="font-size: 50pt;">?</button></div>
+                    
+                </div>
             </td>
+            
+            
+            
         </tr>
         <tr>
             <td colspan="2">
-                <div id="myDiagramDiv" style="width:100%; height:600px; border:1px solid black; background-color: lightgrey"></div>
+                <div id="myDiagramDiv" style="width:100%; height:500px; border:1px solid black; border-radius: 4px; background-color: rgb(38, 38, 38)"></div>
             </td>
         </tr>
         <tr>
-            <td>
-                <select ng-model="selectedLine" ng-options="line for line in availableLines"></select>
-                <select ng-model="selectedShape">
-                    <option value="RoundedRectangle">Process</option>
+            <td class="flow-options">
+                <select ng-model="selectedLine" ng-options="line for line in availableLines" style="width: 100px; height: 40px;"></select>
+                <select ng-model="selectedShape" style="width: 100px; height: 40px;">
+                    <option value="Rectangle">Process</option>
                     <option value="Diamond">Condition</option>
                 </select>
-                <button ng-click="addNode()">Add Node</button>
+                <button ng-click="addNode()" style="width: 100px; height: 40px;">Add Node</button>
             </td>
             <td class="button-check-hint">
-                <!-- <button ng-click="undo()">Undo</button>
-                <button ng-click="redo()">Redo</button> -->
+                
                 <button ng-click="refresh()" class="check-button">Refresh</button>
                 <button ng-click="checkFlowchart()" class="check-button">Check</button>
                 <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled" class="button-with-progress">
