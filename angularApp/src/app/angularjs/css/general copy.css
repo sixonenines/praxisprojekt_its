@@ -19,29 +19,71 @@
 }
 
 .correct-answer-gap {
-    border: 6px solid darkolivegreen !important;
+    outline: none; /* Kein Fokusumriss */
+    border-color: green; /* Randfarbe hervorgehoben heller */
+    box-shadow: 0 0 5px green; /* Leichte Schatten für den Fokuszustand */
 }
 
 .incorrect-answer-gap {
-    border: 6px solid orange !important;
-}
-
-.correct-answer{
-    
-    border: 6px solid darkolivegreen !important;
-}
-
-.incorrect-answer{
-    border: 6px solid orange !important;
+    outline: none; /* Kein Fokusumriss */
+    border-color: red; /* Randfarbe hervorgehoben heller */
+    box-shadow: 0 0 5px red; /* Leichte Schatten für den Fokuszustand */
 }
 
 
 img.python-tutor {
     height: 100%; /* Höhe des Bildes */
+    float: right; /* Rechtsausrichtung */
     margin-left: 10px; /* Optional: Abstand zwischen Bild und Text */
-    margin-right: 20px;
-    margin-top: 110px;
 }
+
+
+
+
+
+/*.container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.list-container, .zone-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 200px;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.list li {
+    background: #f9f9f9;
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    cursor: move;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }*/
 
   .hint-navigation {
     position: relative;
@@ -53,8 +95,9 @@ img.python-tutor {
     font-size: 12pt;
     padding: 10px;
     padding-bottom: 40px;
-    width: 30%;
-    right: -105%;
+    width: 200px;
+    top: -120px; /* Verschiebung nach oben */
+    right: -85%;
     border-radius: 5px;
 }
 
@@ -80,14 +123,33 @@ img.python-tutor {
     padding-bottom: 5px;
 }
 
-.hint-navigation button {
+/**.hint-navigation::before {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    right: 10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent transparent lightgray transparent;
+}**/
 
+/**.hint-navigation::after {
+    content: "";
+    position: absolute;
+    bottom: -18px;
+    right: 11px;
+    width: 0;
+    height: 0;
+    border-width: 9px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+}*/
+
+.hint-navigation button {
+    margin: 0 5px;
 }
 .hint-text {
     margin: 0 10px;
-    line-height: 1;
-    padding-bottom: 5px;
-    text-align: left;
 }
 
 
@@ -125,11 +187,22 @@ img.python-tutor {
 
 .python-tutor {
     width: 100px;
+    height: auto;
+    display: block;
+    margin: 10px 0;
 }
+
+/*.task-container {
+    margin-top: 20px;
+}
+
+.task-navigation {
+    margin-top: 10px;
+}*/
 
 .status-icon {
     margin-left: 10px;
-    font-size: 16px;
+    font-size: 20px;
     color: white;
     padding-right: 10px;
 }
@@ -150,64 +223,196 @@ img.python-tutor {
       "sources dropzones"; 
 }
 
+/*.codeblock {
+    height: auto;
+    border: 1px solid grey;
+}
+.codeblock pre {
+    text-align: left;
+    white-space: pre-line;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.dropzones {
+    display: grid; 
+    border: 2px solid gray;
+    width:fit-content;
+    align-content: center;
+    grid-template-columns: 50px 100px 100px 100px 50px; 
+    grid-template-rows: 40px 50px 40px 50px 40px 50px 40px 50px 40px 50px 40px; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      ". . start . ."
+      ". . . . ."
+      ". . zone1 . ."
+      ". . . . ."
+      ". . zone2 . ."
+      ". . . . ."
+      ". . zone3 . ."
+      ". . . . ."
+      ". zone4 . zone5 ."
+      ". . . . ."
+      ". . . end ."; 
+    grid-area: dropzones; 
+}
+
+.sources {
+    display: grid; 
+    width: inherit;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr 1fr; 
+    gap: 5px 5px; 
+    grid-template-areas: 
+      "buttons1 place-button"
+      "buttons2 place-button"
+      "buttons3 place-button"; 
+    grid-area: sources; 
+}
+.buttons1 { 
+    grid-area: buttons1; 
+    align-items: center;
+    justify-items: center;
+}
+.buttons2 { 
+    grid-area: buttons2; 
+}
+
+.diamond-shape {
+    height: 3em;
+    width: 3em;
+    box-sizing: border-box;
+    display: inline-flex;
+    transform:rotate(45deg);
+}
+
+.rectangle-shape {
+    height: 2em;
+    width: 4em;
+}
+
+.buttons3 { 
+    grid-area: buttons3; 
+}
+.place-button { 
+    grid-area: place-button; 
+    align-items: center;
+    justify-items: center;
+}
+
+.buttons1, .buttons3 {
+    display: flexbox;
+    
+    border: 1px solid grey;
+    padding: 10px 0;
+}
+
+.buttons2, .place-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+    padding: 10px 0;
+}
+
+.buttons2 {
+    gap: 15px
+}
+.place-button button {
+    width: 10em;
+    height: 10em;
+    
+}
+
+.buttons1 button , .buttons3 button {
+    width: 6em;
+    height: 3em;
+} 
+/*.dropzone {
+    align-content: center;
+    text-align: center;
+    border: 2px dashed darkgrey;
+}
+
+.start { grid-area: start; }
+.zone1 { grid-area: zone1; }
+.zone2 { grid-area: zone2; }
+.zone3 { grid-area: zone3; }
+.zone4 { grid-area: zone4; }
+.zone5 { grid-area: zone5; }
+.end { grid-area: end; }
+.codeblock { grid-area: codeblock; }
+
+#start, #end {
+    border: 2px solid #393939;
+    border-radius: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+}*/
+
+
 .selected {
     background-color: #c0c0c0; 
     border: 2px solid #808080; 
 }
 
+/*.no-border {
+    border: none;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    position: absolute;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.top {
+    transform: translate(-50%, -50%);
+}
+
+.dot.right {
+    transform: translate(50%, -50%);
+}
+
+.dot.bottom {
+    transform: translate(-50%, 50%);
+}
+
+.dot.left {
+    transform: translate(-50%, -50%);
+}
+
+.dropzone {
+    position: relative; /* Ensure dots are positioned relative to the zone 
+}*/
+
 .progress-container {
     width: 100%; /* Breite des Container-Elements */
     text-align: center; /* Zentriere den Inhalt horizontal */
-    height: 30px;
 }
-
 
 .progress-bar {
-    width: 0%;
+    width: 50%;
     height: 20px; 
-    background-color: #83E6EB; 
+    background-color: #4CAF50; 
     border-radius: 10px;
-    transition: width 0.3s ease-in-out;
-    margin: 20px;
+    margin-top: 10px; 
 }
-
-.borderProgressBar{
-    border: 2px solid white;
-    height: 20px;
-    border-radius: 10px;
-    margin: 20px;
-    margin-top: -32px;
-}
-
-
-
 
 #progress-text {
     margin-top: 5px; /* Abstand nach oben */
     font-size: 14px; /* Schriftgröße */
 }
 
-.progress-text {
-    /*position: absolute;
-    top: 0;
-    left: 0;*/
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    line-height: 20px; /* Muss mit der Höhe der progress-bar übereinstimmen */
-    color: black; /* Textfarbe für den Fortschrittstext */
-}
 
-.tutorTitle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px; /* Größe der Überschrift */
-    font-weight: bold;
-    color: white; /* Dunkles Blaugrün */
+.tutorTitle{
     text-align: center;
-    margin-bottom: 20px;
-    padding: 10px;
-    
-    width: 100%;
 }
 
 .userInfos{
@@ -227,7 +432,7 @@ img.python-tutor {
     top: 0;
     left: 0;
     height: 100%;
-    background-color: darkgray;
+    background-color: #4CAF50;
     animation: progressAnimation 5s linear forwards;
     width: 100%; /* Breite des Fortschrittsbalkens */
 }
@@ -235,9 +440,8 @@ img.python-tutor {
 .hint-text {
     position: relative;
     z-index: 1; /* Stelle sicher, dass der Text über dem Fortschrittsbalken liegt */
-    text-align: left; /* Zentriere den Text horizontal */
+    text-align: center; /* Zentriere den Text horizontal */
     width: 100%; /* Fülle die gesamte Breite des Buttons */
-    padding: 5px;
 }
 
 @keyframes progressAnimation {
@@ -272,11 +476,10 @@ img.python-tutor {
     margin-top: 5%;
 }*/
 
-.task-layout{
-    width: 100%;
-    margin-left: 10px;
-    margin-bottom: 10px;
-}
+/*.task-layout{
+    width: 80%;
+    margin-left: 0px;
+}*/
 
 
 .button-check-hint{
@@ -302,7 +505,6 @@ img.python-tutor {
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace Schriftart für den Code */
     font-size: 14px; /* Schriftgröße des Codes */
     text-align: left; /* Links ausgerichtet */
-    width: 35% !important;
 }
 
 /* Stil für den Fokuszustand des Eingabefeldes */
@@ -313,20 +515,9 @@ img.python-tutor {
 
 }
 
-.mpy-editor-run-button:hover{
-    opacity: 100% !important;
-    background-color:  #34495e;
-}
-
 .mpy-editor-run-button{
     opacity: 100% !important;
-    background-color:  #83E6EB;
 }
-
-.mpy-editor-run-button svg{
-    color:white !important;
-}
-
 
 .menu-item[ng-disabled="true"] {
     color: grey;
@@ -354,19 +545,15 @@ body, tr, td, div, i{
     color:#001029;
 }
 
-body{
-    background-color: white;
-}
-
 .activeTaskDifficulty{
     color: white;
-    font-size: 12pt;
+    font-size: 16pt;
 }
 
 
 
 .primary-bg {
-    background-color: 34495e; /* Dunkles Blaugrün für Hintergründe */
+    background-color: #001029; /* Dunkles Blaugrün für Hintergründe */
 }
 
 .primary-accent {
@@ -396,8 +583,7 @@ button {
 }
 
 button:hover {
-    background-color: #34495e;
-    color: white;
+    background-color: #001029;
 }
 
 /* Beispiel für eine Navigation */
@@ -525,7 +711,7 @@ textarea:focus {
 
 /* Hover-Effekt für den Anmelde-Button */
 .login-button:hover {
-    background-color: #34495e; /* Dunkles Blaugrün bei Hover */
+    background-color: #001029; /* Dunkles Blaugrün bei Hover */
 }
 
 /* Nachrichten für Fehler oder Erfolg */
@@ -557,12 +743,14 @@ textarea:focus {
 
 /* Container für den Benutzerinfo-Bereich */
 .user-info-container {
+    position: fixed; /* Fixierte Positionierung */
+    top: 20px; /* Abstand vom oberen Rand */
+    right: 20px; /* Abstand vom rechten Rand */
     background-color: #83E6EB; /* Hintergrundfarbe */
     padding: 10px;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Schatten */
     z-index: 1000; /* Z-Index für die Stapelreihenfolge */
-    width: 10%;
 }
 
 /* Stil für den Benutzernamen */
@@ -599,17 +787,12 @@ textarea:focus {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    width: 100%;
 }
 
 /* Hover-Effekt für den Logout-Button */
 .logout-button:hover {
-    background-color: #34495e; /* Dunkles Blaugrün bei Hover */
+    background-color: #001029; /* Dunkles Blaugrün bei Hover */
     color: #FFFFFF; /* Textfarbe bei Hover */
-}
-
-.logout-button i {
-    margin-left: 20px;
 }
 
 /* Hover-Effekt für das Icon */
@@ -619,10 +802,15 @@ textarea:focus {
 
 /* Stil für die Seitenleiste insgesamt */
 .sidebar-general {
-    background-color: #34495e; /* Dunkles Blaugrün */
+    width: 300px; /* Breitere Seitenleiste */
+    background-color: #001029; /* Dunkles Blaugrün */
     color: #FFFFFF; /* Textfarbe */
+    padding-top: 20px;
+    position: fixed; /* Fixierte Position */
+    top: 0;
+    left: 0;
+    bottom: 0;
     overflow-y: auto; /* Scrollen bei Überlauf */
-    width: 20%;
 }
 
 /* Header der Seitenleiste */
@@ -638,7 +826,7 @@ textarea:focus {
     list-style: none; /* Listenstil entfernen */
     margin-bottom: 0; /* Abstand unten entfernt */
     color: #FFFFFF; /* Textfarbe */
-    font-size: 14pt;
+    font-size: 18pt;
 }
 
 
@@ -699,6 +887,7 @@ textarea:focus {
     display: none;
     margin-top: 0;
     color: #f8f9fa !important;
+    border: 1px solid #ddd;
     padding: 0;
 }
 
@@ -718,7 +907,9 @@ textarea:focus {
 .menu-item {
     cursor: pointer;
     padding: 10px;
+    border: 1px solid #ddd;
     border-radius: 4px;
+    margin-bottom: 5px;
     position: relative;
     display: flex;
     justify-content: space-between;
@@ -726,136 +917,11 @@ textarea:focus {
 }
 
 .menu-item:hover {
-    background-color: white;
+    background-color: #83E6EB;
     color: #001029; 
 }
 
 /* Current Group Style */
 .current-group {
-    background-color: #8497b5; /* Dunkles Grau für aktuelle Gruppe */
-}
-
-.test_border{
-    /*border: 2px solid black;*/
-}
-
-td {
-    /*border: 2px pink solid;*/
-}
-
-tr{
-    /*border: 2px solid green;*/
-}
-
-.tutor-general{
-    /*margin-left: 300px;*/
-}
-
-.widthTD1{
-    width: 300px;
-}
-
-
-.task-container{
-    border-right: 4px solid #34495e;
-    border-bottom: 4px solid #34495e;
-    border-bottom-right-radius: 10px;
-    background-color: #d3e7ee;
-    display: flex;
-
-}
-
-.task-container-nav{
-    display: flex;
-}
-
-.navigationTitle{
-    color: #FFFFFF; /* Textfarbe */
-    font-size: 14pt;
-    background-color: #34495e;
-    padding-left: 10px;
-}
-
-.underline{
-    border-bottom: 4px solid #83E6EB; /* Türkisfarbene Linie unten */
-}
-
-.underlineRight{
-    border-right: 4px solid #83E6EB; /* Türkisfarbene Linie rechts */
-}
-
-.previousTask, .nextTask {
-    background-color: #83E6EB;
-    margin: 5px;
-}
-
-.previousTask i, .nextTask i {
-    margin: 0 5px;
-    color: #fff; 
-}
-
-.previousTask:hover, .nextTask:hover {
-    background-color:#34495e; /* Dunkles Blaugrün */
-    color: #fff; /* Weiße Sch; /* Türkisfarbene Hover-Farbe */
-}
-
-.previousTask:disabled, .nextTask:disabled {
-    background-color: #ccc; /* Grau, wenn deaktiviert */
-    color: #666;
-}
-
-.previousTask:disabled i, .nextTask:disabled i {
-    color: #666; /* Grau, wenn deaktiviert */
-}
-
-.test1{
-    display: flex;
-    justify-content: start;
-    align-items: start;
-}
-
-.python-tutor-container{
-    justify-content: flex-end;
-    display: flex;
-    height: 100px;
-
-}
-
-.python-tutor-div{
-    margin-top: 0px;
-    margin-left: auto;
-}
-
-.task-area{
-    width: 70%;
-}
-
-.tutor-area{
-    width: 30%;
-}
-
-.backgroundDarkBlue{
-    background-color: #34495e;
-}
-
-.hint-button-prev{
-    padding: 5px;
-    margin: 5px;
-    color: #001029;
-}
-
-.hint-button-next{
-    padding: 5px;
-    margin: 5px;
-    margin-right: 10px;
-    color: #001029;
-}
-
-.freeCodeInput{
-    background-color: white;
-}
-
-.taskGroup-container{
-    margin-bottom: 10px;
-    border-bottom: 2px solid white;
+    background-color: #34495e; /* Dunkles Grau für aktuelle Gruppe */
 }

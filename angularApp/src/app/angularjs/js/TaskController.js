@@ -54,6 +54,9 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         }
     };
 
+    $scope.isTaskInGroup = function(group) {
+        return $scope.taskGroups[group].includes($scope.currentTask.id);
+    };
 
 
 
@@ -119,7 +122,6 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
         { id: 'L2C3', templateUrl: "app/angularjs/tasks/CompilerTasks/L2C3.html", isCompleted: false, status: 'not_answered' },
         { id: 'V1C3', templateUrl: "app/angularjs/tasks/CompilerTasks/V1C3.html", isCompleted: false, status: 'not_answered' },
         { id: 'L3C1', templateUrl: "app/angularjs/tasks/FlowchartTask/L3C1.html", isCompleted: false, status: 'not_answered' },
-
         { id: 'L2C2', templateUrl: "app/angularjs/tasks/CompilerTasks/L2C2.html", isCompleted: false, status: 'not_answered' },
         { id: 'F1C2', templateUrl: "app/angularjs/tasks/CompilerTasks/F1C2.html", isCompleted: false, status: 'not_answered' },
         { id: 'L4C2', templateUrl: "app/angularjs/tasks/CompilerTasks/L4C2.html", isCompleted: false, status: 'not_answered' },
