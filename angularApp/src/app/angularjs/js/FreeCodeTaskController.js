@@ -22,6 +22,10 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             keyPhrase: 'SyntaxError:invalidsyntax',
             hint: "Check the syntax of your function definition and ensure all parentheses and colons are correctly placed."
         },
+        "F1C3_additional": {
+            keyPhrase: '8,7',
+            hint: "The Output is wrong way around, you just need to change they way the numbers are diplayed."
+        },
         "F2C3": {
             keyPhrase: 'NameError:name\'x\'isnotdefined',
             hint: "Make sure all variables are defined before you use them in your function."
