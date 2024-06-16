@@ -100,7 +100,6 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
                 }
             );
     
-        // Start&End fuck up the feedback
         myDiagram.model = new go.GraphLinksModel([
             // {key: 6, text: "Start", shape: "Ellipse", color: "gray"},
             // {key: 7, text: "End", shape: "Ellipse", color: "gray"}
@@ -184,6 +183,8 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
             nodes: myDiagram.model.nodeDataArray.map(node => ({ key: node.key, text: node.text, shape: node.shape })),
             links: myDiagram.model.linkDataArray.map(link => ({ from: link.from, to: link.to, text: link.text }))
         };
+
+        // Übernommen von anderen Tasks
         var taskId = 'L3C1';
         var isCorrect = CorrectFlowchartService.checkFlowchartAnswer(taskId, userAnswer);
         $scope.isCorrectAnswer = isCorrect;
@@ -213,7 +214,8 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
     
     function highlightNodesAndLinks(userAnswer, isCorrect) {
         var correctAnswer = CorrectFlowchartService.correctAnswers['L3C1'];
-    
+        
+        // Node Highlight
         userAnswer.nodes.forEach(function(node) {
             var correctNode = correctAnswer.nodes.find(n => n.key === node.key);
             var color = (correctNode && correctNode.text === node.text && correctNode.shape === node.shape) ? "green" : "red";
@@ -222,7 +224,7 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
                 myDiagram.model.setDataProperty(diagramNode.data, "color", color);
             }
         });
-    
+        //  Link Highlight
         myDiagram.startTransaction("clear links");
         myDiagram.model.linkDataArray = [];
         myDiagram.commitTransaction("clear links");
@@ -241,6 +243,7 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
         });
     }
     
+    // Pos/Neg Feedback
     $scope.userReassurance = function() {
         var taskId = $scope.$parent.currentTask.id;
         var isCorrect = $scope.isCorrectAnswer;
@@ -260,9 +263,11 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
         }
     };
     
+    // How to button Funktion
     $scope.howToUse = function() {
         $scope.noButtonsOnFeedback = true;
-        $scope.hintText = '<b>How to use:</b> <br>' +
+        $scope.hintText = 
+            '<b>How to use:</b> <br>' +
             '1. Select the code line and the Shape of the Node <br>' +
             '2. Click "Add Node" to place it on the canvas <br>' +
             '3. Hold the left mouse button on a node to drag it. <br>' +

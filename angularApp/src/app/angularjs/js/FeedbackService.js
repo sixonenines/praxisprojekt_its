@@ -117,7 +117,7 @@ app.factory('FeedbackService', function($timeout) {
         "You're getting closer with each attempt. Keep pushing forward!",
         "Learning something new takes time and effort. You're doing great!",
     ];
-
+    
     var negativeFeedbacks = {
         V1C1: reassuringFeedbacks,
         V3C1: reassuringFeedbacks,
@@ -131,24 +131,31 @@ app.factory('FeedbackService', function($timeout) {
         V1C3: reassuringFeedbacks,
         L3C1: reassuringFeedbacks
     };
-    var negativeFeedbacksForFC = {
-        incorretNodeFeedback: [
-            {text: "Hm, the shapes of the nodes seem off."}
-        ],
-        incorrectLinkDirection: [
-            {text: "Are you sure the links are correctly placed?"}
-        ],
-        incorrectLinkText: [
-            {text: "Check again for the truthiness or falseness of the conditions!"}
-        ],
-        missingElements: [
-            {text: "Your flowchart looks good so far, but there still seems to be something missing..."}
-        ],
-        combinedFlowchartFeedback: [
-            {text: "You're doing great, but there are some issues in your flowchart. Carefully revise the code and your adjust your flowchart. You can do it!"}
-        ]
-    }
+
+    // Sollte evtl. Feedback individueller, Implementierung bisher problematisch
     
+    // var negativeFeedbacksForFC = {
+    //     incorretNodeFeedback: [
+    //         {text: "Hm, the shapes of the nodes seem off."}
+    //     ],
+    //     incorrectLinkDirection: [
+    //         {text: "Are you sure the links are correctly placed?"}
+    //     ],
+    //     incorrectLinkText: [
+    //         {text: "Check again for the truthiness or falseness of the conditions!"}
+    //     ],
+    //     missingElements: [
+    //         {text: "Your flowchart looks good so far, but there still seems to be something missing..."}
+    //     ],
+    //     combinedFlowchartFeedback: [
+    //         {text: "You're doing great, but there are some issues in your flowchart. Carefully revise the code and your adjust your flowchart. You can do it!"}
+    //     ]
+    // }
+    
+    // this.getNegativeFeedbacksForFC = function(feedbackFC) {
+    //     return negativeFeedbacksForFC[feedbackFC] || [];
+    // };
+
     this.getFeedbacks = function(taskId) {
         return feedbacks[taskId] || [];
     };
@@ -166,9 +173,7 @@ app.factory('FeedbackService', function($timeout) {
         return [];
     };
 
-    this.getNegativeFeedbacksForFC = function(feedbackFC) {
-        return negativeFeedbacksForFC[feedbackFC] || [];
-    };
+    
 
     
 
@@ -181,7 +186,7 @@ app.factory('FeedbackService', function($timeout) {
             imageElement.src = 'assets/sad_pythonTutor.png';
         }
 
-        // Nach 2 Sek. wieder zu default Bild
+        // Nach 5 Sek. wieder zu default Bild
         $timeout(function() {
             imageElement.src = 'assets/pythonTutor.png'; 
         }, 5000);
