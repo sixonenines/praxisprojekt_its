@@ -24,7 +24,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         },
         "F1C3_additional": {
             keyPhrase: '8,7',
-            hint: "The Output is wrong way around, you just need to change they way the numbers are diplayed."
+            hint: "The Output is wrong way around, you just need to change they way the numbers are displayed."
         },
         "F2C3": {
             keyPhrase: 'NameError:name\'x\'isnotdefined',
