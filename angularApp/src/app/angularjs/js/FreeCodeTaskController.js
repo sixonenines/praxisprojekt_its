@@ -14,13 +14,41 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     $scope.hintsGiven = false; 
 
     $scope.errorMessages = {
+        "F1C2": {
+            keyPhrase: 'unsupportedoperandtype(s)for+:',
+            hint: "Ensure that the function 'add5' correctly returns a tuple of two integers."
+        },
+        "F1C3": {
+            keyPhrase: 'SyntaxError:invalidsyntax',
+            hint: "Check the syntax of your function definition and ensure all parentheses and colons are correctly placed."
+        },
+        "F2C3": {
+            keyPhrase: 'NameError:name\'x\'isnotdefined',
+            hint: "Make sure all variables are defined before you use them in your function."
+        },
         "F5C2": {
-            message: 'Error:Traceback(mostrecentcalllast):File"",line4,inTypeError:show_employee()takes1positionalargumentsbut2weregiven',
-            hint: "Check the function definition of 'show_employee' to ensure it can accept two arguments."
+            keyPhrase: 'TypeError:show_employee()takes',
+            hint: "Check if all required arguments are provided when calling 'show_employee'."
         },
         "L2C2": {
-            message: 'Error:Traceback(mostrecentcalllast):File"",line2SyntaxError:invalidsyntax',
-            hint: "Look closley to your code. Are you sure, that everything is correctly indented?"
+            keyPhrase: 'SyntaxError:invalidsyntax',
+            hint: "Ensure your 'for' loop uses the 'range' function correctly. It should start at 2, end before 12, and increment by 2."
+        },
+        "L2C3": {
+            keyPhrase: 'IndentationError:expectedanindentedblock',
+            hint: "Check that all code inside the loop is properly indented."
+        },
+        "L4C2": {
+            keyPhrase: 'That`sit!r',
+            hint: "Check the initialization of the loop variable and the loop condition. The loop should start at 1 and continue while the count is less than or equal to 5."
+        },
+        "V1C3": {
+            keyPhrase: 'AttributeError:\'NoneType\'objecthasnoattribute\'append\'',
+            hint: "Ensure you are not trying to use 'append' on a variable that is 'None'. Initialize it as a list first."
+        },
+        "V2C2": {
+            keyPhrase: 'UnboundLocalError:localvariable\'c\'referencedbeforeassignment',
+            hint: "Remember to declare 'c' as a global inside the function if you want to modify the global variable 'c'."
         }
     };
     
@@ -49,10 +77,11 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
             FeedbackService.updatePythonTutorImage('negative');
         }
-        // Check for specific error message and provide a specific hint
+        // Schauen ob es eine Aufgabe ist, die spezifische hints hat
+        var userAnswerSanitized = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
         var taskError = $scope.errorMessages[$scope.$parent.currentTask.id];
-        if (taskError && userAnswer == taskError.message) {
-            $scope.hintText = taskError.hint; // Ensure UI updates immediately
+        if (taskError && userAnswerSanitized.includes(taskError.keyPhrase)) {
+            $scope.hintText = taskError.hint; // Hint Text anzeigen, falls es einen spezifischen hint gibt.
         } else {
             $scope.userReassurance();
         }

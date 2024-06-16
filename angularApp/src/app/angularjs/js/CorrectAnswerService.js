@@ -14,15 +14,16 @@ app.factory('CorrectAnswerService', function() {
         'L2C3' : "235711131719",
         'V1C3' : "11",              
         'L5C1' : "9876543",
-        'F1C2' : "12313",  
-        'V2C2' : "123",
-        'L2C2' : "333",
-        'L4C2' : "344",
+        'F1C2' : "(7,8)",  
+        'V2C2' : "3",
+        'L2C2' : "246810Goodbye!",
+        'L4C2' : "thecountis:2thecountis:3thecountis:4thecountis:5That`sit!",
 
     };
 
     return {
         checkAnswer: function(taskId, userAnswer) {
+            console.log(userAnswer);
             return userAnswer == correctAnswers[taskId];
         }
     };
