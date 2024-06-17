@@ -2,23 +2,27 @@ var app = angular.module("myApp", ["dndLists"]);
 
 app.controller("TaskController", function ($scope, CorrectAnswerService, $templateCache, $http) {
     var templates = [
+        /* Task group 1 */
         "app/angularjs/tasks/FreeTextTasks/V1C1.html",
-        "app/angularjs/tasks/FreeTextTasks/L5C1.html",
         "app/angularjs/tasks/FreeTextTasks/V3C1.html",
         "app/angularjs/tasks/FreeTextTasks/V5C1.html",
-        "app/angularjs/tasks/GapTasks/F1C1.html",
+        "app/angularjs/tasks/CompilerTasks/V1C3.html",
+        "app/angularjs/tasks/CompilerTasks/V2C2.html",
+
+        /* Task group 2 */
         "app/angularjs/tasks/GapTasks/L1C1.html",
-        "app/angularjs/tasks/FlowchartTask/Task1.html",
+        "app/angularjs/tasks/FlowchartTask/L3C1.html",
+        "app/angularjs/tasks/FreeTextTasks/L5C1.html",
+        "app/angularjs/tasks/CompilerTasks/L2C2.html",
+        "app/angularjs/tasks/CompilerTasks/L4C2.html",
+        "app/angularjs/tasks/CompilerTasks/L2C3.html",
+
+        /* Task group 3 */
+        "app/angularjs/tasks/GapTasks/F1C1.html",
+        "app/angularjs/tasks/CompilerTasks/F1C2.html",
+        "app/angularjs/tasks/CompilerTasks/F5C2.html",
         "app/angularjs/tasks/CompilerTasks/F1C3.html",
         "app/angularjs/tasks/CompilerTasks/F2C3.html",
-        "app/angularjs/tasks/CompilerTasks/F5C2.html",
-        "app/angularjs/tasks/CompilerTasks/L2C3.html",
-        "app/angularjs/tasks/CompilerTasks/V1C3.html",
-        "app/angularjs/tasks/CompilerTasks/L2C2.html",
-        "app/angularjs/tasks/CompilerTasks/F1C2.html",
-        "app/angularjs/tasks/CompilerTasks/L4C2.html",
-        "app/angularjs/tasks/CompilerTasks/V2C2.html",
-        "app/angularjs/tasks/FlowchartTask/Task1.html"
     ];
 
     $scope.difficulties = ["beginner", "advanced", "expert"];
@@ -113,23 +117,27 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
     });
 
     $scope.tasks = [
+        /*Task group 1 */
         { id: 'V1C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V1C1.html", isCompleted: false, status: 'not_answered' },
-        { id: 'L5C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/L5C1.html", isCompleted: false, status: 'not_answered' },
         { id: 'V3C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V3C1.html", isCompleted: false, status: 'not_answered' },
         { id: 'V5C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/V5C1.html", isCompleted: false, status: 'not_answered' },
-        { id: 'F1C1', templateUrl: "app/angularjs/tasks/GapTasks/F1C1.html", isCompleted: false, status: 'not_answered' },
+        { id: 'V2C2', templateUrl: "app/angularjs/tasks/CompilerTasks/V2C2.html", isCompleted: false, status: 'not_answered' },
+        { id: 'V1C3', templateUrl: "app/angularjs/tasks/CompilerTasks/V1C3.html", isCompleted: false, status: 'not_answered' },
+
+        /*Task group 2 */
         { id: 'L1C1', templateUrl: "app/angularjs/tasks/GapTasks/L1C1.html", isCompleted: false, status: 'not_answered' },
-        { id: 'Flowchart1', templateUrl: "app/angularjs/tasks/FlowchartTask/Task1.html", isCompleted: false, status: 'not_answered' },
+        { id: 'L3C1', templateUrl: "app/angularjs/tasks/FlowchartTask/L3C1.html", isCompleted: false, status: 'not_answered' },
+        { id: 'L5C1', templateUrl: "app/angularjs/tasks/FreeTextTasks/L5C1.html", isCompleted: false, status: 'not_answered' },
+        { id: 'L2C2', templateUrl: "app/angularjs/tasks/CompilerTasks/L2C2.html", isCompleted: false, status: 'not_answered' },
+        { id: 'L4C2', templateUrl: "app/angularjs/tasks/CompilerTasks/L4C2.html", isCompleted: false, status: 'not_answered' },
+        { id: 'L2C3', templateUrl: "app/angularjs/tasks/CompilerTasks/L2C3.html", isCompleted: false, status: 'not_answered' },
+
+        /*Task group 3 */
+        { id: 'F1C1', templateUrl: "app/angularjs/tasks/GapTasks/F1C1.html", isCompleted: false, status: 'not_answered' },
+        { id: 'F1C2', templateUrl: "app/angularjs/tasks/CompilerTasks/F1C2.html", isCompleted: false, status: 'not_answered' },
+        { id: 'F5C2', templateUrl: "app/angularjs/tasks/CompilerTasks/F5C2.html", isCompleted: false, status: 'not_answered' },
         { id: 'F1C3', templateUrl: "app/angularjs/tasks/CompilerTasks/F1C3.html", isCompleted: false, status: 'not_answered' },
         { id: 'F2C3', templateUrl: "app/angularjs/tasks/CompilerTasks/F2C3.html", isCompleted: false, status: 'not_answered' },
-        { id: 'F5C2', templateUrl: "app/angularjs/tasks/CompilerTasks/F5C2.html", isCompleted: false, status: 'not_answered' },
-        { id: 'L2C3', templateUrl: "app/angularjs/tasks/CompilerTasks/L2C3.html", isCompleted: false, status: 'not_answered' },
-        { id: 'V1C3', templateUrl: "app/angularjs/tasks/CompilerTasks/V1C3.html", isCompleted: false, status: 'not_answered' },
-        { id: 'L3C1', templateUrl: "app/angularjs/tasks/FlowchartTask/L3C1.html", isCompleted: false, status: 'not_answered' },
-        { id: 'L2C2', templateUrl: "app/angularjs/tasks/CompilerTasks/L2C2.html", isCompleted: false, status: 'not_answered' },
-        { id: 'F1C2', templateUrl: "app/angularjs/tasks/CompilerTasks/F1C2.html", isCompleted: false, status: 'not_answered' },
-        { id: 'L4C2', templateUrl: "app/angularjs/tasks/CompilerTasks/L4C2.html", isCompleted: false, status: 'not_answered' },
-        { id: 'V2C2', templateUrl: "app/angularjs/tasks/CompilerTasks/V2C2.html", isCompleted: false, status: 'not_answered' }
     ];
 
     $scope.currentTaskIndex = 0;
@@ -143,14 +151,14 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
     };
 
     $scope.nextTask = function () {
-        if ($scope.currentTaskIndex < $scope.tasks.length - 1 && $scope.currentTask.isCompleted) {
+        if ($scope.currentTaskIndex < $scope.tasks.length - 1 ) {
             $scope.currentTaskIndex++;
             $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
         }
     };
 
     $scope.isNextDisabled = function () {
-        return $scope.currentTaskIndex === $scope.tasks.length - 1 || !$scope.currentTask.isCompleted;
+        return $scope.currentTaskIndex === $scope.tasks.length - 1;
     };
 
     $scope.isPrevDisabled = function () {
@@ -188,16 +196,24 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         var task = $scope.tasks.find(function (t) {
             return t.id === taskId;
         });
+
+        var color = "";
+
+        if ($scope.currentTask.id == taskId) {
+            console.log("active: " + $scope.currentTask.id + "  " + taskId);
+            color = " status-icon-active";
+        }
+
         if (task) {
             if (task.status === 'correct') {
-                return 'fas fa-check';
+                return 'fas fa-check' + color;
             } else if (task.status === 'incorrect') {
-                return 'fas fa-times';
+                return 'fas fa-times' + color;
             } else {
-                return 'fas fa-question';
+                return 'fas fa-question' + color;
             }
         }
-        return 'fas fa-question';
+        return 'fas fa-question' + color;
     };
 
     // Function to update task status

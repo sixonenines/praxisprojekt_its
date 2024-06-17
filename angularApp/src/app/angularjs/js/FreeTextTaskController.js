@@ -87,6 +87,7 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
             $scope.hintText = currentHint.text;
             $scope.highlightLine = currentHint.highlight;
             if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
+                console.log("HERE");
                 $scope.allHintsShown = true; // Alle Hinweise wurden angezeigt
             }
         } else {
@@ -104,6 +105,7 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         var currentTime = 0; // Aktuelle Zeit
         $scope.hintButtonAnimationInterval = $interval(function() {
             currentTime += 100; // Inkrementiere die aktuelle Zeit um den Intervallwert
+            console.log(currentTime);
 
             // Berechne die Fortschrittsbalkenbreite basierend auf dem Verhältnis von aktueller Zeit zu Gesamtzeit
             $scope.progressBarWidth = (currentTime / totalTime) * 100 + '%';

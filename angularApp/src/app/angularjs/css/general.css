@@ -1,21 +1,24 @@
-
-.code-style{
+.code-style {
     font-family: "Courier New", Courier, monospace;
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 4px;
     color: #333;
-    white-space: pre-wrap; /* für Zeilenumbruch innerhalb des Code-Blocks */
-    word-wrap: break-word; /* für Zeilenumbruch bei langen Wörtern */
+    white-space: pre-wrap;
+    /* für Zeilenumbruch innerhalb des Code-Blocks */
+    word-wrap: break-word;
+    /* für Zeilenumbruch bei langen Wörtern */
 }
 
 .correct-answer input {
-    border: 2px solid green; /* Grüne Umrandung für korrekte Antwort */
+    border: 2px solid green;
+    /* Grüne Umrandung für korrekte Antwort */
 }
 
 .incorrect-answer input {
-    border: 2px solid red; /* Rote Umrandung für falsche Antwort */
+    border: 2px solid red;
+    /* Rote Umrandung für falsche Antwort */
 }
 
 .correct-answer-gap {
@@ -26,24 +29,26 @@
     border: 6px solid orange !important;
 }
 
-.correct-answer{
-    
+.correct-answer {
+
     border: 6px solid darkolivegreen !important;
 }
 
-.incorrect-answer{
+.incorrect-answer {
     border: 6px solid orange !important;
 }
 
 
 img.python-tutor {
-    height: 100%; /* Höhe des Bildes */
-    margin-left: 10px; /* Optional: Abstand zwischen Bild und Text */
+    height: 100%;
+    /* Höhe des Bildes */
+    margin-left: 10px;
+    /* Optional: Abstand zwischen Bild und Text */
     margin-right: 20px;
     margin-top: 110px;
 }
 
-  .hint-navigation {
+.hint-navigation {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -64,14 +69,18 @@ img.python-tutor {
     content: "";
     position: absolute;
     top: 50%;
-    right: -18px; /* Positionierung auf der rechten Seite */
-    transform: translateY(-50%) rotate(180deg); /* Dreht das Dreieck um 45 Grad */
+    right: -18px;
+    /* Positionierung auf der rechten Seite */
+    transform: translateY(-50%) rotate(180deg);
+    /* Dreht das Dreieck um 45 Grad */
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 10px;
-    border-color: transparent lightgray transparent transparent; /* Änderung der Farbreihenfolge */
+    border-color: transparent lightgray transparent transparent;
+    /* Änderung der Farbreihenfolge */
 }
+
 .hint-navigation .buttons {
     position: absolute;
     bottom: 0;
@@ -80,9 +89,8 @@ img.python-tutor {
     padding-bottom: 5px;
 }
 
-.hint-navigation button {
+.hint-navigation button {}
 
-}
 .hint-text {
     margin: 0 10px;
     line-height: 1;
@@ -109,7 +117,7 @@ img.python-tutor {
 
 .submenu div:hover {
     background-color: #e9ecef;
-    color: #001029;
+    color: #001029 !important;
 }
 
 .active {
@@ -134,44 +142,50 @@ img.python-tutor {
     padding-right: 10px;
 }
 
+.status-icon:hover {
+    color: black !important;
+}
+
 
 /* Flowchart */
 
 .flowchart {
     height: 100%;
     width: fit-content;
-    display: grid; 
-    grid-template-columns: 40% 60%; 
-    grid-template-rows: 40% 60%; 
-    gap: 5px 5px; 
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: 40% 60%;
+    gap: 5px 5px;
     margin-bottom: 5px;
-    grid-template-areas: 
-      "codeblock dropzones"
-      "sources dropzones"; 
+    grid-template-areas:
+        "codeblock dropzones"
+        "sources dropzones";
 }
 
 .selected {
-    background-color: #c0c0c0; 
-    border: 2px solid #808080; 
+    background-color: #c0c0c0;
+    border: 2px solid #808080;
 }
 
 .progress-container {
-    width: 100%; /* Breite des Container-Elements */
-    text-align: center; /* Zentriere den Inhalt horizontal */
+    width: 100%;
+    /* Breite des Container-Elements */
+    text-align: center;
+    /* Zentriere den Inhalt horizontal */
     height: 30px;
 }
 
 
 .progress-bar {
     width: 0%;
-    height: 20px; 
-    background-color: #83E6EB; 
+    height: 20px;
+    background-color: #83E6EB;
     border-radius: 10px;
     transition: width 0.3s ease-in-out;
     margin: 20px;
 }
 
-.borderProgressBar{
+.borderProgressBar {
     border: 2px solid white;
     height: 20px;
     border-radius: 10px;
@@ -183,8 +197,10 @@ img.python-tutor {
 
 
 #progress-text {
-    margin-top: 5px; /* Abstand nach oben */
-    font-size: 14px; /* Schriftgröße */
+    margin-top: 5px;
+    /* Abstand nach oben */
+    font-size: 14px;
+    /* Schriftgröße */
 }
 
 .progress-text {
@@ -194,23 +210,27 @@ img.python-tutor {
     width: 100%;
     height: 100%;
     text-align: center;
-    line-height: 20px; /* Muss mit der Höhe der progress-bar übereinstimmen */
-    color: black; /* Textfarbe für den Fortschrittstext */
+    line-height: 20px;
+    /* Muss mit der Höhe der progress-bar übereinstimmen */
+    color: black;
+    /* Textfarbe für den Fortschrittstext */
 }
 
 .tutorTitle {
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px; /* Größe der Überschrift */
+    font-size: 20px;
+    /* Größe der Überschrift */
     font-weight: bold;
-    color: white; /* Dunkles Blaugrün */
+    color: white;
+    /* Dunkles Blaugrün */
     text-align: center;
     margin-bottom: 20px;
     padding: 10px;
-    
+
     width: 100%;
 }
 
-.userInfos{
+.userInfos {
     font-size: 10pt;
     text-align: right;
 }
@@ -218,8 +238,10 @@ img.python-tutor {
 .button-with-progress {
     position: relative;
     display: inline-block;
-    width: 100px; /* Breite des Buttons */
-    height: 40px; /* Höhe des Buttons */
+    width: 100px;
+    /* Breite des Buttons */
+    height: 40px;
+    /* Höhe des Buttons */
 }
 
 .progress-bar-hint {
@@ -229,14 +251,18 @@ img.python-tutor {
     height: 100%;
     background-color: darkgray;
     animation: progressAnimation 5s linear forwards;
-    width: 100%; /* Breite des Fortschrittsbalkens */
+    width: 100%;
+    /* Breite des Fortschrittsbalkens */
 }
 
 .hint-text {
     position: relative;
-    z-index: 1; /* Stelle sicher, dass der Text über dem Fortschrittsbalken liegt */
-    text-align: left; /* Zentriere den Text horizontal */
-    width: 100%; /* Fülle die gesamte Breite des Buttons */
+    z-index: 1;
+    /* Stelle sicher, dass der Text über dem Fortschrittsbalken liegt */
+    text-align: left;
+    /* Zentriere den Text horizontal */
+    width: 100%;
+    /* Fülle die gesamte Breite des Buttons */
     padding: 5px;
 }
 
@@ -244,6 +270,7 @@ img.python-tutor {
     0% {
         width: 0;
     }
+
     100% {
         width: 100%;
     }
@@ -251,9 +278,11 @@ img.python-tutor {
 
 /** Angefangen **/
 
-.check-button{
-    width: 100px; /* Breite des Buttons */
-    height: 40px; /* Höhe des Buttons */
+.check-button {
+    width: 100px;
+    /* Breite des Buttons */
+    height: 40px;
+    /* Höhe des Buttons */
 }
 
 /*.task-body{
@@ -261,7 +290,7 @@ img.python-tutor {
     width: 100%;
 }*/
 
-.hint-position{
+.hint-position {
     height: 0px;
 }
 
@@ -272,59 +301,76 @@ img.python-tutor {
     margin-top: 5%;
 }*/
 
-.task-layout{
+.task-layout {
     width: 100%;
     margin-left: 10px;
     margin-bottom: 10px;
 }
 
 
-.button-check-hint{
+.button-check-hint {
     float: right;
 }
 
 
 .code-style {
-    background-color: #1e1e1e; /* Hintergrundfarbe dunkel */
-    color: #d4d4d4; /* Textfarbe hell */
-    padding: 10px; /* Abstand um den Text herum */
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace Schriftart für den Code */
-    font-size: 14px; /* Schriftgröße des Codes */
-    line-height: 1.5; /* Zeilenhöhe des Codes */
-    text-align: left !important; /* Links ausgerichtet */
+    background-color: #1e1e1e;
+    /* Hintergrundfarbe dunkel */
+    color: #d4d4d4;
+    /* Textfarbe hell */
+    padding: 10px;
+    /* Abstand um den Text herum */
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    /* Monospace Schriftart für den Code */
+    font-size: 14px;
+    /* Schriftgröße des Codes */
+    line-height: 1.5;
+    /* Zeilenhöhe des Codes */
+    text-align: left !important;
+    /* Links ausgerichtet */
 }
 
 .gap_input {
-    background-color: #1e1e1e; /* Hintergrundfarbe dunkel */
-    color: #d4d4d4; /* Textfarbe hell */
-    border: 1px solid #3d3d3d; /* Randfarbe dunkler */
-    padding: 8px; /* Abstand um den Text herum */
-    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace; /* Monospace Schriftart für den Code */
-    font-size: 14px; /* Schriftgröße des Codes */
-    text-align: left; /* Links ausgerichtet */
+    background-color: #1e1e1e;
+    /* Hintergrundfarbe dunkel */
+    color: #d4d4d4;
+    /* Textfarbe hell */
+    border: 1px solid #3d3d3d;
+    /* Randfarbe dunkler */
+    padding: 8px;
+    /* Abstand um den Text herum */
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    /* Monospace Schriftart für den Code */
+    font-size: 14px;
+    /* Schriftgröße des Codes */
+    text-align: left;
+    /* Links ausgerichtet */
     width: 35% !important;
 }
 
 /* Stil für den Fokuszustand des Eingabefeldes */
 .gap_input:focus {
-    outline: none; /* Kein Fokusumriss */
-    border-color: #4d90fe; /* Randfarbe hervorgehoben heller */
-    box-shadow: 0 0 5px #4d90fe; /* Leichte Schatten für den Fokuszustand */
+    outline: none;
+    /* Kein Fokusumriss */
+    border-color: #4d90fe;
+    /* Randfarbe hervorgehoben heller */
+    box-shadow: 0 0 5px #4d90fe;
+    /* Leichte Schatten für den Fokuszustand */
 
 }
 
-.mpy-editor-run-button:hover{
+.mpy-editor-run-button:hover {
     opacity: 100% !important;
-    background-color:  #34495e;
+    background-color: #34495e;
 }
 
-.mpy-editor-run-button{
+.mpy-editor-run-button {
     opacity: 100% !important;
-    background-color:  #83E6EB;
+    background-color: #83E6EB;
 }
 
-.mpy-editor-run-button svg{
-    color:white !important;
+.mpy-editor-run-button svg {
+    color: white !important;
 }
 
 
@@ -335,30 +381,35 @@ img.python-tutor {
 }
 
 .submenu div[ng-style*="grey"] {
-    pointer-events: auto; /* Trotzdem anklickbar */
+    pointer-events: auto;
+    /* Trotzdem anklickbar */
     opacity: 0.6;
 }
 
 
-.inactiveTaskDifficulty{
+.inactiveTaskDifficulty {
     color: #A9A9A9;
 }
 
 /********************************************* START **************************************************/
-body, tr, td, div, i{
+body,
+tr,
+td,
+div,
+i {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     /* Primäre Textfarbe anwenden */
     /*color: #001029;*/
-    color:#001029;
+    color: #001029;
 }
 
-body{
+body {
     background-color: white;
 }
 
-.activeTaskDifficulty{
+.activeTaskDifficulty {
     color: white;
     font-size: 12pt;
 }
@@ -366,20 +417,26 @@ body{
 
 
 .primary-bg {
-    background-color: 34495e; /* Dunkles Blaugrün für Hintergründe */
+    background-color: 34495e;
+    /* Dunkles Blaugrün für Hintergründe */
 }
 
 .primary-accent {
-    color: #83E6EB; /* Türkis für Akzentfarben */
+    color: #83E6EB;
+    /* Türkis für Akzentfarben */
 }
 
 .accent-bg {
-    background-color: #83E6EB; /* Türkis für Akzentfarben in Hintergründen */
+    background-color: #83E6EB;
+    /* Türkis für Akzentfarben in Hintergründen */
 }
 
 
-h1, h2, h3 {
-    font-family: 'Montserrat', sans-serif; /* Überschriften */
+h1,
+h2,
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    /* Überschriften */
     color: #001029;
 }
 
@@ -402,13 +459,16 @@ button:hover {
 
 /* Beispiel für eine Navigation */
 .navbar {
-    background-color: #FFFFFF; /* Weißer Hintergrund */
+    background-color: #FFFFFF;
+    /* Weißer Hintergrund */
     padding: 10px;
-    border-bottom: 1px solid #E0E0E0; /* Leichte Trennlinie */
+    border-bottom: 1px solid #E0E0E0;
+    /* Leichte Trennlinie */
 }
 
 .navbar a {
-    color: #001029; /* Dunkles Blaugrün für Links */
+    color: #001029;
+    /* Dunkles Blaugrün für Links */
     text-decoration: none;
     margin: 0 10px;
     padding: 8px 12px;
@@ -416,28 +476,36 @@ button:hover {
 }
 
 .navbar a:hover {
-    color: #83E6EB; /* Türkis bei Hover */
+    color: #83E6EB;
+    /* Türkis bei Hover */
 }
 
 
 select {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    color: #001029; /* Dunkles Blaugrün für Text */
-    background-color: #FFFFFF; /* Hintergrundfarbe */
-    border: 1px solid #CCCCCC; /* Randfarbe */
+    color: #001029;
+    /* Dunkles Blaugrün für Text */
+    background-color: #FFFFFF;
+    /* Hintergrundfarbe */
+    border: 1px solid #CCCCCC;
+    /* Randfarbe */
     padding: 8px;
     border-radius: 4px;
-    width: 100%; /* Breite anpassen */
-    box-sizing: border-box; /* Box-Modell */
+    width: 100%;
+    /* Breite anpassen */
+    box-sizing: border-box;
+    /* Box-Modell */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Stil für Fokus-Zustand */
 select:focus {
     outline: none;
-    border-color: #83E6EB; /* Türkis für Fokus-Zustand */
-    box-shadow: 0 0 5px rgba(131, 230, 235, 0.5); /* Leichter Schatten */
+    border-color: #83E6EB;
+    /* Türkis für Fokus-Zustand */
+    box-shadow: 0 0 5px rgba(131, 230, 235, 0.5);
+    /* Leichter Schatten */
 }
 
 /* Primäre Textfarbe für Eingabefelder */
@@ -447,13 +515,18 @@ input[type="password"],
 textarea {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    color: #001029; /* Dunkles Blaugrün für Text */
-    background-color: #FFFFFF; /* Hintergrundfarbe */
-    border: 1px solid #CCCCCC; /* Randfarbe */
+    color: #001029;
+    /* Dunkles Blaugrün für Text */
+    background-color: #FFFFFF;
+    /* Hintergrundfarbe */
+    border: 1px solid #CCCCCC;
+    /* Randfarbe */
     padding: 8px;
     border-radius: 4px;
-    width: 100%; /* Breite anpassen */
-    box-sizing: border-box; /* Box-Modell */
+    width: 100%;
+    /* Breite anpassen */
+    box-sizing: border-box;
+    /* Box-Modell */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -463,25 +536,33 @@ input[type="email"]:focus,
 input[type="password"]:focus,
 textarea:focus {
     outline: none;
-    border-color: #83E6EB; /* Türkis für Fokus-Zustand */
-    box-shadow: 0 0 5px rgba(131, 230, 235, 0.5); /* Leichter Schatten */
+    border-color: #83E6EB;
+    /* Türkis für Fokus-Zustand */
+    box-shadow: 0 0 5px rgba(131, 230, 235, 0.5);
+    /* Leichter Schatten */
 }
 
 /* Container für das Login-Formular */
 .login-container {
-    max-width: 400px; /* Maximalbreite des Containers */
-    margin: auto; /* Zentrieren auf der Seite */
+    max-width: 400px;
+    /* Maximalbreite des Containers */
+    margin: auto;
+    /* Zentrieren auf der Seite */
     padding: 20px;
-    background-color: #FFFFFF; /* Hintergrundfarbe */
+    background-color: #FFFFFF;
+    /* Hintergrundfarbe */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Schatten */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Schatten */
+    margin-top: 70px;
 }
 
 /* Überschrift des Formulars */
 .login-heading {
     font-family: 'Montserrat', sans-serif;
     font-size: 24px;
-    color: #001029; /* Dunkles Blaugrün */
+    color: #001029;
+    /* Dunkles Blaugrün */
     text-align: center;
     margin-bottom: 20px;
 }
@@ -490,22 +571,30 @@ textarea:focus {
 .login-input {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    color: #001029; /* Dunkles Blaugrün für Text */
-    background-color: #FFFFFF; /* Hintergrundfarbe */
-    border: 1px solid #CCCCCC; /* Randfarbe */
+    color: #001029;
+    /* Dunkles Blaugrün für Text */
+    background-color: #FFFFFF;
+    /* Hintergrundfarbe */
+    border: 1px solid #CCCCCC;
+    /* Randfarbe */
     padding: 12px;
     border-radius: 4px;
-    width: 100%; /* Breite anpassen */
-    box-sizing: border-box; /* Box-Modell */
-    margin-bottom: 10px; /* Abstand unten */
+    width: 100%;
+    /* Breite anpassen */
+    box-sizing: border-box;
+    /* Box-Modell */
+    margin-bottom: 10px;
+    /* Abstand unten */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Stil für Fokus-Zustand der Eingabefelder */
 .login-input:focus {
     outline: none;
-    border-color: #83E6EB; /* Türkis für Fokus-Zustand */
-    box-shadow: 0 0 5px rgba(131, 230, 235, 0.5); /* Leichter Schatten */
+    border-color: #83E6EB;
+    /* Türkis für Fokus-Zustand */
+    box-shadow: 0 0 5px rgba(131, 230, 235, 0.5);
+    /* Leichter Schatten */
 }
 
 /* Stil für den Anmelde-Button */
@@ -513,8 +602,10 @@ textarea:focus {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #83E6EB; /* Türkis für Button-Hintergrund */
-    color: #FFFFFF; /* Textfarbe */
+    background-color: #83E6EB;
+    /* Türkis für Button-Hintergrund */
+    color: #FFFFFF;
+    /* Textfarbe */
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     border: none;
@@ -525,7 +616,8 @@ textarea:focus {
 
 /* Hover-Effekt für den Anmelde-Button */
 .login-button:hover {
-    background-color: #34495e; /* Dunkles Blaugrün bei Hover */
+    background-color: #34495e;
+    /* Dunkles Blaugrün bei Hover */
 }
 
 /* Nachrichten für Fehler oder Erfolg */
@@ -545,23 +637,28 @@ textarea:focus {
 }
 
 .login-options a {
-    color: #001029; /* Dunkles Blaugrün für Links */
+    color: #001029;
+    /* Dunkles Blaugrün für Links */
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .login-options a:hover {
-    color: #83E6EB; /* Türkis bei Hover */
+    color: #83E6EB;
+    /* Türkis bei Hover */
 }
 
 
 /* Container für den Benutzerinfo-Bereich */
 .user-info-container {
-    background-color: #83E6EB; /* Hintergrundfarbe */
+    background-color: #83E6EB;
+    /* Hintergrundfarbe */
     padding: 10px;
     border-radius: 4px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Schatten */
-    z-index: 1000; /* Z-Index für die Stapelreihenfolge */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Schatten */
+    z-index: 1000;
+    /* Z-Index für die Stapelreihenfolge */
     width: 10%;
 }
 
@@ -569,30 +666,40 @@ textarea:focus {
 .user-name {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    color: #001029; /* Dunkles Blaugrün für Text */
-    margin-bottom: 5px; /* Abstand unten */
+    color: #001029;
+    /* Dunkles Blaugrün für Text */
+    margin-bottom: 5px;
+    /* Abstand unten */
 }
 
 /* Stil für das Schwierigkeitsgrad-Dropdown */
 .difficulty-dropdown {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
-    color: #001029; /* Dunkles Blaugrün für Text */
-    background-color: #FFFFFF; /* Hintergrundfarbe */
-    border: 1px solid #CCCCCC; /* Randfarbe */
+    color: #001029;
+    /* Dunkles Blaugrün für Text */
+    background-color: #FFFFFF;
+    /* Hintergrundfarbe */
+    border: 1px solid #CCCCCC;
+    /* Randfarbe */
     padding: 6px;
     border-radius: 4px;
-    width: 150px; /* Breite des Dropdowns */
-    box-sizing: border-box; /* Box-Modell */
-    margin-bottom: 5px; /* Abstand unten */
+    width: 150px;
+    /* Breite des Dropdowns */
+    box-sizing: border-box;
+    /* Box-Modell */
+    margin-bottom: 5px;
+    /* Abstand unten */
 }
 
 /* Stil für den Logout-Button */
 .logout-button {
     display: block;
     padding: 8px;
-    background-color: #FFFFFF; /* Hintergrundfarbe */
-    color: #001029; /* Textfarbe */
+    background-color: #FFFFFF;
+    /* Hintergrundfarbe */
+    color: #001029;
+    /* Textfarbe */
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     border: none;
@@ -604,8 +711,10 @@ textarea:focus {
 
 /* Hover-Effekt für den Logout-Button */
 .logout-button:hover {
-    background-color: #34495e; /* Dunkles Blaugrün bei Hover */
-    color: #FFFFFF; /* Textfarbe bei Hover */
+    background-color: #34495e;
+    /* Dunkles Blaugrün bei Hover */
+    color: #FFFFFF;
+    /* Textfarbe bei Hover */
 }
 
 .logout-button i {
@@ -614,14 +723,18 @@ textarea:focus {
 
 /* Hover-Effekt für das Icon */
 .logout-button:hover i {
-    color: #FFFFFF; /* Textfarbe des Icons bei Hover */
+    color: #FFFFFF;
+    /* Textfarbe des Icons bei Hover */
 }
 
 /* Stil für die Seitenleiste insgesamt */
 .sidebar-general {
-    background-color: #34495e; /* Dunkles Blaugrün */
-    color: #FFFFFF; /* Textfarbe */
-    overflow-y: auto; /* Scrollen bei Überlauf */
+    background-color: #34495e;
+    /* Dunkles Blaugrün */
+    color: #FFFFFF;
+    /* Textfarbe */
+    overflow-y: auto;
+    /* Scrollen bei Überlauf */
     width: 20%;
 }
 
@@ -630,21 +743,27 @@ textarea:focus {
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
-    color: #FFFFFF; /* Textfarbe */
+    color: #FFFFFF;
+    /* Textfarbe */
 }
 
 /* Stil für die Hauptmenüpunkte */
 .menu-item {
-    list-style: none; /* Listenstil entfernen */
-    margin-bottom: 0; /* Abstand unten entfernt */
-    color: #FFFFFF; /* Textfarbe */
+    list-style: none;
+    /* Listenstil entfernen */
+    margin-bottom: 0;
+    /* Abstand unten entfernt */
+    color: #FFFFFF;
+    /* Textfarbe */
     font-size: 14pt;
 }
 
 
 .menu-item a:hover {
-    background-color: #83E6EB; /* Türkis bei Hover */
-    color: #001029; /* Textfarbe bei Hover */
+    background-color: #83E6EB;
+    /* Türkis bei Hover */
+    color: #001029;
+    /* Textfarbe bei Hover */
 }
 
 /* Stil für Untermenüs */
@@ -653,9 +772,11 @@ textarea:focus {
     list-style: none;
 }
 
-.has-submenu > a::after {
-    content: "\f078"; /* Pfeil-Icon (FontAwesome) */
-    font-family: "Font Awesome 5 Free"; /* Font Awesome Icons */
+.has-submenu>a::after {
+    content: "\f078";
+    /* Pfeil-Icon (FontAwesome) */
+    font-family: "Font Awesome 5 Free";
+    /* Font Awesome Icons */
     float: right;
     margin-right: 10px;
 }
@@ -663,13 +784,15 @@ textarea:focus {
 /* Anzeigen der Untermenüs beim Klick */
 .has-submenu.show .submenu {
     display: block;
-    padding-left: 0; /* Padding für Submenu entfernt */
+    padding-left: 0;
+    /* Padding für Submenu entfernt */
 }
 
 
 /* Abstand nach dem letzten Submenu-Element */
 .menu-item.has-submenu:last-child {
-    margin-bottom: 20px; /* Abstand nach dem letzten Submenu */
+    margin-bottom: 20px;
+    /* Abstand nach dem letzten Submenu */
 }
 
 
@@ -727,15 +850,16 @@ textarea:focus {
 
 .menu-item:hover {
     background-color: white;
-    color: #001029; 
+    color: #001029;
 }
 
 /* Current Group Style */
 .current-group {
-    background-color: #8497b5; /* Dunkles Grau für aktuelle Gruppe */
+    background-color: #8497b5;
+    /* Dunkles Grau für aktuelle Gruppe */
 }
 
-.test_border{
+.test_border {
     /*border: 2px solid black;*/
 }
 
@@ -743,20 +867,20 @@ td {
     /*border: 2px pink solid;*/
 }
 
-tr{
+tr {
     /*border: 2px solid green;*/
 }
 
-.tutor-general{
+.tutor-general {
     /*margin-left: 300px;*/
 }
 
-.widthTD1{
+.widthTD1 {
     width: 300px;
 }
 
 
-.task-container{
+.task-container {
     border-right: 4px solid #34495e;
     border-bottom: 4px solid #34495e;
     border-bottom-right-radius: 10px;
@@ -765,97 +889,114 @@ tr{
 
 }
 
-.task-container-nav{
+.task-container-nav {
     display: flex;
 }
 
-.navigationTitle{
-    color: #FFFFFF; /* Textfarbe */
+.navigationTitle {
+    color: #FFFFFF;
+    /* Textfarbe */
     font-size: 14pt;
     background-color: #34495e;
     padding-left: 10px;
 }
 
-.underline{
-    border-bottom: 4px solid #83E6EB; /* Türkisfarbene Linie unten */
+.underline {
+    border-bottom: 4px solid #83E6EB;
+    /* Türkisfarbene Linie unten */
 }
 
-.underlineRight{
-    border-right: 4px solid #83E6EB; /* Türkisfarbene Linie rechts */
+.underlineRight {
+    border-right: 4px solid #83E6EB;
+    /* Türkisfarbene Linie rechts */
 }
 
-.previousTask, .nextTask {
+.previousTask,
+.nextTask {
     background-color: #83E6EB;
     margin: 5px;
 }
 
-.previousTask i, .nextTask i {
+.previousTask i,
+.nextTask i {
     margin: 0 5px;
-    color: #fff; 
+    color: #fff;
 }
 
-.previousTask:hover, .nextTask:hover {
-    background-color:#34495e; /* Dunkles Blaugrün */
-    color: #fff; /* Weiße Sch; /* Türkisfarbene Hover-Farbe */
+.previousTask:hover,
+.nextTask:hover {
+    background-color: #34495e;
+    /* Dunkles Blaugrün */
+    color: #fff;
+    /* Weiße Sch; /* Türkisfarbene Hover-Farbe */
 }
 
-.previousTask:disabled, .nextTask:disabled {
-    background-color: #ccc; /* Grau, wenn deaktiviert */
+.previousTask:disabled,
+.nextTask:disabled {
+    background-color: #ccc;
+    /* Grau, wenn deaktiviert */
     color: #666;
 }
 
-.previousTask:disabled i, .nextTask:disabled i {
-    color: #666; /* Grau, wenn deaktiviert */
+.previousTask:disabled i,
+.nextTask:disabled i {
+    color: #666;
+    /* Grau, wenn deaktiviert */
 }
 
-.test1{
+.test1 {
     display: flex;
     justify-content: start;
     align-items: start;
 }
 
-.python-tutor-container{
+.python-tutor-container {
     justify-content: flex-end;
     display: flex;
     height: 100px;
 
 }
 
-.python-tutor-div{
+.python-tutor-div {
     margin-top: 0px;
     margin-left: auto;
 }
 
-.task-area{
+.task-area {
     width: 70%;
 }
 
-.tutor-area{
+.tutor-area {
     width: 30%;
 }
 
-.backgroundDarkBlue{
+.backgroundDarkBlue {
     background-color: #34495e;
 }
 
-.hint-button-prev{
+.hint-button-prev {
     padding: 5px;
     margin: 5px;
     color: #001029;
 }
 
-.hint-button-next{
+.hint-button-next {
     padding: 5px;
     margin: 5px;
     margin-right: 10px;
     color: #001029;
 }
 
-.freeCodeInput{
+.freeCodeInput {
     background-color: white;
 }
 
-.taskGroup-container{
+.taskGroup-container {
     margin-bottom: 10px;
     border-bottom: 2px solid white;
+}
+
+button:disabled {
+    background-color: #ccc;
+    color: #666;
 }
