@@ -30,27 +30,27 @@ app.controller("TaskController", function($scope, CorrectAnswerService, $templat
 
     /* Enthaelt alle Aufgaben*/
     $scope.taskGroups = {
-        TaskGroup1: ['V1C1','V3C1', 'V5C1', 'L5C1'],
-        TaskGroup2: ['F1C1', 'L1C1', 'L3C1'],
-        TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3', 'F1C2', 'L4C2', 'F5C2','L2C2', 'V2C2'],
+        TaskGroup1: ['V1C1','V3C1', 'V5C1', 'V2C2', 'V1C3'],
+        TaskGroup2: ['L1C1', 'L3C1', 'L5C1', 'L2C2', 'L4C2', 'L2C3'],
+        TaskGroup3: ['F1C1','F1C2', 'F3C2', 'F5C2', 'F1C3', 'F2C3'],
     };
 
     // Aufgaben für verschiedene Schwierigkeitsgrade NUR BEISPIELE!!
     var taskGroupsByDifficulty = {
         beginner: {
-            TaskGroup1: ['V1C1','V3C1', 'V5C1', 'L5C1'],
-            TaskGroup2: ['F1C1', 'L1C1', 'L3C1'],
-            TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3',  'F1C2', 'L4C2','F5C2','L2C2', 'V2C2'],
+            TaskGroup1: ['V1C1','V3C1', 'V5C1', 'V2C2', 'V1C3'],
+            TaskGroup2: ['L1C1', 'L3C1', 'L5C1', 'L2C2', 'L4C2', 'L2C3'],
+            TaskGroup3: ['F1C1','F1C2', 'F3C2', 'F5C2', 'F1C3', 'F2C3'],
         },
         advanced: {
-            TaskGroup1: ['V1C1', 'L5C1'],
-            TaskGroup2: ['L1C1'],
-            TaskGroup3: ['F1C3', 'F2C3', 'L2C3', 'V1C3', 'F5C2', 'L2C2', 'V2C2']
+            TaskGroup1: ['V2C2', 'V1C3'],
+            TaskGroup2: ['L2C2', 'L4C2', 'L2C3'],
+            TaskGroup3: ['F1C2', 'F3C2', 'F5C2', 'F1C3', 'F2C3'],
         },
         expert: {
-            TaskGroup1: ['L5C1'],
-            TaskGroup2: ['L1C1'],
-            TaskGroup3: ['F1C3', 'V2C2']
+            TaskGroup1: ['V1C3'],
+            TaskGroup2: ['L2C3'],
+            TaskGroup3: ['F1C3', 'F2C3'],
         }
     };
 
