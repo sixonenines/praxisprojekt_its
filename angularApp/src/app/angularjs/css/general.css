@@ -8,6 +8,8 @@
     white-space: pre-wrap;
     /* für Zeilenumbruch innerhalb des Code-Blocks */
     word-wrap: break-word;
+    display: block;
+    white-space: pre; /* Behält die Formatierung der Leerzeichen bei */
     /* für Zeilenumbruch bei langen Wörtern */
 }
 
@@ -92,7 +94,6 @@ img.python-tutor {
 .hint-navigation button {}
 
 .hint-text {
-    margin: 0 10px;
     line-height: 1;
     padding-bottom: 5px;
     text-align: left;
@@ -238,7 +239,7 @@ img.python-tutor {
 .button-with-progress {
     position: relative;
     display: inline-block;
-    width: 100px;
+    width: 115px;
     /* Breite des Buttons */
     height: 40px;
     /* Höhe des Buttons */
@@ -279,16 +280,15 @@ img.python-tutor {
 /** Angefangen **/
 
 .check-button {
-    width: 100px;
+    width: 115px;
     /* Breite des Buttons */
     height: 40px;
     /* Höhe des Buttons */
 }
 
-/*.task-body{
-    padding-top: 0px;
-    width: 100%;
-}*/
+.task-body{
+    width: 80%;
+}
 
 .hint-position {
     height: 0px;
@@ -735,7 +735,7 @@ textarea:focus {
     /* Textfarbe */
     overflow-y: auto;
     /* Scrollen bei Überlauf */
-    width: 20%;
+    width: 15%;
 }
 
 /* Header der Seitenleiste */
@@ -923,6 +923,16 @@ tr {
     color: #fff;
 }
 
+.hint-text i{
+    color: #fff;
+    margin-right: 10px;
+}
+
+.check-button i{
+    color: #fff;
+    margin-right: 5px;
+}
+
 .previousTask:hover,
 .nextTask:hover {
     background-color: #34495e;
@@ -999,4 +1009,11 @@ tr {
 button:disabled {
     background-color: #ccc;
     color: #666;
+}
+
+.mpy-editor-box{
+    background-color: black;
+}
+
+.test123{
 }
