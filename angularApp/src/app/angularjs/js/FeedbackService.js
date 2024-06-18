@@ -118,7 +118,17 @@ app.factory('FeedbackService', function($timeout) {
         ],
         V1C3: [
             { text: 'Nice work! Your code fulfills all given requirements! Your implementation correctly adds each incremented value to the sum up to the end value. ', highlight: null }
+        ],
+        F1C2: [ 
+            { text:'Nice ! You have successfully corrected the function to achieve the desired output.You have shown a strong grasp of how to modify and return values in Python. ', highlight: null}
+        ],
+        L4C2: [ 
+            {text: 'Very Good ! You have corrected the loop and fixed the condition. Your code now executes perfectly, demonstrating a solid understanding of while loops and incrementing values.', highlight: null}   
+        ],
+        V2C2: [ 
+            {text: 'You have successfully identified and corrected the scope issue in the function. By using the global keyword, your code now properly accesses and modifies the global variable', highlight: null}
         ]
+
 
     };
 
