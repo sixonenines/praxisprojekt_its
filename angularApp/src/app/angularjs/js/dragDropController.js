@@ -1,265 +1,426 @@
 var app = angular.module("myApp");
-
-app.controller('dragDropController', function($scope) {
-    $scope.selectedText = '';
-    $scope.selectedShape = '';
-    $scope.selectedZone = null;
-    $scope.zonesWithSVG = {};
-    $scope.usedTextOptions = {};
-    $scope.usedZoneOptions = {};
-
-    $scope.selectText = function(text) {
-        if (!$scope.usedTextOptions[text]) {
-            $scope.selectedText = ($scope.selectedText === text) ? '' : text;
-        }
-    };
-
-    $scope.selectShape = function(shape) {
-        $scope.selectedShape = ($scope.selectedShape === shape) ? '' : shape;
-    };
-
-    $scope.selectZone = function(zone) {
-        $scope.selectedZone = ($scope.selectedZone === zone) ? null : zone;
-    };
-
-    $scope.createSVG = function() {
-        if (!$scope.selectedText || !$scope.selectedShape || !$scope.selectedZone) {
-            alert("Please select text, shape, and zone.");
-            return;
-        }
+app.controller("dragDropController", function($scope, $timeout, $interval, CorrectFlowchartService, FeedbackService, $sce,) {
+    $scope.codeSnippet = "i = 1\nwhile i < 6:\nif i == 3()\nbreak\ni += 1";
+    $scope.availableLines = [
+        "i = 1",
+        "while i < 6:",
+        "if i == 3:",
+        "break",
+        "i += 1"
+        ];
+    $scope.selectedLine = $scope.availableLines[0];
+    $scope.selectedShape = "Rectangle";
+    var nodeIdCounter = 0;
+    var myDiagram;
     
-        var svgNS = "http://www.w3.org/2000/svg";
-        var svg = document.createElementNS(svgNS, 'svg');
+    $scope.isCorrectAnswer = null;
+    $scope.isAnswered = false;
+    $scope.hintText = "";
+    $scope.hintIndex = -1;
+    $scope.maxHintIndex = -1;
+    $scope.feedbacks = [];
+    $scope.positiveFeedbacks = [];
+    $scope.negativeFeedbacks = [];
+    $scope.allHintsShown = false;
+    $scope.noButtonsOnFeedback = false;
+    $scope.hintsGiven = false;
+    $scope.connectedNodes = [];
     
-        var zone = document.getElementById('zone' + $scope.selectedZone);
-        if (!zone) {
-            console.error('Target zone not found.');
-            return;
-        }
+    function init() {
+        var $ = go.GraphObject.make;
     
-        var zoneRect = zone.getBoundingClientRect();
-        var width = zoneRect.width;
-        var height = zoneRect.height;
-    
-        svg.setAttribute('width', '100%');
-        svg.setAttribute('height', '100%');
-        svg.style.position = 'absolute';
-    
-        var textElement = document.createElementNS(svgNS, 'text');
-        textElement.setAttribute('x', '50%');
-        textElement.setAttribute('y', '50%');
-        textElement.setAttribute('dominant-baseline', 'middle');
-        textElement.setAttribute('text-anchor', 'middle');
-        textElement.setAttribute('font-size', '0.5em');
-        textElement.setAttribute('font-family', '"Courier New", Courier, monospace');
-        textElement.setAttribute('font-weight', 'bold');
-        textElement.textContent = $scope.selectedText;
-    
-        var shape;
-        if ($scope.selectedShape === 'Rectangle') {
-            shape = document.createElementNS(svgNS, 'rect');
-            shape.setAttribute('x', '10%');
-            shape.setAttribute('y', '10%');
-            shape.setAttribute('width', '80%');
-            shape.setAttribute('height', '80%');
-            shape.setAttribute('stroke', 'black');
-            shape.setAttribute('stroke-width', '2px');
-            shape.setAttribute('fill', 'none');
-        } else if ($scope.selectedShape === 'Diamond') {
-            shape = document.createElementNS(svgNS, 'polygon');
-            var points = `50%,10% 90%,50% 50%,90% 10%,50%`;
-            shape.setAttribute('points', points);
-            shape.setAttribute('stroke', 'black');
-            shape.setAttribute('stroke-width', '1px');
-            shape.setAttribute('fill', 'none');
-        }
-    
-        svg.appendChild(shape);
-        svg.appendChild(textElement);
-    
-        zone.appendChild(svg);
-        $scope.$applyAsync(function() {
-            $scope.zonesWithSVG[$scope.selectedZone] = true;
-            $scope.usedTextOptions[$scope.selectedText] = true;
-            $scope.usedZoneOptions[$scope.selectedZone] = true;
-            $scope.selectedText = '';
-            $scope.selectedShape = '';
-            $scope.selectedZone = null;
-    
-            // Create dots around the placed element
-            $scope.createDots(zone.getAttribute('data-zone'));
+        myDiagram = $(go.Diagram, "myDiagramDiv", {
+            "undoManager.isEnabled": true,
+            "linkingTool.direction": go.LinkingTool.Either,
+            "allowDrop": true
         });
-    };
-
-    $scope.drawArrow = function(fromZone, toZone, fromPosition) {
-        var fromElement = document.getElementById('zone' + fromZone);
-        var toElement = document.getElementById('zone' + toZone);
-        if (!fromElement || !toElement) {
-            console.error('Zones not found.');
-            return;
-        }
-
-        var fromRect = fromElement.getBoundingClientRect();
-        var toRect = toElement.getBoundingClientRect();
-
-        var svgNS = "http://www.w3.org/2000/svg";
-        var arrowSvg = document.createElementNS(svgNS, 'svg');
-        arrowSvg.setAttribute('width', '100%');
-        arrowSvg.setAttribute('height', '100%');
-        arrowSvg.style.position = 'absolute';
-        arrowSvg.style.top = 0;
-        arrowSvg.style.left = 0;
-
-        var line = document.createElementNS(svgNS, 'line');
-        line.setAttribute('stroke', 'black');
-        line.setAttribute('stroke-width', '2px');
-
-        var arrowHead = document.createElementNS(svgNS, 'polygon');
-        arrowHead.setAttribute('stroke', 'black');
-        arrowHead.setAttribute('stroke-width', '2px');
-        arrowHead.setAttribute('fill', 'black');
-
-        if (fromPosition === 'top') {
-            line.setAttribute('x1', fromRect.left + fromRect.width / 2);
-            line.setAttribute('y1', fromRect.top);
-            line.setAttribute('x2', toRect.left + toRect.width / 2);
-            line.setAttribute('y2', toRect.bottom);
-
-            arrowHead.setAttribute('points', `${toRect.left + toRect.width / 2},${toRect.bottom} ${toRect.left + toRect.width / 2 - 5},${toRect.bottom + 10} ${toRect.left + toRect.width / 2 + 5},${toRect.bottom + 10}`);
-        } else if (fromPosition === 'right') {
-            line.setAttribute('x1', fromRect.right);
-            line.setAttribute('y1', fromRect.top + fromRect.height / 2);
-            line.setAttribute('x2', toRect.left);
-            line.setAttribute('y2', toRect.top + toRect.height / 2);
-
-            arrowHead.setAttribute('points', `${toRect.left},${toRect.top + toRect.height / 2} ${toRect.left - 10},${toRect.top + toRect.height / 2 - 5} ${toRect.left - 10},${toRect.top + toRect.height / 2 + 5}`);
-        } else if (fromPosition === 'bottom') {
-            line.setAttribute('x1', fromRect.left + fromRect.width / 2);
-            line.setAttribute('y1', fromRect.bottom);
-            line.setAttribute('x2', toRect.left + toRect.width / 2);
-            line.setAttribute('y2', toRect.top);
-
-            arrowHead.setAttribute('points', `${toRect.left + toRect.width / 2},${toRect.top} ${toRect.left + toRect.width / 2 - 5},${toRect.top - 10} ${toRect.left + toRect.width / 2 + 5},${toRect.top - 10}`);
-        } else if (fromPosition === 'left') {
-            line.setAttribute('x1', fromRect.left);
-            line.setAttribute('y1', fromRect.top + fromRect.height / 2);
-            line.setAttribute('x2', toRect.right);
-            line.setAttribute('y2', toRect.top + toRect.height / 2);
-
-            arrowHead.setAttribute('points', `${toRect.right},${toRect.top + toRect.height / 2} ${toRect.right + 10},${toRect.top + toRect.height / 2 - 5} ${toRect.right + 10},${toRect.top + toRect.height / 2 + 5}`);
-        }
-
-        arrowSvg.appendChild(line);
-        arrowSvg.appendChild(arrowHead);
-
-        document.body.appendChild(arrowSvg);
-    };
-
-    $scope.createDots = function(zone) {
-        var zoneElement = document.querySelector(`[data-zone="${zone}"]`);
-        var svg = zoneElement.querySelector('svg');
     
-        ['top', 'right', 'bottom', 'left'].forEach(position => {
-            var dot = document.createElement('div');
-            dot.className = `dot ${position}`;
-            dot.setAttribute('draggable', 'true');
-            dot.setAttribute('data-zone', zone);
-            dot.setAttribute('data-position', position);
-            dot.addEventListener('dragstart', dragStart);
-            zoneElement.appendChild(dot);
-    
-            // Position the dots correctly around the svg element
-            var svgRect = svg.getBoundingClientRect();
-            var dotSize = 10; // Size of the dot
-    
-            switch (position) {
-                case 'top':
-                    dot.style.top = `${svgRect.top - dotSize / 2}px`;
-                    dot.style.left = `${svgRect.left + svgRect.width / 2 - dotSize / 2}px`;
-                    break;
-                case 'right':
-                    dot.style.top = `${svgRect.top + svgRect.height / 2 - dotSize / 2}px`;
-                    dot.style.left = `${svgRect.right - dotSize / 2}px`;
-                    break;
-                case 'bottom':
-                    dot.style.top = `${svgRect.bottom - dotSize / 2}px`;
-                    dot.style.left = `${svgRect.left + svgRect.width / 2 - dotSize / 2}px`;
-                    break;
-                case 'left':
-                    dot.style.top = `${svgRect.top + svgRect.height / 2 - dotSize / 2}px`;
-                    dot.style.left = `${svgRect.left - dotSize / 2}px`;
-                    break;
+        myDiagram.model = $(go.GraphLinksModel, {
+            linkFromKeyProperty: function(linkData) {
+                return linkData.from;
+            },
+            linkToKeyProperty: function(linkData) {
+                return linkData.to;
             }
         });
-    };
-
-    $scope.onDrop = function(event, zone) {
-        event.preventDefault();
-        var data = JSON.parse(event.dataTransfer.getData("text/plain"));
     
-        // Check if we're placing a new element or drawing an arrow
-        if (data.fromZone === undefined) {
-            // New element placement
-            $scope.selectedZone = zone;
-            $scope.createSVG();
-        } else {
-            // Arrow placement
-            var toZone = zone;
-            if (data && toZone) {
-                $scope.drawArrow(data.fromZone, toZone, data.position);
-            }
-        }
-    };
+        myDiagram.nodeTemplate = $(go.Node, "Auto",
+            $(go.Shape, {
+                strokeWidth: 3,
+                fill: "white",
+                portId: "",
+                cursor: "pointer",
+                fromLinkable: true,
+                toLinkable: true,
+                fromSpot: go.Spot.AllSides,
+                toSpot: go.Spot.AllSides,
+                minSize: new go.Size(80, 40)
+            },
+                new go.Binding("figure", "shape"),
+                new go.Binding("stroke", "color")),
+            $(go.TextBlock, { margin: 1, font: '10pt system-ui' },
+                new go.Binding("text", "text")),
+        );
     
-    function dragStart(event) {
-        event.dataTransfer.setData("text/plain", JSON.stringify({
-            fromZone: event.target.getAttribute('data-zone'),
-            position: event.target.getAttribute('data-position')
-        }));
+        myDiagram.linkTemplate =
+            $(go.Link,
+                { routing: go.Routing.AvoidsNodes, corner: 10 },
+                $(go.Shape, { strokeWidth: 4 },
+                    new go.Binding("stroke", "color")),
+                $(go.Shape, { toArrow: "Standard" },
+                    new go.Binding("stroke", "color"),
+                    new go.Binding("fill", "color")),
+                $(go.TextBlock, { stroke: "white", background: "rgb(38, 38, 38)", segmentOffset: new go.Point(0, -10), editable: true},
+                    new go.Binding("text", "text")),
+                {
+                    contextMenu: $("ContextMenu",
+                        $("ContextMenuButton",
+                            $(go.TextBlock, "Set True"),
+                            {
+                                click: function(e, obj) {
+                                    var link = obj.part.adornedPart;
+                                    e.diagram.model.commit(function(m) {
+                                        m.set(link.data, "text", "True");
+                                    }, "Set link text to true");
+                                }
+                            }
+                        ),
+                        $("ContextMenuButton",
+                            $(go.TextBlock, "Set False"),
+                            {
+                                click: function(e, obj) {
+                                    var link = obj.part.adornedPart;
+                                    e.diagram.model.commit(function(m) {
+                                        m.set(link.data, "text", "False");
+                                    }, "Set link text to false");
+                                }
+                            }
+                        )
+                    )
+                }
+            );
+    
+        myDiagram.model = new go.GraphLinksModel([
+            // {key: 6, text: "Start", shape: "Ellipse", color: "gray"},
+            // {key: 7, text: "End", shape: "Ellipse", color: "gray"}
+            ], []);
+    
+        myDiagram.addDiagramListener("Modified", function() {
+            $scope.updateConnectedNodes();
+        });
+    
+        myDiagram.addDiagramListener("LinkDrawn", function(e) {
+            var link = e.subject;
+            e.diagram.model.set(link.data, "color", "white");
+        });
     }
     
-    document.addEventListener('dragover', function(event) {
-        event.preventDefault();
-    });
-    
-    document.addEventListener('drop', function(event) {
-        event.preventDefault();
-        var dropZoneElement = event.target.closest('.dropzone');
-        if (dropZoneElement) {
-            var zone = dropZoneElement.getAttribute('data-zone');
-            angular.element(document.getElementById('controller')).scope().$apply(function(scope) {
-                scope.onDrop(event, zone);
+    $scope.updateConnectedNodes = function() {
+        var connectedNodes = [];
+        myDiagram.nodes.each(function(node) {
+            var linksOut = [];
+            node.findLinksOutOf().each(function(link) {
+                linksOut.push(link.toNode.data.key);
             });
+            connectedNodes.push({
+                key: node.data.key,
+                text: node.data.text,
+                shape: node.data.shape,
+                linksOut: linksOut
+            });
+        });
+        $scope.connectedNodes = connectedNodes;
+    };
+    
+    $scope.addNode = function() {
+        if ($scope.selectedLine) {
+            myDiagram.startTransaction("add node");
+            myDiagram.model.addNodeData({
+                key: ++nodeIdCounter,
+                text: $scope.selectedLine,
+                shape: $scope.selectedShape,
+                color: "gray"
+            });
+            myDiagram.commitTransaction("add node");
+            $scope.availableLines.splice($scope.availableLines.indexOf($scope.selectedLine), 1);
+            $scope.selectedLine = $scope.availableLines.length > 0 ? $scope.availableLines[0] : null;
+            $scope.updateConnectedNodes();
         }
-    });
-
-    $scope.isTextUsed = function(text) {
-        return $scope.usedTextOptions[text];
     };
-
-    $scope.isZoneUsed = function(zone) {
-        return $scope.usedZoneOptions[zone];
+    
+    $scope.addLink = function(fromNodeKey, toNodeKey) {
+        myDiagram.startTransaction("add link");
+        myDiagram.model.addLinkData({
+            from: fromNodeKey,
+            to: toNodeKey,
+            color: "white",
+            text: null
+            
+        });
+        myDiagram.commitTransaction("add link");
+        $scope.updateConnectedNodes();
     };
-});
+    
+    $scope.refresh = function() {
+        myDiagram.model = new go.GraphLinksModel([
+            // {key: 6, text: "Start", shape: "Ellipse", color: "gray"},
+            // {key: 7, text: "End", shape: "Ellipse", color: "gray"}
+            ], []);
+        nodeIdCounter = 0;
+        $scope.availableLines = [
+            "i = 1",
+            "while i < 6:",
+            "if i == 3:",
+            "break",
+            "i += 1"
+        ];
+        $scope.selectedLine = $scope.availableLines[0];
+        $scope.updateConnectedNodes();
+    };
+    
+    $scope.checkFlowchart = function() {
+        var userAnswer = {
+            nodes: myDiagram.model.nodeDataArray.map(node => ({ key: node.key, text: node.text, shape: node.shape })),
+            links: myDiagram.model.linkDataArray.map(link => ({ from: link.from, to: link.to, text: link.text }))
+        };
 
-function dragStart(event) {
-    event.dataTransfer.setData("text/plain", JSON.stringify({
-        fromZone: event.target.getAttribute('data-zone'),
-        position: event.target.getAttribute('data-position')
-    }));
-}
-
-document.addEventListener('dragover', function(event) {
-    event.preventDefault();
-});
-
-document.addEventListener('drop', function(event) {
-    event.preventDefault();
-    var data = JSON.parse(event.dataTransfer.getData("text/plain"));
-    var toZone = event.target.closest('.dropzone').getAttribute('data-zone');
-    if (data && toZone) {
-        angular.element(document.getElementById('controller')).scope().$apply(function(scope) {
-            scope.drawArrow(data.fromZone, toZone, data.position);
+        // Übernommen von anderen Tasks
+        var taskId = 'L3C1';
+        var isCorrect = CorrectFlowchartService.checkFlowchartAnswer(taskId, userAnswer);
+        $scope.isCorrectAnswer = isCorrect;
+        var timestamp = new Date().getTime();
+        var StoredUser = localStorage.getItem("currentUser");
+        var UserInfoJson = JSON.parse(StoredUser);
+        var experience = UserInfoJson.experience;
+        var username = UserInfoJson.username;
+        var logged_data = { "useranswer": JSON.stringify(userAnswer), "taskid": taskId, "isCorrect": isCorrect, "userid": username, "timestamp": timestamp, "numHints": $scope.hintIndex, "experience": experience };
+        window.logHelperFunction(logged_data);
+        $scope.isAnswered = true;
+    
+        if (isCorrect) {
+            $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
+            $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
+            $scope.updateTaskStatus(taskId, "correct");
+            FeedbackService.updatePythonTutorImage('positive');
+        } else {
+            $scope.updateTaskStatus(taskId, "incorrect");
+            FeedbackService.updatePythonTutorImage('negative');
+        }
+    
+        highlightNodesAndLinks(userAnswer, isCorrect);
+    
+        $scope.userReassurance();
+    };
+    
+    function highlightNodesAndLinks(userAnswer, isCorrect) {
+        var correctAnswer = CorrectFlowchartService.correctAnswers['L3C1'];
+        
+        // Node Highlight
+        userAnswer.nodes.forEach(function(node) {
+            var correctNode = correctAnswer.nodes.find(n => n.key === node.key);
+            var color = (correctNode && correctNode.text === node.text && correctNode.shape === node.shape) ? "green" : "red";
+            var diagramNode = myDiagram.findNodeForKey(node.key);
+            if (diagramNode) {
+                myDiagram.model.setDataProperty(diagramNode.data, "color", color);
+            }
+        });
+        //  Link Highlight
+        myDiagram.startTransaction("clear links");
+        myDiagram.model.linkDataArray = [];
+        myDiagram.commitTransaction("clear links");
+    
+        userAnswer.links.forEach(function(link) {
+            var correctLink = correctAnswer.links.find(l => l.from === link.from && l.to === link.to && l.text === link.text);
+            var color = correctLink ? "green" : "red";
+            myDiagram.startTransaction("add colored link");
+            myDiagram.model.addLinkData({
+                from: link.from,
+                to: link.to,
+                color: color,
+                text: link.text
+            });
+            myDiagram.commitTransaction("add colored link");
         });
     }
-});
+    
+    // Pos/Neg Feedback
+    $scope.userReassurance = function() {
+        var taskId = $scope.$parent.currentTask.id;
+        var isCorrect = $scope.isCorrectAnswer;
+        $scope.noButtonsOnFeedback = true;
+    
+        if (isCorrect) {
+            $scope.positiveFeedbacks = FeedbackService.getPositiveFeedbacks(taskId);
+            if ($scope.positiveFeedbacks.length > 0) {
+                $scope.hintText = $scope.positiveFeedbacks[0].text;
+            }
+        } else {
+            $scope.negativeFeedbacks = FeedbackService.getNegativeFeedbacks(taskId);
+            if ($scope.negativeFeedbacks.length > 0) {
+                var randomIndex = Math.floor(Math.random() * $scope.negativeFeedbacks.length);
+                $scope.hintText = $scope.negativeFeedbacks[randomIndex].text;
+            }
+        }
+    };
+    
+    // How to button Funktion
+    $scope.howToUse = function() {
+        $scope.noButtonsOnFeedback = true;
+        $scope.hintText = 
+            '<b>How to use:</b> <br>' +
+            '1. Select the code line and the Shape of the Node <br>' +
+            '2. Click "Add Node" to place it on the canvas <br>' +
+            '3. Hold the left mouse button on a node to drag it. <br>' +
+            '4. To connect two nodes, hover over a node. When you see the pointer, hold the left mouse button to drag a link to another node to connect them.<br>' +
+            '5. Right click on a link and select whether the condition is "True" or "False".<br>' +
+            '6. Once you are done, click on the "Check" button. <br>' +
+            '7. Click on the "Refresh" button to start over.';
+
+        // Mark the hint text as trusted HTML
+        $scope.hintText = $sce.trustAsHtml($scope.hintText);
+    };
+
+    $scope.getHint = function() {
+        $scope.hintButtonDisabled = true;
+        $scope.noButtonsOnFeedback = false;
+        $scope.hintsGiven = true;
+        $scope.startHintButtonAnimation();
+    
+        var taskId = $scope.$parent.currentTask.id;
+        if ($scope.feedbacks.length === 0) {
+            $scope.feedbacks = FeedbackService.getFeedbacks(taskId);
+        }
+        if ($scope.hintIndex < $scope.feedbacks.length - 1) {
+            $scope.hintIndex++;
+            $scope.maxHintIndex = $scope.hintIndex;
+            var currentHint = $scope.feedbacks[$scope.hintIndex];
+            $scope.hintText = currentHint.text;
+            $scope.highlightLine = currentHint.highlight;
+            if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
+                $scope.allHintsShown = true;
+            }
+        } else {
+            $scope.hintText = "Keine weiteren Hints verfügbar.";
+        }
+    
+        $timeout(function() {
+            $scope.stopHintButtonAnimation();
+        }, 5000);
+    };
+    
+    $scope.startHintButtonAnimation = function() {
+        var totalTime = 5000;
+        var currentTime = 0;
+        $scope.hintButtonAnimationInterval = $interval(function() {
+            currentTime += 100;
+            $scope.progressBarWidth = (currentTime / totalTime) * 100 + '%';
+            if (currentTime >= totalTime) {
+                $scope.stopHintButtonAnimation();
+            }
+        }, 100);
+    };
+    
+    $scope.stopHintButtonAnimation = function() {
+        $interval.cancel($scope.hintButtonAnimationInterval);
+        $scope.hintButtonDisabled = false;
+    };
+    
+    $scope.nextHint = function() {
+        if ($scope.hintIndex < $scope.maxHintIndex) {
+            $scope.hintIndex++;
+            var currentHint = $scope.feedbacks[$scope.hintIndex];
+            $scope.hintText = currentHint.text;
+            $scope.highlightLine = currentHint.highlight;
+        }
+    };
+    
+    $scope.previousHint = function() {
+        if ($scope.hintIndex > 0) {
+            $scope.hintIndex--;
+            var currentHint = $scope.feedbacks[$scope.hintIndex];
+            $scope.hintText = currentHint.text;
+            $scope.highlightLine = currentHint.highlight;
+        }
+    };
+    
+    $scope.backToHints = function() {
+        $scope.noButtonsOnFeedback = false;
+        var currentHint = $scope.feedbacks[$scope.hintIndex];
+        $scope.hintText = currentHint.text;
+    };
+    
+    $timeout(init, 0);
+    });
+    
+    app.factory('CorrectFlowchartService', function() {
+        var correctAnswers = {
+            'L3C1': {
+                nodes: [
+                    { key: 1, text: "i = 1", shape: "Rectangle" },
+                    { key: 2, text: "while i < 6:", shape: "Diamond" },
+                    { key: 3, text: "if i == 3:", shape: "Diamond" },
+                    { key: 4, text: "break", shape: "Rectangle" },
+                    { key: 5, text: "i += 1", shape: "Rectangle" },
+                    // { key: 6, text: "Start", shape: "Ellipse" },
+                    // { key: 7, text: "End", shape: "Ellipse" }
+                ],
+                links: [
+                    { key: 1, from: 1, to: 2},
+                    { key: 2, from: 2, to: 3, text: "True" },
+                    { key: 3, from: 3, to: 4, text: "True" },
+                    { key: 4, from: 3, to: 5, text: "False" },
+                    { key: 5, from: 5, to: 2},
+                    // { key: 6, from: 6, to: 1},
+                    // { key: 7, from: 4, to: 7},
+                    // { key: 8, from: 2, to: 7}
+                ]
+            }
+        };
+    
+        function compareNodes(userNodes, correctNodes) {
+            if (userNodes.length !== correctNodes.length) return false;
+                for (let i = 0; i < userNodes.length; i++) {
+                    if (userNodes[i].key !== correctNodes[i].key ||
+                        userNodes[i].text !== correctNodes[i].text ||
+                        userNodes[i].shape !== correctNodes[i].shape) {
+                        return false;
+                    }
+                }
+                return true;
+        }
+    
+        function compareLinks(userLinks, correctLinks) {
+            if (userLinks.length !== correctLinks.length) return false;
+            for (let i = 0; i < userLinks.length; i++) {
+                if (userLinks[i].from !== correctLinks[i].from ||
+                    userLinks[i].to !== correctLinks[i].to) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    
+        function compareLinksText(userLinks, correctLinks) {
+            if (userLinks.length !== correctLinks.length) return false;
+            for (let i = 0; i < userLinks.length; i++) {
+                if (userLinks[i].text !== correctLinks[i].text) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    
+        return {
+            checkAnswer: function(taskId, userAnswer) {
+                return userAnswer == correctAnswers[taskId];
+            },
+            checkFlowchartAnswer: function(taskId, userAnswer) {
+                var correctAnswer = correctAnswers[taskId];
+                if (!correctAnswer) return false;
+                return compareNodes(userAnswer.nodes, correctAnswer.nodes) &&
+                    compareLinks(userAnswer.links, correctAnswer.links) &&
+                    compareLinksText(userAnswer.links, correctAnswer.links);
+            },
+            correctAnswers: correctAnswers
+        };
+    });
