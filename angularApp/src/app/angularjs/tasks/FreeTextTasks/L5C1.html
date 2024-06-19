@@ -3,8 +3,7 @@
         <tr>
             <h3>L5C1</h3>
             <td colspan="2">
-                How many lines of code and what exactly does this loop print? Write the corrected code in the free text
-                field.
+                Wwhat exactly does this loop print? Write the answer in the textfield.
             </td>
         </tr>
         <tr>
@@ -13,8 +12,8 @@
                 <p class="code-style">
 1   num = 10
 2   while num > 3:
-3   num -= 1
-4   print(num)
+3       num -= 1
+4       print(num)
                 </p>
 
             </td>
@@ -23,7 +22,7 @@
             <td>
                 <div
                     ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
-                    <input type="text" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer">
+                    <textarea  type="textfield" ng-model="userAnswer" ng-disabled="isAnswered && isCorrectAnswer"> </textarea>
                 </div>
             </td>
             <td class="button-check-hint">
