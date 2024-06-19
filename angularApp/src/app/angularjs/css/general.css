@@ -1035,11 +1035,11 @@ button:disabled {
 }
 
 tr{
-    border: 2px solid magenta;
+    /*border: 2px solid magenta;*/
 }
 
 td{
-    border: 2px solid orange;
+    /*border: 2px solid orange;*/
 }
 
 
@@ -1058,4 +1058,12 @@ td{
     align-self: flex-start; /* Optional, falls mehrere Elemente unterschiedlich ausgerichtet werden sollen */
     width: 20%;
   height: auto; /* Beibehaltung des Seitenverhältnisses */
+}
+
+.mpy-editor-run-button{
+    opacity: 1;
+}
+
+.mpy-editor-output{
+    /*background-color: purple;*/
 }
