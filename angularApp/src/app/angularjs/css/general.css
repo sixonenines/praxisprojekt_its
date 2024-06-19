@@ -42,27 +42,27 @@
 
 
 img.python-tutor {
-    height: 100%;
+    height: 100px;
+    width: 100px;
     /* Höhe des Bildes */
-    margin-left: 10px;
     /* Optional: Abstand zwischen Bild und Text */
-    margin-right: 20px;
-    margin-top: 110px;
 }
 
 .hint-navigation {
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /*align-items: center;
+    justify-content: center;*/
     background-color: white;
     font-size: 12pt;
     padding: 10px;
     padding-bottom: 40px;
-    width: 40%;
+    max-width: 45%;
+    min-width: 30%;
     right: -90%;
     border-radius: 5px;
+    bottom: -130px;
 }
 
 
@@ -71,7 +71,7 @@ img.python-tutor {
     content: "";
     position: absolute;
     top: 110%;
-    right: 20px;
+    right: 70%;
     /* Positionierung auf der rechten Seite */
     transform: translateY(-50%) rotate(270deg);
     /* Dreht das Dreieck um 45 Grad */
@@ -132,9 +132,9 @@ img.python-tutor {
     color: #001029 !important;
 }
 
-.python-tutor {
+/*.python-tutor {
     width: 100px;
-}
+}*/
 
 .status-icon {
     margin-left: 10px;
@@ -881,6 +881,7 @@ tr {
 
 
 .task-container {
+    height: 100%;
     border-right: 4px solid #34495e;
     border-bottom: 4px solid #34495e;
     border-bottom-right-radius: 10px;
@@ -961,8 +962,6 @@ tr {
 }
 
 .python-tutor-container {
-    justify-content: flex-end;
-    display: flex;
     height: 100px;
 
 }
@@ -974,10 +973,12 @@ tr {
 
 .task-area {
     width: 70%;
+    height: 100%;
 }
 
 .tutor-area {
     width: 30%;
+    height: 100%;
 }
 
 .backgroundDarkBlue {
@@ -1016,4 +1017,30 @@ button:disabled {
 
 .disclaimer{
     font-size: 8pt;
+}
+
+tr{
+    border: 2px solid magenta;
+}
+
+td{
+    border: 2px solid orange;
+}
+
+
+.bottom-left-align {
+    display: flex;
+    flex-direction: column-reverse;
+    /*justify-content: flex-end; /* Vertikale Ausrichtung nach unten */
+    /*align-items: flex-start; /* Horizontale Ausrichtung nach links */
+    /*height: 100%;
+    /*padding: 0;
+    /*border: none; /* Entfernen von Grenzen für saubere Darstellung */
+}
+
+.bottom-left-element {
+    margin: 0; /* Entfernt eventuelle äußere Abstände des Bildes */
+    align-self: flex-start; /* Optional, falls mehrere Elemente unterschiedlich ausgerichtet werden sollen */
+    width: 20%;
+  height: auto; /* Beibehaltung des Seitenverhältnisses */
 }
