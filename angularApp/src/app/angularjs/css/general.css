@@ -49,20 +49,29 @@ img.python-tutor {
 }
 
 .hint-navigation {
-    position: relative;
+    /*position: absolute;
     display: flex;
     flex-direction: column;
     /*align-items: center;
     justify-content: center;*/
-    background-color: white;
+    /*background-color: white;
     font-size: 12pt;
     padding: 10px;
     padding-bottom: 40px;
-    max-width: 45%;
+    max-width: 35%;
     min-width: 30%;
-    right: -90%;
+    right: 10%;
     border-radius: 5px;
-    bottom: -130px;
+    bottom: 330px;*/
+    position: relative;
+    right: -95%;
+    background-color: white;
+    padding: 8px;
+    bottom: 200px;
+    min-width: 20%;
+    max-width: 35%;
+    border-radius: 5px;
+    min-height: 30px;
 }
 
 
@@ -84,18 +93,18 @@ img.python-tutor {
 }
 
 .hint-navigation .buttons {
-    position: absolute;
+    position: relative;
     bottom: 0;
     right: 0;
     display: flex;
-    padding-bottom: 5px;
+    padding-bottom: 0px;
+    justify-content: right;
 }
 
 .hint-navigation button {}
 
 .hint-text {
     line-height: 1;
-    padding-bottom: 5px;
     text-align: left;
 }
 
@@ -257,14 +266,14 @@ img.python-tutor {
 }
 
 .hint-text {
-    position: relative;
+    /*position: relative;
     z-index: 1;
     /* Stelle sicher, dass der Text über dem Fortschrittsbalken liegt */
-    text-align: left;
+    /*text-align: left;
     /* Zentriere den Text horizontal */
-    width: 100%;
+    /*width: 100%;
     /* Fülle die gesamte Breite des Buttons */
-    padding: 5px;
+    /*padding: 5px;*/
 }
 
 @keyframes progressAnimation {
@@ -986,13 +995,19 @@ tr {
 }
 
 .hint-button-prev {
-    padding: 5px;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     margin: 5px;
     color: #001029;
 }
 
 .hint-button-next {
-    padding: 5px;
+    padding-right: 3px;
+    padding-left: 3px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     margin: 5px;
     margin-right: 10px;
     color: #001029;

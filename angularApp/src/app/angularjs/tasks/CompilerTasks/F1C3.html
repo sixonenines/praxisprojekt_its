@@ -1,14 +1,4 @@
 <div ng-controller="FreeCodeTaskController">
-    <div class="hint-position">
-        <div class="hint-navigation" ng-show="hintText">
-            <div class="hint-text">{{ hintText }}</div>
-            <div class="buttons" ng-show="!noButtonsOnFeedback">
-                <button class="hint-button-prev" ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
-                <button class="hint-button-next" ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
-            </div>
-            <button ng-show="noButtonsOnFeedback && hintsGiven" ng-click="backToHints()">Back to Hints</button>
-        </div>
-    </div>
     <table class="task-body">
         <tr>
             <h3>F1C3</h3>
@@ -49,4 +39,14 @@
         </tr>
 
     </table>
+    <div class="hint-position">
+        <div class="hint-navigation" ng-show="hintText">
+            <div class="hint-text">{{ hintText }}</div>
+            <div class="buttons" ng-show="!noButtonsOnFeedback">
+                <button class="hint-button-prev" ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+                <button class="hint-button-next" ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+            </div>
+            <button ng-show="noButtonsOnFeedback && hintsGiven" ng-click="backToHints()">Back to Hints</button>
+        </div>
+    </div>
 </div>
