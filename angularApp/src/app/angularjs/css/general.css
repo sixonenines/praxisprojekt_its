@@ -56,12 +56,12 @@ img.python-tutor {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: lightgray;
+    background-color: white;
     font-size: 12pt;
     padding: 10px;
     padding-bottom: 40px;
-    width: 30%;
-    right: -105%;
+    width: 40%;
+    right: -90%;
     border-radius: 5px;
 }
 
@@ -70,16 +70,16 @@ img.python-tutor {
 .hint-navigation::after {
     content: "";
     position: absolute;
-    top: 50%;
-    right: -18px;
+    top: 110%;
+    right: 20px;
     /* Positionierung auf der rechten Seite */
-    transform: translateY(-50%) rotate(180deg);
+    transform: translateY(-50%) rotate(270deg);
     /* Dreht das Dreieck um 45 Grad */
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 10px;
-    border-color: transparent lightgray transparent transparent;
+    border-color: transparent white transparent transparent;
     /* Änderung der Farbreihenfolge */
 }
 
@@ -359,12 +359,12 @@ img.python-tutor {
 
 }
 
-.mpy-editor-run-button:hover {
+.hint-navi-editor-run-button:hover {
     opacity: 100% !important;
     background-color: #34495e;
 }
 
-.mpy-editor-run-button {
+.hint-navi-editor-run-button {
     opacity: 100% !important;
     background-color: #83E6EB;
 }
@@ -417,7 +417,7 @@ body {
 
 
 .primary-bg {
-    background-color: 34495e;
+    background-color: #34495e;
     /* Dunkles Blaugrün für Hintergründe */
 }
 
@@ -544,7 +544,7 @@ textarea:focus {
 
 /* Container für das Login-Formular */
 .login-container {
-    max-width: 400px;
+    max-width: 450px;
     /* Maximalbreite des Containers */
     margin: auto;
     /* Zentrieren auf der Seite */
@@ -1011,8 +1011,9 @@ button:disabled {
     color: #666;
 }
 
-.mpy-editor-box{
+.hint-navi-editor-box{
 }
 
-.test123{
+.disclaimer{
+    font-size: 8pt;
 }
