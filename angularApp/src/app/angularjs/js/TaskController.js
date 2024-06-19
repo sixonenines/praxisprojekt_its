@@ -101,7 +101,9 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
 
     // Initialize TaskGroup1 as visible
     $scope.visibleGroups = {
-        TaskGroup1: true
+        TaskGroup1: true, 
+        TaskGroup2: false,
+        TaskGroup3: false
     };
 
     $scope.toggleGroup = function (groupName) {
@@ -143,10 +145,11 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
     $scope.currentTaskIndex = 0;
     $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
 
-    $scope.prevTask = function () {
+     $scope.prevTask = function () {
         if ($scope.currentTaskIndex > 0) {
             $scope.currentTaskIndex--;
             $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
+            $scope.updateVisibleGroup($scope.currentTask.id);
         }
     };
 
@@ -154,6 +157,7 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         if ($scope.currentTaskIndex < $scope.tasks.length - 1 ) {
             $scope.currentTaskIndex++;
             $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
+            $scope.updateVisibleGroup($scope.currentTask.id);
         }
     };
 
@@ -185,6 +189,7 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         if (task) {
             $scope.currentTaskIndex = $scope.tasks.indexOf(task);
             $scope.currentTask = task;
+            $scope.updateVisibleGroup($scope.currentTask.id);
         }
     };
 
@@ -281,4 +286,14 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
             }
         }
     }
+
+    $scope.updateVisibleGroup = function(taskId) {
+        for (var group in $scope.taskGroups) {
+            if ($scope.taskGroups[group].includes(taskId)) {
+                $scope.visibleGroups = {};
+                $scope.visibleGroups[group] = true;
+                break;
+            }
+        }
+    };
 });
