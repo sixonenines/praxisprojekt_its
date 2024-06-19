@@ -82,6 +82,10 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'Within the while loop, include code to increment the count variable by 1 on each iteration. This ensures that the count increases with each iteration of the loop.', highlight: null },
             { text: 'The condition (count < 1) in the while loop is incorrect for achieving the desired output. It should be adjusted to ensure that the loop runs as long as count is less than or equal to 5.', highlight: null},
             { text: 'Inside the while loop, use a print statement to display the current value of count with the format the count is : X, where X is the current value of count.', highlight: null },
+        L3C1: [
+            { text: 'Remember, conditions usually have a diamond shape and represent decisions, while processes are rectangles that show actions.', highlight: null },
+            { text: "Remember to follow the logical flow of your code. Each step should naturally lead to the next. If you find a step that doesn't seem to fit, it might be in the wrong place.", highlight: null},
+            { text: 'Take a closer look at your connections. Each node should logically connect to the next step in the process. If a connection seems out of place, consider where it should logically flow to maintain the correct sequence.', highlight: null },
         ]
 
 
@@ -127,6 +131,8 @@ app.factory('FeedbackService', function($timeout) {
         ],
         V2C2: [ 
             {text: 'You have successfully identified and corrected the scope issue in the function. By using the global keyword, your code now properly accesses and modifies the global variable', highlight: null}
+        L3C1: [
+            {text: 'Wow you seem to be in the "flow" right now! Way to go!'}
         ]
 
 
@@ -148,7 +154,7 @@ app.factory('FeedbackService', function($timeout) {
         "You're getting closer with each attempt. Keep pushing forward!",
         "Learning something new takes time and effort. You're doing great!",
     ];
-
+    
     var negativeFeedbacks = {
         V1C1: reassuringFeedbacks,
         V3C1: reassuringFeedbacks,
@@ -165,7 +171,32 @@ app.factory('FeedbackService', function($timeout) {
         V2C2: reassuringFeedbacks,
         L2C2: reassuringFeedbacks,
         L4C2: reassuringFeedbacks,
+        L3C1: reassuringFeedbacks,
     };
+
+    // Sollte evtl. Feedback individueller, Implementierung bisher problematisch
+    
+    // var negativeFeedbacksForFC = {
+    //     incorretNodeFeedback: [
+    //         {text: "Hm, the shapes of the nodes seem off."}
+    //     ],
+    //     incorrectLinkDirection: [
+    //         {text: "Are you sure the links are correctly placed?"}
+    //     ],
+    //     incorrectLinkText: [
+    //         {text: "Check again for the truthiness or falseness of the conditions!"}
+    //     ],
+    //     missingElements: [
+    //         {text: "Your flowchart looks good so far, but there still seems to be something missing..."}
+    //     ],
+    //     combinedFlowchartFeedback: [
+    //         {text: "You're doing great, but there are some issues in your flowchart. Carefully revise the code and your adjust your flowchart. You can do it!"}
+    //     ]
+    // }
+    
+    // this.getNegativeFeedbacksForFC = function(feedbackFC) {
+    //     return negativeFeedbacksForFC[feedbackFC] || [];
+    // };
 
     this.getFeedbacks = function(taskId) {
         return feedbacks[taskId] || [];
@@ -184,6 +215,10 @@ app.factory('FeedbackService', function($timeout) {
         return [];
     };
 
+    
+
+    
+
     // Sad/Happy Tutor 
     this.updatePythonTutorImage = function(feedbackType) {
         var imageElement = document.getElementById('python-tutor-img');
@@ -193,11 +228,12 @@ app.factory('FeedbackService', function($timeout) {
             imageElement.src = 'assets/sad_pythonTutor.png';
         }
 
-        // Nach 2 Sek. wieder zu default Bild
+        // Nach 5 Sek. wieder zu default Bild
         $timeout(function() {
             imageElement.src = 'assets/pythonTutor.png'; 
-        }, 2000);
+        }, 5000);
     };
 
     return this;
+    
 });

@@ -13,12 +13,18 @@ app.factory('CorrectAnswerService', function() {
         'F5C2' : "Name:EmmaSalary:55000Name:BenSalary:46000",
         'L2C3' : "235711131719",
         'V1C3' : "11",              
-        'L5C1' : "9876543",
         'F1C2' : "(8,7)",  
         'V2C2' : "3",
         'L2C2' : "246810Goodbye!",
         'L4C2' : "thecountis:2thecountis:3thecountis:4thecountis:5That`sit!",
-
+        'L5C1' : 
+`9
+8
+7
+6
+5
+4
+3
     };
 
     return {

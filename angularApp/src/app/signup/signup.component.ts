@@ -15,9 +15,11 @@ export class SignupComponent {
   signupForm = this.fb.group({
     username: ['', Validators.required],
     password: ['', Validators.required],
+    disclaimerAccepted: [false, Validators.requiredTrue]
   });
 
-  constructor(private fb: FormBuilder, 
+  constructor(
+    private fb: FormBuilder, 
     public authService: AuthService,
     private router: Router,
     ) {}
@@ -84,5 +86,7 @@ onSubmitLogin() {
 logOut() {
    this.authService.logout()
 }
+
+
 
 }
