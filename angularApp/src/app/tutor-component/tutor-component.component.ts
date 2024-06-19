@@ -25,7 +25,7 @@ export class TutorComponentComponent implements OnInit{
   ];
   currentUser= localStorage.getItem("currentUser")
   currentUserInfo= this.currentUser ? JSON.parse(this.currentUser) : null;
-  currentUsername: String = this.currentUserInfo.username
+  currentUsername: String = this.currentUserInfo.username;
   selectedExperienceLevel: Experience = this.experienceLevel[0];
 
   constructor(private loggingService: LoggingService, private authservice: AuthService) {}

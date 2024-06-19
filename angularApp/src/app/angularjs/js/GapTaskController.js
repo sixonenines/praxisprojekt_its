@@ -50,7 +50,7 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
         }
     };
     
-    $scope.checkGapAnswerOneAnswer = function(userAnswer1) {
+    $scope.checkGapAnswerOneAnswer = function(userAnswer1, taskID) {
         var isCorrect = CorrectAnswerService.checkAnswer("L1C1", userAnswer1);
         var timestamp = new Date().getTime();
         var StoredUser= localStorage.getItem("currentUser");
@@ -63,8 +63,10 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
         $scope.isCorrectAnswer1 = isCorrect;
         $scope.isAnswered1 = true;
         if(isCorrect){
+            console.log("IS CORRECT " + userAnswer1 + taskID);
             $scope.updateTaskStatus($scope.$parent.currentTask.id, 'correct');
         }else{
+            console.log("IS NOT CORRECT " + userAnswer1 + taskID);
             $scope.updateTaskStatus($scope.$parent.currentTask.id, 'incorrect');    
         }
         
@@ -175,7 +177,7 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
     };
     
     $scope.startHintButtonAnimation = function() {
-        var totalTime = 5000; // Gesamtzeit in Millisekunden (5 Sekunden)
+        var totalTime = 0; // Gesamtzeit in Millisekunden (5 Sekunden)
         var currentTime = 0; // Aktuelle Zeit
         $scope.hintButtonAnimationInterval = $interval(function() {
             currentTime += 100; // Inkrementiere die aktuelle Zeit um den Intervallwert
