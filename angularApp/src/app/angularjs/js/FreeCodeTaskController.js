@@ -92,6 +92,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         window.logHelperFunction(logged_data);
         $scope.isCorrectAnswer = isCorrect;
         $scope.isAnswered = true;
+        console.log("Check freecode  ");
         if (isCorrect) {
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
@@ -101,6 +102,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
             FeedbackService.updatePythonTutorImage('negative');
         }
+        console.log("Check freecode  end ");
         // Schauen ob es eine Aufgabe ist, die spezifische hints hat
         var userAnswerSanitized = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
         var taskError = $scope.errorMessages[$scope.$parent.currentTask.id];
