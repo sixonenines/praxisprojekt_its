@@ -12,7 +12,15 @@ app.factory('CorrectAnswerService', function() {
         'F2C3' : "15",
         'F5C2' : "Name:EmmaSalary:55000Name:BenSalary:46000",
         'L2C3' : "235711131719",
-        'V1C3' : "11"
+        'V1C3' : "11",
+        'L5C1' : 
+`9
+8
+7
+6
+5
+4
+3`,
     };
 
     return {

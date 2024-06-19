@@ -191,9 +191,9 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
         var timestamp = new Date().getTime();
         var StoredUser = localStorage.getItem("currentUser");
         var UserInfoJson = JSON.parse(StoredUser);
-        var experience = UserInfoJson.experience;
+        var experienceLevel = UserInfoJson.experienceLevel;
         var username = UserInfoJson.username;
-        var logged_data = { "useranswer": JSON.stringify(userAnswer), "taskid": taskId, "isCorrect": isCorrect, "userid": username, "timestamp": timestamp, "numHints": $scope.hintIndex, "experience": experience };
+        var logged_data = { "task_form": "flowchart","useranswer": JSON.stringify(userAnswer), "taskid": taskId, "isCorrect": isCorrect, "username": username, "timestamp": timestamp, "numHints": $scope.hintIndex, "experienceLevel": experienceLevel };
         window.logHelperFunction(logged_data);
         $scope.isAnswered = true;
     
