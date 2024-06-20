@@ -18,8 +18,8 @@
 
             
         </tr>
-        <tr class="freeCodeInput">
-            <script type="mpy-editor" env="test_env" setup>
+        <tr class="freeCodeInput" >
+            <script type="mpy-editor" env="test_env" setup ng-class="{'correct-answer-compiler': isCorrectAnswer && isAnswered, 'incorrect-answer-compiler': !isCorrectAnswer && isAnswered}">
             </script>
             <script id="F1C2" type="mpy-editor" env="test_env">
             def add5(a,b):
