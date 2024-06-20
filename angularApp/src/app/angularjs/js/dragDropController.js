@@ -1,5 +1,5 @@
 var app = angular.module("myApp");
-app.controller("dragDropController", function($scope, $timeout, $interval, CorrectFlowchartService, FeedbackService, $sce,) {
+app.controller("DragDropController", function($scope, $timeout, $interval, CorrectFlowchartService, FeedbackService, $sce,) {
     $scope.codeSnippet = "i = 1\nwhile i < 6:\nif i == 3()\nbreak\ni += 1";
     $scope.availableLines = [
         "i = 1",
@@ -112,6 +112,16 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
         myDiagram.addDiagramListener("LinkDrawn", function(e) {
             var link = e.subject;
             e.diagram.model.set(link.data, "color", "white");
+        });
+
+        myDiagram.addDiagramListener("SelectionDeleted", function(e) {
+            e.subject.each(function(part) {
+                if (part instanceof go.Node) {
+                    $scope.$apply(function() {
+                        $scope.availableLines.push(part.data.text);
+                    });
+                }
+            });
         });
     }
     
@@ -252,13 +262,13 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
         if (isCorrect) {
             $scope.positiveFeedbacks = FeedbackService.getPositiveFeedbacks(taskId);
             if ($scope.positiveFeedbacks.length > 0) {
-                $scope.hintText = $scope.positiveFeedbacks[0].text;
+                $scope.hintText = $sce.trustAsHtml($scope.positiveFeedbacks[0].text);
             }
         } else {
             $scope.negativeFeedbacks = FeedbackService.getNegativeFeedbacks(taskId);
             if ($scope.negativeFeedbacks.length > 0) {
                 var randomIndex = Math.floor(Math.random() * $scope.negativeFeedbacks.length);
-                $scope.hintText = $scope.negativeFeedbacks[randomIndex].text;
+                $scope.hintText = $sce.trustAsHtml($scope.negativeFeedbacks[randomIndex].text);
             }
         }
     };
@@ -268,7 +278,9 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
         $scope.noButtonsOnFeedback = true;
         $scope.hintText = 
             '<b>How to use:</b> <br>' +
-            '1. Select the code line and the Shape of the Node <br>' +
+            '1. Select the code line and if it is a condition or a Process <br>' +
+            '   -> Process: Indicates a specific action or operation that moves the workflow forward. <br>' +
+            '   -> Condition: Represents a decision point that dictates the next step based on whether the condition is true or false <br>' +
             '2. Click "Add Node" to place it on the canvas <br>' +
             '3. Hold the left mouse button on a node to drag it. <br>' +
             '4. To connect two nodes, hover over a node. When you see the pointer, hold the left mouse button to drag a link to another node to connect them.<br>' +
@@ -294,7 +306,7 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
             $scope.hintIndex++;
             $scope.maxHintIndex = $scope.hintIndex;
             var currentHint = $scope.feedbacks[$scope.hintIndex];
-            $scope.hintText = currentHint.text;
+            $scope.hintText = $sce.trustAsHtml(currentHint.text);
             $scope.highlightLine = currentHint.highlight;
             if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
                 $scope.allHintsShown = true;
@@ -329,7 +341,7 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
         if ($scope.hintIndex < $scope.maxHintIndex) {
             $scope.hintIndex++;
             var currentHint = $scope.feedbacks[$scope.hintIndex];
-            $scope.hintText = currentHint.text;
+            $scope.hintText = $sce.trustAsHtml(currentHint.text);
             $scope.highlightLine = currentHint.highlight;
         }
     };
@@ -338,17 +350,17 @@ app.controller("dragDropController", function($scope, $timeout, $interval, Corre
         if ($scope.hintIndex > 0) {
             $scope.hintIndex--;
             var currentHint = $scope.feedbacks[$scope.hintIndex];
-            $scope.hintText = currentHint.text;
+            $scope.hintText = $sce.trustAsHtml(currentHint.text);
             $scope.highlightLine = currentHint.highlight;
         }
     };
-    
+
     $scope.backToHints = function() {
         $scope.noButtonsOnFeedback = false;
         var currentHint = $scope.feedbacks[$scope.hintIndex];
-        $scope.hintText = currentHint.text;
+        $scope.hintText = $sce.trustAsHtml(currentHint.text);
     };
-    
+
     $timeout(init, 0);
     });
     

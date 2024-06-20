@@ -1,14 +1,5 @@
-<div ng-controller="dragDropController">
-    <div class="hint-position">
-        <div class="hint-navigation" ng-show="hintText">
-            <div class="hint-text" ng-bind-html="hintText">{{ hintText }}</div>
-            <div class="buttons" ng-show="!noButtonsOnFeedback">
-                <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
-                <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
-            </div>
-            <button ng-show="noButtonsOnFeedback && hintsGiven" ng-click="backToHints()">Back to Hints</button>
-        </div>
-    </div>
+<div ng-controller="DragDropController">
+    
     
     <table class="task-body">
         <tr>
@@ -24,7 +15,9 @@
                         5      i += 1
                     </p>
                 </div>
-                    <div ><button ng-click="howToUse()" style="font-size: 50pt;">?</button></div>
+                    <div >
+                        <button ng-click="howToUse()" style="font-size: 50pt;">?</button>
+                    </div>
                     
                 </div>
             </td>
@@ -57,4 +50,14 @@
             </td>
         </tr>
     </table>
+    <div class="hint-position">
+        <div class="hint-navigation" ng-show="hintText">
+            <div class="hint-text" ng-bind-html="hintText">{{ hintText }}</div>
+            <div class="buttons" ng-show="!noButtonsOnFeedback">
+                <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+                <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+            </div>
+            <button ng-show="noButtonsOnFeedback && hintsGiven" ng-click="backToHints()">Back to Hints</button>
+        </div>
+    </div>
 </div>

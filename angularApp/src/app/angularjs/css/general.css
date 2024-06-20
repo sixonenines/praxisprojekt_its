@@ -1067,3 +1067,44 @@ td{
 .mpy-editor-output{
     /*background-color: purple;*/
 }
+
+.welcome-container {
+    position: fixed;
+    margin: 0px;
+    padding: 0px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-clip:content-box;
+    background-image: url(src/assets/welcome.png);
+    background-position: bottom;
+    width: 100vw;
+    height: 100vh;
+    
+    
+    
+
+}
+.welcome-btn {
+    width: 150px;
+    height: 60px;
+    font-size: 1em ;
+    
+}
+.welcome-text {
+    font-size: xx-large;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bolder;
+    white-space: nowrap;
+    overflow: auto;
+    width: fit-content;
+}
+.welcome-bubble {
+    text-align: center;
+    padding: 19% 36.5%;
+    align-items: center;
+    grid-template-rows: repeat(5,20%);
+    grid-template-columns: repeat(5,20%);
+    
+   
+}
+
