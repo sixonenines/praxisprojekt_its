@@ -279,8 +279,10 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
                     }
 
 
-                    /*FEHLER MIT INDIVIDUAL FEEDBACK*/
+                    
                     document.getElementById('progress-bar').style.width = progress + '%';
+
+                    /*FEHLER MIT INDIVIDUAL FEEDBACK*/
                     /*document.getElementById('progress-text').innerText = progress.toFixed(2) + '% of the tasks completed';*/
 
                 }
