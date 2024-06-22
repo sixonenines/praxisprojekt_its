@@ -75,24 +75,68 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             hint: "Remember to declare 'c' as a global inside the function if you want to modify the global variable 'c'."
         }
     };
+
+    $scope.checkCheat = {
+        "V1C3" : {
+            keywords: ['while'],
+            hint: "You are missing the while loop. Include it in your code and try again"
+        },
+        "L2C2" : {
+            keywords: ['for'],
+            hint: "You are missing the for loop. Include it in your code and try again."
+        },
+        "L4C2" : {
+            keywords: ['while'],
+            hint: "You are missing the while loop. Include it in your code and try again."
+        },
+        "L2C3" : {
+            keywords: ['for', 'if'],
+            hint: "You are missing the for loop and/or an if condition. Include it in your code and try again."
+        },
+        "F1C2" : {
+            keywords: ['def'],
+            hint: "You are missing the function (def). Include it in your code and try again."
+        },
+        "F5C2" : {
+            keywords: ['def'],
+            hint: "You are missing the function (def). Include it in your code and try again."
+        },
+        "F1C3" : {
+            keywords: ['def'],
+            hint: "You are missing the function (def). Include it in your code and try again."
+        },
+        "F2C3" : {
+            keywords: ['def'],
+            hint: "You are missing the function (def). Include it in your code and try again."
+        }
+    }
     
     $scope.checkFreeCodeAnswer = function() {
-        var timestamp = new Date().getTime()
-        var StoredUser= localStorage.getItem("currentUser")
-        var UserInfoJson= JSON.parse(StoredUser)
-        var experienceLevel = UserInfoJson.experienceLevel
-        var username = UserInfoJson.username
+        var timestamp = new Date().getTime();
+        var StoredUser= localStorage.getItem("currentUser");
+        var UserInfoJson= JSON.parse(StoredUser);
+        var experienceLevel = UserInfoJson.experienceLevel;
+        var username = UserInfoJson.username;
         var userAnswer = document.getElementsByClassName('mpy-editor-output')[0].innerText;
-        selectEditor="#".concat("",$scope.currentTask.id)
-        var code = document.querySelector(selectEditor).code
+        selectEditor="#".concat("",$scope.currentTask.id);
+        var code = document.querySelector(selectEditor).code;
         var userAnswer = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
+        //Logging
         var logged_data = {"task_form":"freecode_task","Input":code,"Output":userAnswer,"taskID":$scope.$parent.currentTask.id,"isCorrect":isCorrect,
             "username":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
         window.logHelperFunction(logged_data);
         $scope.isCorrectAnswer = isCorrect;
         $scope.isAnswered = true;
-        console.log("Check freecode  ");
+        //Cheat Checker
+        var codeSanitized = code.replace(/(\r\n|\n|\r|\s)/gm, "");
+        var checkForKeywords = $scope.checkCheat[$scope.$parent.currentTask.id];
+        var keywordFound = checkForKeywords && Array.isArray(checkForKeywords.keywords) && checkForKeywords.keywords.some(keyword => codeSanitized.includes(keyword));
+        if(!keywordFound) {
+            $scope.hintText = checkForKeywords ? checkForKeywords.hint : "Keyword check configuration missing.";
+            return;
+        }
+        //Die Aufgabe updaten, falls korrekt. Dazu noch das Visuelles-Feedback vom Tutor
         if (isCorrect) {
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
@@ -102,7 +146,6 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
             FeedbackService.updatePythonTutorImage('negative');
         }
-        console.log("Check freecode  end ");
         // Schauen ob es eine Aufgabe ist, die spezifische hints hat
         var userAnswerSanitized = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
         var taskError = $scope.errorMessages[$scope.$parent.currentTask.id];

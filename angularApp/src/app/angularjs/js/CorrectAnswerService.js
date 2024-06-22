@@ -16,7 +16,7 @@ app.factory('CorrectAnswerService', function() {
         'F1C2' : "(8,7)",  
         'V2C2' : "3",
         'L2C2' : "246810Goodbye!",
-        'L4C2' : "thecountis:2thecountis:3thecountis:4thecountis:5That`sit!",
+        'L4C2' : "Thecountis1Thecountis2Thecountis3Thecountis4Thecountis5Finished",
         'L5C1' : 
 `9
 8
@@ -30,6 +30,7 @@ app.factory('CorrectAnswerService', function() {
     return {
         checkAnswer: function(taskId, userAnswer) {
             console.log(userAnswer);
+            userAnswer = String(userAnswer);
             return userAnswer == correctAnswers[taskId];
         }
     };
