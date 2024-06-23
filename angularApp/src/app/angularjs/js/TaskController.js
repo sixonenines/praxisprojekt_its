@@ -107,7 +107,13 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
     };
 
     $scope.toggleGroup = function (groupName) {
-        $scope.visibleGroups[groupName] = !$scope.visibleGroups[groupName];
+        for (var group in $scope.visibleGroups) {
+            if (group === groupName) {
+                $scope.visibleGroups[group] = !$scope.visibleGroups[group];
+            } else {
+                $scope.visibleGroups[group] = false;
+            }
+        }
     };
 
     $scope.isGroupVisible = function (groupName) {
@@ -291,12 +297,18 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
     }
 
     $scope.updateVisibleGroup = function(taskId) {
+        let foundGroup = false;
         for (var group in $scope.taskGroups) {
             if ($scope.taskGroups[group].includes(taskId)) {
-                $scope.visibleGroups = {};
+                $scope.visibleGroups = { TaskGroup1: false, TaskGroup2: false, TaskGroup3: false };
                 $scope.visibleGroups[group] = true;
+                foundGroup = true;
                 break;
             }
+        }
+        if (!foundGroup) {
+            // If the task is not found in any group, reset visibility
+            $scope.visibleGroups = { TaskGroup1: false, TaskGroup2: false, TaskGroup3: false };
         }
     };
 });
