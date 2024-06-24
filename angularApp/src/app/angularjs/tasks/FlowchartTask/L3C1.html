@@ -1,63 +1,72 @@
 <div ng-controller="DragDropController">
-    
-    
-    <table class="task-body">
-        <tr>
-            <h3>L3C1</h3>
-                Create a Flowchart Based on the Following Code Snippet
-            <td colspan="2" >
-                <div style="display: flex; flex-direction: row;">
-                    <div style="width: 80%;"><p  class="code-style">
-                        1   i = 1 
-                        2   while i < 6:
-                        3      if i == 3:
-                        4         break
-                        5      i += 1
-                    </p>
-                </div>
-                    <div >
-                        <button ng-click="howToUse()" style="font-size: 50pt;">?</button>
-                    </div>
-                    
-                </div>
-            </td>
+    <div  >
+        
+        <div class="flowchart-body">
+            <div class="flowtask-description"><h3>L3C1</h3>
+            <span>Create a flowchart based on the code below.</span></div>
+        <div class="flow-code " id="flow-code">   
+            <p  class="code-style" id="flow-code-style">
+            1   i = 1 
+            2   while i < 6:
+            3      if i == 3:
+            4         break
+            5      i += 1
+            </p>
+        </div>
+        <div class="flow-task-how-to-text">
+            <i class="fa-solid fa-question fa-2xl"></i>
+        </div>
+        <div class="flowchart-diagram" id="myDiagramDiv" style=" border:1px solid black; border-radius: 4px; background-color: #1e1e1e"></div>
+        <div class="flowchart-options">
+            <select ng-model="selectedLine" style="width: 150px; height: 40px;" ng-options="line for line in availableLines" style="width: 100px; height: 40px;">
+                <option value="" disabled selected>Select a line:</option>
+            </select>
+            <select ng-model="selectedShape" style="width: 150px; height: 40px;">
+                <option value="" disabled selected>Select a shape:</option>
+                <option value="Ellipse"><p> &#x1F785; Terminal</p></option>
+                <option value="Rectangle"><b>&#x25AD;</b> Process</option>
+                <option value="Diamond">&#x25C7; Condition</option>
+            </select>
+            <button ng-click="addNode()" class="check-button">Add Node</button>
+            <button ng-click="refresh()" class="check-button">Refresh</button>
+        </div>
+        <div class="flowchart-buttons button-check-hint">
+            <!-- <button ng-click="deleteSelected()" class="check-button">Delete Selected</button> -->
             
+            <button ng-click="checkFlowchart()" class="check-button">Check</button>
+            <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled" class="button-with-progress">
+                <span class="hint-text"> <i class="fas fa-lightbulb"></i>Hint</span>
+                <span ng-show="hintButtonDisabled" class="progress-bar-hint"></span>
+            </button>
+        </div>
+        
+        <div class="how-to-flow">
             
-            
-        </tr>
-        <tr>
-            <td colspan="2">
-                <div id="myDiagramDiv" style="width:100%; height:500px; border:1px solid black; border-radius: 4px; background-color: rgb(38, 38, 38)"></div>
-            </td>
-        </tr>
-        <tr>
-            <td class="flow-options">
-                <select ng-model="selectedLine" ng-options="line for line in availableLines" style="width: 100px; height: 40px;"></select>
-                <select ng-model="selectedShape" style="width: 100px; height: 40px;">
-                    <option value="Rectangle">Process</option>
-                    <option value="Diamond">Condition</option>
-                </select>
-                <button ng-click="addNode()" style="width: 100px; height: 40px;">Add Node</button>
-            </td>
-            <td class="button-check-hint">
-                
-                <button ng-click="refresh()" class="check-button">Refresh</button>
-                <button ng-click="checkFlowchart()" class="check-button">Check</button>
-                <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled" class="button-with-progress">
-                    <span class="hint-text">Hint</span>
-                    <span ng-show="hintButtonDisabled" class="progress-bar-hint"></span>
-                </button>
-            </td>
-        </tr>
-    </table>
+            <span>1. Select a line of code you want to place on the Canvas.</span>
+            <span>2. Select the Shape for the action the line of code represents:</span>
+            <div class="shape-explanation">
+                <span><b>&#x1F785;</b>The oval terminator symbol indicates the starting or ending point of a system.</span>
+                <span><b>&#x25AD;</b>A rectangle box represents actions and basic within the process.</span>
+                <span><b>&#x25C7;</b>The diamond shaped descision symbol represents a point, requiring a choice to proceed.</span>
+            </div>
+            <span>3. When you are happy with your selection, click on the <kbd>Add node</kbd>-button to place it.</span>
+            <span>4. To draw an arrow from one node to another, hold the left mousebutton on a node and drag it to the one it should connect to.</span>
+            <span>5. Right click on an Arrow to add "True" or "False" for conditionl statements.</span>
+            <span>To delete an element, you select it and press the <kbd>Del</kbd>-key on your keyboard or you can start over by clicking the <kbd>Refresh</kbd>-button</span>
+        </div>
+        
+        
+        
+    </div>    
     <div class="hint-position">
         <div class="hint-navigation" ng-show="hintText">
-            <div class="hint-text" ng-bind-html="hintText">{{ hintText }}</div>
+            <div class="hint-text">{{ hintText }}</div>
             <div class="buttons" ng-show="!noButtonsOnFeedback">
-                <button ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
-                <button ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+                <button class="hint-button-prev" ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
+                <button class="hint-button-next" ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
             </div>
             <button ng-show="noButtonsOnFeedback && hintsGiven" ng-click="backToHints()">Back to Hints</button>
         </div>
     </div>
-</div>
+    </div>
+    </div>
