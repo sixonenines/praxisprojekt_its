@@ -79,7 +79,11 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     $scope.checkCheat = {
         "V1C3" : {
             keywords: ['while'],
-            hint: "You are missing the while loop. Include it in your code and try again"
+            hint: "You are missing the while loop. Include it in your code and try again,"
+        },
+        "V2C2" : {
+            keywords: ['def'],
+            hint: "You are missing the definition (def). Include it in your code and try again. "
         },
         "L2C2" : {
             keywords: ['for'],
