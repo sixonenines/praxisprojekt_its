@@ -182,11 +182,11 @@ img.python-tutor {
 }
 
 .progress-container {
-    width: 100%;
+    width: 90%;
     /* Breite des Container-Elements */
     text-align: center;
     /* Zentriere den Inhalt horizontal */
-    height: 30px;
+    margin-left: 5%;
 }
 
 
@@ -196,15 +196,15 @@ img.python-tutor {
     background-color: #83E6EB;
     border-radius: 10px;
     transition: width 0.3s ease-in-out;
-    margin: 0 20px;
+    /*margin: 0 20px;*/
 }
 
 .borderProgressBar {
     border: 2px solid white;
     height: 20px;
     border-radius: 10px;
-    margin: 0 20px;
-    margin-top: -31px;
+    /*margin: 0 20px;*/
+    margin-top: -21.5px;
 }
 
 
