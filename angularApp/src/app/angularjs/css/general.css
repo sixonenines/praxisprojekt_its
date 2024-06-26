@@ -75,6 +75,7 @@ img.python-tutor {
     max-width: 35%;
     border-radius: 5px;
     min-height: 30px;
+    z-index: 50;
 }
 
 
@@ -1123,11 +1124,11 @@ textarea{
 .flowchart-body {
     display: grid;
     font-family: monospace;
-    grid-template-columns: 40% 15% 35%;
-    grid-template-rows: max-content max-content 600px  50px ;
+    grid-template-columns: max-content 15% 600px;
+    grid-template-rows: max-content max-content 1fr  50px ;
     grid-template-areas: 
     "flowtask-description flowtask-description ."
-      "flow-code flow-code flow-task-how-to-text"
+      "flow-code flow-code how-to-flow"
       "flowchart-diagram flowchart-diagram how-to-flow"
       
       "flowchart-options flowchart-options flowchart-buttons";
@@ -1137,15 +1138,18 @@ textarea{
     width: 100%;
     min-width: 55%;
     max-height: 100%;
+    
   }
+
+ 
   .flow-task-how-to-text {
-    grid-area: flow-task-how-to-text;
+    
     background-color: #1e1e1e;
-    margin-top: 5px;
+    
     margin-left: 5px;
     text-align: center;
-    padding: 50px;
-    border-radius: 5px 5px 0px 0px;
+    padding: 30px;
+    
   }
   .flow-task-how-to-text i {
     color: #b4b4b4;
@@ -1164,12 +1168,17 @@ textarea{
     
   }
   #flow-code-style {
-    padding: 0 !important;
-    margin:  5px 0 !important;
+    padding: 0 ;
+    margin:  5px 0 ;
   }
 
   .flowchart-diagram {
     grid-area: flowchart-diagram;
+    display: grid;
+    margin-bottom: 5px;
+    
+    
+    
     
   }
   
@@ -1183,6 +1192,7 @@ textarea{
     flex-direction: row;
     gap: 5px;
     justify-content: stretch;
+    width: fit-content;
   }
 
   .flowchart-options option{
@@ -1206,9 +1216,12 @@ textarea{
     padding: 30px;
     background-color: #1e1e1e;
     color: #d0d0d0;
-    height: 540px;
-    border-radius:0px 0px 5px 5px ;
+    height: 500px;
+    border-radius: 5px ;
     margin-left: 5px;
+    margin-top: 5px;
+    min-height: 500px;
+    min-width: 400px;
   }
   .how-to-flow span {
     display: inline-block;
@@ -1238,4 +1251,4 @@ kbd {
     white-space: nowrap;
   }
 
-  /* *{border: 1px solid red;} */
+  *{border: 1px solid red;}

@@ -170,76 +170,109 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
 
     $scope.prevTask = function () {
         if ($scope.currentTaskIndex > 0) {
-            $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
-            $scope.updateVisibleGroup($scope.currentTask.id);
+            // Find the current task group
+            var currentTaskGroup = null;
+            var taskGroups = Object.keys(taskGroupsByDifficulty[$scope.selectedExperienceLevel]);
+            for (var i = 0; i < taskGroups.length; i++) {
+                if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][taskGroups[i]].includes($scope.currentTask.id)) {
+                    currentTaskGroup = taskGroups[i];
+                    break;
+                }
+            }
     
-            var prevTaskID = $scope.tasks[$scope.currentTaskIndex - 1].id;
-            var taskFound = false; // Flag to check if task is found
+            if (currentTaskGroup === null) {
+                console.log("Current task does not belong to any task group");
+                return;
+            }
     
-            for (var taskGroup in taskGroupsByDifficulty[$scope.selectedExperienceLevel]) {
-                if (taskGroupsByDifficulty[$scope.selectedExperienceLevel].hasOwnProperty(taskGroup)) {
-                    if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][taskGroup].includes(prevTaskID)) {
-                        $scope.currentTaskIndex--;
-                        taskFound = true; // Task found, set the flag
-                        break;
-                    } else {
-                        for (var i = $scope.currentTaskIndex - 1; i >= 0; i--) { // Start from the previous index
-                            var prevTaskID1 = $scope.tasks[i].id;
-                            if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][taskGroup].includes(prevTaskID1)) {
-                                $scope.currentTaskIndex = i;
-                                taskFound = true; // Task found, set the flag
-                                break;
-                            }
+            var taskFound = false;
+    
+            // Look for the previous task within the current task group
+            for (var i = $scope.currentTaskIndex - 1; i >= 0; i--) {
+                var prevTaskID = $scope.tasks[i].id;
+                if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][currentTaskGroup].includes(prevTaskID)) {
+                    $scope.currentTaskIndex = i;
+                    taskFound = true;
+                    break;
+                }
+            }
+    
+            // If no more tasks in the current group, move to the previous group
+            if (!taskFound) {
+                var currentGroupIndex = taskGroups.indexOf(currentTaskGroup);
+                for (var j = currentGroupIndex - 1; j >= 0; j--) {
+                    var prevGroup = taskGroups[j];
+                    for (var i = $scope.tasks.length - 1; i >= 0; i--) {
+                        var prevTaskID = $scope.tasks[i].id;
+                        if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][prevGroup].includes(prevTaskID)) {
+                            $scope.currentTaskIndex = i;
+                            taskFound = true;
+                            break;
                         }
                     }
-                }
-                if (taskFound) {
-                    break;
+                    if (taskFound) {
+                        break;
+                    }
                 }
             }
     
             if (taskFound) {
                 $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
+                $scope.updateVisibleGroup($scope.currentTask.id);
             } else {
                 console.log("Keine passende Aufgabe gefunden");
             }
         }
     };
     
-
     $scope.nextTask = function () {
         if ($scope.currentTaskIndex < $scope.tasks.length - 1) {
-            $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
-            $scope.updateVisibleGroup($scope.currentTask.id);
+            var currentTaskGroup = null;
+            var taskGroups = Object.keys(taskGroupsByDifficulty[$scope.selectedExperienceLevel]);
+            for (var i = 0; i < taskGroups.length; i++) {
+                if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][taskGroups[i]].includes($scope.currentTask.id)) {
+                    currentTaskGroup = taskGroups[i];
+                    break;
+                }
+            }
     
-            var nextTaskID = $scope.tasks[$scope.currentTaskIndex + 1].id;
+            if (currentTaskGroup === null) {
+                console.log("Current task does not belong to any task group");
+                return;
+            }
     
-            var taskFound = false; // Flag to check if task is found
+            var taskFound = false;
     
-            for (var taskGroup in taskGroupsByDifficulty[$scope.selectedExperienceLevel]) {
-                if (taskGroupsByDifficulty[$scope.selectedExperienceLevel].hasOwnProperty(taskGroup)) {
-                    if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][taskGroup].includes(nextTaskID)) {
-                        $scope.currentTaskIndex++;
-                        taskFound = true; // Task found, set the flag
-                        break;
-                    } else {
-                        for (var i = $scope.currentTaskIndex + 1; i < $scope.tasks.length; i++) { // Start from the next index
-                            var nextTaskID1 = $scope.tasks[i].id;
-                            if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][taskGroup].includes(nextTaskID1)) {
-                                $scope.currentTaskIndex = i;
-                                taskFound = true; // Task found, set the flag
-                                break;
-                            }
+            for (var i = $scope.currentTaskIndex + 1; i < $scope.tasks.length; i++) {
+                var nextTaskID = $scope.tasks[i].id;
+                if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][currentTaskGroup].includes(nextTaskID)) {
+                    $scope.currentTaskIndex = i;
+                    taskFound = true;
+                    break;
+                }
+            }
+    
+            if (!taskFound) {
+                var currentGroupIndex = taskGroups.indexOf(currentTaskGroup);
+                for (var j = currentGroupIndex + 1; j < taskGroups.length; j++) {
+                    var nextGroup = taskGroups[j];
+                    for (var i = 0; i < $scope.tasks.length; i++) {
+                        var nextTaskID = $scope.tasks[i].id;
+                        if (taskGroupsByDifficulty[$scope.selectedExperienceLevel][nextGroup].includes(nextTaskID)) {
+                            $scope.currentTaskIndex = i;
+                            taskFound = true;
+                            break;
                         }
                     }
-                }
-                if (taskFound) {
-                    break;
+                    if (taskFound) {
+                        break;
+                    }
                 }
             }
     
             if (taskFound) {
                 $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
+                $scope.updateVisibleGroup($scope.currentTask.id);
             } else {
                 console.log("Keine passende Aufgabe gefunden");
             }

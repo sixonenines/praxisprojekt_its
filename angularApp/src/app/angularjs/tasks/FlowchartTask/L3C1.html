@@ -13,10 +13,8 @@
             5      i += 1
             </p>
         </div>
-        <div class="flow-task-how-to-text">
-            <i class="fa-solid fa-question fa-2xl"></i>
-        </div>
-        <div class="flowchart-diagram" id="myDiagramDiv" style=" border:1px solid black; border-radius: 4px; background-color: #1e1e1e"></div>
+        
+        <div class="flowchart-diagram" id="myDiagramDiv" style="height: 100%; border:1px solid black; border-radius: 4px; background-color: #1e1e1e"></div>
         <div class="flowchart-options">
             <select ng-model="selectedLine" style="width: 150px; height: 40px;" ng-options="line for line in availableLines" style="width: 100px; height: 40px;">
                 <option value="" disabled selected>Select a line:</option>
@@ -41,7 +39,9 @@
         </div>
         
         <div class="how-to-flow">
-            
+            <div class="flow-task-how-to-text">
+                <i class="fa-solid fa-question fa-2xl"></i>
+            </div>
             <span>1. Select a line of code you want to place on the Canvas.</span>
             <span>2. Select the Shape for the action the line of code represents:</span>
             <div class="shape-explanation">
