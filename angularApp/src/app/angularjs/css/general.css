@@ -1252,3 +1252,9 @@ kbd {
   }
 
   *{border: 1px solid red;}
+
+
+  .check-button.disabled {
+    background-color: grey !important;
+    cursor: not-allowed;
+}

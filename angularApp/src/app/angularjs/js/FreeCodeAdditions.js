@@ -9,8 +9,16 @@ document.addEventListener('DOMContentLoaded', () => {
             alert("You were running an infinite loop, the page will now refresh. Press ok and wait for the page to reload.");
             window.location.reload(true);
         }
+
+
         else {
         }
+    }
+
+    function enableCheckButton() {
+        const checkButton = document.querySelector('.check-button');
+        checkButton.classList.remove('disabled');
+        checkButton.removeAttribute('disabled');
     }
 
 // Create a MutationObserver to watch for the addition of dynamicDiv
@@ -20,14 +28,12 @@ const observer = new MutationObserver((mutationsList, observer) => {
             // Check if contentDivs has been added
             const contentDivs = document.getElementsByClassName('mpy-editor-output')[0];
             if (contentDivs) {
-                //Hier checkt der Observer, ob ein neuer ContentDiv geadded wurde, das heißt hier kannst du das einstellen, dass der Button noch ausgegraut ist
-                console.log("Check Button ausgegraut")
                 // Set up a new observer for the contentDivs's children
                 const contentObserver = new MutationObserver((mutationsList, observer) => {
                     for (let mutation of mutationsList) {
                         if (mutation.type === 'childList') {
                             //Hier dann den Check Button nicht mehr ausgrauen
-                            console.log("Check Button nicht mehr ausgegraut")
+                            enableCheckButton();
                             checkAndClearDiv();
                         }
                     }
