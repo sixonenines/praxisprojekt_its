@@ -5,54 +5,56 @@
             <td colspan="2">
                 At the moment, the code is faulty and does not provide the requested output! <br>
                 Identify the error(s) and fix the code. Rewrite the code in the code editor.
-            <p class="code-style">
-
+                <span class="code-style">
     count = 1
-    while (count<1):
-        print("The count is")
-    print("Finished")
-            </p> 
-                    
-            
-            <h>We want to have the following output of a code snippet:</h>
-            <p class="code-style">
-1               The count is 1             
-2               The count is 2
-3               The count is 3
-4               The count is 4
-5               The count is 5
-6               Finished  
-            </p>
+    while (count<1): print("The count is") print("Finished") </span>
+                        <h>We want to have the following output of a code snippet:</h>
+                        <span class="code-style">
+    1   The count is 1
+    2   The count is 2
+    3   The count is 3
+    4   The count is 4
+    5   The count is 5
+    6   Finished
+                        </span>
             </td>
         </tr>
         <tr class="freeCodeInput">
-            <script type="mpy-editor" env="test_env" setup>
-            </script>
+            <td>
+                <div
+                    ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
+                    <script type="mpy-editor" env="test_env" setup>
+                </script>
 
-            
-            <script id="L4C2" type="mpy-editor" env="test_env">
-            count = 1
-            while (count<1):
-                print("The count is")
-            print("Finished")
-            </script>
+
+                    <script id="L4C2" type="mpy-editor" env="test_env">
+                count = 1
+                while (count<1):
+                    print("The count is")
+                print("Finished")
+                </script>
+                </div>
+            </td>
         </tr>
         <tr>
             <td class="button-check-hint">
-                <button ng-click="checkFreeCodeAnswer()" class="check-button disabled"><i class="fas fa-check"></i>Check</button>
-                <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled" class="button-with-progress">
+                <button ng-click="checkFreeCodeAnswer()" class="check-button disabled"><i
+                        class="fas fa-check"></i>Check</button>
+                <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled"
+                    class="button-with-progress">
                     <span class="hint-text"> <i class="fas fa-lightbulb"></i>Hint</span>
                     <span ng-show="hintButtonDisabled" class="progress-bar-hint"></span>
                 </button>
             </td>
-        </tr>          
+        </tr>
     </table>
     <div class="hint-position">
         <div class="hint-navigation" ng-show="hintText">
             <div class="hint-text">{{ hintText }}</div>
             <div class="buttons" ng-show="!noButtonsOnFeedback">
                 <button class="hint-button-prev" ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
-                <button class="hint-button-next" ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+                <button class="hint-button-next" ng-click="nextHint()"
+                    ng-disabled="hintIndex >= maxHintIndex">→</button>
             </div>
             <button ng-show="noButtonsOnFeedback && hintsGiven" ng-click="backToHints()">Back to Hints</button>
         </div>

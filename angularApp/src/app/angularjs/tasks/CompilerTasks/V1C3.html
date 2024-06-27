@@ -3,19 +3,22 @@
         <tr>
             <h3>V1C3</h3>
             <td colspan="2">
-                Write a loop that sums the values 1 through "end", inclusive. 
+                Write a loop that sums the values 1 through "end", inclusive.
                 The end variable is already initialized. <br>
-                Do not include input statements and do not define "end" to a specific value. 
+                Do not include input statements and do not define "end" to a specific value.
                 The result should be printed without any additional text.
             </td>
         </tr>
 
         <tr class="freeCodeInput">
-            <script type="mpy-editor" env="test_env" setup>
+            <td>
+                <div
+                    ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
+
+                    <script type="mpy-editor" env="test_env" setup>
                 end = 10
             </script>
-
-            <script id="V1C3" type="mpy-editor" env="test_env">
+                    <script id="V1C3" type="mpy-editor" env="test_env">
                 sum = 0
                 i = 0
                 while i <= end:
@@ -23,23 +26,28 @@
                     i +=1
                 print(sum)
             </script>
+                </div>
+            </td>
         </tr>
         <tr>
             <td class="button-check-hint">
-                <button ng-click="checkFreeCodeAnswer()" class="check-button disabled"><i class="fas fa-check"></i>Check</button>
-                <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled" class="button-with-progress">
+                <button ng-click="checkFreeCodeAnswer()" class="check-button disabled"><i
+                        class="fas fa-check"></i>Check</button>
+                <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled"
+                    class="button-with-progress">
                     <span class="hint-text"> <i class="fas fa-lightbulb"></i>Hint</span>
                     <span ng-show="hintButtonDisabled" class="progress-bar-hint"></span>
                 </button>
             </td>
-        </tr>          
+        </tr>
     </table>
     <div class="hint-position">
         <div class="hint-navigation" ng-show="hintText">
             <div class="hint-text">{{ hintText }}</div>
             <div class="buttons" ng-show="!noButtonsOnFeedback">
                 <button class="hint-button-prev" ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
-                <button class="hint-button-next" ng-click="nextHint()" ng-disabled="hintIndex >= maxHintIndex">→</button>
+                <button class="hint-button-next" ng-click="nextHint()"
+                    ng-disabled="hintIndex >= maxHintIndex">→</button>
             </div>
             <button ng-show="noButtonsOnFeedback && hintsGiven" ng-click="backToHints()">Back to Hints</button>
         </div>
