@@ -11,22 +11,28 @@
     <div>
 
       <div class="disclaimer">
-        <label>
-          <input type="checkbox" formControlName="disclaimerAccepted">
-        </label>
-        Dear Participant,
-        In the context of our research project we would like to investigate (((((((Something somethinng)))))))
-
-        Therefore we have developed this web application. In the following you will use our intelligent programming
-        tutor to try and solve different Python exercises.
-
-        All data is collected anonymously, it cannot be assigned to your person and will be treated strictly
-        confidential.
-
-        Thank you for your participation.
+        <table>
+          <tr>
+            <td>
+              <label>
+                <div  class="disclaimerCheckbox">
+                  <input type="checkbox" formControlName="disclaimerAccepted">
+                </div>
+              </label>
+            </td>
+            <td class="disclaimerText">
+              Dear Participant,
+              As part of our research project, we aim to investigate your ability to solve Python exercises using our
+              intelligent programming tutor.
+              All data is collected anonymously and treated with strict confidentiality. Thank you for your
+              participation.
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
-    <button type="submit" class="login-button" [disabled]="!signupForm.get('disclaimerAccepted')?.value">Sign Up</button>
+    <button type="submit" class="login-button" [disabled]="!signupForm.get('disclaimerAccepted')?.value">Sign
+      Up</button>
   </form>
 </div>
 <div class="login-container">
