@@ -233,7 +233,7 @@ app.factory('FeedbackService', function($timeout) {
         // Nach 5 Sek. wieder zu default Bild
         $timeout(function() {
             imageElement.src = 'assets/pythonTutor.png'; 
-        }, 5000);
+        }, 2000);
     };
 
     return this;

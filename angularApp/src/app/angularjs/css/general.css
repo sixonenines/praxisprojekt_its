@@ -143,8 +143,8 @@ img.python-tutor {
 
 
 .submenu div:hover {
-    background-color: #e9ecef;
-    color: #001029 !important;
+    background-color: #34495E;
+    color: white !important;
 }
 
 .active {
@@ -664,7 +664,7 @@ textarea:focus {
 
 /* Container für den Benutzerinfo-Bereich */
 .user-info-container {
-    background-color: #8497b5;
+    background-color: #B9CDDA;
     /* Hintergrundfarbe */
     padding: 10px;
     border-radius: 4px;
@@ -679,10 +679,11 @@ textarea:focus {
 .user-name {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
-    color: #001029;
+    color: black;
     /* Dunkles Blaugrün für Text */
     margin-bottom: 5px;
     /* Abstand unten */
+    text-align: center;
 }
 
 /* Stil für das Schwierigkeitsgrad-Dropdown */
@@ -871,7 +872,7 @@ textarea:focus {
 
 /* Current Group Style */
 .current-group {
-    background-color: #8497b5;
+    background-color: #B9CDDA80;
     /* Dunkles Grau für aktuelle Gruppe */
 }
 
@@ -901,7 +902,7 @@ tr {
     /*border-right: 4px solid #34495e;
     border-bottom: 4px solid #34495e;*/
     border-bottom-right-radius: 10px;
-    background-color: #d3e7ee;
+    background-color: #B9CDDA;
     display: flex;
 
 }
@@ -1276,4 +1277,8 @@ kbd {
 }
 
 .disclaimerCheckbox{
+}
+
+.user-icon{
+    color:black;
 }

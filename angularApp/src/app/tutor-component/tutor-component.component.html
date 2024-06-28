@@ -9,7 +9,8 @@
         <td class="tutorTitle underline">Python Tutor</td>
         <td class="user-info-container" rowspan="2">
             <div class="user-name">
-                <h1 [(ngModel)]="currentUsername"></h1>{{currentUsername}}
+               
+                <h1 [(ngModel)]="currentUsername"></h1> <i class="fas fa-user user-icon" style="margin-right: 5px;"></i>{{currentUsername}}
             </div>
             <div class="difficulty-dropdown">
                 <select ng-model="selectedExperienceLevel" ng-change="onDifficultyChangeTaskView()">
