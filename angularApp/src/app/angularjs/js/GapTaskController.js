@@ -76,9 +76,9 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
         var taskId = $scope.$parent.currentTask.id;
         if (taskId === "F1C1"){
             var isCorrect = $scope.isCorrectAnswer1 && $scope.isCorrectAnswer2;
-        } else {
-            var isCorrect = $scope.isCorrectAnswer1;
-        }
+            var isPartCorrect = $scope.isCorrectAnswer1 || $scope.isCorrectAnswer2;
+        } 
+        
         
         $scope.noButtonsOnFeedback = true;
     
@@ -88,7 +88,11 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
                 $scope.hintText = $scope.positiveFeedbacks[0].text;
                 FeedbackService.updatePythonTutorImage('positive');
             }
-        } else {
+        } else if (isPartCorrect) {
+            FeedbackService.updatePythonTutorImage('positive');
+
+        }
+         else {
             $scope.negativeFeedbacks = FeedbackService.getNegativeFeedbacks(taskId);
             if ($scope.negativeFeedbacks.length > 0) {
                 var randomIndex = Math.floor(Math.random() * $scope.negativeFeedbacks.length);

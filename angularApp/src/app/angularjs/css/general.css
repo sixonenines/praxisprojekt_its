@@ -562,7 +562,7 @@ textarea:focus {
     margin: auto;
     /* Zentrieren auf der Seite */
     padding: 20px;
-    background-color: #FFFFFF;
+    background-color: #fff;
     /* Hintergrundfarbe */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -1124,7 +1124,7 @@ textarea{
 .flowchart-body {
     display: grid;
     font-family: monospace;
-    grid-template-columns: max-content 15% 600px;
+    grid-template-columns: 30% 13% 450px;
     grid-template-rows: max-content max-content 1fr  50px ;
     grid-template-areas: 
     "flowtask-description flowtask-description ."
@@ -1139,50 +1139,49 @@ textarea{
     min-width: 55%;
     max-height: 100%;
     
-  }
-
+}
  
-  .flow-task-how-to-text {
+.flow-task-how-to-text {
     
     background-color: #1e1e1e;
-    
+    font-size: 10px;
     margin-left: 5px;
     text-align: center;
-    padding: 30px;
+    padding: 20px;
     
-  }
-  .flow-task-how-to-text i {
-    color: #b4b4b4;
-    
-   
+}
 
-  }
-  .flowtask-description {
+.flow-task-how-to-text i {
+    color: #b4b4b4
+
+}
+
+.how-to-flow span {
+    font-size: 14px;
+}
+
+.flowtask-description {
     grid-area: flowtask-description;
-  }
+}
 
-  .flow-code {
+.flow-code {
     grid-area: flow-code;
     width: 100%;
     height: max-content;
-    
-  }
-  #flow-code-style {
+}
+
+#flow-code-style {
     padding: 0 ;
     margin:  5px 0 ;
-  }
+}
 
-  .flowchart-diagram {
+.flowchart-diagram {
     grid-area: flowchart-diagram;
     display: grid;
-    margin-bottom: 5px;
-    
-    
-    
-    
-  }
+    margin-bottom: 5px; 
+}
   
-  .flowchart-options {
+.flowchart-options {
     grid-area: flowchart-options;
     height: max-content;
     float: left;
@@ -1193,22 +1192,23 @@ textarea{
     gap: 5px;
     justify-content: stretch;
     width: fit-content;
-  }
+}
 
-  .flowchart-options option{
+.flowchart-options option{
     display: table-column;
-  }
+}
   
-  .flowchart-buttons {
+.flowchart-buttons {
     grid-area: flowchart-buttons;
     display: table-cell;
     text-align: right;
     margin-top: 5px;
-  }
+    
+}
 
  
   
-  .how-to-flow {
+.how-to-flow {
     grid-area: how-to-flow;
     display: table-column;
     border-left-color: #d0d0d0;
@@ -1222,18 +1222,20 @@ textarea{
     margin-top: 5px;
     min-height: 500px;
     min-width: 400px;
-  }
-  .how-to-flow span {
+}
+
+.how-to-flow span {
     display: inline-block;
     color: #d0d0d0;
     
 
-  }
-  .shape-explanation span {
+}
+
+.shape-explanation span {
     display: inline-block;
     margin: 5px;
 
-  }
+}
 
 kbd {
     background-color: #eee;
@@ -1249,12 +1251,12 @@ kbd {
     line-height: 1;
     padding: 2px 4px;
     white-space: nowrap;
-  }
+}
 
-  /*{border: 1px solid red;}*/
+/* *{border: 1px solid red;} */
 
 
-  .check-button.disabled {
+.check-button.disabled {
     background-color: grey !important;
     cursor: not-allowed;
 }
@@ -1282,3 +1284,78 @@ kbd {
 .user-icon{
     color:black;
 }
+
+.tutor-general  {
+    border-collapse: collapse;
+}
+
+
+/* Login */
+
+
+.tail-end {
+    position: absolute;
+    top: 8vh; 
+    left: 24vw; 
+    width: 18vw; 
+    height: auto; 
+    overflow: hidden;
+    z-index: 1;
+}
+
+.tail-right {
+    position: absolute;
+    top: 6vh; 
+    left: 51vw; 
+    width: 17vw; 
+    height: auto; 
+    overflow: hidden;
+    z-index: 2;
+}
+
+.tail-left {
+    position: absolute;
+    top: 40vh; 
+    left: 36vw; 
+    width: 17vw; 
+    height: auto; 
+    overflow: hidden;
+    z-index: 3;
+}
+
+.python-head {
+    position: absolute;
+    top: 44vh; 
+    left: 54vw; 
+    width: 26vw; 
+    height: auto; 
+    overflow: hidden;
+    z-index: 2;
+}
+
+.login-background.wrapper {
+    min-width: 400px; 
+    overflow: hidden;
+    display: block;
+    position: absolute;
+    width: 100vw; 
+    height: auto; 
+    min-height: 850px;
+    max-height: 1200;
+}
+
+#disclaimer {
+    position: relative;
+    z-index: 3;
+    width: 33vw;
+    height: auto;
+}
+
+.login-container {
+    position: relative;
+    z-index: 1; 
+    width: 33vw;
+    height: auto;
+}
+
+
