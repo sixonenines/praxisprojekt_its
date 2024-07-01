@@ -14,20 +14,11 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     $scope.hintsGiven = false; 
 
     $scope.errorMessages = {
-        "F1C2":[ 
+        "F1C2":
         {
-            keyPhrase: 'unsupportedoperandtype(s)for+:',
-            hint: "Ensure that the function 'add5' correctly returns a tuple of two integers."
-        },
-        {
-            keyPhrase: 'NameError: name a isnt defined',
-            hint: " Ensure that you are passing the variables a and b to the add5 function correctly. The function call should include two arguments."
-        },
-        {
-            keyPhrase: 'add5() takes 2 positional arguments but 1 were given',
+            keyPhrase: 'positionalarguments',
             hint: "Ensure that you are passing the variables a and b to the add5 function correctly."
-        }
-        ],
+        },
 
         "F1C3": {
             keyPhrase: 'SyntaxError:invalidsyntax',
@@ -35,25 +26,19 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         },
 
         "F2C3": {
-            keyPhrase: 'NameError:name\'x\'isnotdefined',
+            keyPhrase: 'NameError:nameisnotdefined',
             hint: "Make sure all variables are defined before you use them in your function."
         },
 
         "F5C2": {
-            keyPhrase: 'TypeError:show_employee()takes',
+            keyPhrase: 'TypeError',
             hint: "Check if all required arguments are provided when calling 'show_employee'."
         },
 
-        "L2C2": [
-            {
+        "L2C2": {
             keyPhrase: 'SyntaxError:invalidsyntax',
             hint: "Ensure your 'for' loop uses the 'range' function correctly. It should start at 2, end before 12, and increment by 2."
         },
-        { keyPhrase: 'SyntaxError:invalidsyntax',
-            hint: "Ensure there is a block before the 'print' statement that displays the value of the variable."
-
-        },
-        ],
 
         "L2C3": {
             keyPhrase: 'IndentationError:expectedanindentedblock',
@@ -61,17 +46,17 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         },
 
         "L4C2": {
-            keyPhrase: 'That`sit!r',
+            keyPhrase: 'Thatsit',
             hint: "Check the initialization of the loop variable and the loop condition. The loop should start at 1 and continue while the count is less than or equal to 5."
         },
 
         "V1C3": {
-            keyPhrase: 'AttributeError:\'NoneType\'objecthasnoattribute\'append\'',
+            keyPhrase: 'AttributeError',
             hint: "Ensure you are not trying to use 'append' on a variable that is 'None'. Initialize it as a list first."
         },
 
         "V2C2": {
-            keyPhrase: 'UnboundLocalError:localvariable\'c\'referencedbeforeassignment',
+            keyPhrase: 'UnboundLocalError',
             hint: "Remember to declare 'c' as a global inside the function if you want to modify the global variable 'c'."
         }
     };
