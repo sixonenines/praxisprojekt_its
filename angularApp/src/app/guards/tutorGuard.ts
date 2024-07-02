@@ -8,10 +8,10 @@ export const tutorGuard: CanActivateFn = (route, state) => {
   const  currentUsername = inject(AuthService).getCurrentUser();
   if (currentUsername === null) {
     const logIn = false
-    return logIn || router.navigate(['welcome']);
+    return logIn || router.navigateByUrl('/welcome');
   }
   else {
     const logIn= true
-    return logIn || router.navigate(['welcome']);
+    return logIn || router.navigateByUrl('/welcome');
   }
 }

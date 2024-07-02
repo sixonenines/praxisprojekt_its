@@ -9,7 +9,7 @@ export class AuthInterceptor implements HttpInterceptor {
   private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   constructor(private router: Router) {} 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
+    const StoredUser= localStorage.getItem("currentUser")
     return next.handle(request).pipe(catchError(err => {
       console.log('Error: '+ err.status);
       if (err.status === 401) {

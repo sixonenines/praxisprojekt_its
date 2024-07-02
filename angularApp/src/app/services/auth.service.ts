@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -12,8 +12,6 @@ export class AuthService {
   private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   public currentUser: Observable<any> = this.currentUserSubject.asObservable();
   public isLoggedIn: Observable<boolean> = this.currentUser.pipe(map(user => !!user));
-
-  private apiUrl = `http:localhost:5000/`;
 
   constructor(private http: HttpClient, private router: Router) {
     const storedUser = localStorage.getItem('currentUser');
@@ -36,7 +34,7 @@ export class AuthService {
       .pipe(
         catchError(error => {
           console.error('Signup error', error);
-          return throwError(error);;
+          return throwError(()=> new Error(error));
         })
       );
   }
@@ -45,13 +43,14 @@ export class AuthService {
     return this.http.post<any>('http://localhost:5000/login', { username, password })
       .pipe(
         map(response => {
-          if (response && response.data.user_id && response.data.token, response.data.experienceLevel, response.data.username) {
+          if (response && response.data.user_id && response.data.token, response.data.experienceLevel, response.data.username, response.data.solvedTasks) {
             const username = response.data.username
             const userid = response.data.user_id;
             const token  = response.data.token;
             const experienceLevel = response.data.experienceLevel;
-            localStorage.setItem('currentUser', JSON.stringify({ userid, username, token, experienceLevel }));
-            this.currentUserSubject.next({ userid, username, token, experienceLevel});
+            const solvedTasks = response.data.solvedTasks;
+            localStorage.setItem('currentUser', JSON.stringify({ userid, username, token, experienceLevel,solvedTasks }));
+            this.currentUserSubject.next({ userid, username, token, experienceLevel,solvedTasks});
             return { userid, token };
           } else {
             throw new Error('No token received');
@@ -59,7 +58,7 @@ export class AuthService {
         }),
         catchError(error => {
           console.error('Login failed', error);
-          return throwError(error);
+          return throwError(()=> new Error(error));
         })
       );
   }
@@ -73,16 +72,27 @@ export class AuthService {
   }
 
   changeExperienceLevel(userid: string,username: string,token: string,experienceLevel: string){
-    console.log(experienceLevel)
-    localStorage.setItem('currentUser', JSON.stringify({ userid, username,token, experienceLevel}));
-    this.currentUserSubject.next({ userid, username,token, experienceLevel});
-    return this.http.post<any>('http://localhost:5000/changeExpLevel', { userid, username,experienceLevel })
-    .pipe(
-      catchError(error => {
-        console.error('Signup error', error);
-        return throwError(error);;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json'
+    });
+    const options = {headers: headers};
+    let currentUserJSON = localStorage.getItem("currentUser");
+    if (currentUserJSON) {
+      let currentUserObj = JSON.parse(currentUserJSON)
+      currentUserObj.experienceLevel=experienceLevel
+      return this.http.post<any>('http://localhost:5000/changeExpLevel', { userid, username,experienceLevel }, options)
+      .pipe(
+        catchError(error => {
+          console.error('Signup error', error);
+          return throwError(()=> new Error(error));
       })
     );
+} else {
+  let error="Issue"
+  console.error('Signup error', error);
+  return throwError(()=> new Error(error));
+}
 }
   }
 

@@ -112,9 +112,10 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         var userAnswer = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
         var isCorrect = CorrectAnswerService.checkAnswer($scope.$parent.currentTask.id, userAnswer);
         //Logging
+        var token = UserInfoJson.token;
         var logged_data = {"task_form":"freecode_task","Input":code,"Output":userAnswer,"taskID":$scope.$parent.currentTask.id,"isCorrect":isCorrect,
             "username":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
-        window.logHelperFunction(logged_data);
+        window.logHelperFunction(logged_data,token);
         $scope.isCorrectAnswer = isCorrect;
         $scope.isAnswered = true;
         //Cheat Checker
@@ -175,9 +176,10 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         selectEditor="#".concat("",$scope.currentTask.id)
         var code = document.querySelector(selectEditor).code
         var userAnswer = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
+        var token = UserInfoJson.token
         var logged_data = {"clicked_hint":"clicked_hint","task_form":"freecode_task","Input":code,"Output":userAnswer,"TaskID":$scope.$parent.currentTask.id,"username":username,"timestamp":timestamp,
             "numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
-        window.logHelperFunction(logged_data);
+        window.logHelperFunction(logged_data,token);
         $scope.hintButtonDisabled = true;
         $scope.noButtonsOnFeedback = false; 
         $scope.hintsGiven = true;

@@ -22,9 +22,10 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         var UserInfoJson= JSON.parse(StoredUser)
         var experienceLevel = UserInfoJson.experienceLevel
         var username = UserInfoJson.username
+        var token = UserInfoJson.token;
         var logged_data = {"task_form":"free_text","userAnswer":userAnswer,"taskID":$scope.$parent.currentTask.id,
             "isCorrect":isCorrect,"username":username,"timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
-        window.logHelperFunction(logged_data);
+        window.logHelperFunction(logged_data,token);
         $scope.isAnswered = true;
         if (isCorrect) {
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
@@ -71,9 +72,10 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
         var UserInfoJson= JSON.parse(StoredUser)
         var experienceLevel = UserInfoJson.experienceLevel
         var username = UserInfoJson.username
+        var token = UserInfoJson.token
         var logged_data = {"clicked_hint":"clicked_hint","task_form":"free_text","userAnswer":userAnswer,"taskID":$scope.$parent.currentTask.id,"username":username,
             "timestamp":timestamp,"numHints":$scope.hintIndex, "experienceLevel":experienceLevel}
-        window.logHelperFunction(logged_data);
+        window.logHelperFunction(logged_data,token);
     
         // Dein bestehender Code für das Anzeigen des Hinweises
         var taskId = $scope.$parent.currentTask.id;

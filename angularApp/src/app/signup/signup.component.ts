@@ -43,7 +43,7 @@ export class SignupComponent {
             // Handle successful signup
             console.log('Signup successful');
             // Redirect the user
-            this.router.navigate(['/signup']);
+            this.router.navigateByUrl('/signup');
           },
           error: error => {
             // Handle signup error

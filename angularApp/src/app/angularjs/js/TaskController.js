@@ -165,6 +165,16 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         { id: 'F2C3', templateUrl: "app/angularjs/tasks/CompilerTasks/F2C3.html", isCompleted: false, status: 'not_answered' },
     ];
 
+    var StoredUser= localStorage.getItem("currentUser");
+    var UserInfoJson= JSON.parse(StoredUser);
+    var solvedTaskList= UserInfoJson.solvedTasks
+    solvedTaskList.forEach(id => {
+        const foundID = $scope.tasks.find(Taskid => Taskid.id === id );
+        if (foundID) {
+            foundID.status= "correct";
+        }
+    })
+
     $scope.currentTaskIndex = 0;
     $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
 
@@ -313,11 +323,12 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         var UserInfoJson = JSON.parse(StoredUser)
         var experienceLevel = UserInfoJson.experienceLevel
         var username = UserInfoJson.username
+        var token = UserInfoJson.token
         var task = $scope.tasks.find(function (t) {
             return t.id === taskId;
         });
         var logged_data = { "taskID": taskId, "username": username, "statusOfTask": task.status, "timestamp": timestamp, "experience": experienceLevel }
-        window.logHelperFunction(logged_data);
+        window.logHelperFunction(logged_data,token);
         $scope.isAnswered = true;
 
 
@@ -378,6 +389,14 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
             task.status = status;
             task.isCompleted = (status === 'correct');
             $scope.calculateProgress(taskID, false);
+            if (task.status==="correct") {
+                var StoredUser= localStorage.getItem("currentUser");
+                var UserInfoJson= JSON.parse(StoredUser);
+                var jwt_token=UserInfoJson.token
+                data={"taskID":taskID}
+                console.log(jwt_token,data)
+                window.updateSolvedExercisesList(data,jwt_token)
+            }
         }
     };
 

@@ -32,8 +32,8 @@ export class TutorComponentComponent implements OnInit{
 
   ngOnInit(): void {
     (window as any).loggingService = this.loggingService;
-    (window as any).logHelperFunction = function(data: { [key: string]: any }) {
-      this.loggingService.updateLogs(data).subscribe(
+    (window as any).logHelperFunction = function(data: { [key: string]: any}, token:string ) {
+      this.loggingService.updateLogs(data, token).subscribe(
         (response:any) => {
           console.log('Log update successful', response);
         },
@@ -41,16 +41,26 @@ export class TutorComponentComponent implements OnInit{
           console.error('Log update failed', error);
   }
 );
+};
+  (window as any).updateSolvedExercisesList = function(data: { [key: string]: any },token:string) {
+  this.loggingService.updateSolvedExercises(data,token).subscribe(
+    (response:any) => {
+      console.log('Updated solved exercise list successfully', response);
+    },
+    (error: any) => {
+      console.error('Error updating exercise list', error);
+}
+);
 }
 }
   logout(): void {
     this.authservice.logout();
   }
   onDifficultyChange() {
-  console.log('Selected Difficulty:', this.selectedExperienceLevel.name);
+  console.log('Selected Difficulty:', this.selectedExperienceLevel);
     const StoredUser= localStorage.getItem("currentUser")
     const UserInfoJson= StoredUser ? JSON.parse(StoredUser) : null;
-    const experienceLevel = String(this.selectedExperienceLevel.name);
+    const experienceLevel = String(this.selectedExperienceLevel);
     const username = String(UserInfoJson.username);
     const userid = String(UserInfoJson.userid);
     const token = String(UserInfoJson.token);

@@ -13,7 +13,7 @@
                 <h1 [(ngModel)]="currentUsername"></h1> <i class="fas fa-user user-icon" style="margin-right: 5px;"></i>{{currentUsername}}
             </div>
             <div class="difficulty-dropdown">
-                <select ng-model="selectedExperienceLevel" ng-change="onDifficultyChangeTaskView()">
+                <select ng-model="selectedExperienceLevel" [(ngModel)]="selectedExperienceLevel" (ngModelChange)="onDifficultyChange()" ng-change="onDifficultyChangeTaskView()">
                     <option value="beginner">Beginner</option>
                     <option value="advanced">Advanced</option>
                     <option value="expert">Expert</option>
