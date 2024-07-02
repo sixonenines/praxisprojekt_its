@@ -136,8 +136,8 @@ def updateSolvedTasks():
         current_user=get_jwt_identity()
         print("works")
         filter = {'username': current_user}
-        task="L2C2"
-        print(current_user)
+        task=data["taskID"]
+        print(task)
         newvalues = { "$push": { 'solvedTasks': task} }
         db.users.update_one(filter, newvalues)
         code=200

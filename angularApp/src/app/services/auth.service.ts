@@ -81,6 +81,7 @@ export class AuthService {
     if (currentUserJSON) {
       let currentUserObj = JSON.parse(currentUserJSON)
       currentUserObj.experienceLevel=experienceLevel
+      localStorage.setItem("currentUser",JSON.stringify(currentUserObj))
       return this.http.post<any>('http://localhost:5000/changeExpLevel', { userid, username,experienceLevel }, options)
       .pipe(
         catchError(error => {

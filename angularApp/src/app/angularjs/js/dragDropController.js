@@ -203,8 +203,9 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
     var UserInfoJson = JSON.parse(StoredUser);
     var experienceLevel = UserInfoJson.experienceLevel;
     var username = UserInfoJson.username;
-    var logged_data = { "task_form": "flowchart","useranswer": JSON.stringify(userAnswer), "taskid": taskId, "isCorrect": isCorrect, "username": username, "timestamp": timestamp, "numHints": $scope.hintIndex, "experienceLevel": experienceLevel };
-    window.logHelperFunction(logged_data);
+    var token = UserInfoJson.token;
+    var logged_data = { "task_form": "flowchart_task","useranswer": JSON.stringify(userAnswer), "taskID": taskId, "isCorrect": isCorrect, "username": username, "timestamp": timestamp, "numHints": $scope.hintIndex, "experienceLevel": experienceLevel };
+    window.logHelperFunction(logged_data,token);
     $scope.isAnswered = true;
 
     if (isCorrect) {
@@ -273,6 +274,21 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
   };
 
   $scope.getHint = function() {
+    var userAnswer = {
+      nodes: myDiagram.model.nodeDataArray.map(node => ({ key: node.key,  shape: node.shape })),
+      links: myDiagram.model.linkDataArray.map(link => ({ from: link.from, to: link.to, text: link.text }))
+    };
+    var taskId = 'L3C1';
+    console.log('User answer:', userAnswer);
+    var isCorrect = CorrectFlowchartService.checkFlowchartAnswer(taskId, userAnswer);
+    var timestamp = new Date().getTime();
+    var StoredUser = localStorage.getItem("currentUser");
+    var UserInfoJson = JSON.parse(StoredUser);
+    var experienceLevel = UserInfoJson.experienceLevel;
+    var username = UserInfoJson.username;
+    var token = UserInfoJson.token;
+    var logged_data = { "clicked_hint": "clicked_hint","task_form":"flowchart_task","useranswer": JSON.stringify(userAnswer), "taskID": taskId, "isCorrect": isCorrect, "username": username, "timestamp": timestamp, "numHints": $scope.hintIndex, "experienceLevel": experienceLevel };
+    window.logHelperFunction(logged_data,token);
     $scope.hintButtonDisabled = true;
     $scope.noButtonsOnFeedback = false;
     $scope.hintsGiven = true;

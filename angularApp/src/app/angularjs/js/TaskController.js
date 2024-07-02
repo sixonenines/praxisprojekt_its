@@ -393,6 +393,8 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
                 var StoredUser= localStorage.getItem("currentUser");
                 var UserInfoJson= JSON.parse(StoredUser);
                 var jwt_token=UserInfoJson.token
+                UserInfoJson.solvedTasks.push(taskID)
+                localStorage.setItem("currentUser",JSON.stringify(UserInfoJson))
                 data={"taskID":taskID}
                 console.log(jwt_token,data)
                 window.updateSolvedExercisesList(data,jwt_token)
