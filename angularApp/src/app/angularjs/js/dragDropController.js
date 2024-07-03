@@ -307,14 +307,13 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
       $scope.highlightLine = currentHint.highlight;
       if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
         $scope.allHintsShown = true;
+        showSolutionImage();
       }
-    } else {
-      $scope.hintText = "Keine weiteren Hints verfügbar.";
-    }
+    } 
 
     $timeout(function() {
       $scope.stopHintButtonAnimation();
-    }, 5000);
+    }, 2000);
 
     $scope.hintPositionStyle = {
       top: '0',
@@ -323,7 +322,14 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
       height: '0'
   };
   };
-
+   
+  function showSolutionImage() {
+    // Hide the diagram div
+    document.getElementById('myDiagramDiv').style.display = 'none';
+  
+    // Show the solution image
+    document.getElementById('solutionImage').style.display = 'block';
+  }
   
   $scope.$watch('hintText', function(newVal, oldVal) {
     if (newVal) {

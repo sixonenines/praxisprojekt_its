@@ -191,19 +191,8 @@ The solution is:
             { text: 'Remember, conditions usually have a diamond shape and represent decisions, while processes are rectangles that show actions.', highlight: null },
             { text: "Remember to follow the logical flow of your code. Each step should naturally lead to the next. If you find a step that doesn't seem to fit, it might be in the wrong place.", highlight: null},
             { text: 'Take a closer look at your connections. Each node should logically connect to the next step in the process. If a connection seems out of place, consider where it should logically flow to maintain the correct sequence.', highlight: null },
-            { text: 'Todo Show Solutions', highlight: null },
-            { text: `
-    The solution is:
-    <span class="code-style-feedback">
-    for num in range(start, end + 1):
-        if num > 1:
-            for i in range(2, num):
-                if (num % i) == 0:
-                    break
-            else:
-                print(num)
-    </span>
-                `, highlight: null },
+            { text: 'Check out the correct solution!', highlight: null },
+            
         ]
 
 
