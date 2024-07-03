@@ -185,7 +185,6 @@ img.python-tutor {
     margin-top: 0;
 }
 
-.hint-navigation button {}
 
 .hint-text {
     line-height: 1;
@@ -351,16 +350,7 @@ img.python-tutor {
     /* Breite des Fortschrittsbalkens */
 }
 
-.hint-text {
-    /*position: relative;
-    z-index: 1;
-    /* Stelle sicher, dass der Text über dem Fortschrittsbalken liegt */
-    /*text-align: left;
-    /* Zentriere den Text horizontal */
-    /*width: 100%;
-    /* Fülle die gesamte Breite des Buttons */
-    /*padding: 5px;*/
-}
+
 
 @keyframes progressAnimation {
     0% {
@@ -408,9 +398,7 @@ img.python-tutor {
 }
 
 
-.code-style {
 
-}
 
 .gap_input {
     background-color: #1e1e1e;
@@ -487,9 +475,7 @@ i {
     color: #001029;
 }
 
-body {
-    /*background-color: white;*/
-}
+
 
 .activeTaskDifficulty {
     color: white;
@@ -945,21 +931,7 @@ textarea:focus {
     /* Dunkles Grau für aktuelle Gruppe */
 }
 
-.test_border {
-    /*border: 2px solid black;*/
-}
 
-td {
-    /*border: 2px pink solid;*/
-}
-
-tr {
-    /*border: 2px solid green;*/
-}
-
-.tutor-general {
-    /*margin-left: 300px;*/
-}
 
 .widthTD1 {
     width: 300px;
@@ -988,15 +960,7 @@ tr {
     padding-left: 10px;
 }
 
-.underline {
-    /*border-bottom: 4px solid #83E6EB;*/
-    /* Türkisfarbene Linie unten */
-}
 
-.underlineRight {
-    /*border-right: 4px solid #83E6EB;*/
-    /* Türkisfarbene Linie rechts */
-}
 
 .previousTask,
 .nextTask {
@@ -1104,19 +1068,10 @@ button:disabled {
     color: #666;
 }
 
-.hint-navi-editor-box{
-}
+
 
 .disclaimer{
     font-size: 8pt;
-}
-
-tr{
-    /*border: 2px solid magenta;*/
-}
-
-td{
-    /*border: 2px solid orange;*/
 }
 
 
@@ -1141,9 +1096,6 @@ td{
     opacity: 1;
 }
 
-.mpy-editor-output{
-    /*background-color: purple;*/
-}
 
 .welcome-container {
     position: fixed;
@@ -1345,9 +1297,6 @@ kbd {
 
 .disclaimerText{
     font-size: 8pt;
-}
-
-.disclaimerCheckbox{
 }
 
 .user-icon{
