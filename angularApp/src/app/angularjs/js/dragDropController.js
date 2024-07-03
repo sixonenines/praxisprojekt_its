@@ -315,7 +315,37 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
     $timeout(function() {
       $scope.stopHintButtonAnimation();
     }, 5000);
+
+    $scope.hintPositionStyle = {
+      top: '0',
+      left: '0',
+      width: '0',
+      height: '0'
   };
+  };
+
+  
+  $scope.$watch('hintText', function(newVal, oldVal) {
+    if (newVal) {
+        var length = newVal.length;
+
+        if (length < 160) {
+            $scope.hintPositionStyle.width = '320px';
+            $scope.hintPositionStyle.height = '100px';
+        } else {
+            $scope.hintPositionStyle.width = '320px';
+            $scope.hintPositionStyle.height = '120px';
+        }
+
+        if (length < 160) {
+            $scope.hintPositionStyle.top = '45%';
+            $scope.hintPositionStyle.left = '67%';
+        } else {
+            $scope.hintPositionStyle.top = '43%';
+            $scope.hintPositionStyle.left = '67%';
+        }
+    }
+});
 
   $scope.startHintButtonAnimation = function() {
     var totalTime = 5000;
