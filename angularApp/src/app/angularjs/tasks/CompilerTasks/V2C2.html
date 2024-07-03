@@ -48,7 +48,8 @@
     </table>
     <div class="hint-position">
         <div class="hint-navigation" ng-show="hintText" ng-style="hintPositionStyle">
-            <div class="hint-text">{{ hintText }}</div>
+            <!--<div class="hint-text">{{ hintText }}</div>-->
+            <div class="hint-text" ng-bind-html="hintText | toTrusted"></div>
             <div class="buttons" ng-show="!noButtonsOnFeedback">
                 <button class="hint-button-prev" ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
                 <button class="hint-button-next" ng-click="nextHint()"

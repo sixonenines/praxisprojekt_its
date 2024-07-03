@@ -1,5 +1,11 @@
 var app = angular.module("myApp", ["dndLists"]);
 
+app.filter('toTrusted', ['$sce', function($sce) {
+    return function(text) {
+        return $sce.trustAsHtml(text);
+    };
+}]);
+
 app.controller("TaskController", function ($scope, CorrectAnswerService, $templateCache, $http) {
     var templates = [
         /* Task group 1 */

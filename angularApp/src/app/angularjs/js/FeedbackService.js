@@ -39,15 +39,15 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'Return the results of the addition and subtraction as a tuple from the function. When calling the function, capture the returned values and print them in a single print statement. Tuples are returned in parentheses, and you can print multiple values separated by a comma.', highlight: null },
             { text: 'When calling the function, capture both returned values by assigning them to two variables, which can then be printed or used in further calculations.', highlight: null},
             { text: `
-                The solution is:
-                <div class="code-style">
-                    def calculation(a, b):
-                    addition = a + b
-                    subtraction = a - b
-                    return addition, subtraction
-                result_addition, result_subtraction = calculation(num1, num2)
-                print(result_addition, result_subtraction)
-                </div>
+    The solution is:
+    <span class="code-style-feedback">
+        def calculation(a, b):
+        addition = a + b
+        subtraction = a - b
+        return addition, subtraction
+    result_addition, result_subtraction = calculation(num1, num2)
+    print(result_addition, result_subtraction)
+    </span>
                 `, highlight: null },
         ],
         F2C3: [
@@ -62,11 +62,13 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'Pay attention to how the arguments are passed in the function calls. Ensure that the order of the arguments in the calls matches the order in the function definition.', highlight: null },
             { text: 'If a default salary is intended for cases where the salary is not provided, set a default value for the salary parameter in the function definition. This way, the function can be called with just the name and still work correctly.'},
             { text: `
-                The solution is:
-                def show_employee(name, salary=46000):
-                print("Name:", name, "Salary:", salary)
-                show_employee("Emma", 55000)
-                show_employee("Ben")
+    The solution is:
+    <span class="code-style-feedback">
+    def show_employee(name, salary=46000):
+    print("Name:", name, "Salary:", salary)
+    show_employee("Emma", 55000)
+    show_employee("Ben")
+    </span>
                 `, highlight: null },
         ],
         L2C3: [
@@ -75,17 +77,19 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'If the number is determined to be prime, print it. Ensure that you print only the prime numbers without any additional text.', highlight: null },
             { text: 'Optimize the helper function by checking for divisors only up to the square root of the number, as any factor larger than the square root would have a corresponding factor smaller than the square root.', highlight: null},
             { text: `
-                The solution is:
-                def maximum(a, b, c):
-                    if (a >= b) and (a >= c):
-                        largest = a
-                    elif (b >= a) and (b >= c):
-                        largest = b
-                    else:
-                        largest = c
-                    return largest
-                res = maximum(num1, num2, num3)
-                print(res)
+    The solution is:
+    <span class="code-style-feedback">
+    def maximum(a, b, c):
+        if (a >= b) and (a >= c):
+            largest = a
+        elif (b >= a) and (b >= c):
+            largest = b
+        else:
+            largest = c
+        return largest
+    res = maximum(num1, num2, num3)
+    print(res)
+    </span>
                 `, highlight: null },
         ],
         V1C3: [
@@ -95,12 +99,14 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'After the loop has completed, print the sum variable. Make sure to print only the sum without any additional text.', highlight: null},
             { text: `
                 The solution is:
-                sum = 0
-                i = 0
-                while i <= end:
-                    sum += 1
-                    i +=1
-                print(sum)
+    <span class="code-style-feedback">
+    sum = 0
+    i = 0
+    while i <= end:
+        sum += 1
+        i +=1
+    print(sum)
+    </span>
                 `, highlight: null },
         ],
         L5C1: [
@@ -109,13 +115,13 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'In each iteration of the while loop, the value of num is decreased by 1. Pay attention to how this affects the value of num each time the loop runs.', highlight: null },
             { text: `
                 The solution is:
-                9
-                8
-                7
-                6
-                5
-                4
-                3
+    9
+    8
+    7
+    6
+    5
+    4
+    3
                 `, highlight: null },
         ],
         
@@ -125,10 +131,12 @@ app.factory('FeedbackService', function($timeout) {
         { text: 'The function call add5(3, 2) should store the result, and then you need to print this result. Ensure that the function returns a tuple of the updated values and that this returned value is printed.', highlight: null },
         { text: `
 The solution is: 
-def add5(a,b):
-return a+5, b+5
-result = add5 (3,2)
-print(result)`
+    <span class="code-style-feedback">
+    def add5(a,b):
+    return a+5, b+5
+    result = add5 (3,2)
+    print(result)
+    </span>`
 , highlight: null },
         ],
 
@@ -137,13 +145,15 @@ print(result)`
             { text: 'Check that the global variable c is properly initialized before the function modifies it. This way, the function can correctly increment the value of c.', highlight: null},
             { text: 'Make sure the function is called after defining it to execute the code within the function. This ensures that the global variable is incremented and printed as expected.', highlight: null },
             { text: `
-                The solution is:
-                c = 1
-                def add():
-                    global c
-                    c = c+2
-                    print(c)
-                add()
+    The solution is:
+    <span class="code-style-feedback">
+    c = 1
+    def add():
+        global c
+        c = c+2
+        print(c)
+    add()
+    </span>
                 `, highlight: null },
         ],
         L2C2: [
@@ -152,9 +162,11 @@ print(result)`
             { text: 'After the for loop completes, print Goodbye! outside of the loop. This ensures that Goodbye! is printed only once after all the numbers have been printed.', highlight: null },
             { text: `
                 The solution is:
-                for x in range (2,12,2):
-                    print(x)
-                print ("Goodbye!")
+    <span class="code-style-feedback">
+    for x in range (2,12,2):
+        print(x)
+    print ("Goodbye!")
+    </span>
                 `, highlight: null },
         ],
         L4C2: [
@@ -162,12 +174,14 @@ print(result)`
             { text: 'The condition (count < 1) in the while loop is incorrect for achieving the desired output. It should be adjusted to ensure that the loop runs as long as count is less than or equal to 5.', highlight: null},
             { text: 'Inside the while loop, use a print statement to display the current value of count with the format the count is : X, where X is the current value of count.', highlight: null },
             { text: `
-                The solution is:
-                count = 1
-                while (count<=5):
-                    print("The count is",count)
-                    count+=1
-                print("Finished")
+    The solution is:
+    <span class="code-style-feedback">
+    count = 1
+    while (count<=5):
+        print("The count is",count)
+        count+=1
+    print("Finished")
+    </span>
                 `, highlight: null },
 
         ],
@@ -177,14 +191,16 @@ print(result)`
             { text: 'Take a closer look at your connections. Each node should logically connect to the next step in the process. If a connection seems out of place, consider where it should logically flow to maintain the correct sequence.', highlight: null },
             { text: 'Todo Show Solutions', highlight: null },
             { text: `
-                The solution is:
-                for num in range(start, end + 1):
-                    if num > 1:
-                        for i in range(2, num):
-                            if (num % i) == 0:
-                                break
-                        else:
-                            print(num)
+    The solution is:
+    <span class="code-style-feedback">
+    for num in range(start, end + 1):
+        if num > 1:
+            for i in range(2, num):
+                if (num % i) == 0:
+                    break
+            else:
+                print(num)
+    </span>
                 `, highlight: null },
         ]
 

@@ -12,6 +12,20 @@
     text-align: left !important;
 }
 
+
+.code-style-feedback {
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    display: block;
+    white-space: pre; /* Behält die Formatierung der Leerzeichen bei */
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 12px;
+    text-align: left !important;
+}
+
 .correct-answer input {
     border: 2px solid #DCCD7D;
     border-radius: 10px;
