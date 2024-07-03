@@ -81,7 +81,10 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
             var isCorrect = $scope.isCorrectAnswer1 && $scope.isCorrectAnswer2;
             var isPartCorrect = $scope.isCorrectAnswer1 || $scope.isCorrectAnswer2;
         } 
-        
+        if (taskId === "L1C1"){
+            var isCorrect = $scope.isCorrectAnswer1;
+           
+        } 
         
         $scope.noButtonsOnFeedback = true;
     
@@ -103,6 +106,14 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
                 FeedbackService.updatePythonTutorImage('negative');
             }
         }
+
+        // if (isCorrect2) {
+        //     $scope.positiveFeedbacks = FeedbackService.getPositiveFeedbacks(taskId);
+        //     if ($scope.positiveFeedbacks.length > 0) {
+        //         $scope.hintText = $scope.positiveFeedbacks[0].text;
+        //         FeedbackService.updatePythonTutorImage('positive');
+        //     }
+        // }
     };
 
     $scope.checkGapAnswers = function(userAnswer1, userAnswer2) {
