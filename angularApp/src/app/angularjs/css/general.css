@@ -204,8 +204,33 @@ img.python-tutor {
     line-height: 1;
     text-align: left;
     padding: 5px;
+    font-size: 10pt;
 }
 
+.hint-text-freeText{
+    width: 300px;
+    left: 60%;
+    bottom: 42%;
+}
+
+.hint-text-gap{
+    width: 300px;
+    left: 60%;
+    bottom: 42%;
+}
+
+
+.hint-text-gap-F1C1{
+    width: 300px;
+    left: 60%;
+    bottom: 35%;
+}
+
+.hint-text-V2C2{
+    width: 300px;
+    left: 60%;
+    bottom: -5%;
+}
 
 .code-highlighting {
     background-color: yellow;

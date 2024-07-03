@@ -29,7 +29,7 @@
         </tr>
     </table>
     <div class="hint-position">
-        <div class="hint-navigation" ng-show="hintText" ng-style="hintPositionStyle">
+        <div class="hint-navigation hint-text-freeText" ng-show="hintText">
             <div class="hint-text">{{ hintText }}</div>
             <div class="buttons" ng-show="!noButtonsOnFeedback">
                 <button class="hint-button-prev" ng-click="previousHint()" ng-disabled="hintIndex <= 0">←</button>
