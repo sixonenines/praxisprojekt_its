@@ -40,12 +40,14 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'When calling the function, capture both returned values by assigning them to two variables, which can then be printed or used in further calculations.', highlight: null},
             { text: `
                 The solution is:
-                def calculation(a, b):
+                <div class="code-style">
+                    def calculation(a, b):
                     addition = a + b
                     subtraction = a - b
                     return addition, subtraction
                 result_addition, result_subtraction = calculation(num1, num2)
                 print(result_addition, result_subtraction)
+                </div>
                 `, highlight: null },
         ],
         F2C3: [
