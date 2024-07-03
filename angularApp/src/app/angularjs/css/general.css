@@ -158,7 +158,7 @@ img.python-tutor {
     position: absolute;
     right: -95%;
     background-color: white;
-    padding: 8px;
+    padding: 4px;
     bottom: 200px;
     
     border-radius: 5px;
@@ -200,6 +200,18 @@ img.python-tutor {
 }
 
 
+.buttons-Compiler-Task{
+    position: relative;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    padding-bottom: 5px;
+    justify-content: right;
+    margin-top: 0;
+    height: 0px;
+}
+
+
 .hint-text {
     line-height: 1;
     text-align: left;
@@ -213,10 +225,67 @@ img.python-tutor {
     bottom: 42%;
 }
 
+.hint-text-freeText-L5C1{
+    width: 300px;
+    left: 60%;
+    bottom: 10%;
+}
+
+
+
+.hint-text-flowChart{
+    width: 300px;
+    left: 75%;
+    bottom: -25%;
+}
+
 .hint-text-gap{
     width: 300px;
     left: 60%;
     bottom: 42%;
+}
+
+.hint-text-freeCode{
+    position:relative;
+    width: 300px;
+    left: 88%;
+    bottom: 255px;
+}
+
+.hint-text-freeCode-V1C3{
+    position:relative;
+    width: 300px;
+    left: 88%;
+    bottom: 300px;
+}
+
+.hint-text-freeCode-L4C2{
+    position:relative;
+    width: 300px;
+    left: 88%;
+    bottom: 285px;
+}
+
+.hint-text-freeCode-F1C3{
+    position:relative;
+    width: 300px;
+    left: 93%;
+    bottom: 256px;
+}
+
+
+.hint-text-freeCode-F1C3-code{
+    position:relative;
+    width: 460px;
+    left: 95%;
+    bottom: 300px;
+}
+
+.hint-text-freeCode-L2C3{
+    position:relative;
+    width: 300px;
+    left: 88%;
+    bottom: 350px;
 }
 
 
@@ -229,7 +298,7 @@ img.python-tutor {
 .hint-text-V2C2{
     width: 300px;
     left: 60%;
-    bottom: -5%;
+    bottom: -10%;
 }
 
 .code-highlighting {
@@ -1178,6 +1247,7 @@ button:disabled {
 
 textarea{
     height: 200px;
+    resize: none;
 }
 /* Flowchart Task */
 
