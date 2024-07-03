@@ -47,7 +47,7 @@
         <td class="sidebar-general underlineRight" rowspan="3">
             <div class="test123">
                 <!-- Task Group 1-->
-                <div class="taskGroup-container" ng-class="{'current-group': isTaskInGroup('TaskGroup1')}">
+                <div class="taskGroup-container" ng-class="{'current-group': isTaskInGroup('TaskGroup1'), 'non-selected-group': !isGroupSelected('TaskGroup1')}">
                     <div class="menu-item" ng-click="toggleGroup('TaskGroup1')"
                         ng-class="{'current-group': isTaskInGroup('TaskGroup1')}">
                         Variables <span class="arrow"
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <!-- Task Group 2-->
-                <div class="taskGroup-container" ng-class="{'current-group': isTaskInGroup('TaskGroup2')}">
+                <div class="taskGroup-container" ng-class="{'current-group': isTaskInGroup('TaskGroup2'), 'non-selected-group': !isGroupSelected('TaskGroup2')}">
                     <div class="menu-item" ng-click="toggleGroup('TaskGroup2')"
                         ng-class="{'current-group': isTaskInGroup('TaskGroup2')}">
                         Loops <span class="arrow"
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 <!-- Task group 3-->
-                <div class="taskGroup-container" ng-class="{'current-group': isTaskInGroup('TaskGroup3')}">
+                <div class="taskGroup-container" ng-class="{'current-group': isTaskInGroup('TaskGroup3'), 'non-selected-group': !isGroupSelected('TaskGroup3')}">
                     <div class="menu-item" ng-click="toggleGroup('TaskGroup3')"
                         ng-class="{'current-group': isTaskInGroup('TaskGroup3')}">
                         Functions <span class="arrow"
