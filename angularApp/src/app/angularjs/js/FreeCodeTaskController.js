@@ -207,10 +207,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         }, 5000);
 
         $scope.hintPositionStyle = {
-            top: '0',
-            left: '0',
-            width: '0',
-            height: '0'
+            
         };
     };
 
@@ -226,12 +223,12 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
                 $scope.hintPositionStyle.height = '120px';
             }
 
-            if (length < 160) {
-                $scope.hintPositionStyle.top = '45%';
-                $scope.hintPositionStyle.left = '67%';
+            if (length > 160) {
+                $scope.hintPositionStyle.top = '475px';
+                $scope.hintPositionStyle.left = '67vw';
             } else {
-                $scope.hintPositionStyle.top = '43%';
-                $scope.hintPositionStyle.left = '67%';
+                $scope.hintPositionStyle.top = '500px';
+                $scope.hintPositionStyle.right = '67vw';
             }
         }
     });
