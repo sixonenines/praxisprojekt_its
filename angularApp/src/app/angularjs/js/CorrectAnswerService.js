@@ -9,13 +9,14 @@ app.factory('CorrectAnswerService', function() {
         'F1C1_2': "my_func()",
         'L1C1' : "while",
         'F1C3' : "155",
-        'F2C3' : "15",
+        'F2C3' : '15',
         'F5C2' : "Name:EmmaSalary:55000Name:BenSalary:46000",
         'L2C3' : "235711131719",
         'V1C3' : "11",              
         'F1C2' : "(8,7)",  
         'V2C2' : "3",
         'L2C2' : "246810Goodbye!",
+        'L2C3' : 'Largest Number:  7',
         'L4C2' : "Thecountis1Thecountis2Thecountis3Thecountis4Thecountis5Finished",
         'L5C1' : 
 `9

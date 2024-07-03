@@ -28,12 +28,18 @@
                     <script type="mpy-editor" env="test_env" setup
                         ng-class="{'correct-answer-compiler': isCorrectAnswer && isAnswered, 'incorrect-answer-compiler': !isCorrectAnswer && isAnswered}">
                     </script>
-                    <script id="F1C2" type="mpy-editor" env="test_env">
+                    <script id="F1C2" type="mpy-editor" env="test_env" ng-if="!correctAnswerAfterHints">
                     def add5(a,b):
-                        return a=a+5, b=b+5
+                        a=a+5, b=b+5
                     result = add5 (3,2)
                     print(result)
                     </script>
+                    <script id="F1C2" type="mpy-editor" env="test_env" ng-if="correctAnswerAfterHints">
+                        def add5(a,b):
+                            return a+5, b+5
+                        result = add5(3,2)
+                        print(result)
+                        </script>
                 </div>
             </td>
         </tr>

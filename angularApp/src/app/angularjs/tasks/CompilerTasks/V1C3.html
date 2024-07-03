@@ -18,8 +18,16 @@
                     <script type="mpy-editor" env="test_env" setup>
                 end = 10
             </script>
-                    <script id="V1C3" type="mpy-editor" env="test_env">
+                    <script id="V1C3" type="mpy-editor" env="test_env" ng-if="!correctAnswerAfterHints">
                 sum = 0
+                print(sum)
+            </script>
+            <script id="V1C3" type="mpy-editor" env="test_env" ng-if="correctAnswerAfterHints">
+                sum = 0
+                i = 0
+                while i <= end:
+                    sum += 1
+                    i +=1
                 print(sum)
             </script>
                 </div>

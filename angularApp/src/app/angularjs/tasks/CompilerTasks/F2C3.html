@@ -1,7 +1,7 @@
 <div ng-controller="FreeCodeTaskController">
     <table class="task-body">
         <tr>
-            <h3>L2C3</h3>
+            <h3>F2C3</h3>
             <td colspan="2">
                 Write a program to create a function that accepts three numbers [num1, num2, num3] and finds the largest
                 number <br>
@@ -21,9 +21,20 @@
                         num3 = 15
                     </script>
 
-                    <script id="F2C3" type="mpy-editor" env="test_env">
+                    <script id="F2C3" type="mpy-editor" env="test_env" ng-if="!correctAnswerAfterHints">
                         res = maximum(num1, num2, num3)
                         print(res)
+                    </script>
+                    <script id="F2C3" type="mpy-editor" env="test_env" ng-if="correctAnswerAfterHints">
+                        def maximum(a, b, c):
+                            if (a >= b) and (a >= c):
+                                largest = a
+                            elif (b >= a) and (b >= c):
+                                largest = b
+                            else:
+                                largest = c
+                            return largest
+                        maximum(num1,num2,num3)
                     </script>
                 </div>
             </td>

@@ -24,13 +24,20 @@
                     ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
                     <script type="mpy-editor" env="test_env" setup>
                     </script>
-                    <script id="F5C2" type="mpy-editor" env="test_env">
+                    <script id="F5C2" type="mpy-editor" env="test_env" ng-if="!correctAnswerAfterHints">
                     def show_employee(name):
                         print("Name:", name, "Salary:", salary)
         
                     show_employee("Emma", 55000)
                     show_employee("Ben")
                     </script>
+                    <script id="F5C2" type="mpy-editor" env="test_env" ng-if="correctAnswerAfterHints">
+                        def show_employee(name, salary= 46000):
+                            print("Name:", name, "Salary:", salary)
+            
+                        show_employee("Emma", 55000)
+                        show_employee("Ben")
+                        </script>
                 </div>
             </td>
         </tr>

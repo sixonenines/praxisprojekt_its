@@ -12,6 +12,8 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     $scope.highlightLine = null; // Zeile, die hervorgehoben werden soll
     $scope.noButtonsOnFeedback = false; // Wenn pos/neg Feedback, dann keine prev/next Buttons
     $scope.hintsGiven = false; 
+    $scope.correctAnswerAfterHints = false;
+
 
     $scope.errorMessages = {
         "F1C2":
@@ -144,6 +146,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         } else {
             $scope.userReassurance();
         }
+        $scope.userReassurance();
     };
 
     $scope.userReassurance = function() {
@@ -195,43 +198,44 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             var currentHint = $scope.feedbacks[$scope.hintIndex];
             $scope.hintText = currentHint.text;
             $scope.highlightLine = currentHint.highlight;
-            if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
-                $scope.allHintsShown = true; // Alle Hinweise wurden angezeigt
+            if ($scope.hintIndex === $scope.feedbacks.length - 1) {
+                $scope.correctAnswerAfterHints = true; // Show correct answer when last hint is shown
             }
         } else {
             $scope.hintText = "Keine weiteren Hints verfügbar.";
+            $scope.correctAnswerAfterHints = true; // Show correct answer if no more hints available
         }
         // Aktiviere den Hint-Button nach 20 Sekunden wieder
         $timeout(function() {
             $scope.stopHintButtonAnimation();
         }, 5000);
 
-        $scope.hintPositionStyle = {
+        // $scope.hintPositionStyle = {
             
-        };
+        // };
     };
 
-    $scope.$watch('hintText', function(newVal, oldVal) {
-        if (newVal) {
-            var length = newVal.length;
+    // $scope.$watch('hintText', function(newVal, oldVal) {
+    //     if (newVal) {
+    //         var length = newVal.length;
 
-            if (length < 160) {
-                $scope.hintPositionStyle.width = '320px';
-                $scope.hintPositionStyle.height = '100px';
-            } else {
-                $scope.hintPositionStyle.width = '320px';
-                $scope.hintPositionStyle.height = '120px';
-            }
+    //         if (length < 160) {
+    //             $scope.hintPositionStyle.width = '320px';
+    //             $scope.hintPositionStyle.height = '100px';
+    //         } else {
+    //             $scope.hintPositionStyle.width = '320px';
+    //             $scope.hintPositionStyle.height = '120px';
+    //         }
 
-            if (length > 160) {
-                $scope.hintPositionStyle.top = '475px';
-                $scope.hintPositionStyle.left = '67vw';
-            } else {
-                $scope.hintPositionStyle.top = '500px';
-                $scope.hintPositionStyle.right = '67vw';
-            }
-        }
-    });
+    //         if (length > 160) {
+    //             $scope.hintPositionStyle.top = '475px';
+    //             $scope.hintPositionStyle.left = '67vw';
+    //         } else {
+    //             $scope.hintPositionStyle.top = '500px';
+    //             $scope.hintPositionStyle.right = '67vw';
+    //         }
+    //     }
+    // });
 
 
     $scope.startHintButtonAnimation = function() {

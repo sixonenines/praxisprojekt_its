@@ -23,9 +23,17 @@
                     ng-class="{'correct-answer': isCorrectAnswer && isAnswered, 'incorrect-answer': !isCorrectAnswer && isAnswered}">
                     <script type="mpy-editor" env="test_env" setup>
                     </script>
-                    <script id="V2C2" type="mpy-editor" env="test_env">
+                    <script id="V2C2" type="mpy-editor" env="test_env" ng-if="!correctAnswerAfterHints">
                         c = 1
                         def add():
+                            c = c+2
+                            print(c)
+                        add()
+                    </script>
+                    <script id="V2C2" type="mpy-editor" env="test_env" ng-if="correctAnswerAfterHints">
+                        c = 1
+                        def add():
+                            global c
                             c = c+2
                             print(c)
                         add()

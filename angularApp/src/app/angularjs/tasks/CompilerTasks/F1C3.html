@@ -20,10 +20,18 @@
                     num2 = 5
                 </script>
 
-                    <script id="F1C3" type="mpy-editor" env="test_env">
+                    <script id="F1C3" type="mpy-editor" env="test_env" ng-if="!correctAnswerAfterHints">
                 result_addition, result_subtraction = calculation(num1, num2)
                 print(result_addition, result_subtraction)
                 </script>
+                <script id="F1C3" type="mpy-editor" env="test_env" ng-if="correctAnswerAfterHints">
+                def calculation(a, b):
+                    addition = a + b
+                    subtraction = a - b
+                    return addition, subtraction
+                result_addition, result_subtraction = calculation(num1, num2)
+                print(result_addition, result_subtraction)
+                    </script>
                 </div>
             </td>
         </tr>

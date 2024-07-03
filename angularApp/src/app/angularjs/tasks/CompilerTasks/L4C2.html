@@ -29,12 +29,19 @@
                 </script>
 
 
-                    <script id="L4C2" type="mpy-editor" env="test_env">
-                count = 1
-                while (count<5):
-                    print("The count is", count)
-                print("Finished")
+                    <script id="L4C2" type="mpy-editor" env="test_env" ng-if="!correctAnswerAfterHints">
+                    count = 1
+                    while (count<5):
+                        print("The count is", count)
+                    print("Finished") 
                 </script>
+                <script id="L4C2" type="mpy-editor" env="test_env" ng-if="correctAnswerAfterHints">
+                    count = 1
+                    while (count<=5):
+                        print("The count is",count)
+                        count+=1
+                    print("Finished")
+                    </script>
                 </div>
             </td>
         </tr>
