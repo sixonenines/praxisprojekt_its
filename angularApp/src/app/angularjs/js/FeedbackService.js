@@ -115,6 +115,7 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'In each iteration of the while loop, the value of num is decreased by 1. Pay attention to how this affects the value of num each time the loop runs.', highlight: null },
             { text: `
                 The solution is:
+    <span class="code-style-feedback">
     9
     8
     7
@@ -122,6 +123,7 @@ app.factory('FeedbackService', function($timeout) {
     5
     4
     3
+    </span>
                 `, highlight: null },
         ],
         
