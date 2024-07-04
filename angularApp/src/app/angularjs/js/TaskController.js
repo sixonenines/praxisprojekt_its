@@ -468,6 +468,7 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
             var completedTasks = 0;
             progress = 0;
             document.getElementById('progress-bar').style.width = '0%';
+            window.location.reload();
         } else if (difficultyChange == 0){
             console.log("PREGRESS ADD")
             var completedTasks = $scope.tasks.filter(function (task) {
