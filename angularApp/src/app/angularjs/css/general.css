@@ -466,7 +466,7 @@ img.python-tutor {
 
 .hint-navi-editor-run-button {
     opacity: 100% !important;
-    background-color: #83E6EB;
+    background-color: #83e6eb;
 }
 
 .mpy-editor-run-button svg {
@@ -542,7 +542,6 @@ h3 {
 button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #83E6EB;
     background-color: #7082A9;
     color: #FFFFFF;
     text-decoration: none;
@@ -654,6 +653,7 @@ textarea:focus {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     /* Schatten */
     margin-top: 70px;
+    z-index: 3;
 }
 
 /* Überschrift des Formulars */
@@ -701,7 +701,7 @@ textarea:focus {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #83E6EB;
+    background-color: #7082a9;
     /* Türkis für Button-Hintergrund */
     color: #FFFFFF;
     /* Textfarbe */
@@ -1008,7 +1008,7 @@ textarea:focus {
 
 .previousTask,
 .nextTask {
-    background-color: #83E6EB;
+    background-color: #7082a9;
     margin: 5px;
 }
 
@@ -1185,17 +1185,17 @@ margin-left: calc((100vw — X)/2);
     
     .welcome-btn { grid-area: 3 / 3 / 4 / 4; } 
     
-
+/* https://codepen.io/jpbarth/pen/VyyegV as reference */
 .welcome-btn {
     
 
     width: 200px;
     height: 200px;
  
-    top: 65%;
+    top: 75%;
     bottom: 35%;
-    left: 50%;
-    right: 50%;
+    left: -42%;
+    
     border: none;
     color: #3E3E4F !important;
     
@@ -1204,7 +1204,7 @@ margin-left: calc((100vw — X)/2);
     border-radius: 50%;
     box-shadow: 
         inset 0 0 50px #fff,
-        inset 20px 0 60px rgb(191, 129, 242),
+        inset 20px 0 60px rgb(107, 89, 176),
         inset -20px 0 60px #0ff,
         inset 20px 0 300px rgb(191, 129, 242),
         inset -20px 0 300px #0ff,
@@ -1459,7 +1459,7 @@ kbd {
 /* Login */
 
 
-.tail-end {
+/* .tail-end {
     position: absolute;
     top: 8vh; 
     left: 24vw; 
@@ -1497,7 +1497,28 @@ kbd {
     height: auto; 
     overflow: hidden;
     z-index: 2;
-}
+} */
+ .oben {
+    position: absolute;
+    top: 3vh; 
+    left: 0vw; 
+    width: 100vw; 
+    height: auto; 
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+ }
+
+ .unten {
+    position: absolute;
+    top: 3vh; 
+    left: 0vw; 
+    width: 100vw; 
+    height: auto; 
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 3;
+ }
 
 .login-background.wrapper {
     min-width: 400px; 
