@@ -126,6 +126,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         var keywordFound = checkForKeywords && Array.isArray(checkForKeywords.keywords) && checkForKeywords.keywords.some(keyword => codeSanitized.includes(keyword));
         if(!keywordFound) {
             $scope.hintText = checkForKeywords ? checkForKeywords.hint : "Keyword check configuration missing.";
+            FeedbackService.updatePythonTutorImage('negative');
             return;
         }
         //Die Aufgabe updaten, falls korrekt. Dazu noch das Visuelles-Feedback vom Tutor
@@ -148,6 +149,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             $scope.hintText = taskError.hint; // Hint Text anzeigen, falls es einen spezifischen hint gibt.
         } else {
             $scope.userReassurance();
+            FeedbackService.updatePythonTutorImage('negative');
         }
         $scope.userReassurance();
         
