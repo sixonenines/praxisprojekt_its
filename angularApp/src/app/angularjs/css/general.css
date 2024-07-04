@@ -1440,7 +1440,7 @@ kbd {
     white-space: pre-wrap; /* Beibehalten von Leerzeichen und Umbrüchen */
     /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Leichter Schatten */
     max-height: 300px; /* Maximalhöhe für den Fall von viel Text */
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .disclaimerText{
