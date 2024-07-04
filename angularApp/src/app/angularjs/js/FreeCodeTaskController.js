@@ -199,10 +199,10 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             $scope.hintText = currentHint.text;
             $scope.highlightLine = currentHint.highlight;
             if ($scope.hintIndex === $scope.feedbacks.length - 1) {
-                $scope.correctAnswerAfterHints = true; // Show correct answer when last hint is shown
+                
             }
         } else {
-            $scope.hintText = "Keine weiteren Hints verfügbar.";
+           
             $scope.correctAnswerAfterHints = true; // Show correct answer if no more hints available
         }
         // Aktiviere den Hint-Button nach 20 Sekunden wieder
