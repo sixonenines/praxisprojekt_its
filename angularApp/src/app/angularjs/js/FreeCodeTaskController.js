@@ -147,11 +147,11 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         var taskError = $scope.errorMessages[$scope.$parent.currentTask.id];
         if (taskError && userAnswerSanitized.includes(taskError.keyPhrase)) {
             $scope.hintText = taskError.hint; // Hint Text anzeigen, falls es einen spezifischen hint gibt.
+            FeedbackService.updatePythonTutorImage('negative');
         } else {
             $scope.userReassurance();
             FeedbackService.updatePythonTutorImage('negative');
         }
-        $scope.userReassurance();
         
     };
 
