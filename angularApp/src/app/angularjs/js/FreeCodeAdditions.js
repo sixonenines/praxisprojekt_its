@@ -1,17 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     const parentElement = document.body;
 
+    let alertShown = false;
+
     function checkAndClearDiv() {
         const contentDivs3 = document.getElementsByClassName('mpy-editor-output')[0];
         const targetElement = contentDivs3.innerText
         targetElement.replace(/(\r\n|\n|\r|\s)/gm, "");
-        if (targetElement.length>200) {
-            alert("You were running an infinite loop, the page will now refresh. Press ok and wait for the page to reload.");
+        if (targetElement.length > 200 && !alertShown) {
+            alert("You were running an infinite loop, the page will now refresh. Press OK and wait for the page to reload.");
             window.location.reload(true);
+            alertShown = true;
         }
 
-
         else {
+            console.log("No infinite loop detected")
         }
     }
 
