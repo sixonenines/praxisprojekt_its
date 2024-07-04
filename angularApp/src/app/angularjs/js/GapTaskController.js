@@ -80,11 +80,16 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
         if (taskId === "F1C1"){
             var isCorrect = $scope.isCorrectAnswer1 && $scope.isCorrectAnswer2;
             var isPartCorrect = $scope.isCorrectAnswer1 || $scope.isCorrectAnswer2;
-        } 
+            FeedbackService.updatePythonTutorImage('positive');
+        } else {
+            FeedbackService.updatePythonTutorImage('negative');
+        }
         if (taskId === "L1C1"){
             var isCorrect = $scope.isCorrectAnswer1;
            
-        } 
+        } else {
+            FeedbackService.updatePythonTutorImage('negative');
+        }
         
         $scope.noButtonsOnFeedback = true;
     
@@ -195,35 +200,35 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
             $scope.stopHintButtonAnimation();
         }, 5000);
 
-        $scope.hintPositionStyle = {
-            top: '0',
-            left: '0',
-            width: '0',
-            height: '0'
-        };
+        // $scope.hintPositionStyle = {
+        //     top: '0',
+        //     left: '0',
+        //     width: '0',
+        //     height: '0'
+        // };
     };
 
-    $scope.$watch('hintText', function(newVal, oldVal) {
-        if (newVal) {
-            var length = newVal.length;
+    // $scope.$watch('hintText', function(newVal, oldVal) {
+    //     if (newVal) {
+    //         var length = newVal.length;
 
-            if (length < 160) {
-                $scope.hintPositionStyle.width = '320px';
-                $scope.hintPositionStyle.height = '100px';
-            } else {
-                $scope.hintPositionStyle.width = '320px';
-                $scope.hintPositionStyle.height = '120px';
-            }
+    //         if (length < 160) {
+    //             $scope.hintPositionStyle.width = '320px';
+    //             $scope.hintPositionStyle.height = '100px';
+    //         } else {
+    //             $scope.hintPositionStyle.width = '320px';
+    //             $scope.hintPositionStyle.height = '120px';
+    //         }
 
-            if (length < 160) {
-                $scope.hintPositionStyle.top = '45%';
-                $scope.hintPositionStyle.left = '67%';
-            } else {
-                $scope.hintPositionStyle.top = '43%';
-                $scope.hintPositionStyle.left = '67%';
-            }
-        }
-    });
+    //         if (length < 160) {
+    //             $scope.hintPositionStyle.top = '45%';
+    //             $scope.hintPositionStyle.left = '67%';
+    //         } else {
+    //             $scope.hintPositionStyle.top = '43%';
+    //             $scope.hintPositionStyle.left = '67%';
+    //         }
+    //     }
+    // });
     
     $scope.startHintButtonAnimation = function() {
         var totalTime = 0; // Gesamtzeit in Millisekunden (5 Sekunden)
