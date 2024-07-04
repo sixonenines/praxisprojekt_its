@@ -391,6 +391,9 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         var task = $scope.tasks.find(function (t) {
             return t.id === taskID;
         });
+
+        console.log("HIER");
+        console.log(task);
         if (task) {
             task.status = status;
             task.isCompleted = (status === 'correct');
@@ -408,6 +411,28 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         }
     };
 
+
+    $scope.markTaskAsCompleted = function (solvedTasks) {
+        var completedTasks = 0;
+        var processedTasks = new Set(); // Set für bereits behandelte Aufgaben
+
+
+        for(var i=0; i<solvedTasks.length; i++){
+            var task = solvedTasks[i];
+            if (!processedTasks.has(task.id)) {
+                console.log(task);
+                console.log(task.status);
+                $scope.updateTaskStatus(task, 'correct');
+    
+                processedTasks.add(task.id); // Hinzufügen der Aufgabe zum Set der bearbeiteten Aufgaben
+                completedTasks++;
+            }
+        }
+        console.log(completedTasks + "  Completed Tasks");
+        //return completedTasks;
+    };
+   
+
     $scope.calculateProgress = function (taskID, difficultyChange) {
         console.log("METHODENAUFRUF   " + $scope.selectedExperienceLevel);
         // Gesamtanzahl der Aufgaben für das aktuelle Schwierigkeitsniveau berechnen
@@ -416,14 +441,22 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         var taskGroups = taskGroupsByDifficulty[experienceLevel];
         var completedTasks = 0;
         var progress = 0;
-        if (difficultyChange) {
+        if (difficultyChange == 1) {
+            console.log("DIFF CHANGE");
             var completedTasks = 0;
             progress = 0;
             document.getElementById('progress-bar').style.width = '0%';
-        } else {
+        } else if (difficultyChange == 0){
+            console.log("PREGRESS ADD")
             var completedTasks = $scope.tasks.filter(function (task) {
                 return task.status === 'correct' && $scope.changeTaskDifficultySelection(task.id);
             }).length;
+        } else if (difficultyChange == 2){
+            console.log("RELOAD");
+            var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
+            var solvedTasks = currentUser['solvedTasks'];
+            var completedTasks = $scope.markTaskAsCompleted(solvedTasks);
+                console.log(solvedTasks);
         }
 
         /* Berechnen der Anzahl der Aufgaben pro Gruppe */
@@ -440,20 +473,17 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
                     if (progress == 100) {
                         console.log("Progress: " + progress);
                         /* Endseite ? */
-
                     }
-
-
-
                     document.getElementById('progress-bar').style.width = progress + '%';
-
-                    /*FEHLER MIT INDIVIDUAL FEEDBACK*/
-                    /*document.getElementById('progress-text').innerText = progress.toFixed(2) + '% of the tasks completed';*/
-
                 }
             }
         }
-    }
+    };
+
+    $scope.calculateProgress($scope.currentTask.id, 2);
+
+
+ 
 
     $scope.updateVisibleGroup = function (taskId) {
         let foundGroup = false;
