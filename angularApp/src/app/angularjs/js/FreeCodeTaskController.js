@@ -69,8 +69,8 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             hint: "You are missing the while loop. Include it in your code and try again,"
         },
         "V2C2" : {
-            keywords: ['def'],
-            hint: "You are missing the definition (def). Include it in your code and try again. "
+            keywords: ['def', 'global'],
+            hint: "You are missing the definition (def, global). Include it in your code and try again. "
         },
         "L2C2" : {
             keywords: ['for'],
