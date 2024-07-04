@@ -34,6 +34,9 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
     $scope.difficulties = ["beginner", "advanced", "expert"];
     $scope.selectedExperienceLevel = 'beginner';
 
+    var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
+    $scope.selectedExperienceLevel = currentUser['experienceLevel'];
+
     /* Enthaelt alle Aufgaben*/
     $scope.taskGroups = {
         TaskGroup1: ['V1C1', 'V3C1', 'V5C1', 'V2C2', 'V1C3'],
@@ -84,6 +87,7 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
 
     $scope.selectCurrentTaskRegardingDifficulty = function () {
         var experienceLevel = $scope.selectedExperienceLevel;
+        console.log("AUFRUF: " + experienceLevel); 
         if (experienceLevel == "beginner") {
             //Aufruf von V1C1
             $scope.currentTaskIndex = 0;
@@ -97,6 +101,8 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         $scope.currentTask = $scope.tasks[$scope.currentTaskIndex];
 
     }
+
+   
 
 
     $scope.changeTaskDifficultySelection = function (taskID) {
@@ -170,6 +176,8 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
         { id: 'F1C3', templateUrl: "app/angularjs/tasks/CompilerTasks/F1C3.html", isCompleted: false, status: 'not_answered' },
         { id: 'F2C3', templateUrl: "app/angularjs/tasks/CompilerTasks/F2C3.html", isCompleted: false, status: 'not_answered' },
     ];
+
+   
 
     var StoredUser= localStorage.getItem("currentUser");
     var UserInfoJson= JSON.parse(StoredUser);
@@ -412,12 +420,12 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
     };
 
 
-    $scope.markTaskAsCompleted = function (solvedTasks) {
+    $scope.markTaskAsCompleted = function (solvedTasks, experienceLevel) {
         var completedTasks = 0;
         var processedTasks = new Set(); // Set für bereits behandelte Aufgaben
 
 
-        for(var i=0; i<solvedTasks.length; i++){
+        /*for(var i=0; i<solvedTasks.length; i++){
             var task = solvedTasks[i];
             if (!processedTasks.has(task.id)) {
                 console.log(task);
@@ -429,7 +437,21 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
             }
         }
         console.log(completedTasks + "  Completed Tasks");
-        //return completedTasks;
+        //return completedTasks;*/
+        for (var i = 0; i < solvedTasks.length; i++) {
+            var taskID = solvedTasks[i];
+            var task = $scope.tasks.find(function (t) {
+                return t.id === taskID;
+            });
+    
+            // Überprüfen, ob die Aufgabe zur aktuellen Schwierigkeitsstufe gehört
+            if (task && !processedTasks.has(taskID) && $scope.changeTaskDifficultySelection(taskID)) {
+                $scope.updateTaskStatus(taskID, 'correct');
+                processedTasks.add(taskID); // Hinzufügen der Aufgabe zum Set der bearbeiteten Aufgaben
+                completedTasks++;
+            }
+        }
+  
     };
    
 
@@ -455,7 +477,8 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
             console.log("RELOAD");
             var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
             var solvedTasks = currentUser['solvedTasks'];
-            var completedTasks = $scope.markTaskAsCompleted(solvedTasks);
+            var experienceLevel = currentUser['experienceLevel'];
+            var completedTasks = $scope.markTaskAsCompleted(solvedTasks, experienceLevel);
                 console.log(solvedTasks);
         }
 
@@ -481,6 +504,7 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
     };
 
     $scope.calculateProgress($scope.currentTask.id, 2);
+    $scope.selectCurrentTaskRegardingDifficulty();
 
 
  
