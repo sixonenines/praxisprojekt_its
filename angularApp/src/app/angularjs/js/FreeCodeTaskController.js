@@ -130,13 +130,16 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         }
         //Die Aufgabe updaten, falls korrekt. Dazu noch das Visuelles-Feedback vom Tutor
         if (isCorrect) {
+            console.log("AUFGABE KORREKT GELÖST");
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "correct");
             FeedbackService.updatePythonTutorImage('positive');
+            
         } else {
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
             FeedbackService.updatePythonTutorImage('negative');
+            console.log("AUFGABE INKORREKT GELÖST");
         }
         // Schauen ob es eine Aufgabe ist, die spezifische hints hat
         var userAnswerSanitized = userAnswer.replace(/(\r\n|\n|\r|\s)/gm, "");
@@ -147,6 +150,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             $scope.userReassurance();
         }
         $scope.userReassurance();
+        
     };
 
     $scope.userReassurance = function() {
@@ -156,15 +160,18 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         
         if (isCorrect) {
             $scope.positiveFeedbacks = FeedbackService.getPositiveFeedbacks(taskId);
+            FeedbackService.updatePythonTutorImage('positive');
             if ($scope.positiveFeedbacks.length > 0) {
                 $scope.hintText = $scope.positiveFeedbacks[0].text; 
             }
         } else {
             $scope.negativeFeedbacks = FeedbackService.getNegativeFeedbacks(taskId);
+            FeedbackService.updatePythonTutorImage('negative'); 
             if ($scope.negativeFeedbacks.length > 0) {
                 var randomIndex = Math.floor(Math.random() * $scope.negativeFeedbacks.length);
                 $scope.hintText = $scope.negativeFeedbacks[randomIndex].text;
-            } 
+            }
+            
         }
     };
     
@@ -201,6 +208,10 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             if ($scope.hintIndex === $scope.feedbacks.length - 1) {
                 
             }
+
+            if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
+                $scope.allHintsShown = true;
+              }
         } else {
            
             $scope.correctAnswerAfterHints = true; // Show correct answer if no more hints available

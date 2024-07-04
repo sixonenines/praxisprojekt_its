@@ -329,16 +329,20 @@ The solution is:
 
     // Sad/Happy Tutor 
     this.updatePythonTutorImage = function(feedbackType) {
+        console.log("FEEDBACKTYPE: " + feedbackType);
         var imageElement = document.getElementById('python-tutor-img');
         if (feedbackType === 'positive') {
+            console.log("Bildertausch pos");
             imageElement.src = 'assets/happy_pythonTutor.png'; 
         } else if (feedbackType === 'negative') {
+            console.log("Bildertausch");
             imageElement.src = 'assets/sad_pythonTutor.png';
         }
 
         // Nach 5 Sek. wieder zu default Bild
         $timeout(function() {
             imageElement.src = 'assets/pythonTutor.png'; 
+            feedbackType = "neutral";
         }, 2000);
     };
 
