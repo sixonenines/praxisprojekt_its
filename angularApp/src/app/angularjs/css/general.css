@@ -27,7 +27,7 @@
 }
 
 .correct-answer input {
-    border: 2px solid #DCCD7D;
+    border: 2px solid #5CAE63 ;
     border-radius: 10px;
     /* Grüne Umrandung für korrekte Antwort */
 }
@@ -45,7 +45,7 @@
 }
 
 .correct-answer-gap {
-    border: 6px solid #DCCD7D !important;
+    border: 6px solid #5CAE63  !important;
     border-radius: 10px;
 }
 
@@ -55,12 +55,12 @@
 }
 
 .correct-answer {
-    border: 6px solid #DCCD7D !important;
+    border: 6px solid #5CAE63  !important;
     border-radius: 10px;
 }
 
 .correct-answer-compiler {
-    border: 6px solid #DCCD7D !important;
+    border: 6px solid #5CAE63  !important;
     border-radius: 10px;
 }
 
