@@ -543,6 +543,7 @@ button {
     display: inline-block;
     padding: 10px 20px;
     background-color: #83E6EB;
+    background-color: #7082A9;
     color: #FFFFFF;
     text-decoration: none;
     border-radius: 4px;
@@ -1141,34 +1142,137 @@ button:disabled {
 
 
 .welcome-container {
-    position: fixed;
-    margin: 0px;
-    padding: 0px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-clip:content-box;
-    background-image: url(src/assets/welcome.png);
-    background-position: bottom;
-    width: 100vw;
-    height: 100vh;
+    display: flex;
     
+    position:absolute;
+    left:0;
+    right:0;
+    top: 0;
+    bottom: 0;
+
     
+    overflow: hidden;
+    background: url(src/assets/welcome2.png) no-repeat center center ;
+   background-size: cover;
+    background-color: #34495e;
+    width: 100%;
+    height: auto;
+}
+
+/* .welcome-container img{
+    display: flex;
+
+    width: 100%;
+    height: auto;
+    left:0;
+right:0;
+top: 0;
+bottom: 0;
+} */
+
+ 
+
+.welcome-btn-container {
+    margin-top: calc((100vh — Y)/2);
+margin-left: calc((100vw — X)/2);
+
+    display: grid;
+    grid-template-columns: repeat(5, 25%);
+    grid-template-rows: repeat(5, 20%);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    }
+    
+    .welcome-btn { grid-area: 3 / 3 / 4 / 4; } 
     
 
-}
 .welcome-btn {
+    
+
+    width: 200px;
+    height: 200px;
+ 
+    top: 65%;
+    bottom: 35%;
+    left: 50%;
+    right: 50%;
+    border: none;
+    color: #3E3E4F !important;
+    
+    font-weight: bold;
+    
+    border-radius: 50%;
+    box-shadow: 
+        inset 0 0 50px #fff,
+        inset 20px 0 60px rgb(191, 129, 242),
+        inset -20px 0 60px #0ff,
+        inset 20px 0 300px rgb(191, 129, 242),
+        inset -20px 0 300px #0ff,
+        0 0 50px #fff,
+        -10px 0 60px rgb(191, 129, 242),
+        10px 0 60px #0ff;
+    position: relative;
+    overflow: hidden;
+}
+.welcome-btn:hover {
+    cursor: pointer;
+    animation:pulse 4s linear infinite;
+}
+
+
+.welcome-btn .btn-text {
+    position: relative;
+    z-index: 1;
+    color: #fff !important;
+    text-shadow: 0 0 3px #9e9e9e;
+    font-size: 18px;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* .welcome-btn {
     width: 150px;
     height: 60px;
     font-size: 1em ;
+    margin: auto;
+    
     
 }
+.welcome-btn:before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    z-index: -1;
+    background: linear-gradient(45deg, #f15523, #ef3224, #7c3697);
+    background-size: 400%;
+    border-radius: 40px;
+    opacity: 0;
+    transition: 0.5%;
+  }
+  .welcome-btn:hover:before {
+    filter: blur(20px);
+    opacity: 1;
+    animation: animate 8s linear infinite;
+  } */
+  
+
+
 .welcome-text {
-    font-size: xx-large;
-    font-family:'Courier New', Courier, monospace;
-    font-weight: bolder;
-    white-space: nowrap;
-    overflow: auto;
-    width: fit-content;
+    
+    
 }
 .welcome-bubble {
     text-align: center;
@@ -1404,6 +1508,25 @@ kbd {
     height: auto; 
     min-height: 850px;
     max-height: 1200;
+    background-color: #34495e;
+}
+.login-background {
+    display: flex;
+    
+    position:absolute;
+    left:0;
+    right:0;
+    top: 0;
+    bottom: 0;
+
+    
+    overflow: hidden;
+    background: url(src/assets/login.png) no-repeat center center ;
+   background-size: cover;
+    background-color: #34495e;
+    width: 100%;
+    height: auto;
+    
 }
 
 #disclaimer {
