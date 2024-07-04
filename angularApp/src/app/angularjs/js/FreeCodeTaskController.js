@@ -69,8 +69,8 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             hint: "You are missing the while loop. Include it in your code and try again,"
         },
         "V2C2" : {
-            keywords: ['def', 'global'],
-            hint: "You are missing the definition (def, global). Include it in your code and try again. "
+            keywords: ['global', 'def'],
+            hint: "C is already initialized don't cheat, you need to access it in the function!"
         },
         "L2C2" : {
             keywords: ['for'],
@@ -127,6 +127,8 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         if(!keywordFound) {
             $scope.hintText = checkForKeywords ? checkForKeywords.hint : "Keyword check configuration missing.";
             FeedbackService.updatePythonTutorImage('negative');
+            $scope.isCorrectAnswer = false; // Task als inkorrekt markieren
+            $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect"); // Task Status als inkorrekt updaten
             return;
         }
         //Die Aufgabe updaten, falls korrekt. Dazu noch das Visuelles-Feedback vom Tutor
