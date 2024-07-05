@@ -1,12 +1,14 @@
-<div class="main-container-signup">
-  <div class="login-background">
+<!-- <div class="main-container-signup"> -->
+  <!-- <div class="login-background"> -->
     <!-- <img class="tail-end" src="assets/g1.svg">
     <img class="tail-left" src="assets/g3.svg">
     <img class="tail-right" src="assets/g2.svg">
     <img class="python-head" src="assets/g4.svg"> -->
-    <img class="oben" src="assets/oben.svg">
-    <img class="unten" src="assets/unten.svg">
-  </div>
+    <!--  -->
+    <!-- <img class="unten" src="assets/unten.png">
+  </div> -->
+  <img class="oben" src="assets/oben.png">
+  <img class="unten" src="assets/unten.png">
     <div class="login-container" id="disclaimer">
     <div class="login-heading">Register</div>
     <form *ngIf="(authService.isLoggedIn | async) === false" [formGroup]="signupForm" (ngSubmit)="onSubmitRegister()"
@@ -58,4 +60,4 @@
       <button type="submit" class="login-button">Log In</button>
     </form>
   </div>
-</div>
+<!-- </div> -->
