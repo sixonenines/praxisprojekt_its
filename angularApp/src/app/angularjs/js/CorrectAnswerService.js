@@ -29,9 +29,7 @@ app.factory('CorrectAnswerService', function() {
 
     return {
         checkAnswer: function(taskId, userAnswer) {
-            console.log("ID:",taskId)
-            console.log("Answer:",userAnswer);
-            console.log("KORREKTE",correctAnswers[taskId])
+            console.log("User Answer",userAnswer)
             userAnswer = String(userAnswer);
             return userAnswer == correctAnswers[taskId];
         }
