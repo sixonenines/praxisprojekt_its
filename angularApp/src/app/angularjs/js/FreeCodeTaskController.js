@@ -18,7 +18,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
     $scope.errorMessages = {
         "F1C2":
         {
-            keyPhrase: 'positionalarguments',
+            keyPhrase: 'assign',
             hint: "Ensure that you are passing the variables a and b to the add5 function correctly."
         },
 

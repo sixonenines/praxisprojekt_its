@@ -16,7 +16,6 @@ app.factory('CorrectAnswerService', function() {
         'F1C2' : "(8,7)",  
         'V2C2' : "3",
         'L2C2' : "246810Goodbye!",
-        'L2C3' : 'Largest Number:  7',
         'L4C2' : "Thecountis1Thecountis2Thecountis3Thecountis4Thecountis5Finished",
         'L5C1' : 
 `9
@@ -30,7 +29,9 @@ app.factory('CorrectAnswerService', function() {
 
     return {
         checkAnswer: function(taskId, userAnswer) {
-            console.log(userAnswer);
+            console.log("ID:",taskId)
+            console.log("Answer:",userAnswer);
+            console.log("KORREKTE",correctAnswers[taskId])
             userAnswer = String(userAnswer);
             return userAnswer == correctAnswers[taskId];
         }

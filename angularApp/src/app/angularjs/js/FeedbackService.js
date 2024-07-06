@@ -79,16 +79,13 @@ app.factory('FeedbackService', function($timeout) {
             { text: `
     The solution is:
     <span class="code-style-feedback">
-    def maximum(a, b, c):
-        if (a >= b) and (a >= c):
-            largest = a
-        elif (b >= a) and (b >= c):
-            largest = b
-        else:
-            largest = c
-        return largest
-    res = maximum(num1, num2, num3)
-    print(res)
+    for num in range(start, end + 1):
+        if num > 1:
+            for i in range(2, int(num**0.5) + 1):
+                if (num % i) == 0:
+                    break
+            else:
+                print(num)
     </span>
                 `, highlight: null },
         ],
