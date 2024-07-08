@@ -19,6 +19,8 @@ db = client['IPT_db']
 
 @app.route('/signup', methods=['POST'])
 def save_user():
+    code = 500
+    res_data = {}
     message = ""
     status = "fail"
     try:
@@ -34,16 +36,18 @@ def save_user():
             data["experienceLevel"]="Beginner"
             data["solvedTasks"]=[]
             data['UserCreated'] = datetime.now()
-            res = db.users.insert_one(data) 
+            access_token=create_access_token(identity=username)
+            res = db.users.insert_one(data)
             if res.acknowledged:
                 status = "successful"
                 message = "user created successfully"
-                code = 201
+                code = 200
+                res_data={"username":username, "token":access_token, "experienceLevel":data["experienceLevel"],"solvedTasks":data["solvedTasks"]}
     except Exception as ex:
         message = f"{ex}"
         status = "fail"
-        code = 500
-    return jsonify({'status': status, "message": message}), 200
+        code = 500    
+    return jsonify({'status': status, "data": res_data, "message":message}), code
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -57,7 +61,6 @@ def login():
         user = db.users.find_one({'username':username})
         print(user)
         if user:
-            userid = str(user['_id'])
             passwordhashed=user["password"]
             password=data["password"]
             experienceLevel = user["experienceLevel"]
@@ -67,7 +70,7 @@ def login():
                 message = "user authenticated"
                 code = 200
                 status = "successful"
-                res_data={"user_id":userid, "username":username, "token":access_token, "experienceLevel":experienceLevel,"solvedTasks":solvedTasksList}
+                res_data={"username":username, "token":access_token, "experienceLevel":experienceLevel,"solvedTasks":solvedTasksList}
                 print(res_data)
 
             else:

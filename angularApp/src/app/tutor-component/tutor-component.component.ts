@@ -62,8 +62,7 @@ export class TutorComponentComponent implements OnInit{
     const UserInfoJson= StoredUser ? JSON.parse(StoredUser) : null;
     const experienceLevel = String(this.selectedExperienceLevel);
     const username = String(UserInfoJson.username);
-    const userid = String(UserInfoJson.userid);
     const token = String(UserInfoJson.token);
-    this.authservice.changeExperienceLevel(userid,username,token,experienceLevel).subscribe();
+    this.authservice.changeExperienceLevel(username,token,experienceLevel).subscribe();
   }
 }

@@ -39,11 +39,16 @@ export class SignupComponent {
       // Check if username or password is undefined or null
       if (typeof username === 'string' && typeof password === 'string') {
         this.authService.signup(username, password).subscribe({
-          next: () => {
+          next: (user) => {
+            if (user && user.token) {
             // Handle successful signup
             console.log('Signup successful');
             // Redirect the user
-            this.router.navigateByUrl('/signup');
+            window.location.reload();
+            this.router.navigateByUrl('/tutor');
+            } else {
+              console.error('Signup successful, but no token received');
+            }
           },
           error: error => {
             // Handle signup error
@@ -69,7 +74,7 @@ onSubmitLogin() {
           if (user && user.token) {
             console.log("Login successful.");
             window.location.reload();
-            this.router.navigate(['/tutor']); 
+            this.router.navigateByUrl('/tutor'); 
           } else {
             console.error('Login successful, but no token received');
           }
