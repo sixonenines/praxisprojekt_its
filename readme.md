@@ -1,37 +1,89 @@
-UPDATE: ANGULARJS SETUP:
-1. Install NodeJS LTS (Long term Support) version
-https://nodejs.org/en
-2. Navigate to /angularApp directory
-3. run npm install in terminal (might have to as admin)
-4. run npm install -g @angular/cli
-5. run ng serve to start development server
-6. go to http://localhost:4200
+# Update: AngularJS Setup
 
+1. Install **NodeJS LTS (_Long Term Support_)** version:  
+   [Download NodeJS](https://nodejs.org/en)
 
-Python Backend Guide:
-0. Have Python 3 and pip installed (usually is already installed if Python is downloaded from https://www.python.org/downloads/ )
-1. Install MongoDB over https://www.mongodb.com/try/download/community
-(the community server edition)
-2. Start MongoDB compass and create a basic connectiom
-3. Try it out by opening http://localhost:27017/ in your browser
-4. Click on Databases, you should see 3 databases: admin, config, local. Create a new database with Database_name and Collection_name IPT_logs.
-5. Create a virtual environment in python and activate it (activating it is different in windows or in macos) SKIP THIS STEP IF ITS NOT WORKING AND HOPE YOUR NORMAL PYTHON ENVIRONMENT HAS NO CONFLICTS 
+2. Navigate to `/angularApp` directory
 
-https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/
-[ Do this in your terminal:
-1. pip install virtualenv
-2. python -m venv flask-mongodb (or python3 -m venv flask-mongodb)
-3.  ON MAC:
-"source /env/bin/activate"
-    ON WINDOWS:
-        IF USING CMD: env/Scripts/activate.bat
-        IF USING Powershell: env/Scripts/Activate.ps1
-]
-6. once its activated, stay in the terminal and type:
-"pip install flask"
-"pip install pymongo"
-7. Run the app.py either with "python app.py" or "python3 app.py"
+3. Run in terminal (might have to run as **admin**):
+   ```bash
+   npm install
+   ```
+
+4. Then run
+   ```bash
+   npm install -g @angular/cli
+   ```
+
+5. Start the development server with
+   ```bash
+   ng serve
+   ```
+
+6. Go to [http://localhost:4200](http://localhost:4200)
+
+<br />
+
+# Python Backend Guide
+
+0. Ensure **Python 3** and **pip** are installed (usually installed if Python is downloaded from [Python.org](https://www.python.org/downloads/))
+
+1. Install **MongoDB** from [MongoDB Community Server](https://www.mongodb.com/try/download/community) (the _community server edition_)
+
+2. Start **MongoDBCompass** and create a basic connection
+
+3. Try it out by opening [http://localhost:27017/](http://localhost:27017/) in your browser
+
+4. Click on **Databases**, you should see 3 databases: **admin**, **config**, **local**. Create a new database with _Database\_name_ and _Collection\_name_ _IPT\_logs_
+
+5. Create a virtual environment in Python and activate it (activation is **different** on _Windows_ or _macOS_)
+
+> Skip this step if it's not working and hope your normal python environment has no conflicts.
+> [How to setup virtual environments in Python](https://www.freecodecamp.org/news/how-to-setup-virtual-environments-in-python/)
+---
+
+   ```bash
+   pip install virtualenv
+   ```
+   
+   ```bash
+   python -m venv flask-mongodb
+   ```
+   
+   or
+   
+   ```bash
+   python3 -m venv flask-mongodb
+   ```
+   
+   ### On macOS:
+   ```bash
+   source /env/bin/activate
+   ```
+   
+   ### On Windows using CMD:
+   ```bash
+   env/Scripts/activate.bat
+   ```
+   
+   ### On Windows using PowerShell:
+   ```bash
+   env/Scripts/Activate.ps1
+   ```
+
+6. Once it's activated, stay in the terminal and type
+   ```bash
+   pip install flask
+   ```
+   ```bash
+   pip install pymongo
+   ```
+
+7. Run the `app.py` either with `python app.py` or `python3 app.py` as required by your installation
+
 8. Access the website shown in your terminal
-9. Add '/upload_logged_data' to the end of the link or '/add_random_data_for_example'
 
-http://127.0.0.1:5000/get_logged_data
+9. Append `/upload_logged_data` to the end of the link or `/add_random_data_for_example`
+
+   **Example:**
+   [http://127.0.0.1:5000/get_logged_data](http://127.0.0.1:5000/get_logged_data)
