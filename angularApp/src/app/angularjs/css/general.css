@@ -1666,6 +1666,7 @@ tr:first-child td:first-child {
     z-index: 1; 
     width: 33vw;
     height: auto;
+    bottom: 35px;
 }
 
 body, html {
@@ -1688,8 +1689,7 @@ body, html {
     background: url(src/assets/bg.png);
     box-shadow: 0 0 15px #ccc;
     position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow:auto;
    
   }
 
@@ -1698,11 +1698,11 @@ body, html {
     border: 3px solid #afafaf;
     /* background-color:white; */
     border-radius: 10px;
-    background: url(src/assets/bg.png);
+    background: url(src/assets/bg.png) no-repeat center center;
+    background-size: cover;
     box-shadow: 0 0 15px #ccc;
     position: relative;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow:hidden;
    
   }
 
@@ -1714,7 +1714,6 @@ body, html {
     border-radius: 10px;
     overflow: hidden;
   }
-
 
   /*.main-container-signup{
     position: absolute;
@@ -1728,7 +1727,7 @@ body, html {
     position: absolute;
     
     width: 100%; 
-    height: auto; 
+    height: 100%; 
     overflow: hidden;
     object-fit: contain;
     pointer-events: none;
@@ -1738,7 +1737,7 @@ body, html {
  .unten {
     position: absolute;
     width: 100%; 
-    height: auto; 
+    height: 100%; 
     overflow: hidden;
     pointer-events: none;
     object-fit: cover;
@@ -1748,4 +1747,4 @@ body, html {
     display: none;
 }
 
-*{border: 1px solid red;}
+/* *{border: 1px solid red;} */
