@@ -325,18 +325,25 @@ The solution is:
     
 
     // Sad/Happy Tutor 
-    this.updatePythonTutorImage = function(feedbackType) {
+    this.updatePythonTutorImage = function(feedbackType, timestamp) {
         console.log("FEEDBACKTYPE: " + feedbackType);
         var imageElement = document.getElementById('python-tutor-img');
+        var baseImageUrl;
+
         if (feedbackType === 'positive') {
             console.log("Bildertausch pos");
-            imageElement.src = 'assets/happy_pythonTutor.png'; 
+            baseImageUrl = 'assets/happy_pythonTutor.png'; 
         } else if (feedbackType === 'negative') {
             console.log("Bildertausch");
-            imageElement.src = 'assets/sad_pythonTutor.png';
+            baseImageUrl = 'assets/sad_pythonTutor.png';
+        } else {
+            baseImageUrl = 'assets/pythonTutor.png';
         }
 
-        // Nach 5 Sek. wieder zu default Bild
+        // Append timestamp to the image URL to prevent caching
+        imageElement.src = baseImageUrl + '?t=' + timestamp;
+
+        // Revert to default image after 5 seconds
         $timeout(function() {
             imageElement.src = 'assets/pythonTutor.png'; 
             feedbackType = "neutral";
@@ -344,5 +351,4 @@ The solution is:
     };
 
     return this;
-    
 });

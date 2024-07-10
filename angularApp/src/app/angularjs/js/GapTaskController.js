@@ -77,18 +77,19 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
     
     $scope.provideFeedback = function() {
         var taskId = $scope.$parent.currentTask.id;
+        var timestamp = new Date().getTime();
         if (taskId === "F1C1"){
             var isCorrect = $scope.isCorrectAnswer1 && $scope.isCorrectAnswer2;
             var isPartCorrect = $scope.isCorrectAnswer1 || $scope.isCorrectAnswer2;
-            FeedbackService.updatePythonTutorImage('positive');
+            FeedbackService.updatePythonTutorImage('positive',timestamp);
         } else {
-            FeedbackService.updatePythonTutorImage('negative');
+            FeedbackService.updatePythonTutorImage('negative',timestamp);
         }
         if (taskId === "L1C1"){
             var isCorrect = $scope.isCorrectAnswer1;
            
         } else {
-            FeedbackService.updatePythonTutorImage('negative');
+            FeedbackService.updatePythonTutorImage('negative',timestamp);
         }
         
         $scope.noButtonsOnFeedback = true;
@@ -97,10 +98,10 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
             $scope.positiveFeedbacks = FeedbackService.getPositiveFeedbacks(taskId);
             if ($scope.positiveFeedbacks.length > 0) {
                 $scope.hintText = $scope.positiveFeedbacks[0].text;
-                FeedbackService.updatePythonTutorImage('positive');
+                FeedbackService.updatePythonTutorImage('positive',timestamp);
             }
         } else if (isPartCorrect) {
-            FeedbackService.updatePythonTutorImage('positive');
+            FeedbackService.updatePythonTutorImage('positive',timestamp);
 
         }
          else {
@@ -108,7 +109,7 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
             if ($scope.negativeFeedbacks.length > 0) {
                 var randomIndex = Math.floor(Math.random() * $scope.negativeFeedbacks.length);
                 $scope.hintText = $scope.negativeFeedbacks[randomIndex].text;
-                FeedbackService.updatePythonTutorImage('negative');
+                FeedbackService.updatePythonTutorImage('negative',timestamp);
             }
         }
 
@@ -191,9 +192,7 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
             if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
                 $scope.allHintsShown = true; // Alle Hinweise wurden angezeigt
             }
-        } else {
-            $scope.hintText = "Keine weiteren Hints verfügbar.";
-        }
+        } 
     
         // Aktiviere den Hint-Button nach 20 Sekunden wieder
         $timeout(function() {

@@ -126,7 +126,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         var keywordFound = checkForKeywords && Array.isArray(checkForKeywords.keywords) && checkForKeywords.keywords.some(keyword => codeSanitized.includes(keyword));
         if(!keywordFound) {
             $scope.hintText = checkForKeywords ? checkForKeywords.hint : "Keyword check configuration missing.";
-            FeedbackService.updatePythonTutorImage('negative');
+            FeedbackService.updatePythonTutorImage('negative',timestamp);
             $scope.isCorrectAnswer = false; // Task als inkorrekt markieren
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect"); // Task Status als inkorrekt updaten
             return;
@@ -137,11 +137,11 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "correct");
-            FeedbackService.updatePythonTutorImage('positive');
+            FeedbackService.updatePythonTutorImage('positive',timestamp);
             
         } else {
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
-            FeedbackService.updatePythonTutorImage('negative');
+            FeedbackService.updatePythonTutorImage('negative',timestamp);
             console.log("AUFGABE INKORREKT GELÖST");
         }
         // Schauen ob es eine Aufgabe ist, die spezifische hints hat
@@ -149,10 +149,10 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         var taskError = $scope.errorMessages[$scope.$parent.currentTask.id];
         if (taskError && userAnswerSanitized.includes(taskError.keyPhrase)) {
             $scope.hintText = taskError.hint; // Hint Text anzeigen, falls es einen spezifischen hint gibt.
-            FeedbackService.updatePythonTutorImage('negative');
+            FeedbackService.updatePythonTutorImage('negative',timestamp);
         } else {
             $scope.userReassurance();
-            FeedbackService.updatePythonTutorImage('negative');
+            FeedbackService.updatePythonTutorImage('negative',timestamp);
         }
         
     };
@@ -164,16 +164,18 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         
         if (isCorrect) {
             $scope.positiveFeedbacks = FeedbackService.getPositiveFeedbacks(taskId);
-            FeedbackService.updatePythonTutorImage('positive');
+            
             if ($scope.positiveFeedbacks.length > 0) {
                 $scope.hintText = $scope.positiveFeedbacks[0].text; 
+                FeedbackService.updatePythonTutorImage('positive',timestamp);
             }
         } else {
             $scope.negativeFeedbacks = FeedbackService.getNegativeFeedbacks(taskId);
-            FeedbackService.updatePythonTutorImage('negative'); 
+            
             if ($scope.negativeFeedbacks.length > 0) {
                 var randomIndex = Math.floor(Math.random() * $scope.negativeFeedbacks.length);
                 $scope.hintText = $scope.negativeFeedbacks[randomIndex].text;
+                FeedbackService.updatePythonTutorImage('negative',timestamp); 
             }
             
         }
@@ -215,11 +217,9 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
 
             if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
                 $scope.allHintsShown = true;
+                $scope.correctAnswerAfterHints = true; // Show correct answer if no more hints available
               }
-        } else {
-           
-            $scope.correctAnswerAfterHints = true; // Show correct answer if no more hints available
-        }
+        } 
         // Aktiviere den Hint-Button nach 20 Sekunden wieder
         $timeout(function() {
             $scope.stopHintButtonAnimation();

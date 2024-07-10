@@ -170,6 +170,12 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
     $scope.updateConnectedNodes();
   };
 
+  $scope.noCheck = function() {
+    if (GraphLinksModel([], [])){
+      return True;
+    }
+  }
+
   $scope.refresh = function() {
     myDiagram.model = new go.GraphLinksModel([], []);
     $scope.availableLines = [
@@ -212,10 +218,10 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
       $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
       $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
       $scope.updateTaskStatus(taskId, "correct");
-      FeedbackService.updatePythonTutorImage('positive');
+      FeedbackService.updatePythonTutorImage('positive',timestamp);
     } else {
       $scope.updateTaskStatus(taskId, "incorrect");
-      FeedbackService.updatePythonTutorImage('negative');
+      FeedbackService.updatePythonTutorImage('negative',timestamp);
     }
 
     highlightNodesAndLinks(userAnswer, isCorrect);
