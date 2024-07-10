@@ -173,14 +173,14 @@ The solution is:
             { text: 'The condition (count < 1) in the while loop is incorrect for achieving the desired output. It should be adjusted to ensure that the loop runs as long as count is less than or equal to 5.', highlight: null},
             { text: 'Inside the while loop, use a print statement to display the current value of count with the format the count is : X, where X is the current value of count.', highlight: null },
             { text: `
-    The solution is:
-    <span class="code-style-feedback">
-    count = 1
-    while (count<=5):
-        print("The count is",count)
-        count+=1
-    print("Finished")
-    </span>
+The solution is:
+<span class="code-style-feedback">
+count = 1
+while (count<=5):
+    print("The count is",count)
+    count+=1
+print("Finished")
+</span>
                 `, highlight: null },
 
         ],
