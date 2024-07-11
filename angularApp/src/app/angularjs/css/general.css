@@ -221,6 +221,12 @@ img.python-tutor {
     bottom: 240px;
 }
 
+.hint-text-freeCode-F1C2{
+    position:relative;
+    width: 300px;
+    left: 91%;
+    bottom: 283px;
+}
 
 .hint-text-freeCode-F1C3-code{
     position:relative;
@@ -233,7 +239,7 @@ img.python-tutor {
     position:relative;
     width: 300px;
     left: 88%;
-    bottom: 350px;
+    bottom: 295px;
 }
 
 

@@ -101,7 +101,7 @@ for num in range(start, end + 1):
 sum = 0
 i = 0
 while i <= end:
-    sum += 1
+    sum += i
     i +=1
 print(sum)
 </span>
@@ -131,12 +131,12 @@ print(sum)
         { text: 'The function call add5(3, 2) should store the result, and then you need to print this result. Ensure that the function returns a tuple of the updated values and that this returned value is printed.', highlight: null },
         { text: `
 The solution is: 
-    <span class="code-style-feedback">
-    def add5(a,b):
+<span class="code-style-feedback">
+def add5(a,b):
     return a+5, b+5
-    result = add5 (3,2)
-    print(result)
-    </span>`
+result = add5 (3,2)
+print(result)
+</span>`
 , highlight: null },
         ],
 
