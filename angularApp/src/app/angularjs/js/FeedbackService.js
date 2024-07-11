@@ -91,7 +91,7 @@ app.factory('FeedbackService', function($timeout) {
         ],
         V1C3: [
             { text: 'You need a variable to keep track of the running total as you loop through the numbers from 1 to "end". Initialize this variable to 0 before the loop starts.', highlight: null },
-            { text: 'Use a for loop to iterate through the range of numbers from 1 to "end", inclusive. The range function will be helpful here, but remember that it usually goes up to but does not include the stop value.', highlight: null},
+            { text: 'Use a while loop to iterate through the range of numbers from 1 to "end", inclusive. Do not forget to set a condition for the while loop.', highlight: null},
             { text: 'Inside the loop, add each number to your sum variable. After the loop finishes, print the result. Make sure to print only the sum without any additional text.', highlight: null },
             { text: 'After the loop has completed, print the sum variable. Make sure to print only the sum without any additional text.', highlight: null},
             { text: `
