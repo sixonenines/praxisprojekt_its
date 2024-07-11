@@ -42,7 +42,7 @@ app.factory('FeedbackService', function($timeout) {
             { text: `
 The solution is:
 <span class="code-style-feedback">
-    def calculation(a, b):
+def calculation(a, b):
     addition = a + b
     subtraction = a - b
     return addition, subtraction
@@ -66,7 +66,7 @@ print(result_addition, result_subtraction)
 The solution is:
 <span class="code-style-feedback">
 def show_employee(name, salary=46000):
-print("Name:", name, "Salary:", salary)
+    print("Name:", name, "Salary:", salary)
 show_employee("Emma", 55000)
 show_employee("Ben")
 </span>
