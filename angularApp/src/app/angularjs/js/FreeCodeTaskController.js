@@ -254,7 +254,7 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
 
 
     $scope.startHintButtonAnimation = function() {
-        var totalTime = 0; // Gesamtzeit in Millisekunden (5 Sekunden)
+        var totalTime = 5000; // Gesamtzeit in Millisekunden (5 Sekunden)
         var currentTime = 0; // Aktuelle Zeit
         $scope.hintButtonAnimationInterval = $interval(function() {
             currentTime += 100; // Inkrementiere die aktuelle Zeit um den Intervallwert

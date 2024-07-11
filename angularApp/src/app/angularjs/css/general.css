@@ -767,7 +767,9 @@ textarea:focus {
 .user-info-container {
     background-color: #B9CDDA;
     /* Hintergrundfarbe */
-    padding: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     /* Schatten */

@@ -194,7 +194,7 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
             }
         } 
     
-        // Aktiviere den Hint-Button nach 20 Sekunden wieder
+        // Aktiviere den Hint-Button nach 5 Sekunden wieder
         $timeout(function() {
             $scope.stopHintButtonAnimation();
         }, 5000);
@@ -230,7 +230,7 @@ app.controller("GapTaskController", function($scope, $timeout, $interval, Correc
     // });
     
     $scope.startHintButtonAnimation = function() {
-        var totalTime = 0; // Gesamtzeit in Millisekunden (5 Sekunden)
+        var totalTime = 5000; // Gesamtzeit in Millisekunden (5 Sekunden)
         var currentTime = 0; // Aktuelle Zeit
         $scope.hintButtonAnimationInterval = $interval(function() {
             currentTime += 100; // Inkrementiere die aktuelle Zeit um den Intervallwert
