@@ -32,7 +32,6 @@ app.controller("TaskController", function ($scope, CorrectAnswerService, $templa
     ];
 
     $scope.difficulties = ["beginner", "advanced", "expert"];
-    $scope.selectedExperienceLevel = 'beginner';
 
     var currentUser = JSON.parse(localStorage.getItem("currentUser")) || [];
     $scope.selectedExperienceLevel = currentUser['experienceLevel'];
