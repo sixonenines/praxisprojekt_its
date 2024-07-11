@@ -54,7 +54,8 @@
         </tr>
     </table>
     <div class="hint-position">
-        <div class="hint-navigation hint-text-V2C2" ng-show="hintText">
+        <div ng-class="{'hint-text-freeCode-V2C2': hintIndex === 3, 'hint-text-freeCode': hintIndex !== 3}" ng-show="hintText" class="hint-navigation">
+        <!--<div class="hint-navigation hint-text-V2C2" ng-show="hintText">-->
             <!--<div class="hint-text">{{ hintText }}</div>-->
             <div class="hint-text" ng-bind-html="hintText | toTrusted"></div>
             <div class="buttons" ng-show="!noButtonsOnFeedback">

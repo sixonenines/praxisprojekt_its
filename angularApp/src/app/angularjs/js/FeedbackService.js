@@ -39,15 +39,15 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'Return the results of the addition and subtraction as a tuple from the function. When calling the function, capture the returned values and print them in a single print statement. Tuples are returned in parentheses, and you can print multiple values separated by a comma.', highlight: null },
             { text: 'When calling the function, capture both returned values by assigning them to two variables, which can then be printed or used in further calculations.', highlight: null},
             { text: `
-    The solution is:
-    <span class="code-style-feedback">
-        def calculation(a, b):
-        addition = a + b
-        subtraction = a - b
-        return addition, subtraction
-    result_addition, result_subtraction = calculation(num1, num2)
-    print(result_addition, result_subtraction)
-    </span>
+The solution is:
+<span class="code-style-feedback">
+    def calculation(a, b):
+    addition = a + b
+    subtraction = a - b
+    return addition, subtraction
+result_addition, result_subtraction = calculation(num1, num2)
+print(result_addition, result_subtraction)
+</span>
                 `, highlight: null },
         ],
         F2C3: [
@@ -62,13 +62,13 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'Pay attention to how the arguments are passed in the function calls. Ensure that the order of the arguments in the calls matches the order in the function definition.', highlight: null },
             { text: 'If a default salary is intended for cases where the salary is not provided, set a default value for the salary parameter in the function definition. This way, the function can be called with just the name and still work correctly.'},
             { text: `
-    The solution is:
-    <span class="code-style-feedback">
-    def show_employee(name, salary=46000):
-    print("Name:", name, "Salary:", salary)
-    show_employee("Emma", 55000)
-    show_employee("Ben")
-    </span>
+The solution is:
+<span class="code-style-feedback">
+def show_employee(name, salary=46000):
+print("Name:", name, "Salary:", salary)
+show_employee("Emma", 55000)
+show_employee("Ben")
+</span>
                 `, highlight: null },
         ],
         L2C3: [
@@ -77,16 +77,16 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'If the number is determined to be prime, print it. Ensure that you print only the prime numbers without any additional text.', highlight: null },
             { text: 'Optimize the helper function by checking for divisors only up to the square root of the number, as any factor larger than the square root would have a corresponding factor smaller than the square root.', highlight: null},
             { text: `
-    The solution is:
-    <span class="code-style-feedback">
-    for num in range(start, end + 1):
-        if num > 1:
-            for i in range(2, int(num**0.5) + 1):
-                if (num % i) == 0:
-                    break
-            else:
-                print(num)
-    </span>
+The solution is:
+<span class="code-style-feedback">
+for num in range(start, end + 1):
+    if num > 1:
+        for i in range(2, int(num**0.5) + 1):
+            if (num % i) == 0:
+                break
+        else:
+            print(num)
+</span>
                 `, highlight: null },
         ],
         V1C3: [
@@ -95,15 +95,15 @@ app.factory('FeedbackService', function($timeout) {
             { text: 'Inside the loop, add each number to your sum variable. After the loop finishes, print the result. Make sure to print only the sum without any additional text.', highlight: null },
             { text: 'After the loop has completed, print the sum variable. Make sure to print only the sum without any additional text.', highlight: null},
             { text: `
-                The solution is:
-    <span class="code-style-feedback">
-    sum = 0
-    i = 0
-    while i <= end:
-        sum += 1
-        i +=1
-    print(sum)
-    </span>
+            The solution is:
+<span class="code-style-feedback">
+sum = 0
+i = 0
+while i <= end:
+    sum += 1
+    i +=1
+print(sum)
+</span>
                 `, highlight: null },
         ],
         L5C1: [
@@ -111,16 +111,16 @@ app.factory('FeedbackService', function($timeout) {
             { text: '"The while loop should continue to execute as long as num is greater than 3. This means the loop will run and decrement num until it reaches 3.', highlight: null},
             { text: 'In each iteration of the while loop, the value of num is decreased by 1. Pay attention to how this affects the value of num each time the loop runs.', highlight: null },
             { text: `
-                The solution is:
-    <span class="code-style-feedback">
-    9
-    8
-    7
-    6
-    5
-    4
-    3
-    </span>
+        The solution is:
+<span class="code-style-feedback">
+9
+8
+7
+6
+5
+4
+3
+</span>
                 `, highlight: null },
         ],
         
@@ -144,15 +144,15 @@ The solution is:
             { text: 'Check that the global variable c is properly initialized before the function modifies it. This way, the function can correctly increment the value of c.', highlight: null},
             { text: 'Make sure the function is called after defining it to execute the code within the function. This ensures that the global variable is incremented and printed as expected.', highlight: null },
             { text: `
-    The solution is:
-    <span class="code-style-feedback">
-    c = 1
-    def add():
-        global c
-        c = c+2
-        print(c)
-    add()
-    </span>
+The solution is:
+<span class="code-style-feedback">
+c = 1
+def add():
+    global c
+    c = c+2
+    print(c)
+add()
+</span>
                 `, highlight: null },
         ],
         L2C2: [
@@ -160,12 +160,12 @@ The solution is:
             { text: 'Use a for loop with the range function to generate numbers from 2 to 10 (inclusive). The range function can start from 2 and step by 2 up to 10 to match the sequence.', highlight: null},
             { text: 'After the for loop completes, print Goodbye! outside of the loop. This ensures that Goodbye! is printed only once after all the numbers have been printed.', highlight: null },
             { text: `
-                The solution is:
-    <span class="code-style-feedback">
-    for x in range (2,12,2):
-        print(x)
-    print ("Goodbye!")
-    </span>
+            The solution is:
+<span class="code-style-feedback">
+for x in range (2,12,2):
+    print(x)
+print ("Goodbye!")
+</span>
                 `, highlight: null },
         ],
         L4C2: [

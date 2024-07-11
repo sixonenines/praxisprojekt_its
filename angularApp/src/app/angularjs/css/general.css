@@ -24,6 +24,9 @@
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     font-size: 12px;
     text-align: left !important;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
 
 .correct-answer input {
@@ -134,7 +137,18 @@ img.python-tutor {
     font-size: 10pt;
 }
 
+.hint-text-freeCode-L2C2{
+    background-color: green;
+    width: 300px;
+    left: 60%;
+    bottom: 27%;
+}
 
+.hint-text-freeCode-V2C2{
+    width: 300px;
+    left: 61%;
+    bottom: 0%;
+}
 
 
 .hint-text-freeText{
@@ -146,7 +160,7 @@ img.python-tutor {
 .hint-text-freeText-L5C1{
     width: 300px;
     left: 60%;
-    bottom: 24%;
+    bottom: 27%;
 }
 
 
@@ -160,7 +174,7 @@ img.python-tutor {
 .hint-text-gap{
     width: 300px;
     left: 60%;
-    bottom: 50%;
+    bottom: 53%;
 }
 
 .hint-text-freeCode{
@@ -226,14 +240,14 @@ img.python-tutor {
 .hint-text-gap-F1C1{
     width: 300px;
     left: 60%;
-    bottom: 45%;
+    bottom: 47%;
 }
 
 .hint-text-V2C2{
     position: relative;
     width: 300px;
     left: 90%;
-    bottom: 265px;
+    bottom: 220px;
 }
 
 .code-highlighting {
