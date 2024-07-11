@@ -1,4 +1,5 @@
 var app = angular.module("myApp");
+
 app.factory('FeedbackService', function($timeout) {
     var feedbacks = {
         V1C1: [
@@ -238,6 +239,9 @@ print("Finished")
         ],
         L3C1: [
             {text: 'Wow you seem to be in the "flow" right now! Way to go!'}
+        ],
+        L5C1: [
+            {text: 'Well done! The loop starts at num = 10 and reduces num by 1 with each iteration, printing the updated value. It stops when num is no longer greater than 3, meaning it prints values from 9 to 3 inclusive.'}
         ]
 
 
@@ -341,12 +345,12 @@ print("Finished")
         }
 
         // Append timestamp to the image URL to prevent caching
+        var timestamp = new Date().getTime();
         imageElement.src = baseImageUrl + '?t=' + timestamp;
 
         // Revert to default image after 5 seconds
         $timeout(function() {
-            imageElement.src = 'assets/pythonTutor.png'; 
-            feedbackType = "neutral";
+            imageElement.src = 'assets/pythonTutor.png?t=' + new Date().getTime();
         }, 2000);
     };
 

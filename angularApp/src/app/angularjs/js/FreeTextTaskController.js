@@ -31,10 +31,10 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
             $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "correct");
-            FeedbackService.updatePythonTutorImage('positive');
+            FeedbackService.updatePythonTutorImage('positive',timestamp);
         }else{
             $scope.updateTaskStatus($scope.$parent.currentTask.id, "incorrect");
-            FeedbackService.updatePythonTutorImage('negative');
+            FeedbackService.updatePythonTutorImage('negative',timestamp);
         }
 
         $scope.userReassurance();
@@ -92,9 +92,7 @@ app.controller("FreeTextTaskController", function($scope, $timeout, $interval, C
                 console.log("HERE");
                 $scope.allHintsShown = true; // Alle Hinweise wurden angezeigt
             }
-        } else {
-            $scope.hintText = "Keine weiteren Hints verfügbar.";
-        }
+        } 
     
         // Aktiviere den Hint-Button nach 20 Sekunden wieder
         $timeout(function() {
