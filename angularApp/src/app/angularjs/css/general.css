@@ -1350,6 +1350,84 @@ textarea{
     margin:  5px 0 ;
 }
 
+/* https://codepen.io/mayank26/pen/dyvweme */
+:root {
+    --bg-color: #1E1E1E; /* Default background color */
+    --text-color: #d4d4d4; /* Default text color */
+    --hover-bg-color: #d4d4d4; /* Hover background color */
+    --hover-text-color: #1E1E1E; /* Hover text color */
+}
+
+
+
+.accordion-flow {
+    width: calc(548.783px/2);
+    max-width: 500px; /* Set a maximum width */
+    
+}
+
+details {
+    background-color: var(--bg-color);
+    width: 100%;
+    transition: background-color 0.3s ease;
+    position: relative;
+    vertical-align: top;
+    
+}
+
+details:hover {
+    background-color: var(--hover-bg-color);
+    
+}
+
+details > summary {
+    color: var(--text-color);
+    padding: 5px;
+    font-size: 1.3em;
+    cursor: pointer;
+    height: fit-content;
+    max-height: 100%;
+    
+}
+details > summary::marker {
+    text-align: left;
+}
+
+details > summary > i{
+    position: relative;
+    left: 103px
+}
+
+
+details [open] {
+    width: 100px;
+    height: auto;
+}
+details:hover summary {
+    color: var(--hover-text-color);
+}
+
+.canvas-nav {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+details:hover .canvas-nav {
+    color: var(--hover-text-color);
+}
+
+
+
+
+details > p {
+    padding: 5px;
+    color: #1e1e1e;
+    font-size: 1.1em;
+    background-color: #d4d4d4;
+    max-width: 100%;
+    margin: auto;;
+}
+
 /* https://www.w3schools.com/howto/howto_css_flip_card.asp -> */
 
  /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
