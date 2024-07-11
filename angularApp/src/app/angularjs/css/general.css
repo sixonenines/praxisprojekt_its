@@ -8,7 +8,7 @@
     color: #d4d4d4;
     font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
     font-size: 14px;
-    line-height: 1.5;
+    line-height: 1.2;
     text-align: left !important;
 }
 
@@ -146,15 +146,23 @@ img.python-tutor {
 
 .hint-text-freeCode-V2C2{
     width: 300px;
-    left: 61%;
-    bottom: 0%;
+    left: 91%;
+    bottom: 280px;
+    position: relative;
+}
+
+.hint-text-freeCode-F2C3{
+    position: relative;
+    width: 300px;
+    left: 91%;
+    bottom: 310px;
 }
 
 
 .hint-text-freeText{
     width: 300px;
     left: 60%;
-    bottom: 52%;
+    bottom: 58%;
 }
 
 .hint-text-freeText-L5C1{
@@ -201,7 +209,7 @@ img.python-tutor {
 .hint-text-freeCode-F5C2{
     position:relative;
     width: 325px;
-    left: 85%;
+    left: 89%;
     bottom: 250px;
 }
 
