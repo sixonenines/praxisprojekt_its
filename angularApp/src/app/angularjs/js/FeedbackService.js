@@ -220,7 +220,7 @@ print("Finished")
             { text: 'Awesome! You successfully created a program that defines a function to find the largest number among three numbers, considering cases where two numbers are identical and larger than the third. Your function accepts three numbers and correctly returns the largest of them. ', highlight: null }
         ],
         F5C2: [
-            { text: 'You correctly identified the error in the code and fixed it by adding a second parameter with a default value in the function definition. By adding the second parameter "salary=46000" in line 1 and setting it to the default value, you ensure that the function show_employee() works correctly even if the salary is not explicitly provided. This shows that you have a clear understanding of default parameters in function definitions.', highlight: null }
+            { text: 'You correctly fixed the error by adding the second parameter "salary=46000" as a default value to the function definition. This ensures that the function show_employee() works even if the salary is not explicitly provided, demonstrating your understanding of default parameters.', highlight: null }
         ],
         L2C3: [
             { text: 'Great job! You have a solid understanding of both iteration and prime number concepts! Your code efficiently iterates through the range to determine which numbers are prime.', highlight: null }
