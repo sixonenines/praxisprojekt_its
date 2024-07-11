@@ -55,8 +55,22 @@ print(result_addition, result_subtraction)
             { text: 'Start by defining a function that accepts three parameters. Use the def keyword and name your function something descriptive, such as find_largest.', highlight: null },
             { text: 'Inside the function, use conditional statements to compare the three numbers. You can use if-elif-else statements to determine which number is the largest. Remember to handle cases where two or more numbers might be equal.', highlight: null},
             { text: 'Ensure that your function returns the largest number found. You dont need to print anything inside the function; just return the value. When calling the function, print the returned value directly without any additional text.', highlight: null },
-            { text: 'Return the largest number found using a single return statement without any additional text. This should be done after all comparisons are made.', Highlight: null}
-        ],
+            { text: 'Return the largest number found using a single return statement without any additional text. This should be done after all comparisons are made.', Highlight: null},
+            { text: `
+The solution is:
+<span class="code-style-feedback">
+def maximum(a, b, c):
+    if (a >= b) and (a >= c):
+        largest = a
+    elif (b >= a) and (b >= c):
+        largest = b
+    else:
+        largest = c
+    return largest
+print(maximum(num1,num2,num3))
+                </span>
+                                `, highlight: null },
+                        ],
         F5C2: [
             { text: 'Think about how to pass both the name and the salary to the show_employee function. You need to add an extra parameter in the function definition.', highlight: null },
             { text: 'In case the function is called without a salary value, it should use a default value. Consider using default parameter values in Python.', highlight: null},

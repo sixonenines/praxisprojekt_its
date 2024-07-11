@@ -151,6 +151,13 @@ img.python-tutor {
     position: relative;
 }
 
+.hint-text-freeCode-F2C3{
+    position: relative;
+    width: 300px;
+    left: 91%;
+    bottom: 310px;
+}
+
 
 .hint-text-freeText{
     width: 300px;
