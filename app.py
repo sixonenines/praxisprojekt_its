@@ -33,7 +33,7 @@ def save_user():
         else:
             # hashing the password so it's not stored in the db as it was
             data['password'] = bcrypt.generate_password_hash(data['password']).decode('utf-8')
-            data["experienceLevel"]="Beginner"
+            data["experienceLevel"]="beginner"
             data["solvedTasks"]=[]
             data['UserCreated'] = datetime.now()
             access_token=create_access_token(identity=username)
