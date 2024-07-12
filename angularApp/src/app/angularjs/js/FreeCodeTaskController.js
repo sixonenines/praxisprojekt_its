@@ -214,12 +214,13 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
             if ($scope.hintIndex === $scope.feedbacks.length - 1) {
                 
             }
-
+        } else {
+            $scope.hintText = "Check out the correct solution in the compiler!";
+            $scope.correctAnswerAfterHints = true; // Show correct answer if no more hints available
             if ($scope.hintIndex >= $scope.feedbacks.length - 1) {
-                $scope.allHintsShown = true;
-                $scope.correctAnswerAfterHints = true; // Show correct answer if no more hints available
-              }
-        } 
+                $scope.allHintsShown = true; // Alle Hinweise wurden angezeigt
+            }   
+        }
         // Aktiviere den Hint-Button nach 20 Sekunden wieder
         $timeout(function() {
             $scope.stopHintButtonAnimation();
