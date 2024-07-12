@@ -3,33 +3,33 @@ var app = angular.module("myApp");
 app.factory('FeedbackService', function($timeout) {
     var feedbacks = {
         V1C1: [
-            { text: "Hint 1 for V1C1: The value of 'a' is set twice.", highlight: null },
-            { text: "Hint 2 for V1C1: The last assigned value of 'a' is crucial.", highlight: 2 },
-            { text: "Hint 3 for V1C1: The value that is set last will be outputted.", highlight: null },
+            { text: "Pay attention to the order of operations in the code. Which line is executed last?", highlight: null },
+            { text: "In Python, when you assign a new value to a variable, it overwrites the previous value completely.", highlight: 2 },
+            { text: "The print() function outputs the current value of the variable, not its name or history.", highlight: null },
             { text: "The solution is 20", highlight: null },
         ],
         V3C1: [
-            { text: "Hint 1 for V3C1: Consider the sequence of operations.", highlight: null },
-            { text: "Hint 2 for V3C1: Check which variables are being used.", highlight: 2 },
-            { text: "Hint 3 for V3C1: Take possible overrides into account.", highlight: null },
+            { text: "The expression 'a+1' on the right side of line 2 uses the current value of 'a'. What is that value at this point in the code?", highlight: null },
+            { text: "Focus on line 2 (highlight this line). In Python, the '=' sign is an assignment operator, not an equation. It assigns the value on the right to the variable on the left.", highlight: 2 },
+            { text: "Python executes lines in order from top to bottom. Consider how the value of 'a' changes after each line is executed.", highlight: null },
             { text: "The solution is 101", highlight: null },
         ],
         V5C1: [
-            { text: "Hint 1 for V5C1: Pay attention to loops and conditions.", highlight: null },
-            { text: "Hint 2 for V5C1: Verify the loop termination conditions.", highlight: 2 },
-            { text: "Hint 3 for V5C1: Notice how variables are altered within the loops.", highlight: null },
+            { text: "Pay attention to line 3. How does this line affect the value of 'a'?", highlight: 3 },
+            { text: "In Python, variables can be reassigned multiple times. Each assignment overwrites the previous value.", highlight: null },
+            { text: "The print() function on the last line outputs the current values of both 'a' and 'b' at that point in the code execution.", highlight: null },
             { text: "The solution is 20 20", highlight: null },
         ], 
         F1C1: [
-            { text: "Hint 1 for F1C1: Remember to call the function 'my_func' in line 4.", highlight: null },
-            { text: "Hint 2 for F1C1: Create a function named 'my_func' in line 1.", highlight: null },
-            { text: "Hint 3 for F1C1: Check if the arguments in the function 'my_func' are correct.", highlight: null },
+            { text: "Remember that Python functions are defined using the 'def' keyword.", highlight: null },
+            { text: "Function definitions in Python end with a colon (:)", highlight: null },
+            { text: "To call a function, use its name followed by parentheses ().", highlight: null },
             { text: "The solution for the first gap is def my_func(): The solution for the second gap is my_func()", highlight: null },
         ],
         L1C1: [
-            { text: "Hint 1 for L1C1: Ensure that the loop condition in line 2 is correct.", highlight: null },
-            { text: "Hint 2 for L1C1: Don't forget to increment the counter correctly in line 4.", highlight: null},
-            { text: "Hint 3 for L1C1:  Initialize the counter 'i' in line 1 with the correct value.", highlight: null },
+            { text: "The task requires repetition until a condition is met, which suggests using a loop.", highlight: null },
+            { text: "Consider which type of loop continues executing as long as a condition is true.", highlight: null},
+            { text: "The condition 'i < 6' needs to be checked before each iteration of the loop.", highlight: null },
             { text: `
                 The solution for the first gap is: while
                 `, highlight: null },
