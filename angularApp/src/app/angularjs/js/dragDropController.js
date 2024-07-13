@@ -11,7 +11,7 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
     "i += 1"
   ];
   $scope.selectedLine = null;
-  $scope.selectedShape = "";
+  $scope.selectedShape = null;
   var myDiagram;
   
   $scope.isCorrectAnswer = null;
@@ -26,6 +26,7 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
   $scope.noButtonsOnFeedback = false;
   $scope.hintsGiven = false;
   $scope.connectedNodes = [];
+  $scope.isAnswerIncomplete = false;
 
   function init() {
     var $ = go.GraphObject.make;
@@ -170,11 +171,7 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
     $scope.updateConnectedNodes();
   };
 
-  $scope.noCheck = function() {
-    if (GraphLinksModel([], [])){
-      return True;
-    }
-  }
+  
 
   $scope.refresh = function() {
     myDiagram.model = new go.GraphLinksModel([], []);
@@ -188,6 +185,7 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
       "i += 1"
     ];
     $scope.selectedLine = null;
+    $scope.selectedShape = null;
     $scope.updateConnectedNodes();
   };
 
@@ -196,14 +194,17 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
       nodes: myDiagram.model.nodeDataArray.map(node => ({ key: node.key,  shape: node.shape })),
       links: myDiagram.model.linkDataArray.map(link => ({ from: link.from, to: link.to, text: link.text }))
     };
-
+  
     var taskId = 'L3C1';
     console.log('User answer:', userAnswer);
-    var isCorrect = CorrectFlowchartService.checkFlowchartAnswer(taskId, userAnswer);
+    var result = CorrectFlowchartService.checkFlowchartAnswer(taskId, userAnswer);
+    var isCorrect = result.isCorrect;
+    var isComplete = result.isComplete;
+    var isIncomplete = !isCorrect && isComplete;
     console.log('Is user answer correct:', isCorrect);
-    console.log('Correct answer nodes:', CorrectFlowchartService.correctAnswers[taskId].nodes);
-    console.log('Correct answer links:', CorrectFlowchartService.correctAnswers[taskId].links);
+    console.log('Is user answer incomplete:', isIncomplete);
     $scope.isCorrectAnswer = isCorrect;
+    $scope.isAnswerIncomplete = isIncomplete;
     var timestamp = new Date().getTime();
     var StoredUser = localStorage.getItem("currentUser");
     var UserInfoJson = JSON.parse(StoredUser);
@@ -213,19 +214,23 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
     var logged_data = { "task_form": "flowchart_task","useranswer": JSON.stringify(userAnswer), "taskID": taskId, "isCorrect": isCorrect, "username": username, "timestamp": timestamp, "numHints": $scope.hintIndex, "experienceLevel": experienceLevel };
     window.logHelperFunction(logged_data,token);
     $scope.isAnswered = true;
-
+  
     if (isCorrect) {
       $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCompleted = true;
       $scope.$parent.tasks[$scope.$parent.currentTaskIndex].isCorrect = true;
       $scope.updateTaskStatus(taskId, "correct");
       FeedbackService.updatePythonTutorImage('positive',timestamp);
+    } else if (isIncomplete) {
+      $scope.hintText = "So far so good! But there is still something missing...";
+      $scope.updateTaskStatus(taskId, "incorrect");
+      
     } else {
       $scope.updateTaskStatus(taskId, "incorrect");
       FeedbackService.updatePythonTutorImage('negative',timestamp);
     }
-
+  
     highlightNodesAndLinks(userAnswer, isCorrect);
-
+  
     $scope.userReassurance();
   };
 
@@ -270,6 +275,11 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
       if ($scope.positiveFeedbacks.length > 0) {
         $scope.hintText = $scope.positiveFeedbacks[0].text;
       }
+    } else if ($scope.isAnswerIncomplete) {
+      $scope.hintText = "Your answer is close but incomplete. Please check if you have added all necessary nodes and links.";
+      $scope.updateTaskStatus(taskId, "incomplete");
+      FeedbackService.updatePythonTutorImage('negative',timestamp);
+
     } else {
       $scope.negativeFeedbacks = FeedbackService.getNegativeFeedbacks(taskId);
       if ($scope.negativeFeedbacks.length > 0) {
@@ -429,8 +439,6 @@ app.factory('CorrectFlowchartService', function() {
   };
 
   function compareNodes(userNodes, correctNodes) {
-    if (userNodes.length !== correctNodes.length) return false;
-    
     return userNodes.every(userNode => 
       correctNodes.some(correctNode => 
         userNode.key === correctNode.key && userNode.shape === correctNode.shape
@@ -439,8 +447,6 @@ app.factory('CorrectFlowchartService', function() {
   }
   
   function compareLinks(userLinks, correctLinks) {
-    if (userLinks.length !== correctLinks.length) return false;
-    
     return userLinks.every(userLink => 
       correctLinks.some(correctLink => 
         userLink.from === correctLink.from && 
@@ -450,16 +456,36 @@ app.factory('CorrectFlowchartService', function() {
     );
   }
 
+  function checkMissingElements(taskId, userAnswer) {
+    var correctAnswer = correctAnswers[taskId];
+    if (!correctAnswer) return false;
+    
+    var userNodesSet = new Set(userAnswer.nodes.map(node => node.key));
+    var correctNodesSet = new Set(correctAnswer.nodes.map(node => node.key));
+    
+    var userLinksSet = new Set(userAnswer.links.map(link => `${link.from}-${link.to}-${link.text}`));
+    var correctLinksSet = new Set(correctAnswer.links.map(link => `${link.from}-${link.to}-${link.text}`));
+    
+    var nodesMissing = [...correctNodesSet].some(node => !userNodesSet.has(node));
+    var linksMissing = [...correctLinksSet].some(link => !userLinksSet.has(link));
+    
+    return nodesMissing || linksMissing;
+  }
+
   return {
     correctAnswers: correctAnswers,
     checkFlowchartAnswer: function(taskId, userAnswer) {
       var correctAnswer = correctAnswers[taskId];
-      if (!correctAnswer) return false;
+      if (!correctAnswer) return { isCorrect: false, isComplete: false };
       
       var nodesMatch = compareNodes(userAnswer.nodes, correctAnswer.nodes);
       var linksMatch = compareLinks(userAnswer.links, correctAnswer.links);
 
-      return nodesMatch && linksMatch;
-    }
+      var isComplete = nodesMatch && linksMatch;
+      var isCorrect = isComplete && !checkMissingElements(taskId, userAnswer);
+
+      return { isCorrect: isCorrect, isComplete: isComplete };
+    },
+    checkMissingElements: checkMissingElements
   };
 });

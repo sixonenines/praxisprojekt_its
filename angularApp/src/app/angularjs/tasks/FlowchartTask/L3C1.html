@@ -1,8 +1,11 @@
 <div ng-controller="DragDropController">
-    <table class="task-body">
+    <table class="task-body" style="background-color: #b9cdda; border-collapse: separate; ;
+   ; 
+    margin-top: -10px;  ">
         <tr>
             <h3>L5C1</h3>
-            <td colspan="2">
+            <td class="td-task-description" colspan="2" style="border: solid 3px #000000;
+             background-color: #ffffff; padding: 10px;">
                 <p style="margin: 0;">Visualize the code below by creating a flowchart. Click on <i class="fa-solid fa-question" style="color: #1e1e1e;"></i> to learn how to navigate the canvas. Under <i class="fa-solid fa-shapes" ></i> you will find the meaning of the different shapes used in a flowchart. </p> 
             </td>
         </tr>
@@ -19,13 +22,14 @@
 
             </td>
         </tr>
-            <tr>
+            <tr style="display: inline-flex; justify-content: space-between; width: 100%; ">
             <td colspan="1" style="vertical-align: top;">
 
                 <div class="accordion-flow">
                     <details>
                       <summary><i class="fa-solid fa-question fa-xl canvas-nav" ></i></summary>
-                      <p class="flip-text"><i class="fa-solid fa-arrow-pointer"></i> drags the Node and <i class="fa-regular fa-hand-pointer"></i> draws an arrow from one node to another.
+                      
+<p class="flip-text"><i class="fa-solid fa-arrow-pointer"></i> drags the Node and <i class="fa-regular fa-hand-pointer"></i> draws an arrow from one node to another.
 
 <i class="fa-solid fa-computer-mouse"></i> Right-click an arrow to set it to "True" or "False".
 
@@ -46,44 +50,21 @@
                     </details>
                 </div>
             </td>
-                <!-- <div class="how-to-flip">
-                    <div class="how-to-inner">
-                        <div class="how-to-front">
-                            <i class="fa-solid fa-question fa-2xl" style="color: #d4d4d4;"></i>
-                        </div>
-                        <div class="how-to-back">
-                        <p class="flip-text"><i class="fa-solid fa-arrow-pointer"></i> drags the Node and <i class="fa-regular fa-hand-pointer"></i> draws an arrow from one node to another.
-
-<i class="fa-solid fa-computer-mouse"></i> Right-click an arrow to set it to "True" or "False".
-
-<i class="fa-solid fa-keyboard"></i> Press  the <kbd>Del</kbd>-key on your keyboard to delete a selected element or click on the "Refresh"-button to reset the canvas.</p>
-                        </div>
-                    </div>
-                </div>
-            </td>
-            <td colspan="1">
-                <div class="shape-flip">
-                    <div class="shape-inner">
-                        <div class="shape-front">
-                            <i class="fa-solid fa-shapes fa-2xl" style="color: #d4d4d4;"></i>
-                        </div>
-                        <div class="shape-back">
-                        <p class="flip-text">
-<i class="fa-solid fa-circle"></i> The oval terminator symbol indicates the starting or ending point of a system.
-
-<i class="fa-solid fa-square-full"></i> A rectangle box represents actions and basic within the process.
-
-<i class="fa-solid fa-diamond"></i> The diamond shaped descision symbol represents a point, requiring a choice to proceed.</p>
-                        </div>
-                    </div>
-                </div>
-            </td> -->
 
         </tr>
-        <tr>
-            <td colspan="3">
-                <div class="flowchart-options">
-                    <select ng-model="selectedLine" style="width: 150px; height: 40px;" ng-options="line for line in availableLines" style="width: 100px; height: 40px;">
+        
+        <tr >
+            <td colspan="3" style="border-top-left-radius: 10px; border-top-right-radius: 10px; background-color: #1e1e1e;">
+                <div class="flowchart-diagram" id="myDiagramDiv" ng-class="{'correct-answer-flow': isCorrectAnswer,'incorrect-answer-flow': !isCorrectAnswer && isAnswered,'incomplete-answer-flow': isAnswerIncomplete && isAnswered }" style="height: 350px;  border-radius: 4px; background-color: #1e1e1e; box-sizing: border-box; margin-bottom: 0;"></div>
+                <img class="flowchart-diagram" id="solutionImage" src="assets/solution_flowchart.png" style="height: 100%; border-radius: 4px;display: none;" alt="Solution">
+            </td>
+        </tr>
+        <tr style="width: 100%; ">
+            <td colspan="3" class="td-flow-options" style="border: solid 1px #1e1e1e;
+            border-style: solid none; background-color: #1e1e1e;
+            ">
+                <div class="flowchart-options" style="margin-top: -5px;">
+                    <select ng-model="selectedLine" style="width: 150px; height: 40px; " ng-options="line for line in availableLines" style="width: 100px; height: 40px;">
                         <option value="" disabled selected>Select a line:</option>
                     </select>
                     <select ng-model="selectedShape" style="width: 150px; height: 40px;">
@@ -92,21 +73,16 @@
                         <option value="Rectangle">Process</option>
                         <option value="Diamond">Condition</option>
                     </select>
-                    <button ng-click="addNode()" class="check-button">Add Node</button>
-                    <button ng-click="refresh()" class="check-button">Refresh</button>
+                    <div class="button-check-hint"><button ng-click="addNode()" class="check-button">Add Node</button>
+                    <button ng-click="refresh()" class="check-button">Refresh</button></div>
                 </div>
             </td>
         </tr>
-        <tr>
-            <td colspan="3">
-                <div class="flowchart-diagram" id="myDiagramDiv" style="height: 350px;  border-radius: 4px; background-color: #1e1e1e"></div>
-                <img class="flowchart-diagram" id="solutionImage" src="assets/solution_flowchart.png" style="height: 100%; border-radius: 4px;display: none;" alt="Solution">
-            </td>
-        </tr>
-        <tr>
+        
+        <tr style="background-color: #b9cdda;">
             <td colspan="3" ><div class="flowchart-buttons button-check-hint">
                 
-                <button ng-click="checkFlowchart()" class="check-button" ng-disabled="correctAnswers" ><i class="fas fa-check" ></i>Check</button>
+                <button ng-click="checkFlowchart()" class="check-button"  ><i class="fas fa-check" ></i>Check</button>
                 <button ng-click="getHint()" ng-disabled="allHintsShown || hintButtonDisabled" class="button-with-progress">
                     <span class="hint-text"> <i class="fas fa-lightbulb"></i>Hint</span>
                     <span ng-show="hintButtonDisabled" class="progress-bar-hint"></span>
