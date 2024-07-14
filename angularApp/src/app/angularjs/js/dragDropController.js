@@ -223,7 +223,7 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
     } else if (isIncomplete) {
       $scope.hintText = "So far so good! But there is still something missing...";
       $scope.updateTaskStatus(taskId, "incorrect");
-      
+      FeedbackService.updatePythonTutorImage('incomplete',timestamp);
     } else {
       $scope.updateTaskStatus(taskId, "incorrect");
       FeedbackService.updatePythonTutorImage('negative',timestamp);
@@ -278,7 +278,7 @@ app.controller("DragDropController", function($scope, $timeout, $interval, Corre
     } else if ($scope.isAnswerIncomplete) {
       $scope.hintText = "Your answer is close but incomplete. Please check if you have added all necessary nodes and links.";
       $scope.updateTaskStatus(taskId, "incomplete");
-      FeedbackService.updatePythonTutorImage('negative',timestamp);
+      
 
     } else {
       $scope.negativeFeedbacks = FeedbackService.getNegativeFeedbacks(taskId);

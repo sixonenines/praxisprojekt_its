@@ -354,7 +354,11 @@ print("Finished")
         } else if (feedbackType === 'negative') {
             console.log("Bildertausch");
             baseImageUrl = 'assets/sad_pythonTutor.png';
-        } else {
+        } else if (feedbackType === 'incomplete'){
+            baseImageUrl = 'assets/incomplete_pythonTutor.png';
+        }
+        
+        else {
             baseImageUrl = 'assets/pythonTutor.png';
         }
 
