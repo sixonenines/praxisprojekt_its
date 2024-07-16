@@ -299,4 +299,58 @@ app.controller("FreeCodeTaskController", function($scope, $timeout, $interval, C
         var currentHint = $scope.feedbacks[$scope.hintIndex];
         $scope.hintText = currentHint.text;
     };
+    
+    const parentElement = document.body;
+
+
+    // Create a MutationObserver to watch for the addition of dynamicDiv
+const observer = new MutationObserver((mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            // Check if contentDivs has been added
+            const editorContents = document.getElementsByClassName('mpy-editor-input');
+                if (editorContents) {
+                    console.log("hehes")
+                    console.log(editorContents)
+                    // Set up a new observer for the contentDivs's children
+                    for (const editorContent of editorContents){
+                        console.log("tress")
+                        console.log(editorContent)
+                    editorContent.addEventListener('input', changeColorBack);
+                    }
+                        // Start observing the dynamicDiv for changes to its children
+                        //editorcontentObserver.observe(editorContent, { childList: true, subtree: true });
+    
+                        // Optionally disconnect the parent observer if dynamicDiv will not be removed and re-added
+                        // observer.disconnect();
+                    }
+            }
+        }
+    });
+
+    // Create a MutationObserver to watch for changes in the div
+    // Start observing the div for changes to its children
+    observer.observe(parentElement, { childList: true, subtree: true });
+
+    
+
+
+    function changeColorBack() {
+        console.log("IsItBeingCalled")
+        $scope.$apply(() => {
+            $scope.isAnswered = false;
+        });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 });
