@@ -1499,8 +1499,16 @@ details > p {
     border-bottom-left-radius: 10px;
 
 }
-.td-task-description{border: solid 3px #000000;
-             background-color: #ffffff; padding: 10px;}
+.td-task-description{
+    border: solid 3px #000000;
+    background-color: #ffffff; 
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+
 kbd {
     background-color: #eee;
     border-radius: 3px;

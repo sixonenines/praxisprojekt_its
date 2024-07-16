@@ -297,29 +297,6 @@ print("Finished")
         L3C1: reassuringFeedbacks,
     };
 
-    // Sollte evtl. Feedback individueller, Implementierung bisher problematisch
-    
-    // var negativeFeedbacksForFC = {
-    //     incorretNodeFeedback: [
-    //         {text: "Hm, the shapes of the nodes seem off."}
-    //     ],
-    //     incorrectLinkDirection: [
-    //         {text: "Are you sure the links are correctly placed?"}
-    //     ],
-    //     incorrectLinkText: [
-    //         {text: "Check again for the truthiness or falseness of the conditions!"}
-    //     ],
-    //     missingElements: [
-    //         {text: "Your flowchart looks good so far, but there still seems to be something missing..."}
-    //     ],
-    //     combinedFlowchartFeedback: [
-    //         {text: "You're doing great, but there are some issues in your flowchart. Carefully revise the code and your adjust your flowchart. You can do it!"}
-    //     ]
-    // }
-    
-    // this.getNegativeFeedbacksForFC = function(feedbackFC) {
-    //     return negativeFeedbacksForFC[feedbackFC] || [];
-    // };
 
     this.getFeedbacks = function(taskId) {
         return feedbacks[taskId] || [];
@@ -338,10 +315,6 @@ print("Finished")
         return [];
     };
 
-    
-
-    
-
     // Sad/Happy Tutor 
     this.updatePythonTutorImage = function(feedbackType, timestamp) {
         console.log("FEEDBACKTYPE: " + feedbackType);
@@ -354,6 +327,8 @@ print("Finished")
         } else if (feedbackType === 'negative') {
             console.log("Bildertausch");
             baseImageUrl = 'assets/sad_pythonTutor.png';
+        } else if (feedbackType === 'incomplete'){
+            baseImageUrl = 'assets/incomplete_pythonTutor.png';
         } else {
             baseImageUrl = 'assets/pythonTutor.png';
         }
